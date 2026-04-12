@@ -35,15 +35,18 @@ const HeroSection = () => {
                 </a>
               </p>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col gap-5">
               <Link to="/aboutadam" className="inline-block text-primary font-heading font-semibold tracking-wider text-sm hover:underline">
                 {t.hero.moreAbout}
               </Link>
-              <div className="flex items-center gap-3">
-                <a href="https://www.facebook.com/adamjameslikescoffee" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/60 hover:text-primary hover:bg-foreground/20 transition-all"><Facebook size={16} /></a>
-                <a href="https://www.instagram.com/adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/60 hover:text-primary hover:bg-foreground/20 transition-all"><Instagram size={16} /></a>
-                <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/60 hover:text-primary hover:bg-foreground/20 transition-all"><Linkedin size={16} /></a>
-                <a href="https://www.firesidebusinessadvice.com/panellists/liberty-digital" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/60 hover:text-primary hover:bg-foreground/20 transition-all"><Flame size={16} /></a>
+              <div>
+                <span className="block text-xs font-heading font-semibold tracking-[0.2em] text-foreground/50 uppercase mb-3">Follow Adam</span>
+                <div className="flex items-center gap-3">
+                  <a href="https://www.facebook.com/adamjameslikescoffee" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"><Facebook size={18} /></a>
+                  <a href="https://www.instagram.com/adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"><Instagram size={18} /></a>
+                  <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"><Linkedin size={18} /></a>
+                  <a href="https://www.firesidebusinessadvice.com/panellists/liberty-digital" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"><Flame size={18} /></a>
+                </div>
               </div>
             </div>
           </div>
