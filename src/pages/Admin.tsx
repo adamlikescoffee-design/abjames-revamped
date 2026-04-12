@@ -75,6 +75,19 @@ const Admin = () => {
     fetchPledges();
   }, [user]);
 
+  useEffect(() => {
+    if (!user) return;
+    const fetchJournal = async () => {
+      const { data } = await supabase
+        .from("wheelchair_journal")
+        .select("*")
+        .order("published_at", { ascending: false });
+      setJournalEntries(data || []);
+      setJournalLoading(false);
+    };
+    fetchJournal();
+  }, [user]);
+
   const handleSignOut = async () => {
     await signOut();
     navigate("/admin/login");
