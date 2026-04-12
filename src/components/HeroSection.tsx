@@ -30,7 +30,15 @@ const HeroSection = () => {
                 {t.hero.p2After}
               </p>
               <p>
-                {t.hero.p3}{" "}
+                {t.hero.p3Before}
+                <a href="https://www.libertydigital.com.au/web-design/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  {t.hero.p3WebLink}
+                </a>
+                {t.hero.p3Mid}
+                <a href="https://www.libertydigital.com.au/search-engine-optimisation-seo/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  {t.hero.p3SeoLink}
+                </a>
+                {t.hero.p3After}{" "}
                 <a href="https://www.firesidebusinessadvice.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
                   {t.hero.firesideLink}
                 </a>
