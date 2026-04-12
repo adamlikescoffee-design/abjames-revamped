@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone } from "lucide-react";
@@ -121,6 +121,7 @@ const Admin = () => {
           <div className="flex items-center gap-3">
             <Users size={22} className="text-primary" />
             <h1 className="text-xl font-heading font-bold text-foreground">Pledge Admin</h1>
+            <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors ml-2">← Home</Link>
           </div>
           <button onClick={handleSignOut} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-heading">
             <LogOut size={16} />
