@@ -219,7 +219,7 @@ export const es: typeof en = {
     involvedText: "Ya sea que quieras ser voluntario, colaborar o simplemente aprender más sobre cómo puedes marcar la diferencia en tu comunidad — me encantaría saber de ti.",
     getInTouch: "CONTÁCTAME",
     wereCurrentlyTaking: "Actualmente estamos aceptando",
-    namePlaceholder: "Tu nombre",
+    namePlaceholder: "Tu nombre completo",
     emailPlaceholder: "tu@correo.com",
     amountPlaceholder: "20",
     cityCountryPlaceholder: "ej. Melbourne, Australia",
