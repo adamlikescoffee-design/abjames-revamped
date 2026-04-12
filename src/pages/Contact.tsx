@@ -119,7 +119,7 @@ const Contact = () => {
                     Follow Adam on Social Media
                   </h3>
                   <div className="flex gap-4">
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors">
+                    <a href="https://www.facebook.com/adamjameslikescoffee" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors">
                       <Facebook size={18} />
                     </a>
                     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors">

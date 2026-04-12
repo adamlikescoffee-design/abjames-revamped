@@ -58,7 +58,7 @@ const ContactSection = () => {
                 <h3 className="font-heading text-lg font-semibold text-foreground mb-4">Follow Me</h3>
                 <div className="flex gap-4">
                   {[
-                    { icon: Facebook, href: "https://facebook.com" },
+                    { icon: Facebook, href: "https://www.facebook.com/adamjameslikescoffee" },
                     { icon: X, href: "https://x.com" },
                     { icon: Instagram, href: "https://instagram.com" },
                     { icon: Linkedin, href: "https://www.linkedin.com/in/adam-likes-coffee/" },
