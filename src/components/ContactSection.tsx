@@ -61,7 +61,7 @@ const ContactSection = () => {
                     { icon: Facebook, href: "https://facebook.com" },
                     { icon: X, href: "https://x.com" },
                     { icon: Instagram, href: "https://instagram.com" },
-                    { icon: Linkedin, href: "https://linkedin.com" },
+                    { icon: Linkedin, href: "https://www.firesidebusinessadvice.com" },
                   ].map(({ icon: Icon, href }, idx) => (
                     <a
                       key={idx}
