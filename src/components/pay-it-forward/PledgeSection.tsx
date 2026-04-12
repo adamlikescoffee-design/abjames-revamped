@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 interface PledgeSectionProps {
   stats: { pledge_count: number; total_amount: number } | null;
-  pledgeData: { name: string; email: string; amount: string; city_country: string; notes: string; message: string };
+  pledgeData: { name: string; email: string; phone: string; amount: string; city_country: string; notes: string; message: string };
   setPledgeData: (data: any) => void;
   pledgeSubmitted: boolean;
   submitting: boolean;
@@ -105,6 +105,18 @@ const PledgeSection = ({ stats, pledgeData, setPledgeData, pledgeSubmitted, subm
                       onChange={(e) => setPledgeData({ ...pledgeData, name: e.target.value })}
                       className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
                       placeholder={t.payingItForward.namePlaceholder}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">
+                      {t.payingItForward.pledgeFormPhone}
+                    </label>
+                    <input
+                      type="tel"
+                      value={pledgeData.phone}
+                      onChange={(e) => setPledgeData({ ...pledgeData, phone: e.target.value })}
+                      className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+                      placeholder={t.payingItForward.phonePlaceholder}
                     />
                   </div>
                   <div>

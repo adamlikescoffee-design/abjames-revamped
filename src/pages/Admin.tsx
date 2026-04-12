@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X } from "lucide-react";
+import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone } from "lucide-react";
 import { toast } from "sonner";
 import {
   AlertDialog,
@@ -20,6 +20,7 @@ interface Pledge {
   id: string;
   name: string;
   email: string;
+  phone: string | null;
   amount: number;
   city_country: string | null;
   notes: string | null;
@@ -27,7 +28,7 @@ interface Pledge {
   created_at: string;
 }
 
-const emptyForm = { name: "", email: "", amount: "", city_country: "", notes: "", message: "" };
+const emptyForm = { name: "", email: "", phone: "", amount: "", city_country: "", notes: "", message: "" };
 
 const Admin = () => {
   const { user, loading: authLoading, signOut } = useAuth();
@@ -84,6 +85,7 @@ const Admin = () => {
       .insert({
         name: form.name,
         email: form.email,
+        phone: form.phone || null,
         amount: Number(form.amount),
         city_country: form.city_country || null,
         notes: form.notes || null,
@@ -180,6 +182,15 @@ const Admin = () => {
                   />
                 </div>
                 <div>
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Phone</label>
+                  <input
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+                <div>
                   <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Amount (AUD) *</label>
                   <input
                     type="number"
@@ -254,6 +265,7 @@ const Admin = () => {
                   <tr className="border-b border-border">
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Name</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Email</th>
+                    <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Phone</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Amount</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Location</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Message</th>
@@ -268,6 +280,7 @@ const Admin = () => {
                       <td className="px-4 py-3 text-sm">
                         <a href={`mailto:${pledge.email}`} className="text-primary hover:underline">{pledge.email}</a>
                       </td>
+                      <td className="px-4 py-3 text-sm text-muted-foreground">{pledge.phone || "—"}</td>
                       <td className="px-4 py-3 text-sm text-foreground font-semibold">${pledge.amount}</td>
                       <td className="px-4 py-3 text-sm text-muted-foreground">{pledge.city_country || "—"}</td>
                       <td className="px-4 py-3 text-sm text-muted-foreground max-w-[200px] truncate">{pledge.message || "—"}</td>
@@ -332,6 +345,12 @@ const Admin = () => {
                     <Mail size={14} className="text-muted-foreground" />
                     <a href={`mailto:${pledge.email}`} className="text-primary hover:underline">{pledge.email}</a>
                   </div>
+                  {pledge.phone && (
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Phone size={14} />
+                      <a href={`tel:${pledge.phone}`} className="text-primary hover:underline">{pledge.phone}</a>
+                    </div>
+                  )}
                   {pledge.city_country && (
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <MapPin size={14} />
