@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Heart, Coffee, Users, HandHeart, Accessibility } from "lucide-react";
+import { ArrowLeft, Accessibility } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -35,30 +35,6 @@ const PayingItForward = () => {
           <ScrollReveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
-                {
-                  icon: Coffee,
-                  title: "Cup From Above",
-                  description:
-                    "A social enterprise using coffee as a catalyst for community transformation, giving disadvantaged and disabled locals the opportunity to gain real-world experience and qualifications in hospitality.",
-                },
-                {
-                  icon: Users,
-                  title: "Community Building",
-                  description:
-                    "Creating spaces where people from all walks of life can come together, share stories, and support one another — because real change starts with genuine connection.",
-                },
-                {
-                  icon: HandHeart,
-                  title: "Mentoring",
-                  description:
-                    "Working with young men through Fireside Business Advice to help them navigate the challenges of entrepreneurship, build great businesses, and grow as individuals.",
-                },
-                {
-                  icon: Heart,
-                  title: "Suspended Coffees",
-                  description:
-                    "Championing the suspended coffee movement in Australia — letting customers pre-pay for a coffee that someone in need can later redeem, creating a ripple effect of kindness.",
-                },
                 {
                   icon: Accessibility,
                   title: "Wheelchair for Angel",
