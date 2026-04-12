@@ -265,6 +265,7 @@ const Admin = () => {
                   <tr className="border-b border-border">
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Name</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Email</th>
+                    <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Phone</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Amount</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Location</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Message</th>
