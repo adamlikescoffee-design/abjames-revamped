@@ -60,12 +60,12 @@ const Blog = () => {
                 "px-4 py-2 rounded-full font-heading text-xs font-semibold tracking-wider transition-all",
                 activeCategory === cat ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-accent"
               )}>
-                {cat.toUpperCase()}
+                {getCategoryLabel(cat)}
                 <span className={cn(
                   "ml-1.5 inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1 rounded-full text-[10px] font-bold",
                   activeCategory === cat ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/10 text-muted-foreground"
                 )}>
-                  {categoryCounts.get(cat) || 0}
+                  {getCategoryCount(cat)}
                 </span>
               </button>
             ))}
