@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone } from "lucide-react";
+import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone, Download } from "lucide-react";
 import { toast } from "sonner";
 import {
   AlertDialog,
@@ -114,6 +114,28 @@ const Admin = () => {
 
   const totalAmount = pledges.reduce((sum, p) => sum + p.amount, 0);
 
+  const exportCSV = () => {
+    const headers = ["Name", "Email", "Phone", "Amount", "City/Country", "Message", "Notes", "Date"];
+    const rows = pledges.map((p) => [
+      p.name,
+      p.email,
+      p.phone || "",
+      p.amount,
+      p.city_country || "",
+      (p.message || "").replace(/"/g, '""'),
+      (p.notes || "").replace(/"/g, '""'),
+      new Date(p.created_at).toLocaleDateString(),
+    ]);
+    const csv = [headers, ...rows].map((r) => r.map((v) => `"${v}"`).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `pledges-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-secondary">
@@ -145,15 +167,27 @@ const Admin = () => {
 
         {/* Add Pledge Button / Form */}
         <div className="mb-6">
-          {!showAddForm ? (
-            <button
-              onClick={() => setShowAddForm(true)}
-              className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors"
-            >
-              <Plus size={16} />
-              Add Pledge
-            </button>
-          ) : (
+          <div className="flex items-center gap-3 mb-4">
+            {!showAddForm && (
+              <button
+                onClick={() => setShowAddForm(true)}
+                className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors"
+              >
+                <Plus size={16} />
+                Add Pledge
+              </button>
+            )}
+            {pledges.length > 0 && (
+              <button
+                onClick={exportCSV}
+                className="flex items-center gap-2 border border-border text-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-muted transition-colors"
+              >
+                <Download size={16} />
+                Export CSV
+              </button>
+            )}
+          </div>
+          {showAddForm && (
             <div className="bg-secondary border border-border rounded-lg p-5">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-heading font-bold text-foreground">Add New Pledge</h2>
