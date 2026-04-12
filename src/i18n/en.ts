@@ -199,7 +199,7 @@ export const en = {
     onceConfirmed: "Once we've confirmed the exact costs and that the wheelchair is definitely going to be beneficial for Angel, we will",
     emailPledgers: "email all pledgers with payment details",
     atThatPoint: "at that point.",
-    pledgeFormName: "Name",
+    pledgeFormName: "Full Name",
     pledgeFormPhone: "Phone",
     phonePlaceholder: "Your phone number",
     pledgeFormEmail: "Email",

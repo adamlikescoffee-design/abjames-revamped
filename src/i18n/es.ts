@@ -201,7 +201,7 @@ export const es: typeof en = {
     onceConfirmed: "Una vez que hayamos confirmado los costos exactos y que la silla de ruedas definitivamente será beneficiosa para Ángel,",
     emailPledgers: "enviaremos un correo a todos los participantes con los detalles de pago",
     atThatPoint: "en ese momento.",
-    pledgeFormName: "Nombre",
+    pledgeFormName: "Nombre Completo",
     pledgeFormPhone: "Teléfono",
     phonePlaceholder: "Tu número de teléfono",
     pledgeFormEmail: "Correo Electrónico",
