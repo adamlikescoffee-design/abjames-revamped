@@ -108,8 +108,8 @@ const Gallery = () => {
         </div>
       )}
 
-      <section className="relative pt-28 pb-20">
-        <div className="relative z-10 container mx-auto px-4">
+      <section className="pt-28 pb-20">
+        <div className="container mx-auto px-4">
           <ScrollReveal>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">{t.gallery.title}</h1>
             <p className="text-muted-foreground text-center mb-12 max-w-lg mx-auto">{t.gallery.subtitle}</p>
