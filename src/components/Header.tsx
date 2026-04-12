@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Menu, X } from "lucide-react";
+import { Facebook, Flame, Instagram, Linkedin, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -48,6 +48,7 @@ const Header = () => {
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Facebook size={18} /></a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Instagram size={18} /></a>
             <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Linkedin size={18} /></a>
+            <a href="https://www.firesidebusinessadvice.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Flame size={18} /></a>
           </div>
 
           <button
@@ -81,6 +82,7 @@ const Header = () => {
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Facebook size={20} /></a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Instagram size={20} /></a>
             <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Linkedin size={20} /></a>
+            <a href="https://www.firesidebusinessadvice.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Flame size={20} /></a>
           </div>
         </div>
       )}
