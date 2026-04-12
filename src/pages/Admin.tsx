@@ -488,6 +488,125 @@ const Admin = () => {
             </div>
           </>
         )}
+        {/* Journal Section */}
+        <div className="mt-12 border-t border-border pt-8">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <BookOpen size={22} className="text-primary" />
+              <h2 className="text-xl font-heading font-bold text-foreground">Journal Updates</h2>
+            </div>
+            {!showJournalForm && (
+              <button
+                onClick={() => { setShowJournalForm(true); setEditingJournalId(null); setJournalForm(emptyJournalForm); }}
+                className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors"
+              >
+                <Plus size={16} />
+                Add Entry
+              </button>
+            )}
+          </div>
+
+          {showJournalForm && (
+            <div className="bg-secondary border border-border rounded-lg p-5 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-heading font-bold text-foreground">{editingJournalId ? "Edit Entry" : "New Journal Entry"}</h3>
+                <button onClick={() => { setShowJournalForm(false); setEditingJournalId(null); setJournalForm(emptyJournalForm); }} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <X size={18} />
+                </button>
+              </div>
+              <form onSubmit={handleJournalSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Title *</label>
+                  <input
+                    type="text"
+                    value={journalForm.title}
+                    onChange={(e) => setJournalForm({ ...journalForm, title: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                    required
+                    placeholder="Entry title"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Content *</label>
+                  <textarea
+                    value={journalForm.content}
+                    onChange={(e) => setJournalForm({ ...journalForm, content: e.target.value })}
+                    rows={5}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                    required
+                    placeholder="Write your update..."
+                  />
+                </div>
+                <div className="flex justify-end gap-2">
+                  <button
+                    type="button"
+                    onClick={() => { setShowJournalForm(false); setEditingJournalId(null); setJournalForm(emptyJournalForm); }}
+                    className="px-4 py-2 rounded-lg text-sm font-heading text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={journalSubmitting}
+                    className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  >
+                    {journalSubmitting && <Loader2 size={14} className="animate-spin" />}
+                    {editingJournalId ? "Update" : "Publish"}
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {journalLoading ? (
+            <div className="flex justify-center py-8">
+              <Loader2 size={24} className="animate-spin text-primary" />
+            </div>
+          ) : journalEntries.length === 0 ? (
+            <p className="text-center text-muted-foreground py-8">No journal entries yet.</p>
+          ) : (
+            <div className="space-y-3">
+              {journalEntries.map((entry) => (
+                <div key={entry.id} className="bg-secondary border border-border rounded-lg p-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-heading font-bold text-foreground mb-1">{entry.title}</h4>
+                      <p className="text-xs text-muted-foreground mb-2">{new Date(entry.published_at).toLocaleDateString()}</p>
+                      <p className="text-sm text-muted-foreground whitespace-pre-line">{entry.content}</p>
+                    </div>
+                    <div className="flex items-center gap-1 shrink-0">
+                      <button
+                        onClick={() => startEditJournal(entry)}
+                        className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                      >
+                        <Pencil size={16} />
+                      </button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <button className="text-destructive hover:text-destructive/80 transition-colors p-1">
+                            <Trash2 size={16} />
+                          </button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete journal entry?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This will permanently remove "{entry.title}". This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={() => handleJournalDelete(entry.id)} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">Delete</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
