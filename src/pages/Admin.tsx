@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X } from "lucide-react";
+import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone } from "lucide-react";
 import { toast } from "sonner";
 import {
   AlertDialog,
@@ -345,6 +345,12 @@ const Admin = () => {
                     <Mail size={14} className="text-muted-foreground" />
                     <a href={`mailto:${pledge.email}`} className="text-primary hover:underline">{pledge.email}</a>
                   </div>
+                  {pledge.phone && (
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Phone size={14} />
+                      <a href={`tel:${pledge.phone}`} className="text-primary hover:underline">{pledge.phone}</a>
+                    </div>
+                  )}
                   {pledge.city_country && (
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <MapPin size={14} />
