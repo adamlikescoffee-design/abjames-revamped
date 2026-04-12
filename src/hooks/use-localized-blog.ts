@@ -15,7 +15,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
 
   return useMemo(() => {
     return blogPosts.map((post) => {
-      if (language === "es") {
+      if (lang === "es") {
         const es = blogPostsEs[post.slug];
         return {
           ...post,
@@ -33,7 +33,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
         localizedCategory: post.category ?? "",
       };
     });
-  }, [language]);
+  }, [lang]);
 }
 
 export function useLocalizedBlogPost(slug: string | undefined): LocalizedBlogPost | undefined {
