@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import ScrollReveal from "@/components/ScrollReveal";
 import { format } from "date-fns";
 import wheelchairDonated from "@/assets/wheelchair-donated.png";
-import { format } from "date-fns";
 
 interface JournalEntry {
   id: string;
