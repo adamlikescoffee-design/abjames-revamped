@@ -59,7 +59,7 @@ const JournalSection = () => {
                   <div className="bg-secondary/50 border border-border/50 rounded-xl p-6">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
                       <CalendarDays size={12} />
-                      {format(new Date(entry.published_at), "MMMM d, yyyy")}
+                      {format(new Date(entry.published_at), "MMMM d, yyyy · h:mm a")}
                     </div>
                     <h3 className="font-heading text-lg font-bold text-foreground mb-2">
                       {entry.title}
