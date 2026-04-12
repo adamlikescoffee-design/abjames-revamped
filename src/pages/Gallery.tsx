@@ -32,7 +32,7 @@ import gallery23 from "@/assets/gallery-23.jpeg";
 import gallery24 from "@/assets/gallery-24.jpg";
 import galleryAdam1 from "@/assets/gallery-adam-1.webp";
 import galleryAdam2 from "@/assets/gallery-adam-2.webp";
-import galleryAdam3 from "@/assets/gallery-adam-3.webp";
+import galleryAdam4 from "@/assets/gallery-adam-4.jpg";
 
 const galleryImages = [
   { src: gallery01, alt: "Community event" },
