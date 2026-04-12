@@ -33,8 +33,8 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <Link to="/" className={cn(
-          "font-heading font-bold tracking-wider text-foreground transition-all duration-300",
-          scrolled ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl"
+          "font-heading font-bold tracking-wider text-foreground transition-all duration-500",
+          scrolled ? "text-3xl md:text-4xl" : "text-5xl md:text-7xl"
         )}>
           ADAM JAMES
         </Link>
