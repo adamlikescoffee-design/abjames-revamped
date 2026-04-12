@@ -41,6 +41,7 @@ const PayingItForward = () => {
 
       if (error) throw error;
       setPledgeSubmitted(true);
+      fetchStats();
     } catch (err) {
       console.error("Pledge error:", err);
       toast.error("Something went wrong. Please try again.");
@@ -107,10 +108,29 @@ const PayingItForward = () => {
           <ScrollReveal>
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">{t.payingItForward.pledgeTitle}</h2>
-              <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="flex items-center justify-center gap-2 mb-4">
                 <Users size={20} className="text-primary" />
                 <span className="text-lg font-heading font-semibold text-foreground">{t.payingItForward.proposedTarget}</span>
               </div>
+
+              {/* Progress Bar */}
+              {stats && (
+                <div className="max-w-md mx-auto mb-8">
+                  <div className="flex justify-between text-sm font-heading font-semibold mb-2">
+                    <span className="text-foreground">{stats.pledge_count} / 100 {t.payingItForward.pledgesReceived}</span>
+                    <span className="text-primary">${stats.total_amount.toLocaleString()}</span>
+                  </div>
+                  <div className="w-full h-3 bg-secondary border border-border rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary rounded-full transition-all duration-700 ease-out"
+                      style={{ width: `${Math.min((stats.pledge_count / 100) * 100, 100)}%` }}
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1.5 text-right">
+                    ${stats.total_amount.toLocaleString()} {t.payingItForward.pledgedOf}
+                  </p>
+                </div>
+              )}
               <div className="max-w-2xl mx-auto space-y-4 text-muted-foreground">
                 <p>{t.payingItForward.wereCurrentlyTaking} <strong className="text-foreground">{t.payingItForward.pledgeOnly}</strong> {t.payingItForward.pledgeOnlyDesc}</p>
                 <p>{t.payingItForward.estimatedCost} <strong className="text-foreground">{t.payingItForward.costAmount}</strong>{t.payingItForward.costWaiting}</p>
