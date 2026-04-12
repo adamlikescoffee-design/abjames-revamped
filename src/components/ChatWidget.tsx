@@ -13,7 +13,7 @@ const ChatWidget = () => {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     lang === "es" ? "Hola Adam, me gustaría contactarte." : "Hi Adam, I'd like to get in touch."
   )}`;
-  const messengerUrl = `https://m.me/${FACEBOOK_PAGE}`;
+  const messengerUrl = `https://www.facebook.com/${FACEBOOK_PAGE}`;
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
