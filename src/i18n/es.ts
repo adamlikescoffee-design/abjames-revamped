@@ -219,6 +219,15 @@ export const es: typeof en = {
     cityCountryPlaceholder: "ej. Melbourne, Australia",
     notesPlaceholder: "Notas adicionales (opcional)",
     messagePlaceholder: "Un mensaje personal para Ángel (opcional)",
+    mediaTitle: "Un Historial de Retribución",
+    mediaSubtitle: "Adam ha dedicado más de una década a apoyar comunidades a través de empresas sociales, recaudación de fondos e iniciativas de base — estos son algunos aspectos destacados.",
+    mediaCfa: "Cup From Above",
+    mediaCfaDesc: "Fundó un café de empresa social que brindó capacitación en hospitalidad y empleo a miembros de la comunidad desfavorecidos y con discapacidades. Presentado en el Courier Mail y Northside Chronicle.",
+    mediaRadio: "Radio y Medios",
+    mediaRadioDesc: "Entrevistado en ABC Radio Nacional y 96five FM sobre el movimiento del café suspendido, apoyo comunitario y empresa social de base en Australia.",
+    mediaAoty: "Nominado al Australiano del Año",
+    mediaAotyDesc: "Nominado al premio Australiano del Año en reconocimiento a años de trabajo comunitario a través de Cup From Above y otras empresas sociales.",
+    mediaSeeAll: "VER TODOS LOS ARTÍCULOS →",
   },
 
   // 404
