@@ -1,30 +1,5 @@
-import blogTrees from "@/assets/blog-trees.jpg";
-import blogCommunity from "@/assets/blog-community.jpg";
-import blogCafe from "@/assets/blog-cafe.jpg";
-
-const blogPosts = [
-  {
-    title: "Tree Removal Noosa: What Homeowners on the Sunshine Coast Need to Know",
-    excerpt:
-      "If you're searching for Tree Removal Noosa or Tree Lopping Noosa, chances are you're dealing with a tree that's become unsafe, overgrown, or storm-damaged...",
-    image: blogTrees,
-    link: "#",
-  },
-  {
-    title: "Daily Grind for Ashley — A Community United in Kindness",
-    excerpt:
-      "A heartfelt story about a remarkable five-year-old named Ashley Kong, whose journey touched the hearts of many in Brisbane's northside...",
-    image: blogCommunity,
-    link: "#",
-  },
-  {
-    title: "A Little Help From Above: How a Brisbane Café is Changing Lives",
-    excerpt:
-      "Through his social enterprise, Cup from Above, Adam uses coffee as a catalyst for community transformation...",
-    image: blogCafe,
-    link: "#",
-  },
-];
+import { Link } from "react-router-dom";
+import { blogPosts } from "@/data/blogPosts";
 
 const BlogSection = () => {
   return (
@@ -35,10 +10,10 @@ const BlogSection = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, idx) => (
-            <a
-              key={idx}
-              href={post.link}
+          {blogPosts.map((post) => (
+            <Link
+              key={post.slug}
+              to={`/blog/${post.slug}`}
               className="group block bg-card rounded-lg overflow-hidden hover:ring-2 hover:ring-primary transition-all duration-300"
             >
               <div className="overflow-hidden">
@@ -62,7 +37,7 @@ const BlogSection = () => {
                   READ MORE »
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
