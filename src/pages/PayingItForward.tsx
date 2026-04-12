@@ -65,7 +65,10 @@ const PayingItForward = () => {
               </div>
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">{t.payingItForward.wheelchairTitle}</h2>
             </div>
-            <p className="text-muted-foreground leading-relaxed mb-8 max-w-3xl">{t.payingItForward.wheelchairDesc}</p>
+            <p className="text-muted-foreground leading-relaxed mb-4 max-w-3xl">{t.payingItForward.wheelchairDesc}</p>
+            <p className="text-muted-foreground leading-relaxed mb-4 max-w-3xl">{t.payingItForward.wheelchairStory1}</p>
+            <p className="text-muted-foreground leading-relaxed mb-4 max-w-3xl">{t.payingItForward.wheelchairStory2}</p>
+            <p className="text-foreground font-medium leading-relaxed mb-8 max-w-3xl">{t.payingItForward.wheelchairStory3}</p>
           </ScrollReveal>
           <ScrollReveal animation="up" delay={100}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
