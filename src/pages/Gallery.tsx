@@ -19,7 +19,11 @@ const Gallery = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <section className="pt-28 pb-20">
+      <section
+        className="relative pt-28 pb-20 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `url(${galleryBg})` }}
+      >
+        <div className="absolute inset-0 bg-background/80" />
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">
