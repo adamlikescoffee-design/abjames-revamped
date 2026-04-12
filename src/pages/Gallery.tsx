@@ -108,8 +108,7 @@ const Gallery = () => {
         </div>
       )}
 
-      <section className="relative pt-28 pb-20 bg-cover bg-center bg-fixed" style={{ backgroundImage: `url(${galleryBg})` }}>
-        <div className="absolute inset-0 bg-background/80" />
+      <section className="relative pt-28 pb-20">
         <div className="relative z-10 container mx-auto px-4">
           <ScrollReveal>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">{t.gallery.title}</h1>
