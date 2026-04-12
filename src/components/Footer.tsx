@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, X, Heart } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Flame, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import footerBg from "@/assets/footer-bg.jpg";
 import { blogPosts } from "@/data/blogPosts";
@@ -115,20 +115,12 @@ const Footer = () => {
               </h3>
               <div className="flex gap-3">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/adam.james"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"
                 >
                   <Facebook size={18} />
-                </a>
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"
-                >
-                  <X size={18} />
                 </a>
                 <a
                   href="https://www.instagram.com/adam_likes_coffee"
@@ -145,6 +137,14 @@ const Footer = () => {
                   className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"
                 >
                   <Linkedin size={18} />
+                </a>
+                <a
+                  href="https://www.firesidebusinessadvice.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"
+                >
+                  <Flame size={18} />
                 </a>
               </div>
             </div>
