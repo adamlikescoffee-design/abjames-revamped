@@ -24,7 +24,10 @@ const PayingItForward = () => {
               Paying It Forward
             </h1>
             <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-3xl">
-              I believe in the power of giving back. Throughout my journey, I've been fortunate to work with incredible people and organisations dedicated to making a difference in the lives of others.
+              I believe in the power of paying it forward. To initiate unnecessary generosity void of the expectation to receive anything in return. The highest form is to do this in secret without anyone knowing at all.
+            </p>
+            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-3xl mt-4">
+              Sometimes it is useful, necessary and beneficial to collaborate with others in collective generosity to coordinate sufficient resources to do something truly great, to reduce suffering and to liberate someone.
             </p>
           </ScrollReveal>
         </div>
