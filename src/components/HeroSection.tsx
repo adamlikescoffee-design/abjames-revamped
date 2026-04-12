@@ -33,7 +33,7 @@ const HeroSection = () => {
               </p>
               <p>
                 I'm passionate about working with men to help them build great businesses. I founded the Fireside which is a group that supports men in business and life.{" "}
-                <a href="http://www.businessadvice.site/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                <a href="https://www.firesidebusinessadvice.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
                   Learn more about the Fireside here.
                 </a>
               </p>
