@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Montserrat', 'sans-serif'],
-        body: ['Open Sans', 'sans-serif'],
+        heading: ['Bayon', 'sans-serif'],
+        body: ['Roboto', 'sans-serif'],
+        nav: ['Allerta', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
