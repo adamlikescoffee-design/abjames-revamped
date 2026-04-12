@@ -35,14 +35,14 @@ const WheelchairStory = () => {
         {/* Images side by side */}
         <ScrollReveal animation="up" delay={100}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="overflow-hidden rounded-2xl shadow-2xl">
+            <div className="overflow-hidden rounded-2xl shadow-2xl max-h-[400px]">
               <img
                 src={angel1}
                 alt="Adam with Angel"
                 className="w-full h-full object-cover rounded-2xl"
               />
             </div>
-            <div className="overflow-hidden rounded-2xl shadow-2xl">
+            <div className="overflow-hidden rounded-2xl shadow-2xl max-h-[400px]">
               <img
                 src={angel2}
                 alt="Meeting with Angel on the street"
