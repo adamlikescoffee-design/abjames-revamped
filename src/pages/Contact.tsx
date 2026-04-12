@@ -19,6 +19,7 @@ const socialLinks = [
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
