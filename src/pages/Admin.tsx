@@ -114,6 +114,28 @@ const Admin = () => {
 
   const totalAmount = pledges.reduce((sum, p) => sum + p.amount, 0);
 
+  const exportCSV = () => {
+    const headers = ["Name", "Email", "Phone", "Amount", "City/Country", "Message", "Notes", "Date"];
+    const rows = pledges.map((p) => [
+      p.name,
+      p.email,
+      p.phone || "",
+      p.amount,
+      p.city_country || "",
+      (p.message || "").replace(/"/g, '""'),
+      (p.notes || "").replace(/"/g, '""'),
+      new Date(p.created_at).toLocaleDateString(),
+    ]);
+    const csv = [headers, ...rows].map((r) => r.map((v) => `"${v}"`).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `pledges-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-secondary">
