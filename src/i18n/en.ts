@@ -3,7 +3,7 @@ export const en = {
   nav: {
     home: "HOME",
     about: "ABOUT",
-    payingItForward: "PAYING IT FORWARD",
+    payingItForward: "PAY IT FORWARD",
     blog: "BLOG",
     gallery: "GALLERY",
     media: "MEDIA",
@@ -95,7 +95,7 @@ export const en = {
         description: "I believe the best things in life happen when people come together with honesty, ambition, and a willingness to help each other grow. Building community isn't a side project — it's central to everything I do.",
       },
       {
-        title: "Paying It Forward",
+        title: "Pay It Forward",
         description: "Generosity without expectation. Whether it's mentoring a young entrepreneur, supporting someone in need, or simply buying a stranger a coffee — I believe in the ripple effect of kindness.",
       },
       {
@@ -172,7 +172,7 @@ export const en = {
   // Paying It Forward
   payingItForward: {
     backHome: "BACK HOME",
-    title: "Paying It Forward",
+    title: "Pay It Forward",
     p1: "I believe in the power of paying it forward. To initiate unnecessary generosity void of the expectation to receive anything in return. The highest form is to do this in secret without anyone knowing at all.",
     p2: "Sometimes it is useful, necessary and beneficial to collaborate with others in collective generosity to coordinate sufficient resources to do something truly great, to reduce suffering and to liberate someone.",
     wheelchairTitle: "Wheelchair for Angel",
