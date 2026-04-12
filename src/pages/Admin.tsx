@@ -57,6 +57,16 @@ const Admin = () => {
     navigate("/admin/login");
   };
 
+  const handleDelete = async (id: string, name: string) => {
+    const { error } = await supabase.from("pledges").delete().eq("id", id);
+    if (error) {
+      toast.error("Failed to delete pledge");
+      return;
+    }
+    setPledges((prev) => prev.filter((p) => p.id !== id));
+    toast.success(`Deleted pledge from ${name}`);
+  };
+
   if (authLoading || !user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
