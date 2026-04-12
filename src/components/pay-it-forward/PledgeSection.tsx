@@ -109,6 +109,18 @@ const PledgeSection = ({ stats, pledgeData, setPledgeData, pledgeSubmitted, subm
                   </div>
                   <div>
                     <label className="block text-sm font-heading font-semibold text-foreground mb-2">
+                      {t.payingItForward.pledgeFormPhone}
+                    </label>
+                    <input
+                      type="tel"
+                      value={pledgeData.phone}
+                      onChange={(e) => setPledgeData({ ...pledgeData, phone: e.target.value })}
+                      className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+                      placeholder={t.payingItForward.phonePlaceholder}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">
                       {t.payingItForward.pledgeFormEmail}
                     </label>
                     <input
