@@ -9,14 +9,20 @@ import { cn } from "@/lib/utils";
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = useMemo(() => {
+  const categoryCounts = useMemo(() => {
     const counts = new Map<string, number>();
+    counts.set("All", blogPosts.length);
     blogPosts.forEach((p) => {
       const cat = p.category || "Uncategorised";
       counts.set(cat, (counts.get(cat) || 0) + 1);
     });
-    return ["All", ...Array.from(counts.keys()).sort()];
+    return counts;
   }, []);
+
+  const categories = useMemo(
+    () => ["All", ...Array.from(categoryCounts.keys()).filter((k) => k !== "All").sort()],
+    [categoryCounts]
+  );
 
   const filtered = useMemo(
     () =>
@@ -57,6 +63,14 @@ const Blog = () => {
                 )}
               >
                 {cat.toUpperCase()}
+                <span className={cn(
+                  "ml-1.5 inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1 rounded-full text-[10px] font-bold",
+                  activeCategory === cat
+                    ? "bg-primary-foreground/20 text-primary-foreground"
+                    : "bg-foreground/10 text-muted-foreground"
+                )}>
+                  {categoryCounts.get(cat) || 0}
+                </span>
               </button>
             ))}
           </div>
