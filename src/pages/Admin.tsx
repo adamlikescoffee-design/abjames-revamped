@@ -182,6 +182,15 @@ const Admin = () => {
                   />
                 </div>
                 <div>
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Phone</label>
+                  <input
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+                <div>
                   <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Amount (AUD) *</label>
                   <input
                     type="number"
