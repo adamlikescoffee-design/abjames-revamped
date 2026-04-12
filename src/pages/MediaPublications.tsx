@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import galleryBg from "@/assets/gallery-bg.jpg";
 
 import mediaCourierMail from "@/assets/media-courier-mail.jpg";
 import mediaChronicle from "@/assets/media-chronicle.jpg";
