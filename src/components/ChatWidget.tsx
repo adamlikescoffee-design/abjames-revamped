@@ -3,7 +3,7 @@ import { MessageCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const WHATSAPP_NUMBER = "61400000000"; // TODO: replace with real number
+const WHATSAPP_NUMBER = "593998803303";
 const FACEBOOK_PAGE = "adamjameslikescoffee";
 
 const ChatWidget = () => {
