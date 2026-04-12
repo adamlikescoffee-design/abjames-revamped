@@ -5,9 +5,11 @@ import { blogPosts } from "@/data/blogPosts";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
+  const { t } = useLanguage();
 
   const categoryCounts = useMemo(() => {
     const counts = new Map<string, number>();
@@ -25,12 +27,7 @@ const Blog = () => {
   );
 
   const filtered = useMemo(
-    () =>
-      activeCategory === "All"
-        ? blogPosts
-        : blogPosts.filter(
-            (p) => (p.category || "Uncategorised") === activeCategory
-          ),
+    () => activeCategory === "All" ? blogPosts : blogPosts.filter((p) => (p.category || "Uncategorised") === activeCategory),
     [activeCategory]
   );
 
@@ -41,33 +38,20 @@ const Blog = () => {
       <section className="pt-28 pb-20">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">
-              The Blog
-            </h1>
-            <p className="text-muted-foreground text-center mb-8 max-w-xl mx-auto">
-              Thoughts on community, leadership, social enterprise, and life.
-            </p>
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">{t.blogPage.title}</h1>
+            <p className="text-muted-foreground text-center mb-8 max-w-xl mx-auto">{t.blogPage.subtitle}</p>
           </ScrollReveal>
 
-          {/* Category Filter */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={cn(
-                  "px-4 py-2 rounded-full font-heading text-xs font-semibold tracking-wider transition-all",
-                  activeCategory === cat
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-accent"
-                )}
-              >
+              <button key={cat} onClick={() => setActiveCategory(cat)} className={cn(
+                "px-4 py-2 rounded-full font-heading text-xs font-semibold tracking-wider transition-all",
+                activeCategory === cat ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-accent"
+              )}>
                 {cat.toUpperCase()}
                 <span className={cn(
                   "ml-1.5 inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1 rounded-full text-[10px] font-bold",
-                  activeCategory === cat
-                    ? "bg-primary-foreground/20 text-primary-foreground"
-                    : "bg-foreground/10 text-muted-foreground"
+                  activeCategory === cat ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/10 text-muted-foreground"
                 )}>
                   {categoryCounts.get(cat) || 0}
                 </span>
@@ -80,38 +64,19 @@ const Blog = () => {
               <ScrollReveal key={post.slug} animation="up" delay={idx % 3 * 100}>
                 <Link to={`/blog/${post.slug}`} className="group block">
                   <div className="overflow-hidden rounded-lg mb-4">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      loading="lazy"
-                      width={1200}
-                      height={800}
-                      className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <img src={post.image} alt={post.title} loading="lazy" width={1200} height={800} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  {post.category && (
-                    <span className="text-xs font-heading font-semibold tracking-wider text-primary uppercase">
-                      {post.category}
-                    </span>
-                  )}
-                  <h2 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors mt-1 mb-2">
-                    {post.title}
-                  </h2>
-                  <p className="text-muted-foreground text-sm line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  {post.date && (
-                    <p className="text-muted-foreground/60 text-xs mt-2">{post.date}</p>
-                  )}
+                  {post.category && <span className="text-xs font-heading font-semibold tracking-wider text-primary uppercase">{post.category}</span>}
+                  <h2 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors mt-1 mb-2">{post.title}</h2>
+                  <p className="text-muted-foreground text-sm line-clamp-2">{post.excerpt}</p>
+                  {post.date && <p className="text-muted-foreground/60 text-xs mt-2">{post.date}</p>}
                 </Link>
               </ScrollReveal>
             ))}
           </div>
 
           {filtered.length === 0 && (
-            <p className="text-center text-muted-foreground py-12">
-              No posts found in this category.
-            </p>
+            <p className="text-center text-muted-foreground py-12">{t.blogPage.noPostsFound}</p>
           )}
         </div>
       </section>

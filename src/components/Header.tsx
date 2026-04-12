@@ -2,21 +2,24 @@ import { Facebook, Flame, Instagram, Linkedin, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  { label: "HOME", href: "/" },
-  { label: "ABOUT", href: "/aboutadam" },
-  { label: "PAYING IT FORWARD", href: "/paying-it-forward" },
-  { label: "BLOG", href: "/blog" },
-  { label: "GALLERY", href: "/gallery" },
-  { label: "MEDIA", href: "/media-publications" },
-  { label: "CONTACT", href: "/contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, href: "/" },
+    { label: t.nav.about, href: "/aboutadam" },
+    { label: t.nav.payingItForward, href: "/paying-it-forward" },
+    { label: t.nav.blog, href: "/blog" },
+    { label: t.nav.gallery, href: "/gallery" },
+    { label: t.nav.media, href: "/media-publications" },
+    { label: t.nav.contact, href: "/contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -43,7 +46,7 @@ const Header = () => {
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
-                key={link.label}
+                key={link.href}
                 to={link.href}
                 className={cn(
                   "font-heading text-sm font-semibold tracking-wider transition-colors",
@@ -62,11 +65,13 @@ const Header = () => {
             <a href="https://www.firesidebusinessadvice.com/panellists/liberty-digital" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Flame size={18} /></a>
           </div>
 
+          <LanguageToggle className="hidden md:flex" />
+
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden flex items-center gap-2 font-heading text-sm font-semibold tracking-wider text-foreground hover:text-primary transition-colors"
           >
-            {menuOpen ? "CLOSE" : "MENU"}
+            {menuOpen ? t.nav.close : t.nav.menu}
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -77,7 +82,7 @@ const Header = () => {
           <nav className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <Link
-                key={link.label}
+                key={link.href}
                 to={link.href}
                 onClick={() => setMenuOpen(false)}
                 className={cn(
@@ -89,11 +94,14 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-          <div className="flex gap-4 pt-2">
-            <a href="https://www.facebook.com/adamjameslikescoffee" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Facebook size={20} /></a>
-            <a href="https://www.instagram.com/adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Instagram size={20} /></a>
-            <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Linkedin size={20} /></a>
-            <a href="https://www.firesidebusinessadvice.com/panellists/liberty-digital" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Flame size={20} /></a>
+          <div className="flex items-center justify-between pt-2">
+            <div className="flex gap-4">
+              <a href="https://www.facebook.com/adamjameslikescoffee" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Facebook size={20} /></a>
+              <a href="https://www.instagram.com/adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Instagram size={20} /></a>
+              <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Linkedin size={20} /></a>
+              <a href="https://www.firesidebusinessadvice.com/panellists/liberty-digital" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Flame size={20} /></a>
+            </div>
+            <LanguageToggle />
           </div>
         </div>
       )}
