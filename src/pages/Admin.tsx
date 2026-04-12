@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Users, Loader2, Mail, MapPin, DollarSign, MessageSquare, StickyNote, Trash2 } from "lucide-react";
+import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X } from "lucide-react";
 import { toast } from "sonner";
 import {
   AlertDialog,
@@ -27,11 +27,16 @@ interface Pledge {
   created_at: string;
 }
 
+const emptyForm = { name: "", email: "", amount: "", city_country: "", notes: "", message: "" };
+
 const Admin = () => {
   const { user, loading: authLoading, signOut } = useAuth();
   const navigate = useNavigate();
   const [pledges, setPledges] = useState<Pledge[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [form, setForm] = useState(emptyForm);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -65,6 +70,36 @@ const Admin = () => {
     }
     setPledges((prev) => prev.filter((p) => p.id !== id));
     toast.success(`Deleted pledge from ${name}`);
+  };
+
+  const handleAdd = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.amount) {
+      toast.error("Name, email, and amount are required");
+      return;
+    }
+    setSubmitting(true);
+    const { data, error } = await supabase
+      .from("pledges")
+      .insert({
+        name: form.name,
+        email: form.email,
+        amount: Number(form.amount),
+        city_country: form.city_country || null,
+        notes: form.notes || null,
+        message: form.message || null,
+      })
+      .select()
+      .single();
+    setSubmitting(false);
+    if (error) {
+      toast.error("Failed to add pledge");
+      return;
+    }
+    setPledges((prev) => [data, ...prev]);
+    setForm(emptyForm);
+    setShowAddForm(false);
+    toast.success(`Added pledge from ${form.name}`);
   };
 
   if (authLoading || !user) {
@@ -103,6 +138,105 @@ const Admin = () => {
             <p className="text-muted-foreground text-sm font-heading mb-1">Total Pledged</p>
             <p className="text-3xl font-heading font-bold text-primary">${totalAmount.toLocaleString()}</p>
           </div>
+        </div>
+
+        {/* Add Pledge Button / Form */}
+        <div className="mb-6">
+          {!showAddForm ? (
+            <button
+              onClick={() => setShowAddForm(true)}
+              className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors"
+            >
+              <Plus size={16} />
+              Add Pledge
+            </button>
+          ) : (
+            <div className="bg-secondary border border-border rounded-lg p-5">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-heading font-bold text-foreground">Add New Pledge</h2>
+                <button onClick={() => { setShowAddForm(false); setForm(emptyForm); }} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <X size={18} />
+                </button>
+              </div>
+              <form onSubmit={handleAdd} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Name *</label>
+                  <input
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Email *</label>
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Amount (AUD) *</label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={form.amount}
+                    onChange={(e) => setForm({ ...form, amount: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">City / Country</label>
+                  <input
+                    type="text"
+                    value={form.city_country}
+                    onChange={(e) => setForm({ ...form, city_country: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Message</label>
+                  <input
+                    type="text"
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-1">Notes</label>
+                  <input
+                    type="text"
+                    value={form.notes}
+                    onChange={(e) => setForm({ ...form, notes: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+                <div className="sm:col-span-2 flex justify-end gap-2">
+                  <button
+                    type="button"
+                    onClick={() => { setShowAddForm(false); setForm(emptyForm); }}
+                    className="px-4 py-2 rounded-lg text-sm font-heading text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  >
+                    {submitting && <Loader2 size={14} className="animate-spin" />}
+                    Add Pledge
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
 
         {loading ? (
