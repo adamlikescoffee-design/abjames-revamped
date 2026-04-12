@@ -30,7 +30,7 @@ const BlogPost = () => {
       <article className="pt-28 pb-20">
         <div className="container mx-auto px-4 max-w-3xl">
           <Link
-            to="/"
+            to="/blog"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-heading text-sm tracking-wider mb-8"
           >
             <ArrowLeft size={16} />
@@ -44,6 +44,19 @@ const BlogPost = () => {
             height={512}
             className="w-full h-64 md:h-96 object-cover rounded-lg mb-8"
           />
+
+          {(post.category || post.date) && (
+            <div className="flex items-center gap-3 mb-4">
+              {post.category && (
+                <span className="text-xs font-heading font-semibold tracking-wider text-primary uppercase">
+                  {post.category}
+                </span>
+              )}
+              {post.date && (
+                <span className="text-xs text-muted-foreground">{post.date}</span>
+              )}
+            </div>
+          )}
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">
             {post.title}
