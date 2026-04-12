@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import { ArrowLeft, Accessibility } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
+import angel1 from "@/assets/angel-1.jpg";
+import angel2 from "@/assets/angel-2.jpg";
 
 const PayingItForward = () => {
   return (
@@ -36,30 +38,34 @@ const PayingItForward = () => {
       <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4 max-w-5xl">
           <ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                {
-                  icon: Accessibility,
-                  title: "Wheelchair for Angel",
-                  description:
-                    "A fundraiser to provide a custom wheelchair for Angel, a young community member with limited mobility. Every contribution brings her closer to independence, freedom, and the ability to participate fully in everyday life.",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="bg-card border border-border rounded-lg p-6 space-y-4 hover:border-primary/40 transition-colors"
-                >
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <item.icon size={22} className="text-primary" />
-                  </div>
-                  <h3 className="font-heading text-xl font-semibold text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                <Accessibility size={22} className="text-primary" />
+              </div>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
+                Wheelchair for Angel
+              </h2>
+            </div>
+            <p className="text-muted-foreground leading-relaxed mb-8 max-w-3xl">
+              A fundraiser to provide a custom wheelchair for Angel, a young community member with limited mobility. Every contribution brings her closer to independence, freedom, and the ability to participate fully in everyday life.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal animation="up" delay={100}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="overflow-hidden rounded-lg">
+                <img
+                  src={angel1}
+                  alt="Adam with Angel"
+                  className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="overflow-hidden rounded-lg">
+                <img
+                  src={angel2}
+                  alt="Meeting with Angel on the street"
+                  className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
             </div>
           </ScrollReveal>
         </div>
