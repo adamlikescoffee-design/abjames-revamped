@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Menu, Search, X as XIcon, X } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -6,29 +6,18 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { label: "HOME", href: "/" },
   { label: "ABOUT", href: "/aboutadam" },
-  { label: "BLOG", href: "/#blog" },
-  { label: "CONTACT", href: "/#contact" },
+  { label: "BLOG", href: "/blog" },
+  { label: "CONTACT", href: "/contact" },
+  { label: "GALLERY", href: "/gallery" },
+  { label: "MEDIA", href: "/media-publications" },
 ];
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  const handleNavClick = (href: string) => {
-    setMenuOpen(false);
-    if (href.startsWith("/#")) {
-      const id = href.slice(2);
-      if (location.pathname === "/") {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      } else {
-        window.location.href = href;
-      }
-    }
-  };
-
   const isActive = (href: string) => {
     if (href === "/") return location.pathname === "/";
-    if (href.startsWith("/#")) return false;
     return location.pathname === href;
   };
 
@@ -41,28 +30,18 @@ const Header = () => {
 
         <div className="flex items-center gap-3 md:gap-5">
           <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) =>
-              link.href.startsWith("/#") ? (
-                <button
-                  key={link.label}
-                  onClick={() => handleNavClick(link.href)}
-                  className="font-heading text-sm font-semibold tracking-wider text-foreground/70 hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className={cn(
-                    "font-heading text-sm font-semibold tracking-wider transition-colors",
-                    isActive(link.href) ? "text-primary" : "text-foreground/70 hover:text-primary"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href}
+                className={cn(
+                  "font-heading text-sm font-semibold tracking-wider transition-colors",
+                  isActive(link.href) ? "text-primary" : "text-foreground/70 hover:text-primary"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
@@ -84,29 +63,19 @@ const Header = () => {
       {menuOpen && (
         <div className="md:hidden border-t border-border bg-background px-4 py-6 space-y-4 animate-reveal-up">
           <nav className="flex flex-col gap-3">
-            {navLinks.map((link) =>
-              link.href.startsWith("/#") ? (
-                <button
-                  key={link.label}
-                  onClick={() => handleNavClick(link.href)}
-                  className="font-heading text-sm font-semibold tracking-wider text-foreground/70 hover:text-primary transition-colors text-left"
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className={cn(
-                    "font-heading text-sm font-semibold tracking-wider transition-colors",
-                    isActive(link.href) ? "text-primary" : "text-foreground/70 hover:text-primary"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "font-heading text-sm font-semibold tracking-wider transition-colors",
+                  isActive(link.href) ? "text-primary" : "text-foreground/70 hover:text-primary"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
           <div className="flex gap-4 pt-2">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Facebook size={20} /></a>
