@@ -1,12 +1,13 @@
 import { Facebook, Instagram, Linkedin, Flame, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import footerBg from "@/assets/footer-bg.jpg";
-import { blogPosts } from "@/data/blogPosts";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
 import LanguageToggle from "@/components/LanguageToggle";
 
 const Footer = () => {
-  const recentPosts = blogPosts.slice(0, 2);
+  const allPosts = useLocalizedBlogPosts();
+  const recentPosts = allPosts.slice(0, 2);
   const { t } = useLanguage();
 
   return (
@@ -39,7 +40,7 @@ const Footer = () => {
                 {recentPosts.map((post) => (
                   <div key={post.slug}>
                     <Link to={`/blog/${post.slug}`} className="text-foreground/80 text-sm font-heading font-semibold hover:text-primary transition-colors leading-tight block">
-                      {post.title}
+                      {post.localizedTitle}
                     </Link>
                     {post.date && <span className="text-foreground/40 text-xs">{post.date}</span>}
                   </div>
