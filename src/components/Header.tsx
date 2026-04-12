@@ -7,9 +7,9 @@ const navLinks = [
   { label: "HOME", href: "/" },
   { label: "ABOUT", href: "/aboutadam" },
   { label: "BLOG", href: "/blog" },
-  { label: "CONTACT", href: "/contact" },
   { label: "GALLERY", href: "/gallery" },
   { label: "MEDIA", href: "/media-publications" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 const Header = () => {
