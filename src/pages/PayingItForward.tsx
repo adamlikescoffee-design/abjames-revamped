@@ -37,6 +37,9 @@ const PayingItForward = () => {
         name: pledgeData.name,
         email: pledgeData.email,
         amount: parseFloat(pledgeData.amount),
+        city_country: pledgeData.city_country || null,
+        notes: pledgeData.notes || null,
+        message: pledgeData.message || null,
       });
 
       if (error) throw error;
