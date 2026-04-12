@@ -30,9 +30,6 @@ const Footer = () => {
                 </Link>
                 !
               </p>
-              <Link to="/admin/login" className="text-foreground/30 text-xs hover:text-primary transition-colors font-heading mt-3 inline-block">
-                Admin
-              </Link>
             </div>
 
             <div>
