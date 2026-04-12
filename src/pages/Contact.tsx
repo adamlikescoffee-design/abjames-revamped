@@ -21,9 +21,22 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const { t } = useLanguage();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('contact-webhook', {
+        body: { name: formData.name, email: formData.email, message: formData.message },
+      });
+      if (error) throw error;
+      setSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error('Contact form error:', err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
