@@ -2,7 +2,19 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Users, Loader2, Mail, MapPin, DollarSign, MessageSquare, StickyNote } from "lucide-react";
+import { LogOut, Users, Loader2, Mail, MapPin, DollarSign, MessageSquare, StickyNote, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface Pledge {
   id: string;
@@ -43,6 +55,16 @@ const Admin = () => {
   const handleSignOut = async () => {
     await signOut();
     navigate("/admin/login");
+  };
+
+  const handleDelete = async (id: string, name: string) => {
+    const { error } = await supabase.from("pledges").delete().eq("id", id);
+    if (error) {
+      toast.error("Failed to delete pledge");
+      return;
+    }
+    setPledges((prev) => prev.filter((p) => p.id !== id));
+    toast.success(`Deleted pledge from ${name}`);
   };
 
   if (authLoading || !user) {
@@ -102,6 +124,7 @@ const Admin = () => {
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Location</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Message</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Date</th>
+                    <th className="text-right text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -115,6 +138,27 @@ const Admin = () => {
                       <td className="px-4 py-3 text-sm text-muted-foreground">{pledge.city_country || "—"}</td>
                       <td className="px-4 py-3 text-sm text-muted-foreground max-w-[200px] truncate">{pledge.message || "—"}</td>
                       <td className="px-4 py-3 text-sm text-muted-foreground">{new Date(pledge.created_at).toLocaleDateString()}</td>
+                      <td className="px-4 py-3 text-right">
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <button className="text-destructive hover:text-destructive/80 transition-colors p-1">
+                              <Trash2 size={16} />
+                            </button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Delete pledge?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This will permanently remove the ${pledge.amount} pledge from {pledge.name}. This action cannot be undone.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction onClick={() => handleDelete(pledge.id, pledge.name)} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">Delete</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -127,7 +171,28 @@ const Admin = () => {
                 <div key={pledge.id} className="bg-secondary border border-border rounded-lg p-4 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="font-heading font-bold text-foreground">{pledge.name}</span>
-                    <span className="font-heading font-bold text-primary">${pledge.amount}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-heading font-bold text-primary">${pledge.amount}</span>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <button className="text-destructive hover:text-destructive/80 transition-colors p-1">
+                            <Trash2 size={16} />
+                          </button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete pledge?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This will permanently remove the ${pledge.amount} pledge from {pledge.name}. This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={() => handleDelete(pledge.id, pledge.name)} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">Delete</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <Mail size={14} className="text-muted-foreground" />
