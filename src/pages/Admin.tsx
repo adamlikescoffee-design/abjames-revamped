@@ -280,6 +280,7 @@ const Admin = () => {
                       <td className="px-4 py-3 text-sm">
                         <a href={`mailto:${pledge.email}`} className="text-primary hover:underline">{pledge.email}</a>
                       </td>
+                      <td className="px-4 py-3 text-sm text-muted-foreground">{pledge.phone || "—"}</td>
                       <td className="px-4 py-3 text-sm text-foreground font-semibold">${pledge.amount}</td>
                       <td className="px-4 py-3 text-sm text-muted-foreground">{pledge.city_country || "—"}</td>
                       <td className="px-4 py-3 text-sm text-muted-foreground max-w-[200px] truncate">{pledge.message || "—"}</td>
