@@ -213,7 +213,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Last year I was in a forum with some of the top leaders from Queensland to develop a thirty year plan for the state.  One of the questions was \"How do...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Last year I was in a forum with some of the top leaders from Queensland to develop a thirty year plan for the state.  One of the questions was \"How do we advance education?\". One politician suggested we need to remove people with disabilities from the classroom (a person with autism was the example used).  The reason... \"they pull all the other students down\".",
       "Having worked with people with disabilities for 10 years... I'm glad I was there to disagree!",
@@ -235,7 +235,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I had the honour of being interviewed by Paul Wetzig from Postcard Radio.  Here's the link if you wanna hear me talk with Paul about how my faith has ...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Media",
     content: [
       "I had the honour of being interviewed by Paul Wetzig from Postcard Radio.  Here's the link if you wanna hear me talk with Paul about how my faith has inspired certain parts of what we do at Cup From Above.",
       "http://www.postcardradio.com/changing-the-world-one-cup-at-a-time/",
@@ -247,7 +247,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "A few years ago I learnt about John Wooden.  Considered by many as the greatest basketball coach of all time.  He had an extraordinary leadership styl...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Leadership",
     content: [
       "A few years ago I learnt about John Wooden.  Considered by many as the greatest basketball coach of all time.  He had an extraordinary leadership style which transcended the game of basketball.  I devoured several books on this great man and it has impacted how I do what I do now.",
       "He saw his job as an opportunity to mentor the men in his team.  Winning basketball games was merely a result of Wooden working with them to become better people.",
@@ -266,7 +266,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I've spent this week on the streets of Brisbane.  I'm up to day six.  Two more nights to go.  Every day I've been speaking with homeless folk and list...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "I've spent this week on the streets of Brisbane.  I'm up to day six.  Two more nights to go.  Every day I've been speaking with homeless folk and listening deeply to their stories.  I've been wearing track suit pants and a flanno I bought for four bucks at an op shop on Monday.  My stench is pretty accurate by now too.  People are looking at me differently.  It's diminishing.  Soul crushing.  I feel powerless... voiceless.",
       "Last night we slept under Kurilpa Bridge.  There were several homeless folk hidden around a wall.  We slept right under the bridge in a more comfortable spot out of the way but visible if you were looking for us.",
@@ -284,7 +284,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "A highly sensitive person (HSP) experiences our world differently than most people.  It is a biological difference, not psychological, that they’re bo...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "A highly sensitive person (HSP) experiences our world differently than most people.  It is a biological difference, not psychological, that they’re born with, highly sensitive people are more aware of subtleties and process information deeply. They tend to be creative, insightful, and empathetic, but it also means they’re more prone than others to stress and anxiety.",
       "It is not a disease or a disorder.  It’s often misunderstood because only around 20 percent of the population are HSPs.",
@@ -309,7 +309,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Charlie Chaplin & Hitler were both born within a week of each other (Chaplin 4/16/1889, Hitler 4/20/1889), they were roughly the same height and weigh...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Leadership",
     content: [
       "Charlie Chaplin & Hitler were both born within a week of each other (Chaplin 4/16/1889, Hitler 4/20/1889), they were roughly the same height and weight and both struggled in poverty until they reached great success in very different fields. When Chaplin learned of Hitler's policies of racial oppression and nationalist aggression he seized the unlikely serendipitous opportunity.",
       "His uncanny resemblance of Hitler gave this world famous comedian a powerful satirical bullet to fire at the dictator.  Better than simply deriding Hitler he delivers what I believe to be the most beautiful articulation of what the world should and could be.",
@@ -324,7 +324,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Gardening is so good for you I don't think it should be considered merely as therapy.  I think it's so good for you that it's actually a necessity.  I...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "Gardening is so good for you I don't think it should be considered merely as therapy.  I think it's so good for you that it's actually a necessity.  In the same way I don't think breathing is just therapeutic or a hobby.  Breathing is a necessary function for human life.  It seems that some people can NOT garden and not have too many adverse affects.  But there are so many benefits it's statistically improbable that by not doing any gardening there will be some adverse affects in your life.  This may seem like an exaggeration but allow me to convince you...",
       "This is the most obvious one but not so many people know why and how much better.  Most produce loses an average of 30 percent of nutrients three days after harvest.  University of California studies show that vegetables can lose 15 to 55 percent of vitamin C, for instance, within a week.  Some spinach can lose 90 per cent within the first 24 hours after harvest and 50 per cent in 30 minutes. 1",
@@ -349,7 +349,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Abraham Harold Maslow is the guy who came up with \"Maslow's Hierarchy of Needs\" which a lot of people have heard of but maybe aren't aware of its sign...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Book Reviews",
     content: [
       "Abraham Harold Maslow is the guy who came up with \"Maslow's Hierarchy of Needs\" which a lot of people have heard of but maybe aren't aware of its significance.",
       "This book was first published in 1962, (the second edition was published in 1968) Toward a Psychology of Being examines Maslow's thoughts on the self-actualized human.  E.g. The top of the pyramid.",
@@ -373,7 +373,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I’ve put on a LOT of weight this year.  My PTSD flashbacks and overall anxiety levels are the worst they’ve ever been.  I slept over at a mate’s place...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "I’ve put on a LOT of weight this year.  My PTSD flashbacks and overall anxiety levels are the worst they’ve ever been.  I slept over at a mate’s place a few weeks ago and he told me I have sleep apnoea.  I’m not formally diagnosed but he said I was making some extremely weird choking noises while sleeping on his couch.  Also, to a much lower degree, I have mild insomnia.  I’ve started addressing it but the complexity of my current life situation means I needed to implement a simple, flexible strategy.  One that doesn’t take a lot of time, low cost, addresses weight loss, anxiety management, PTSD, apnoea & insomnia.",
       "So I thought I’d revisit the Wim Hof Method.",
@@ -398,7 +398,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Most people are under no delusion that women are equally violent as men and, despite being less physically strong, equally capable of horrific crimes....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Most people are under no delusion that women are equally violent as men and, despite being less physically strong, equally capable of horrific crimes.The problem is the system is based around a Matriarchal structure which assumes that \"all men are perpetrators and all women are victims\".",
       "A few years ago I was supporting a man whose wife was extremely and consistently violent, moderately financially abusive, extremely controlling. She would use his 2 daughters as leverage. She would hit them to punish him. Because she knew he couldn't do anything. They were still toddlers. He told me he would pick them up in his arms and stand in a corner so she would just hit his back. He'd stay there until she stopped.",
@@ -419,7 +419,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I have many Chinese friends. I have 2 really close friends who are chinese. I visited China in 1999. I have walked along the great wall of China. I've...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Travel",
     content: [
       "I have many Chinese friends. I have 2 really close friends who are chinese. I visited China in 1999. I have walked along the great wall of China. I've visited the Ice City in far north China near Russia. I've bought street food on the streets of Shanghai when I was 17.  I love Chinese culture, Chinese people, Chinese history. I love Chinese philosophy and have read Sun Tzu, Confucius & Laozi.",
     ],
@@ -430,7 +430,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "The term \"Occam's Razor\" comes from a misspelling of the name William of Ockham. William Ockham (circa 1287–1347) was an English Franciscan friar, the...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Leadership",
     content: [
       "The term \"Occam's Razor\" comes from a misspelling of the name William of Ockham. William Ockham (circa 1287–1347) was an English Franciscan friar, theologian, philosopher, and logician in the medieval period. One of his rules of thumb has become a standard guideline for thinking through issues logically. Occam's Razor is the principle that [in Latin], \"non sunt multiplicanda entia praeter necessitatem\" [in English \"don't multiply the agents in a theory beyond what's necessary.\"] Said most simply:  “the simplest solution is almost always the best.”",
       "What does that mean? If two competing theories explain a single phenomenon, and they both generally reach a similar conclusion, and they are both equally persuasive and convincing, and they both explain the problem or situation satisfactorily, the logician should always pick the less complex one. The one with the fewer number of moving parts is most likely to be correct. The idea is always to cut out extra unnecessary bits, hence the name \"razor.\" An example will help illustrate this.",
@@ -450,7 +450,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "All numbers from ABS 2019....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "All numbers from ABS 2019.",
       "Female average work hours: 36.9 hours.Male average work hours: 40.8",
@@ -471,7 +471,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Whenever you move house in Brisbane a bond clean is a necessary part of the ordeal.  When it comes to bond cleaning Brisbane, property managers are pa...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Notices",
     content: [
       "Whenever you move house in Brisbane a bond clean is a necessary part of the ordeal.  When it comes to bond cleaning Brisbane, property managers are particularly thorough.  They are very strict with the Qld government RTA guidelines.",
       "My place was a mess.  Not as bad as this photo.  This is just a random photo.  But you get the idea.",
@@ -484,7 +484,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I got through 58 books last year which I think just might be my PB....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Book Reviews",
     content: [
       "I got through 58 books last year which I think just might be my PB.",
       "Some of my favourites were...",
@@ -504,7 +504,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "In 1665, the bubonic plague was ravishing London.  About 15% of the population died.  Entire villages went into lockdown.  Institutions and of course ...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "In 1665, the bubonic plague was ravishing London.  About 15% of the population died.  Entire villages went into lockdown.  Institutions and of course businesses were being closed down for one reason or another.  One of those institutions was the University of Cambridge.  There are tales of people losing their minds from the response to the plague and committing suicide.",
       "One young student took advantage of the situation.  He took whatever books he could carry and retreated to a small village called Woolthorpe in the relative safety of the countryside.  He took the opportunity to work on his ideas and read books outside the usual highly structured and onerous curriculum.  Most importantly he had time to think.",
@@ -518,7 +518,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "This is going to be one of the biggest advancements for humanity in our life time.  Certainly at least for the year 2022.  The James Webb Space Telesc...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Science",
     content: [
       "This is going to be one of the biggest advancements for humanity in our life time.  Certainly at least for the year 2022.  The James Webb Space Telescope (JWST) was launched on the 25th December 2021 and sent off into outer space.",
       "In 1990, the Hubble Space Telescope was launched into Low Earth Orbit.  It revealed the most incredible photos of our Universe that we had never seen before.  More than that, it gave us information about our place in the Universe.",
@@ -536,7 +536,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "This year I reduced my reading schedule to 40 books.  I was able to read several books that had been on my list for many years.  Here is my 2021 readi...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Book Reviews",
     content: [
       "This year I reduced my reading schedule to 40 books.  I was able to read several books that had been on my list for many years.  Here is my 2021 reading list on Good Reads.  https://www.goodreads.com/user_challenges/25070879",
       "Drawing on his twenty-five years of groundbreaking research on moral psychology, social psychologist Jonathan Haidt shows how moral judgments arise not from reason but from gut feelings. He shows why liberals, conservatives, and libertarians have such different intuitions about right and wrong, and he shows why each side is actually right about many of its central concerns.In this subtle yet accessible book, Haidt gives you the key to understanding the miracle of human cooperation, as well as the curse of our eternal divisions and conflicts. If you’re ready to trade in anger for understanding, read The Righteous Mind.",
@@ -561,7 +561,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I came across this idea in Islamic tradition today.  It's known as the \"5 Decisions\".  One of my contractors said to me \"it is Halal for me to do this...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Leadership",
     content: [
       "I came across this idea in Islamic tradition today.  It's known as the \"5 Decisions\".  One of my contractors said to me \"it is Halal for me to do this\".  I had only known of Halal as a food preparation standard similar to what \"Kosher\" is for Jews.  The word Halal means permissible and has a broader definition, at least for some muslims, to mean that which is \"the right thing to do\".  I was intrigued by the concept and dug a little deeper.",
       "As I understand it (if you're a muslim and you're reading this and I'm wrong please let me know!), there is a simple binary understanding of most things.  Either \"Halal\", that which is permissible and the right thing or \"haram\", that which is not permissible and is the wrong thing.",
@@ -579,7 +579,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "A friend recently recommended I read this book by Donald Miller.  It's a great short read packed full of interesting and useful information.  This is ...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Book Reviews",
     content: [
       "A friend recently recommended I read this book by Donald Miller.  It's a great short read packed full of interesting and useful information.  This is a quick summary and review of the book.  I definitely recommend giving it a read if you're interested in marketing or business.  Donald Miller is a world famous story teller.  He presents some novel ideas.  I 'read' it on audible.  It's a quick book that takes a little over 4 hours to get through.",
       "Building a StoryBrand is about making your customer the hero of a story.",
@@ -597,7 +597,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I recently finished reading Nicomachean Ethics by Aristotle.  This is a true classic.  It's one of the most influential books of all time.  It has bee...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Book Reviews",
     content: [
       "I recently finished reading Nicomachean Ethics by Aristotle.  This is a true classic.  It's one of the most influential books of all time.  It has been famous through different eras especially during the middle ages.  Aristotle was referred to during this time as \"The Philosopher\".",
       "The book is most likely titled in honour of Aristotle's father Nicomachus.  His son's name was Nicomachus and was involved in editing the final manuscripts that formed the book that we know today.  The work was completed some time during the 4th Century BC.",
@@ -622,7 +622,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I recently read Dr. Benjamin Bikman’s book, Why We Get Sick. Bikman is a Brigham Young University scientist and biomedical professor whose expertise i...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Book Reviews",
     content: [
       "I recently read Dr. Benjamin Bikman’s book, Why We Get Sick. Bikman is a Brigham Young University scientist and biomedical professor whose expertise is in bioenergetics and metabolic disorders. Unlike many authors who write on this topic, Bikman is not a medical doctor. He has a PhD.",
       "Bikman communicates that many of today’s chronic medical disorders including cancer, heart disease, high cholesterol, Alzheimer’s disease, vascular dementia, Parkinson’s disease, hypertension, as well as many others, are linked to insulin resistance.  His analysis is backed up with more than 30 pages of endnotes chronicling an abundance of research in multiple disciplines along with his scientific understanding of how the body works.",
@@ -647,7 +647,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "These heart-breaking images show the final moments of a frail old lion who was once king of his land before he starved to death....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "These heart-breaking images show the final moments of a frail old lion who was once king of his land before he starved to death.",
       "He was kicked out of his pride and became emaciated after the protection and food that his family used to provide was stripped away.",
@@ -672,7 +672,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been over 2 years.  For detailed information about the story see the #Justice4Jari website here and my interview with Jari's mother Faith here.",
       "This series of posts looks at similar cases in Australia where someone has been hit and killed in a hit and run.  The aim is to see how the police typically respond along with the courts, community, media and Government.  This should expose the gender and race bias and the sheer incompetence of the Tasmanian authorities in their management of Jari's case.",
@@ -692,7 +692,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been over 2 years.  For detailed information about the story see the #Justice4Jari website here and my interview with Jari's mother Faith here.",
       "This series of posts looks at similar cases in Australia where someone has been hit and killed in a hit and run.  The aim is to see how the police typically respond along with the courts, community, media and Government.  This should expose the gender and race bias and the sheer incompetence of the Tasmanian authorities in their management of Jari's case.",
@@ -712,7 +712,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been over 2 years.  For detailed information about the story see the #Justice4Jari website here and my interview with Jari's mother Faith here.",
       "This series of posts looks at similar cases in Australia where someone has been hit and killed in a hit and run.  The aim is to see how the police typically respond along with the courts, community, media and Government.  This should expose the gender and race bias and the sheer incompetence of the Tasmanian authorities in their management of Jari's case.",
@@ -735,7 +735,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been over 2 years.  For detailed information about the story see the #Justice4Jari website here and my interview with Jari's mother Faith here.",
       "This series of posts looks at similar cases in Australia where someone has been hit and killed in a hit and run.  The aim is to see how the police typically respond along with the courts, community, media and Government.  This should expose the gender and race bias and the sheer incompetence of the Tasmanian authorities in their management of Jari's case.",
@@ -752,7 +752,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been over 2 years.  For detailed information about the story see the #Justice4Jari website here and my interview with Jari's mother Faith here.",
       "This series of posts looks at similar cases in Australia where someone has been hit and killed in a hit and run.  The aim is to see how the police typically respond along with the courts, community, media and Government.  This should expose the gender and race bias and the sheer incompetence of the Tasmanian authorities in their management of Jari's case.",
@@ -769,7 +769,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been over 2 years.  For detailed information about the story see the #Justice4Jari website here and my interview with Jari's mother Faith here.",
       "This series of posts looks at similar cases in Australia where someone has been hit and killed in a hit and run.  The aim is to see how the police typically respond along with the courts, community, media and Government.  This should expose the gender and race bias and the sheer incompetence of the Tasmanian authorities in their management of Jari's case.",
@@ -782,7 +782,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been over 2 years.  For detailed information about the story see the #Justice4Jari website here and my interview with Jari's mother Faith here.",
       "This series of posts looks at similar cases in Australia where someone has been hit and killed in a hit and run.  The aim is to see how the police typically respond along with the courts, community, media and Government.  This should expose the gender and race bias and the sheer incompetence of the Tasmanian authorities in their management of Jari's case.",
@@ -807,7 +807,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "A Canadian man was arrested this week after violating a court order that banned him from speaking publicly about his daughter’s gender transition....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "A Canadian man was arrested this week after violating a court order that banned him from speaking publicly about his daughter’s gender transition.",
       "The man, whose identity is reportedly under a publication ban by a British Columbia Court of Appeals to protect his child, was found in contempt of court and arrested Tuesday for calling the teen, his daughter, which she is, and publicly referring to her with the pronouns “she” and “her,” according to The Post Millennial.",
@@ -832,7 +832,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "“Jentoft, who is male and an advisor in FRI, presents himself as a lesbian – that’s how bonkers the organisation which supposedly works to protect you...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "“Jentoft, who is male and an advisor in FRI, presents himself as a lesbian – that’s how bonkers the organisation which supposedly works to protect young lesbians’ interests is.  How does it help young lesbians when males claim to be lesbian, too?” Ellingsen wrote in her offending remarks.",
       "A feminist in Norway is facing up to three years in prison for stating that biological men cannot be lesbians.",
@@ -857,7 +857,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Political commentator and media personality Michael Knowles has authored an examination of politically correct speech in his book Speechless: Controll...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Book Reviews",
     content: [
       "Political commentator and media personality Michael Knowles has authored an examination of politically correct speech in his book Speechless: Controlling Words, Controlling Minds, from Regnery Publishing.",
       "We use language to communicate not only what we perceive and believe, but also to describe reality. This is frequently at odds with politically correct speech, and politics has become a war of words. Knowles makes the point that “according to political correctness, words do not describe reality; they constitute it.”",
@@ -882,7 +882,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "During World War II, fighter planes would come back from battle with bullet holes. The Allies initially sought to strengthen the most commonly damaged...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Leadership",
     content: [
       "During World War II, fighter planes would come back from battle with bullet holes. The Allies initially sought to strengthen the most commonly damaged parts of the planes to increase combat survivability.",
       "A mathematician, Abraham Wald, pointed out that perhaps the reason certain areas of the planes weren’t covered in bullet holes was that planes that were shot in certain critical areas did not return. This insight led to the armour being reinforced on the parts of returning planes where there were no bullet holes.  This wisdom was also beneficially applied to the Skyraider during the Korean War.",
@@ -895,7 +895,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "I'm passionate about helping people out of crisis situations. When I was young I went through hell and noone was there for me. I had a few well intent...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "I'm passionate about helping people out of crisis situations. When I was young I went through hell and noone was there for me. I had a few well intentioned people try and help. The few times I trusted people I'd tell them what was going on and their eyes would glaze over. They simply didn't have the capability to deal with it. If you mix religion, mental health, violence and other criminal behaviour no one wants to touch it. No one wants to even hear about it.",
       "Religious leaders will teach about difficult topics and pray for you from a distance. But they don’t actually help you. The police help with simple black & white breaches of the law. But that’s it (if you’re lucky). Lawyers help themselves make money and occasionally clients with legal problems. Good psychologists are good. But they don’t help you on the field. A social worker, case manager, coach or chaplain is perhaps the role that exists to effectively help people in these situations. If you’re very lucky.",
@@ -914,7 +914,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "One night a woman set fire to the facility we were in, to suicide by fire. She was under house arrest for arson. She was a giant woman. Taller than me...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "One night a woman set fire to the facility we were in, to suicide by fire. She was under house arrest for arson. She was a giant woman. Taller than me and twice my size. The facility was set up like a minimum security prison. We looked after a couple of murderers there who had significant disabilities and intellectual impairment. There were magnetic locks on all drawers, windows and doors. Even the TV was locked behind a Perspex screen box.",
       "The police had taken her out for an appointment that day and returned her in the evening. She was asked if she had a lighter. She said no.",
@@ -937,7 +937,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Link to the original article online 25 November 2017....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Media",
     content: [
       "Link to the original article online 25 November 2017.",
       "https://www.couriermail.com.au/news/queensland/qweekend/coffee-served-with-a-slice-of-community/news-story/1dcac8b8584c0ddaf16ebcd94c88331d",
@@ -962,7 +962,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "A social enterprise made the shock announcement it would close its doors on April 29 less than a year after it spent up to $30,000 on upgrades to its ...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Media",
     content: [
       "A social enterprise made the shock announcement it would close its doors on April 29 less than a year after it spent up to $30,000 on upgrades to its facilities.",
       "https://www.couriermail.com.au/questnews/north/aspleys-cup-from-above-cafe-to-close-doors-this-month/news-story/cdc1d53c8a5692d9a4c6e19744554cd8",
@@ -984,7 +984,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "From sometime in 2012...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Media",
     content: [
       "From sometime in 2012",
     ],
@@ -995,7 +995,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "https://www.abc.net.au/radionational/archived/rnfirstbite/suspended-coffee-movement-gains-supporters-around-australia/5505160...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "https://www.abc.net.au/radionational/archived/rnfirstbite/suspended-coffee-movement-gains-supporters-around-australia/5505160",
       "The 'suspended coffee' movement, which encourages cafe patrons to buy coffees and food for future customers who are in need, is gaining popularity worldwide. Kate Walton and Maria Tickle investigate the progress of the movement in Australia and meet some of its supporters.",
@@ -1020,7 +1020,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Originally Broadcast Sat 31 May 2014 at 9:48am...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Media",
     content: [
       "Originally Broadcast Sat 31 May 2014 at 9:48am",
       "https://www.abc.net.au/radionational/archived/rnfirstbite/suspended-coffee/5483134",
@@ -1035,7 +1035,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "When I was about 20 years old I was working on a farm just outside the township of Shepparton in Northern Victoria.  I was working hard and living in ...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Travel",
     content: [
       "When I was about 20 years old I was working on a farm just outside the township of Shepparton in Northern Victoria.  I was working hard and living in a tent at the edge of an orchard of pears perched beside a rusted out old tractor.  The days were long.  When you’re picking pears you have to start before the sun which meant getting on the tractor at 5am.",
       "I noticed a sore had developed on my chest but it didn’t become a problem until the third day.  I began to work but it was just too painful.  I went over to the farmer and told him.  Mark was 5 foot nothing but compensated for his lack of height with volume and foul language.  He was used to telling people what to do and they did it.  He advised me in colourful detail that I was very lazy and said to get back to work.  I showed him the sore on my chest and it silenced him immediately.  He just started nodding and agreed that I should go to the doctor.  I was living in a tent with no proper bathroom or mirror.  So Mark’s reaction was the first real cause for my concern.",
@@ -1054,7 +1054,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Today I went into the city to explore and capture some images and develop some ideas about connection and community.  I sought for photos to illustrat...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "Today I went into the city to explore and capture some images and develop some ideas about connection and community.  I sought for photos to illustrate my upcoming Tedx talk/book “Community is the Cure; disconnection is the disease\".",
       "I walked around and to be honest I was so lost in thought listening to Bob Marley that not so many great photos were taken.  \"One Love! One Heart! Let's get together and feel all right\"... his lyrics constantly pound out a message of connection to his congregation of emancipated sojourners who had triumphed against racial injustice but were still facing overcoming a planetary divide over mostly mere skin colour.",
@@ -1073,7 +1073,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "April 2019, a school chaplain from SU QLD referred \"someone in need\" to my charity.  The woman was stated to be a victim of DV and facing homelessness...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "April 2019, a school chaplain from SU QLD referred \"someone in need\" to my charity.  The woman was stated to be a victim of DV and facing homelessness.  We provided immediate support by way of money for rent, food & furniture.  She explained to us that she had a lot of debt and had been selling herself to cover living costs.  We offered her an honest job as a cleaner and paid her wages according to Fairwork Australia.",
       "She explained to us that she had over $50,000 on credit card debts and consequently had to make a minimum of $700 per week just to cover all the interest payments and basic living costs. She was married to an Australian man in the middle of nowhere in the outback. She had met him online and moved to Australia to marry him. She explained that not long after they were married he became violent and had to leave the marriage. She then moved onto another relationship and that relationship was also violent. The daughter was with her first marriage to a man in the United States. She said he was also angry and violent. She said he had abandoned them when he learned that the daughter had a disability. She described him as a \"loser\".",
@@ -1098,7 +1098,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Let's have a yarn about green tea and how it's helped me shed a few kilos....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "Let's have a yarn about green tea and how it's helped me shed a few kilos.",
       "Green Tea and Fat Loss: What's the Connection?",
@@ -1117,7 +1117,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "It turns out the name Adam James is shared by several public figures across diverse fields. Here’s a look at some of the more prominent ones, what the...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "It turns out the name Adam James is shared by several public figures across diverse fields. Here’s a look at some of the more prominent ones, what they do, and links to learn more.",
       "A British actor known for theatre, TV and film roles. He trained at the Guildhall School of Music and Drama and has appeared in productions such as Band of Brothers, Dr Foster, and more. Wikipedia+2IMDb+2Website/Profile: His IMDb page – IMDb – Adam James IMDbShort summary: Well-established actor with a range of credits in UK and US productions, theatre and screen.",
@@ -1132,7 +1132,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Originally broadcast on ABC Radio National’s “First Bite” with Adam James...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "Originally broadcast on ABC Radio National’s “First Bite” with Adam James",
       "https://www.abc.net.au/radionational/archived/rnfirstbite/suspended-coffee/5483134",
@@ -1157,7 +1157,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "In March 2016, residents in Brisbane North were invited to join a unique outreach session by the Queensland Police Service that paired a casual coffee...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "In March 2016, residents in Brisbane North were invited to join a unique outreach session by the Queensland Police Service that paired a casual coffee setting with meaningful conversation. The initiative (originally referred to as a “local police expresso” session) provided a relaxed opportunity for community members to meet officers, ask questions and build trust.",
       "The appeal of such initiatives lies in their informal framing — people meeting face-to-face, over a cup of coffee, removing uniform and procedural distance. The event underscored how law-enforcement agencies can engage proactively with the public, beyond reactionary policing.",
@@ -1169,7 +1169,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "This event happened in October 2010.  It was one of many arson events I had while doing this work....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "This event happened in October 2010.  It was one of many arson events I had while doing this work.",
       "I had asked the young man to go to bed the night before.",
@@ -1185,7 +1185,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Source: Grokipedia – Adam James (actor)...",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Lifestyle",
     content: [
       "Source: Grokipedia – Adam James (actor)",
       "Adam James (born 9 September 1972, London) is a celebrated English actor whose work spans television, film, and theatre. A Guildhall School of Music and Drama graduate, and godson of Jon Pertwee, James has earned acclaim for his adaptability across genres—from Doctor Foster and Vigil to the Broadway stage in King Charles III.",
@@ -1202,7 +1202,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "The story of Cup From Above is a reminder: when you align mission and model, you not only survive bumps in the road—you thrive....",
     image: blogDefault,
     date: "",
-    category: "",
+    category: "Community",
     content: [
       "The story of Cup From Above is a reminder: when you align mission and model, you not only survive bumps in the road—you thrive.",
       "On the “Brisbane Breakfast” show, ABC Radio Brisbane featured the café’s recent move and relaunch after a forced relocation. ABC",
