@@ -5,6 +5,8 @@ import TikTokIcon from "@/components/TikTokIcon";
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const socialLinks = [
   { icon: Facebook, href: "https://www.facebook.com/adamjameslikescoffee", label: "Facebook" },
@@ -17,11 +19,25 @@ const socialLinks = [
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const { t } = useLanguage();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('contact-webhook', {
+        body: { name: formData.name, email: formData.email, message: formData.message },
+      });
+      if (error) throw error;
+      setSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error('Contact form error:', err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -162,10 +178,11 @@ const Contact = () => {
                       </div>
                       <button
                         type="submit"
-                        className="group inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-8 py-3.5 hover:brightness-110 transition-all rounded-lg"
+                        disabled={submitting}
+                        className="group inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-8 py-3.5 hover:brightness-110 transition-all rounded-lg disabled:opacity-50"
                       >
-                        {t.contactPage.send}
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        {submitting ? "Sending..." : t.contactPage.send}
+                        {!submitting && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
                       </button>
                     </form>
                   )}
