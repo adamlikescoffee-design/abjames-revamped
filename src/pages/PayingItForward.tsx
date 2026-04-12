@@ -171,6 +171,17 @@ const PayingItForward = () => {
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">{t.payingItForward.pledgeFormSuggested}</p>
                   </div>
+                  <div>
+                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">{t.payingItForward.pledgeFormCityCountry}</label>
+                    <input type="text" value={pledgeData.city_country} onChange={(e) => setPledgeData({ ...pledgeData, city_country: e.target.value })} className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors" placeholder={t.payingItForward.cityCountryPlaceholder} />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">{t.payingItForward.pledgeFormNotes}</label>
+                    <textarea value={pledgeData.notes} onChange={(e) => setPledgeData({ ...pledgeData, notes: e.target.value })} className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors min-h-[80px] resize-y" placeholder={t.payingItForward.notesPlaceholder} />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">{t.payingItForward.pledgeFormMessage}</label>
+                    <textarea value={pledgeData.message} onChange={(e) => setPledgeData({ ...pledgeData, message: e.target.value })} className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors min-h-[80px] resize-y" placeholder={t.payingItForward.messagePlaceholder} />
                   <button type="submit" disabled={submitting} className="w-full bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm py-3 hover:brightness-110 transition-all rounded-lg flex items-center justify-center gap-2 disabled:opacity-50">
                     {submitting ? <Loader2 size={16} className="animate-spin" /> : <Heart size={16} />}
                     {t.payingItForward.pledgeFormButton}
