@@ -36,20 +36,20 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <Link to="/" className={cn(
-          "font-heading font-bold tracking-wider text-foreground transition-all duration-500",
-          scrolled ? "text-3xl md:text-4xl" : "text-5xl md:text-7xl"
+          "font-heading font-bold tracking-wider text-foreground transition-all duration-500 shrink-0",
+          scrolled ? "text-2xl lg:text-4xl" : "text-3xl lg:text-5xl xl:text-7xl"
         )}>
           ADAM JAMES
         </Link>
 
-        <div className="flex items-center gap-3 md:gap-5">
-          <nav className="hidden md:flex items-center gap-6">
+        <div className="flex items-center gap-3 lg:gap-5">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 className={cn(
-                  "font-heading text-sm font-semibold tracking-wider transition-colors",
+                  "font-heading text-xs xl:text-sm font-semibold tracking-wider transition-colors whitespace-nowrap",
                   isActive(link.href) ? "text-primary" : "text-foreground/70 hover:text-primary"
                 )}
               >
@@ -58,18 +58,18 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4">
             <a href="https://www.facebook.com/adamjameslikescoffee" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Facebook size={18} /></a>
             <a href="https://www.instagram.com/adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Instagram size={18} /></a>
             <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Linkedin size={18} /></a>
             <a href="https://www.firesidebusinessadvice.com/panellists/liberty-digital" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Flame size={18} /></a>
           </div>
 
-          <LanguageToggle className="hidden md:flex" />
+          <LanguageToggle className="hidden lg:flex" />
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex items-center gap-2 font-heading text-sm font-semibold tracking-wider text-foreground hover:text-primary transition-colors"
+            className="lg:hidden flex items-center gap-2 font-heading text-sm font-semibold tracking-wider text-foreground hover:text-primary transition-colors"
           >
             {menuOpen ? t.nav.close : t.nav.menu}
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -78,8 +78,8 @@ const Header = () => {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-border bg-background px-4 py-6 space-y-4 animate-reveal-up">
-          <nav className="flex flex-col gap-3">
+        <div className="lg:hidden border-t border-border bg-background px-4 py-6 space-y-4 animate-reveal-up">
+          <nav className="flex flex-col md:flex-row md:flex-wrap md:gap-x-6 gap-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
