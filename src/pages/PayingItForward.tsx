@@ -68,13 +68,20 @@ const PayingItForward = () => {
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-3xl">{t.payingItForward.wheelchairDesc}</p>
           </ScrollReveal>
           <ScrollReveal animation="up" delay={100}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="overflow-hidden rounded-lg">
-                <img src={angel1} alt="Adam with Angel" className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="overflow-hidden rounded-lg">
-                <img src={angel2} alt="Meeting with Angel on the street" className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500" />
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                { src: angel1, alt: "Adam with Angel" },
+                { src: angel2, alt: "Meeting with Angel on the street" },
+              ].map((img, idx) => (
+                <div key={idx} className="group relative overflow-hidden rounded-xl shadow-lg">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              ))}
             </div>
           </ScrollReveal>
         </div>
