@@ -63,6 +63,7 @@ const galleryImages = [
   { src: galleryAdam1, alt: "Adam in blue shirt" },
   { src: galleryAdam2, alt: "Adam in overcoat" },
   { src: galleryAdam3, alt: "Adam portrait" },
+  { src: galleryAdam4, alt: "Adam by blue wall" },
 ];
 
 const Gallery = () => {
