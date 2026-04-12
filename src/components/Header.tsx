@@ -58,7 +58,7 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center">
+          
 
           <LanguageToggle className="hidden lg:flex" />
 
