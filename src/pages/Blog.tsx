@@ -12,25 +12,36 @@ const Blog = () => {
   const { t } = useLanguage();
   const posts = useLocalizedBlogPosts();
 
-  const categoryCounts = useMemo(() => {
-    const counts = new Map<string, number>();
-    counts.set("All", posts.length);
+  // Use English category as canonical key, display localized label
+  const categoryMap = useMemo(() => {
+    const map = new Map<string, { label: string; count: number }>();
     posts.forEach((p) => {
-      const cat = p.localizedCategory || "Uncategorised";
-      counts.set(cat, (counts.get(cat) || 0) + 1);
+      const key = p.category || "Uncategorised";
+      const label = p.localizedCategory || key;
+      const existing = map.get(key);
+      if (existing) {
+        existing.count++;
+        // Prefer the translated label over English fallback
+        if (label !== key) existing.label = label;
+      } else {
+        map.set(key, { label, count: 1 });
+      }
     });
-    return counts;
+    return map;
   }, [posts]);
 
   const categories = useMemo(
-    () => ["All", ...Array.from(categoryCounts.keys()).filter((k) => k !== "All").sort()],
-    [categoryCounts]
+    () => ["All", ...Array.from(categoryMap.keys()).sort()],
+    [categoryMap]
   );
 
   const filtered = useMemo(
-    () => activeCategory === "All" ? posts : posts.filter((p) => (p.localizedCategory || "Uncategorised") === activeCategory),
+    () => activeCategory === "All" ? posts : posts.filter((p) => (p.category || "Uncategorised") === activeCategory),
     [activeCategory, posts]
   );
+
+  const getCategoryLabel = (key: string) => key === "All" ? "ALL" : (categoryMap.get(key)?.label || key).toUpperCase();
+  const getCategoryCount = (key: string) => key === "All" ? posts.length : (categoryMap.get(key)?.count || 0);
 
   return (
     <div className="min-h-screen bg-background">
@@ -49,12 +60,12 @@ const Blog = () => {
                 "px-4 py-2 rounded-full font-heading text-xs font-semibold tracking-wider transition-all",
                 activeCategory === cat ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-accent"
               )}>
-                {cat.toUpperCase()}
+                {getCategoryLabel(cat)}
                 <span className={cn(
                   "ml-1.5 inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1 rounded-full text-[10px] font-bold",
                   activeCategory === cat ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/10 text-muted-foreground"
                 )}>
-                  {categoryCounts.get(cat) || 0}
+                  {getCategoryCount(cat)}
                 </span>
               </button>
             ))}
