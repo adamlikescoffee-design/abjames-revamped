@@ -217,7 +217,7 @@ export const en = {
     involvedText: "Whether you want to volunteer, collaborate, or simply learn more about how you can make a difference in your community — I'd love to hear from you.",
     getInTouch: "GET IN TOUCH",
     wereCurrentlyTaking: "We're currently taking",
-    namePlaceholder: "Your name",
+    namePlaceholder: "Your full name",
     emailPlaceholder: "your@email.com",
     amountPlaceholder: "20",
     cityCountryPlaceholder: "e.g. Melbourne, Australia",
