@@ -38,6 +38,7 @@ const PayingItForward = () => {
       const { error } = await supabase.from("pledges").insert({
         name: pledgeData.name,
         email: pledgeData.email,
+        phone: pledgeData.phone || null,
         amount: parseFloat(pledgeData.amount),
         city_country: pledgeData.city_country || null,
         notes: pledgeData.notes || null,
