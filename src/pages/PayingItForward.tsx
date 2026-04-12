@@ -1,21 +1,40 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Accessibility, Heart, Users } from "lucide-react";
+import { ArrowLeft, Accessibility, Heart, Users, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useState } from "react";
 import angel1 from "@/assets/angel-1.jpg";
 import angel2 from "@/assets/angel-2.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const PayingItForward = () => {
   const [pledgeData, setPledgeData] = useState({ name: "", email: "", amount: "20" });
   const [pledgeSubmitted, setPledgeSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const { t } = useLanguage();
 
-  const handlePledgeSubmit = (e: React.FormEvent) => {
+  const handlePledgeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setPledgeSubmitted(true);
+    setSubmitting(true);
+
+    try {
+      const { error } = await supabase.from("pledges").insert({
+        name: pledgeData.name,
+        email: pledgeData.email,
+        amount: parseFloat(pledgeData.amount),
+      });
+
+      if (error) throw error;
+      setPledgeSubmitted(true);
+    } catch (err) {
+      console.error("Pledge error:", err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -107,8 +126,8 @@ const PayingItForward = () => {
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">{t.payingItForward.pledgeFormSuggested}</p>
                   </div>
-                  <button type="submit" className="w-full bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm py-3 hover:brightness-110 transition-all rounded-lg flex items-center justify-center gap-2">
-                    <Heart size={16} />
+                  <button type="submit" disabled={submitting} className="w-full bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm py-3 hover:brightness-110 transition-all rounded-lg flex items-center justify-center gap-2 disabled:opacity-50">
+                    {submitting ? <Loader2 size={16} className="animate-spin" /> : <Heart size={16} />}
                     {t.payingItForward.pledgeFormButton}
                   </button>
                   <p className="text-xs text-muted-foreground text-center">{t.payingItForward.pledgeFormDisclaimer}</p>
