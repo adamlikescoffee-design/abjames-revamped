@@ -175,6 +175,9 @@ export const en = {
     pledgeFormName: "Name",
     pledgeFormEmail: "Email",
     pledgeFormAmount: "Pledge Amount (AUD)",
+    pledgeFormCityCountry: "City / Country",
+    pledgeFormNotes: "Notes",
+    pledgeFormMessage: "Message",
     pledgeFormSuggested: "Suggested: $20 — but any amount is appreciated",
     pledgeFormButton: "PLEDGE MY SUPPORT",
     pledgeFormDisclaimer: "No payment required now. We'll contact you by email when we're ready to proceed.",
@@ -188,6 +191,9 @@ export const en = {
     namePlaceholder: "Your name",
     emailPlaceholder: "your@email.com",
     amountPlaceholder: "20",
+    cityCountryPlaceholder: "e.g. Melbourne, Australia",
+    notesPlaceholder: "Any additional notes (optional)",
+    messagePlaceholder: "A personal message for Angel (optional)",
   },
 
   // 404

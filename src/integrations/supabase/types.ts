@@ -17,24 +17,33 @@ export type Database = {
       pledges: {
         Row: {
           amount: number
+          city_country: string | null
           created_at: string
           email: string
           id: string
+          message: string | null
           name: string
+          notes: string | null
         }
         Insert: {
           amount: number
+          city_country?: string | null
           created_at?: string
           email: string
           id?: string
+          message?: string | null
           name: string
+          notes?: string | null
         }
         Update: {
           amount?: number
+          city_country?: string | null
           created_at?: string
           email?: string
           id?: string
+          message?: string | null
           name?: string
+          notes?: string | null
         }
         Relationships: []
       }
