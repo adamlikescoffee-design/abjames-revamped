@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import heroImage from "@/assets/adam-james-hero.png";
+import heroImage from "@/assets/adam-james-hero.webp";
 import musicImage from "@/assets/about-music.jpg";
 import coffeeImage from "@/assets/about-coffee.jpg";
 import { Coffee, Guitar, Briefcase, Users, ArrowLeft } from "lucide-react";
