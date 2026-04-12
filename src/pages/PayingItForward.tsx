@@ -14,7 +14,7 @@ import MediaHighlights from "@/components/pay-it-forward/MediaHighlights";
 import JournalSection from "@/components/pay-it-forward/JournalSection";
 
 const PayingItForward = () => {
-  const [pledgeData, setPledgeData] = useState({ firstName: "", lastName: "", email: "", phone: "", amount: "20", city_country: "", notes: "", message: "" });
+  const [pledgeData, setPledgeData] = useState({ firstName: "", lastName: "", email: "", phone: "", amount: "20", city: "", country: "", notes: "", message: "" });
   const [pledgeSubmitted, setPledgeSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [stats, setStats] = useState<{ pledge_count: number; total_amount: number } | null>(null);
@@ -42,7 +42,7 @@ const PayingItForward = () => {
         email: pledgeData.email,
         phone: pledgeData.phone || null,
         amount: parseFloat(pledgeData.amount),
-        city_country: pledgeData.city_country || null,
+        city_country: [pledgeData.city, pledgeData.country].filter(Boolean).join(", ") || null,
         notes: pledgeData.notes || null,
         message: pledgeData.message || null,
       });
@@ -63,7 +63,9 @@ const PayingItForward = () => {
             email: pledgeData.email,
             phone: pledgeData.phone || null,
             amount: parseFloat(pledgeData.amount),
-            city_country: pledgeData.city_country || null,
+            city: pledgeData.city || null,
+            country: pledgeData.country || null,
+            city_country: [pledgeData.city, pledgeData.country].filter(Boolean).join(", ") || null,
             notes: pledgeData.notes || null,
             message: pledgeData.message || null,
           }),

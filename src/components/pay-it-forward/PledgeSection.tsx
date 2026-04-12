@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 interface PledgeSectionProps {
   stats: { pledge_count: number; total_amount: number } | null;
-  pledgeData: { firstName: string; lastName: string; email: string; phone: string; amount: string; city_country: string; notes: string; message: string };
+  pledgeData: { firstName: string; lastName: string; email: string; phone: string; amount: string; city: string; country: string; notes: string; message: string };
   setPledgeData: (data: any) => void;
   pledgeSubmitted: boolean;
   submitting: boolean;
@@ -168,17 +168,31 @@ const PledgeSection = ({ stats, pledgeData, setPledgeData, pledgeSubmitted, subm
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">{t.payingItForward.pledgeFormSuggested}</p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">
-                      {t.payingItForward.pledgeFormCityCountry}
-                    </label>
-                    <input
-                      type="text"
-                      value={pledgeData.city_country}
-                      onChange={(e) => setPledgeData({ ...pledgeData, city_country: e.target.value })}
-                      className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
-                      placeholder={t.payingItForward.cityCountryPlaceholder}
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-heading font-semibold text-foreground mb-2">
+                        {t.payingItForward.pledgeFormCity}
+                      </label>
+                      <input
+                        type="text"
+                        value={pledgeData.city}
+                        onChange={(e) => setPledgeData({ ...pledgeData, city: e.target.value })}
+                        className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+                        placeholder={t.payingItForward.cityPlaceholder}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-heading font-semibold text-foreground mb-2">
+                        {t.payingItForward.pledgeFormCountry}
+                      </label>
+                      <input
+                        type="text"
+                        value={pledgeData.country}
+                        onChange={(e) => setPledgeData({ ...pledgeData, country: e.target.value })}
+                        className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+                        placeholder={t.payingItForward.countryPlaceholder}
+                      />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-heading font-semibold text-foreground mb-2">
