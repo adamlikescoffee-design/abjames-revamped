@@ -24,7 +24,7 @@ const Gallery = () => {
         style={{ backgroundImage: `url(${galleryBg})` }}
       >
         <div className="absolute inset-0 bg-background/80" />
-        <div className="container mx-auto px-4">
+        <div className="relative z-10 container mx-auto px-4">
           <ScrollReveal>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">
               Photo Gallery
