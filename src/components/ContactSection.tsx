@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send, X } from "lucide-react";
+import { Facebook, Flame, Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -59,9 +59,9 @@ const ContactSection = () => {
                 <div className="flex gap-4">
                   {[
                     { icon: Facebook, href: "https://www.facebook.com/adamjameslikescoffee" },
-                    { icon: X, href: "https://x.com" },
                     { icon: Instagram, href: "https://www.instagram.com/adam_likes_coffee" },
                     { icon: Linkedin, href: "https://www.linkedin.com/in/adam-likes-coffee/" },
+                    { icon: Flame, href: "https://www.firesidebusinessadvice.com" },
                   ].map(({ icon: Icon, href }, idx) => (
                     <a
                       key={idx}
