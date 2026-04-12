@@ -85,6 +85,7 @@ const Admin = () => {
       .insert({
         name: form.name,
         email: form.email,
+        phone: form.phone || null,
         amount: Number(form.amount),
         city_country: form.city_country || null,
         notes: form.notes || null,
