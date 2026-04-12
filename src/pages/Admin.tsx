@@ -20,6 +20,7 @@ interface Pledge {
   id: string;
   name: string;
   email: string;
+  phone: string | null;
   amount: number;
   city_country: string | null;
   notes: string | null;
@@ -27,7 +28,7 @@ interface Pledge {
   created_at: string;
 }
 
-const emptyForm = { name: "", email: "", amount: "", city_country: "", notes: "", message: "" };
+const emptyForm = { name: "", email: "", phone: "", amount: "", city_country: "", notes: "", message: "" };
 
 const Admin = () => {
   const { user, loading: authLoading, signOut } = useAuth();
