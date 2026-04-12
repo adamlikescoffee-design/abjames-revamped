@@ -23,7 +23,7 @@ const InstagramFeed = () => {
           {images.map((img, idx) => (
             <ScrollReveal key={idx} animation="scale" delay={idx * 80}>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/adam_likes_coffee"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative aspect-square overflow-hidden block"
