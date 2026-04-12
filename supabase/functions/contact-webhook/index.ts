@@ -1,4 +1,7 @@
-import { corsHeaders } from '@supabase/supabase-js/cors'
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
 
 const WEBHOOK_URL = 'https://hook.eu2.make.com/bopfcq13tkndzbye9l19h6yaf83d3b4v'
 
