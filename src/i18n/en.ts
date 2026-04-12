@@ -157,7 +157,7 @@ export const en = {
     wheelchairStory1: "This young man wants to be a psychologist so he can help people who struggle with their mental health and help them overcome. It was the last thing I expected to hear him say. I was beyond impressed and I felt compelled to help him. He only has his brother. His brother is built like Bruce Lee from pushing him around everywhere.",
     wheelchairStory2: "His wheelchair was in horrible condition. The wheels are worn down to the metal rims.",
     wheelchairStory3: "If anyone deserves help, it's these young men.",
-    pledgeTitle: "Pledge Your Support",
+    pledgeTitle: "Pledge Your Support for Angel's Wheelchair",
     proposedTarget: "Proposed Target: $2,000",
     pledgesReceived: "pledges received",
     pledgedOf: "pledged of $2,000 goal",
