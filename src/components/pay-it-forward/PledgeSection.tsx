@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 interface PledgeSectionProps {
   stats: { pledge_count: number; total_amount: number } | null;
-  pledgeData: { firstName: string; lastName: string; email: string; phone: string; amount: string; city_country: string; notes: string; message: string };
+  pledgeData: { firstName: string; lastName: string; email: string; phone: string; amount: string; city: string; country: string; notes: string; message: string };
   setPledgeData: (data: any) => void;
   pledgeSubmitted: boolean;
   submitting: boolean;
