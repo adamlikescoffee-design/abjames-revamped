@@ -12,6 +12,7 @@ import mediaNorthside from "@/assets/media-northside.jpg";
 import mediaSilentWriter from "@/assets/media-silent-writer.png";
 import mediaLiberty from "@/assets/media-liberty.png";
 import mediaFrontPage from "@/assets/media-front-page.png";
+import mediaScreenshot from "@/assets/media-screenshot.png";
 import mediaPolice1 from "@/assets/media-police1.jpg";
 import mediaPolice2 from "@/assets/media-police2.jpg";
 import mediaCmA from "@/assets/media-cm-a.jpg";
@@ -47,7 +48,7 @@ const publications = [
     description:
       "The inspiring story of Glen Sheppard, a 33-year-old author and poet born with Down syndrome, featured as part of the community work connected to Cup From Above.",
     source: "Media Feature",
-    images: [mediaSilentWriter, mediaFrontPage],
+    images: [mediaSilentWriter, mediaScreenshot, mediaFrontPage],
   },
   {
     title: "Liberty Enterprises — Social Enterprise Creating Opportunity",
@@ -55,6 +56,14 @@ const publications = [
       "Coverage of Liberty Enterprises, a social enterprise dedicated to creating real opportunities for women who have experienced domestic violence, homelessness, or other hardships.",
     source: "Courier Mail",
     images: [mediaLiberty],
+  },
+  {
+    title: "Cup From Above on 96five FM",
+    description:
+      "Adam James from Cup From Above discussing the current situation in Aspley and what is being done to solve the crisis at hand.",
+    source: "96five FM",
+    images: [],
+    audioUrl: "https://soundcloud.com/96five/adam-james-from-a-cup-from-above",
   },
   {
     title: "Local Police Espresso Initiative",
@@ -164,22 +173,24 @@ const MediaPublications = () => {
               <ScrollReveal key={idx} animation="up" delay={idx * 80}>
                 <div className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors">
                   {/* Images */}
-                  <div className={`grid ${pub.images.length === 1 ? 'grid-cols-1' : pub.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} gap-1`}>
-                    {pub.images.map((img, imgIdx) => (
-                      <div
-                        key={imgIdx}
-                        className="overflow-hidden cursor-pointer"
-                        onClick={() => openLightbox(img)}
-                      >
-                        <img
-                          src={img}
-                          alt={`${pub.title} - image ${imgIdx + 1}`}
-                          loading="lazy"
-                          className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  {pub.images.length > 0 && (
+                    <div className={`grid ${pub.images.length === 1 ? 'grid-cols-1' : pub.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} gap-1`}>
+                      {pub.images.map((img, imgIdx) => (
+                        <div
+                          key={imgIdx}
+                          className="overflow-hidden cursor-pointer"
+                          onClick={() => openLightbox(img)}
+                        >
+                          <img
+                            src={img}
+                            alt={`${pub.title} - image ${imgIdx + 1}`}
+                            loading="lazy"
+                            className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Text content */}
                   <div className="p-6">
@@ -192,6 +203,16 @@ const MediaPublications = () => {
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       {pub.description}
                     </p>
+                    {"audioUrl" in pub && pub.audioUrl && (
+                      <a
+                        href={pub.audioUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block mt-3 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all"
+                      >
+                        LISTEN ON SOUNDCLOUD →
+                      </a>
+                    )}
                   </div>
                 </div>
               </ScrollReveal>
