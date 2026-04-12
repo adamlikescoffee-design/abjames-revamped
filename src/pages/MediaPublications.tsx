@@ -1,7 +1,9 @@
+import { useState, useCallback, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import galleryBg from "@/assets/gallery-bg.jpg";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 import mediaCourierMail from "@/assets/media-courier-mail.jpg";
 import mediaChronicle from "@/assets/media-chronicle.jpg";
@@ -64,9 +66,87 @@ const publications = [
 ];
 
 const MediaPublications = () => {
+  // Collect all images flat for lightbox navigation
+  const allImages = publications.flatMap((pub) =>
+    pub.images.map((img, i) => ({ src: img, alt: `${pub.title} - image ${i + 1}` }))
+  );
+
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const openLightbox = (src: string) => {
+    const idx = allImages.findIndex((img) => img.src === src);
+    setLightboxIndex(idx >= 0 ? idx : null);
+  };
+
+  const closeLightbox = () => setLightboxIndex(null);
+
+  const goPrev = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev - 1 + allImages.length) % allImages.length : null
+    );
+  }, [allImages.length]);
+
+  const goNext = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev + 1) % allImages.length : null
+    );
+  }, [allImages.length]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [lightboxIndex, goPrev, goNext]);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 text-foreground/70 hover:text-foreground transition-colors z-10"
+          >
+            <X size={32} />
+          </button>
+          {allImages.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                className="absolute left-4 text-foreground/70 hover:text-foreground transition-colors z-10"
+              >
+                <ChevronLeft size={40} />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); goNext(); }}
+                className="absolute right-4 text-foreground/70 hover:text-foreground transition-colors z-10"
+              >
+                <ChevronRight size={40} />
+              </button>
+            </>
+          )}
+          <img
+            src={allImages[lightboxIndex].src}
+            alt={allImages[lightboxIndex].alt}
+            className="max-h-[90vh] max-w-[90vw] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       <section
         className="relative pt-28 pb-20 bg-cover bg-center bg-fixed"
@@ -90,7 +170,11 @@ const MediaPublications = () => {
                   {/* Images */}
                   <div className={`grid ${pub.images.length === 1 ? 'grid-cols-1' : pub.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} gap-1`}>
                     {pub.images.map((img, imgIdx) => (
-                      <div key={imgIdx} className="overflow-hidden">
+                      <div
+                        key={imgIdx}
+                        className="overflow-hidden cursor-pointer"
+                        onClick={() => openLightbox(img)}
+                      >
                         <img
                           src={img}
                           alt={`${pub.title} - image ${imgIdx + 1}`}
