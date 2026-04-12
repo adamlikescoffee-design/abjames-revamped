@@ -11,7 +11,7 @@ export interface LocalizedBlogPost extends BlogPost {
 }
 
 export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
-  const { language } = useLanguage();
+  const { lang } = useLanguage();
 
   return useMemo(() => {
     return blogPosts.map((post) => {
