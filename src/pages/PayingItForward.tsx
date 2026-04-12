@@ -14,7 +14,7 @@ import MediaHighlights from "@/components/pay-it-forward/MediaHighlights";
 import JournalSection from "@/components/pay-it-forward/JournalSection";
 
 const PayingItForward = () => {
-  const [pledgeData, setPledgeData] = useState({ name: "", email: "", phone: "", amount: "20", city_country: "", notes: "", message: "" });
+  const [pledgeData, setPledgeData] = useState({ firstName: "", lastName: "", email: "", phone: "", amount: "20", city_country: "", notes: "", message: "" });
   const [pledgeSubmitted, setPledgeSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [stats, setStats] = useState<{ pledge_count: number; total_amount: number } | null>(null);
@@ -36,8 +36,9 @@ const PayingItForward = () => {
     setSubmitting(true);
 
     try {
+      const fullName = `${pledgeData.firstName} ${pledgeData.lastName}`.trim();
       const { error } = await supabase.from("pledges").insert({
-        name: pledgeData.name,
+        name: fullName,
         email: pledgeData.email,
         phone: pledgeData.phone || null,
         amount: parseFloat(pledgeData.amount),
@@ -56,7 +57,9 @@ const PayingItForward = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            name: pledgeData.name,
+            firstName: pledgeData.firstName,
+            lastName: pledgeData.lastName,
+            name: fullName,
             email: pledgeData.email,
             phone: pledgeData.phone || null,
             amount: parseFloat(pledgeData.amount),

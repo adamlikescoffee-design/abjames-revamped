@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 interface PledgeSectionProps {
   stats: { pledge_count: number; total_amount: number } | null;
-  pledgeData: { name: string; email: string; phone: string; amount: string; city_country: string; notes: string; message: string };
+  pledgeData: { firstName: string; lastName: string; email: string; phone: string; amount: string; city_country: string; notes: string; message: string };
   setPledgeData: (data: any) => void;
   pledgeSubmitted: boolean;
   submitting: boolean;
@@ -97,18 +97,33 @@ const PledgeSection = ({ stats, pledgeData, setPledgeData, pledgeSubmitted, subm
                   <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground text-center mb-2">
                     Wheelchair for Angel Pledge Form
                   </h3>
-                  <div>
-                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">
-                      {t.payingItForward.pledgeFormName}
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={pledgeData.name}
-                      onChange={(e) => setPledgeData({ ...pledgeData, name: e.target.value })}
-                      className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
-                      placeholder={t.payingItForward.namePlaceholder}
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-heading font-semibold text-foreground mb-2">
+                        {t.payingItForward.pledgeFormFirstName}
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={pledgeData.firstName}
+                        onChange={(e) => setPledgeData({ ...pledgeData, firstName: e.target.value })}
+                        className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+                        placeholder={t.payingItForward.firstNamePlaceholder}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-heading font-semibold text-foreground mb-2">
+                        {t.payingItForward.pledgeFormLastName}
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={pledgeData.lastName}
+                        onChange={(e) => setPledgeData({ ...pledgeData, lastName: e.target.value })}
+                        className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
+                        placeholder={t.payingItForward.lastNamePlaceholder}
+                      />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-heading font-semibold text-foreground mb-2">
