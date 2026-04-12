@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import galleryBg from "@/assets/gallery-bg.jpg";
+
 import { useLanguage } from "@/contexts/LanguageContext";
 
 import gallery01 from "@/assets/gallery-01.jpeg";
@@ -108,9 +108,8 @@ const Gallery = () => {
         </div>
       )}
 
-      <section className="relative pt-28 pb-20 bg-cover bg-center bg-fixed" style={{ backgroundImage: `url(${galleryBg})` }}>
-        <div className="absolute inset-0 bg-background/80" />
-        <div className="relative z-10 container mx-auto px-4">
+      <section className="pt-28 pb-20">
+        <div className="container mx-auto px-4">
           <ScrollReveal>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">{t.gallery.title}</h1>
             <p className="text-muted-foreground text-center mb-12 max-w-lg mx-auto">{t.gallery.subtitle}</p>
