@@ -139,7 +139,7 @@ const Footer = () => {
                   <Linkedin size={18} />
                 </a>
                 <a
-                  href="https://www.firesidebusinessadvice.com"
+                  href="https://www.firesidebusinessadvice.com/panellists/liberty-digital"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"
