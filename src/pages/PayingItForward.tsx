@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Heart, Coffee, Users, HandHeart } from "lucide-react";
+import { ArrowLeft, Heart, Coffee, Users, HandHeart, Accessibility } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -58,6 +58,12 @@ const PayingItForward = () => {
                   title: "Suspended Coffees",
                   description:
                     "Championing the suspended coffee movement in Australia — letting customers pre-pay for a coffee that someone in need can later redeem, creating a ripple effect of kindness.",
+                },
+                {
+                  icon: Accessibility,
+                  title: "Wheelchair for Angel",
+                  description:
+                    "A fundraiser to provide a custom wheelchair for Angel, a young community member with limited mobility. Every contribution brings her closer to independence, freedom, and the ability to participate fully in everyday life.",
                 },
               ].map((item, idx) => (
                 <div
