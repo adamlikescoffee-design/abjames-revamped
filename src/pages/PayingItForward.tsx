@@ -66,6 +66,8 @@ const PayingItForward = () => {
 
       <WheelchairStory />
 
+      <JournalSection />
+
       <PledgeSection
         stats={stats}
         pledgeData={pledgeData}
