@@ -170,7 +170,11 @@ const MediaPublications = () => {
                   {/* Images */}
                   <div className={`grid ${pub.images.length === 1 ? 'grid-cols-1' : pub.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} gap-1`}>
                     {pub.images.map((img, imgIdx) => (
-                      <div key={imgIdx} className="overflow-hidden">
+                      <div
+                        key={imgIdx}
+                        className="overflow-hidden cursor-pointer"
+                        onClick={() => openLightbox(img)}
+                      >
                         <img
                           src={img}
                           alt={`${pub.title} - image ${imgIdx + 1}`}
