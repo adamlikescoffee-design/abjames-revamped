@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Mail, MapPin, Facebook, Flame, Instagram, Linkedin } from "lucide-react";
+import { Mail, MapPin, Facebook, Flame, Instagram, Linkedin, Send, MessageCircle, ArrowRight } from "lucide-react";
 import TikTokIcon from "@/components/TikTokIcon";
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -16,75 +16,181 @@ const Contact = () => {
     setSubmitted(true);
   };
 
+  const socialLinks = [
+    { icon: Facebook, href: "https://www.facebook.com/adamjameslikescoffee", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/adam_likes_coffee", label: "Instagram" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/adam-likes-coffee/", label: "LinkedIn" },
+    { icon: Flame, href: "https://www.firesidebusinessadvice.com/panellists/liberty-digital", label: "Fireside" },
+    { icon: () => <TikTokIcon size={20} />, href: "https://www.tiktok.com/@adam_likes_coffee", label: "TikTok" },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      <section className="pt-28 pb-20">
-        <div className="container mx-auto px-4">
+      {/* Hero Banner */}
+      <section className="relative pt-28 pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+        <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+
+        <div className="relative z-10 container mx-auto px-4 text-center">
           <ScrollReveal>
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">{t.contactPage.title}</h1>
-            <p className="text-muted-foreground text-center mb-12 max-w-lg mx-auto">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-heading font-semibold tracking-wider mb-6">
+              <MessageCircle size={16} />
+              {t.contactPage.getInTouch}
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-foreground mb-6">
+              {t.contactPage.title}
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
               {t.contactPage.intro}{" "}
-              <a href="mailto:adam@abjames.com" className="text-primary hover:underline">adam@abjames.com</a>
+              <a href="mailto:adam@abjames.com" className="text-primary hover:underline font-medium">adam@abjames.com</a>
               {t.contactPage.altIntro}
             </p>
           </ScrollReveal>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <ScrollReveal animation="left">
-              {submitted ? (
-                <div className="bg-primary/10 border border-primary/20 rounded-lg p-8 text-center">
-                  <h3 className="font-heading text-xl font-bold text-foreground mb-2">{t.contactPage.thankYou}</h3>
-                  <p className="text-muted-foreground">{t.contactPage.thankYouText}</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">{t.contactPage.name}</label>
-                    <input type="text" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors" placeholder={t.contactPage.namePlaceholder} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">{t.contactPage.email}</label>
-                    <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors" placeholder={t.contactPage.emailPlaceholder} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-heading font-semibold text-foreground mb-2">{t.contactPage.message}</label>
-                    <textarea required rows={5} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors resize-none" placeholder={t.contactPage.messagePlaceholder} />
-                  </div>
-                  <button type="submit" className="w-full bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm py-3 hover:brightness-110 transition-all rounded-lg">{t.contactPage.send}</button>
-                </form>
-              )}
-            </ScrollReveal>
+      {/* Main Content */}
+      <section className="pb-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+            {/* Form - takes 3 columns */}
+            <div className="lg:col-span-3">
+              <ScrollReveal animation="left">
+                <div className="bg-secondary/50 border border-border/50 rounded-2xl p-8 md:p-10 backdrop-blur-sm">
+                  <h2 className="font-heading text-2xl font-bold text-foreground mb-2">
+                    Send a Message
+                  </h2>
+                  <p className="text-muted-foreground text-sm mb-8">
+                    Fill out the form and Adam will get back to you as soon as possible.
+                  </p>
 
-            <ScrollReveal animation="right">
-              <div className="space-y-8">
-                <div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-4">{t.contactPage.getInTouch}</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-muted-foreground">
-                      <Mail size={18} className="text-primary" />
-                      <a href="mailto:adam@abjames.com" className="hover:text-primary transition-colors">adam@abjames.com</a>
+                  {submitted ? (
+                    <div className="bg-primary/10 border border-primary/20 rounded-xl p-10 text-center">
+                      <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                        <Send size={24} className="text-primary" />
+                      </div>
+                      <h3 className="font-heading text-2xl font-bold text-foreground mb-2">{t.contactPage.thankYou}</h3>
+                      <p className="text-muted-foreground">{t.contactPage.thankYouText}</p>
                     </div>
-                    <div className="flex items-center gap-3 text-muted-foreground">
-                      <MapPin size={18} className="text-primary" />
-                      <span>{t.contactSection.locationValue}</span>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-heading font-semibold text-foreground mb-2 tracking-wider">
+                            {t.contactPage.name}
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all"
+                            placeholder={t.contactPage.namePlaceholder}
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-heading font-semibold text-foreground mb-2 tracking-wider">
+                            {t.contactPage.email}
+                          </label>
+                          <input
+                            type="email"
+                            required
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all"
+                            placeholder={t.contactPage.emailPlaceholder}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-heading font-semibold text-foreground mb-2 tracking-wider">
+                          {t.contactPage.message}
+                        </label>
+                        <textarea
+                          required
+                          rows={6}
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                          className="w-full bg-background border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all resize-none"
+                          placeholder={t.contactPage.messagePlaceholder}
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        className="group inline-flex items-center gap-3 bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-8 py-4 hover:brightness-110 transition-all rounded-xl"
+                      >
+                        {t.contactPage.send}
+                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Sidebar - takes 2 columns */}
+            <div className="lg:col-span-2 space-y-6">
+              <ScrollReveal animation="right" delay={100}>
+                <div className="bg-secondary/50 border border-border/50 rounded-2xl p-8 backdrop-blur-sm">
+                  <h3 className="font-heading text-lg font-bold text-foreground mb-6">{t.contactPage.getInTouch}</h3>
+                  <div className="space-y-5">
+                    <a
+                      href="mailto:adam@abjames.com"
+                      className="group flex items-center gap-4 p-3 -m-3 rounded-xl hover:bg-primary/5 transition-colors"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                        <Mail size={18} className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground/70 font-heading">Email</p>
+                        <p className="text-foreground font-medium">adam@abjames.com</p>
+                      </div>
+                    </a>
+                    <div className="flex items-center gap-4 p-3 -m-3">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                        <MapPin size={18} className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground/70 font-heading">Location</p>
+                        <p className="text-foreground font-medium">{t.contactSection.locationValue}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </ScrollReveal>
 
-                <div>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-4">{t.contactPage.followAdam}</h3>
-                  <div className="flex gap-4">
-                    <a href="https://www.facebook.com/adamjameslikescoffee" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors"><Facebook size={18} /></a>
-                    <a href="https://www.instagram.com/adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors"><Instagram size={18} /></a>
-                    <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors"><Linkedin size={18} /></a>
-                    <a href="https://www.firesidebusinessadvice.com/panellists/liberty-digital" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors"><Flame size={18} /></a>
-                    <a href="https://www.tiktok.com/@adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors"><TikTokIcon size={18} /></a>
+              <ScrollReveal animation="right" delay={200}>
+                <div className="bg-secondary/50 border border-border/50 rounded-2xl p-8 backdrop-blur-sm">
+                  <h3 className="font-heading text-lg font-bold text-foreground mb-6">{t.contactPage.followAdam}</h3>
+                  <div className="grid grid-cols-5 gap-3">
+                    {socialLinks.map(({ icon: Icon, href, label }, idx) => (
+                      <a
+                        key={idx}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        className="group aspect-square rounded-xl bg-background border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all"
+                      >
+                        <Icon size={20} />
+                      </a>
+                    ))}
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+
+              <ScrollReveal animation="right" delay={300}>
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-8">
+                  <h3 className="font-heading text-lg font-bold text-foreground mb-2">Quick Response</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Adam typically responds within 24–48 hours. For urgent matters, reach out directly via email.
+                  </p>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
