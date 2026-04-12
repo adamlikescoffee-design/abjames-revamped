@@ -10,6 +10,7 @@ import BlogPost from "./pages/BlogPost.tsx";
 import Contact from "./pages/Contact.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import MediaPublications from "./pages/MediaPublications.tsx";
+import PayingItForward from "./pages/PayingItForward.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/media-publications" element={<MediaPublications />} />
+          <Route path="/paying-it-forward" element={<PayingItForward />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
