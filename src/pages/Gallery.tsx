@@ -3,17 +3,58 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import blogCambodia from "@/assets/blog-cambodia.jpg";
-import aboutMusic from "@/assets/about-music.jpg";
-import aboutCoffee from "@/assets/about-coffee.jpg";
-import heroImage from "@/assets/adam-james-hero.webp";
 import galleryBg from "@/assets/gallery-bg.jpg";
 
+import gallery01 from "@/assets/gallery-01.jpeg";
+import gallery02 from "@/assets/gallery-02.jpeg";
+import gallery03 from "@/assets/gallery-03.jpg";
+import gallery04 from "@/assets/gallery-04.jpg";
+import gallery05 from "@/assets/gallery-05.jpg";
+import gallery06 from "@/assets/gallery-06.jpg";
+import gallery07 from "@/assets/gallery-07.jpg";
+import gallery08 from "@/assets/gallery-08.jpg";
+import gallery09 from "@/assets/gallery-09.jpg";
+import gallery10 from "@/assets/gallery-10.jpg";
+import gallery11 from "@/assets/gallery-11.jpg";
+import gallery12 from "@/assets/gallery-12.jpg";
+import gallery13 from "@/assets/gallery-13.jpg";
+import gallery14 from "@/assets/gallery-14.jpg";
+import gallery15 from "@/assets/gallery-15.jpg";
+import gallery16 from "@/assets/gallery-16.jpg";
+import gallery17 from "@/assets/gallery-17.jpg";
+import gallery18 from "@/assets/gallery-18.jpg";
+import gallery19 from "@/assets/gallery-19.jpg";
+import gallery20 from "@/assets/gallery-20.jpg";
+import gallery21 from "@/assets/gallery-21.jpg";
+import gallery22 from "@/assets/gallery-22.jpg";
+import gallery23 from "@/assets/gallery-23.jpeg";
+import gallery24 from "@/assets/gallery-24.jpg";
+
 const galleryImages = [
-  { src: heroImage, alt: "Adam James" },
-  { src: aboutMusic, alt: "Adam performing music" },
-  { src: aboutCoffee, alt: "Coffee and community" },
-  { src: blogCambodia, alt: "The Colours of Cambodia" },
+  { src: gallery01, alt: "Community event" },
+  { src: gallery02, alt: "Ned and Sasha" },
+  { src: gallery03, alt: "Community gathering" },
+  { src: gallery04, alt: "Friends and community" },
+  { src: gallery05, alt: "Cup From Above café" },
+  { src: gallery06, alt: "Cup From Above team" },
+  { src: gallery07, alt: "Cup From Above community" },
+  { src: gallery08, alt: "Cup From Above moments" },
+  { src: gallery09, alt: "Cup From Above volunteers" },
+  { src: gallery10, alt: "Cup From Above setup" },
+  { src: gallery11, alt: "Cup From Above service" },
+  { src: gallery12, alt: "Community connection" },
+  { src: gallery13, alt: "Birthday celebration" },
+  { src: gallery14, alt: "Community work" },
+  { src: gallery15, alt: "Volunteering" },
+  { src: gallery16, alt: "Cup From Above team photo" },
+  { src: gallery17, alt: "Community outreach" },
+  { src: gallery18, alt: "Community event" },
+  { src: gallery19, alt: "Community gathering" },
+  { src: gallery20, alt: "Community moments" },
+  { src: gallery21, alt: "Community café" },
+  { src: gallery22, alt: "Community spirit" },
+  { src: gallery23, alt: "Community celebration" },
+  { src: gallery24, alt: "Adam James portrait" },
 ];
 
 const Gallery = () => {
@@ -102,7 +143,7 @@ const Gallery = () => {
 
           <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
             {galleryImages.map((img, idx) => (
-              <ScrollReveal key={idx} animation="scale" delay={idx * 100}>
+              <ScrollReveal key={idx} animation="scale" delay={idx % 6 * 80}>
                 <div
                   className="break-inside-avoid overflow-hidden rounded-lg cursor-pointer"
                   onClick={() => setLightboxIndex(idx)}
