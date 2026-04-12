@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/adam-james-hero.png";
 
 const HeroSection = () => {
@@ -39,12 +40,12 @@ const HeroSection = () => {
             </p>
           </div>
 
-          <a
-            href="/about"
+          <Link
+            to="/aboutadam"
             className="inline-block text-primary font-heading font-semibold tracking-wider text-sm hover:underline"
           >
             MORE ABOUT ADAM HERE.
-          </a>
+          </Link>
         </div>
       </div>
     </section>
