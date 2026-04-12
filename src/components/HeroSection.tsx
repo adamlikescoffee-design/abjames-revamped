@@ -23,7 +23,11 @@ const HeroSection = () => {
             </h1>
             <div className="space-y-4 text-foreground/85 text-base md:text-lg leading-relaxed max-w-xl">
               <p>{t.hero.p1}</p>
-              <p>{t.hero.p2}</p>
+              <p>
+                {t.hero.p2Before}
+                <Link to="/paying-it-forward" className="text-primary hover:underline font-medium">{t.hero.p2Link}</Link>
+                {t.hero.p2After}
+              </p>
               <p>
                 {t.hero.p3}{" "}
                 <a href="https://www.firesidebusinessadvice.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">

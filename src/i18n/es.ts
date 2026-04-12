@@ -18,7 +18,9 @@ export const es: typeof en = {
   hero: {
     title: "Sobre Adam",
     p1: "Soy un músico en recuperación, al que le gusta tomar un buen café todos los días.",
-    p2: "Me apasiona ayudar a los menos afortunados y hacer lo que puedo para reducir el sufrimiento innecesario en este mundo. He dedicado la mayor parte de mi vida a esto.",
+    p2Before: "Me apasiona ",
+    p2Link: "ayudar",
+    p2After: " a los menos afortunados y hacer lo que puedo para reducir el sufrimiento innecesario en este mundo. He dedicado la mayor parte de mi vida a esto.",
     p3: "Me apasiona trabajar con hombres para ayudarlos a construir grandes negocios. Fundé Fireside, un grupo que apoya a hombres en los negocios y en la vida.",
     firesideLink: "Conoce más sobre Fireside aquí.",
     moreAbout: "MÁS SOBRE ADAM AQUÍ.",

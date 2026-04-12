@@ -16,7 +16,9 @@ export const en = {
   hero: {
     title: "About Adam",
     p1: "I'm a recovering musician, who likes drinking great coffee everyday.",
-    p2: "I'm passionate about helping the less fortunate and doing what I can to reduce unnecessary suffering in this world. I've spent most of my life doing this.",
+    p2Before: "I'm passionate about ",
+    p2Link: "helping",
+    p2After: " the less fortunate and doing what I can to reduce unnecessary suffering in this world. I've spent most of my life doing this.",
     p3: "I'm passionate about working with men to help them build great businesses. I founded the Fireside which is a group that supports men in business and life.",
     firesideLink: "Learn more about the Fireside here.",
     moreAbout: "MORE ABOUT ADAM HERE.",
