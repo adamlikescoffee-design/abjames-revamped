@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import galleryBg from "@/assets/gallery-bg.jpg";
 
 import mediaCourierMail from "@/assets/media-courier-mail.jpg";
 import mediaChronicle from "@/assets/media-chronicle.jpg";
@@ -67,8 +68,12 @@ const MediaPublications = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <section className="pt-28 pb-20">
-        <div className="container mx-auto px-4 max-w-5xl">
+      <section
+        className="relative pt-28 pb-20 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `url(${galleryBg})` }}
+      >
+        <div className="absolute inset-0 bg-background/80" />
+        <div className="relative z-10 container mx-auto px-4 max-w-5xl">
           <ScrollReveal>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 text-center">
               Media Publications
