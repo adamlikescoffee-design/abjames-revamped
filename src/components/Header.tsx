@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Menu, Search, X as XIcon, X } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
