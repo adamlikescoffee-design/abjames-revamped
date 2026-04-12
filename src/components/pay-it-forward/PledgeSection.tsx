@@ -94,6 +94,9 @@ const PledgeSection = ({ stats, pledgeData, setPledgeData, pledgeSubmitted, subm
                 </div>
               ) : (
                 <form onSubmit={onSubmit} className="space-y-5 bg-background border border-border rounded-2xl p-8 shadow-lg">
+                  <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground text-center mb-2">
+                    Wheelchair for Angel Pledge Form
+                  </h3>
                   <div>
                     <label className="block text-sm font-heading font-semibold text-foreground mb-2">
                       {t.payingItForward.pledgeFormName}
