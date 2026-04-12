@@ -28,6 +28,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ChatWidget />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/aboutadam" element={<AboutAdam />} />
