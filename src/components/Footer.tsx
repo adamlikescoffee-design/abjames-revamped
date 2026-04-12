@@ -115,7 +115,7 @@ const Footer = () => {
               </h3>
               <div className="flex gap-3">
                 <a
-                  href="https://www.facebook.com/adam.james"
+                  href="https://www.facebook.com/adamjameslikescoffee"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"
