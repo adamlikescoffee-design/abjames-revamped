@@ -12,6 +12,7 @@ import mediaNorthside from "@/assets/media-northside.jpg";
 import mediaSilentWriter from "@/assets/media-silent-writer.png";
 import mediaLiberty from "@/assets/media-liberty.png";
 import mediaFrontPage from "@/assets/media-front-page.png";
+import mediaScreenshot from "@/assets/media-screenshot.png";
 import mediaPolice1 from "@/assets/media-police1.jpg";
 import mediaPolice2 from "@/assets/media-police2.jpg";
 import mediaCmA from "@/assets/media-cm-a.jpg";
