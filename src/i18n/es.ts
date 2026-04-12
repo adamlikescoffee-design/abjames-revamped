@@ -159,7 +159,7 @@ export const es: typeof en = {
     wheelchairStory1: "Este joven quiere ser psicólogo para poder ayudar a las personas que luchan con su salud mental y ayudarlas a superarse. Fue lo último que esperaba escucharle decir. Quedé enormemente impresionado y me sentí obligado a ayudarlo. Solo tiene a su hermano. Su hermano está fuerte como Bruce Lee de empujarlo a todas partes.",
     wheelchairStory2: "Su silla de ruedas estaba en condiciones horribles. Las ruedas están desgastadas hasta los aros de metal.",
     wheelchairStory3: "Si alguien merece ayuda, son estos jóvenes.",
-    pledgeTitle: "Compromete Tu Apoyo",
+    pledgeTitle: "Compromete Tu Apoyo para la Silla de Ruedas de Ángel",
     proposedTarget: "Meta Propuesta: $2,000",
     pledgesReceived: "compromisos recibidos",
     pledgedOf: "comprometidos de la meta de $2,000",
