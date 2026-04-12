@@ -1,4 +1,5 @@
 import { Facebook, Flame, Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import TikTokIcon from "@/components/TikTokIcon";
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -55,6 +56,7 @@ const ContactSection = () => {
                     { icon: Instagram, href: "https://www.instagram.com/adam_likes_coffee" },
                     { icon: Linkedin, href: "https://www.linkedin.com/in/adam-likes-coffee/" },
                     { icon: Flame, href: "https://www.firesidebusinessadvice.com/panellists/liberty-digital" },
+                    { icon: () => <TikTokIcon size={18} />, href: "https://www.tiktok.com/@adam_likes_coffee" },
                   ].map(({ icon: Icon, href }, idx) => (
                     <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors">
                       <Icon size={18} />
