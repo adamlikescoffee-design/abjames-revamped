@@ -23,7 +23,7 @@ const Admin = () => {
 
   useEffect(() => {
     if (!authLoading && !user) {
-      navigate("/admin/login");
+      navigate("/admin/login", { state: { from: "/admin" } });
     }
   }, [user, authLoading, navigate]);
 
