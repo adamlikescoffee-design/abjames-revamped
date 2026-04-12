@@ -217,7 +217,7 @@ export const en = {
     cityCountryPlaceholder: "e.g. Melbourne, Australia",
     notesPlaceholder: "Any additional notes (optional)",
     messagePlaceholder: "A personal message for Angel (optional)",
-    mediaTitle: "A Track Record of Giving Back",
+    mediaTitle: "Examples of Paying It Forward",
     mediaSubtitle: "Adam has spent over a decade supporting communities through social enterprise, fundraising, and grassroots initiatives — here are some highlights.",
     mediaCfa: "Cup From Above",
     mediaCfaDesc: "Founded a social enterprise café that provided hospitality training and employment for disadvantaged and disabled community members. Featured in the Courier Mail and Northside Chronicle.",
