@@ -65,7 +65,7 @@ const PayingItForward = () => {
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-3xl">
           <ScrollReveal>
-            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed text-center">
+            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed text-left">
               {t.payingItForward.p2}
             </p>
           </ScrollReveal>
