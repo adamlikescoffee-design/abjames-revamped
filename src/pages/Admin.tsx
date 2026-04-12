@@ -167,35 +167,27 @@ const Admin = () => {
 
         {/* Add Pledge Button / Form */}
         <div className="mb-6">
-        <div className="flex items-center gap-3">
-          {!showAddForm ? (
-            <button
-              onClick={() => setShowAddForm(true)}
-              className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors"
-            >
-              <Plus size={16} />
-              Add Pledge
-            </button>
-          ) : null}
-          {pledges.length > 0 && (
-            <button
-              onClick={exportCSV}
-              className="flex items-center gap-2 border border-border text-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-muted transition-colors"
-            >
-              <Download size={16} />
-              Export CSV
-            </button>
-          )}
-        </div>
-        <div></div>
-            <button
-              onClick={() => setShowAddForm(true)}
-              className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors"
-            >
-              <Plus size={16} />
-              Add Pledge
-            </button>
-          ) : (
+          <div className="flex items-center gap-3 mb-4">
+            {!showAddForm && (
+              <button
+                onClick={() => setShowAddForm(true)}
+                className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-primary/90 transition-colors"
+              >
+                <Plus size={16} />
+                Add Pledge
+              </button>
+            )}
+            {pledges.length > 0 && (
+              <button
+                onClick={exportCSV}
+                className="flex items-center gap-2 border border-border text-foreground px-4 py-2 rounded-lg font-heading text-sm hover:bg-muted transition-colors"
+              >
+                <Download size={16} />
+                Export CSV
+              </button>
+            )}
+          </div>
+          {showAddForm && (
             <div className="bg-secondary border border-border rounded-lg p-5">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-heading font-bold text-foreground">Add New Pledge</h2>
