@@ -5,6 +5,8 @@ import TikTokIcon from "@/components/TikTokIcon";
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const socialLinks = [
   { icon: Facebook, href: "https://www.facebook.com/adamjameslikescoffee", label: "Facebook" },
