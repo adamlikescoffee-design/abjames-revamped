@@ -1,16 +1,22 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { toast } from "sonner";
-import { Loader2, Lock } from "lucide-react";
+import { Loader2, Lock, Eye, EyeOff } from "lucide-react";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [forgotMode, setForgotMode] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const redirectTo = (location.state as { from?: string })?.from || "/admin";
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +26,7 @@ const AdminLogin = () => {
     if (error) {
       toast.error("Invalid credentials");
     } else {
-      navigate("/admin");
+      navigate(redirectTo);
     }
   };
 
@@ -30,24 +36,90 @@ const AdminLogin = () => {
       const result = await lovable.auth.signInWithOAuth("google", {
         redirect_uri: window.location.origin,
       });
-
       if (result.error) {
         toast.error("Google sign-in failed");
         setGoogleLoading(false);
         return;
       }
-
-      if (result.redirected) {
-        return;
-      }
-
-      navigate("/admin");
+      if (result.redirected) return;
+      navigate(redirectTo);
     } catch {
       toast.error("Google sign-in failed");
       setGoogleLoading(false);
     }
   };
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      toast.error("Please enter your email address");
+      return;
+    }
+    setLoading(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setLoading(false);
+    if (error) {
+      toast.error(error.message);
+    } else {
+      setResetSent(true);
+    }
+  };
+
+  // Forgot password mode
+  if (forgotMode) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
+        <div className="w-full max-w-sm">
+          <div className="text-center mb-8">
+            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <Lock size={24} className="text-primary" />
+            </div>
+            <h1 className="text-2xl font-heading font-bold text-foreground">Reset Password</h1>
+            <p className="text-muted-foreground text-sm mt-2">Enter your email and we'll send you a reset link.</p>
+          </div>
+
+          {resetSent ? (
+            <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 text-center space-y-3">
+              <p className="text-foreground font-heading font-semibold">Check your email</p>
+              <p className="text-muted-foreground text-sm">We've sent a password reset link to <strong className="text-foreground">{email}</strong>.</p>
+              <button onClick={() => { setForgotMode(false); setResetSent(false); }} className="text-primary hover:underline font-heading text-sm mt-2">
+                ← Back to Login
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleForgotPassword} className="space-y-4 bg-secondary border border-border rounded-lg p-6">
+              <div>
+                <label className="block text-sm font-heading font-semibold text-foreground mb-2">Email</label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground outline-none focus:border-primary transition-colors"
+                  placeholder="admin@example.com"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm py-3 hover:brightness-110 transition-all rounded-lg flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                {loading && <Loader2 size={16} className="animate-spin" />}
+                Send Reset Link
+              </button>
+              <button type="button" onClick={() => setForgotMode(false)} className="w-full text-muted-foreground hover:text-foreground text-sm font-heading transition-colors">
+                ← Back to Login
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // Main login
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
@@ -98,14 +170,35 @@ const AdminLogin = () => {
             </div>
             <div>
               <label className="block text-sm font-heading font-semibold text-foreground mb-2">Password</label>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground outline-none focus:border-primary transition-colors"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 pr-12 text-foreground outline-none focus:border-primary transition-colors"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </div>
+
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" className="w-4 h-4 rounded border-border accent-primary" />
+                <span className="text-xs text-muted-foreground font-heading">Remember me</span>
+              </label>
+              <button type="button" onClick={() => setForgotMode(true)} className="text-xs text-primary hover:underline font-heading">
+                Forgot password?
+              </button>
+            </div>
+
             <button
               type="submit"
               disabled={loading}
