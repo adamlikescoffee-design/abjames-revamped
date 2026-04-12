@@ -91,7 +91,7 @@ const PayingItForward = () => {
               <div className="flex items-center justify-center gap-2 mb-6">
                 <Users size={20} className="text-primary" />
                 <span className="text-lg font-heading font-semibold text-foreground">
-                  Goal: 100 people × $20 = $2,000
+                  Proposed Target: $2,000
                 </span>
               </div>
               <div className="max-w-2xl mx-auto space-y-4 text-muted-foreground">
