@@ -61,7 +61,7 @@ const ContactSection = () => {
                     { icon: Facebook, href: "https://www.facebook.com/adamjameslikescoffee" },
                     { icon: Instagram, href: "https://www.instagram.com/adam_likes_coffee" },
                     { icon: Linkedin, href: "https://www.linkedin.com/in/adam-likes-coffee/" },
-                    { icon: Flame, href: "https://www.firesidebusinessadvice.com" },
+                    { icon: Flame, href: "https://www.firesidebusinessadvice.com/panellists/liberty-digital" },
                   ].map(({ icon: Icon, href }, idx) => (
                     <a
                       key={idx}
