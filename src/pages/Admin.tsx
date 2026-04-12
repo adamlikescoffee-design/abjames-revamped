@@ -124,6 +124,7 @@ const Admin = () => {
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Location</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Message</th>
                     <th className="text-left text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Date</th>
+                    <th className="text-right text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -137,6 +138,27 @@ const Admin = () => {
                       <td className="px-4 py-3 text-sm text-muted-foreground">{pledge.city_country || "—"}</td>
                       <td className="px-4 py-3 text-sm text-muted-foreground max-w-[200px] truncate">{pledge.message || "—"}</td>
                       <td className="px-4 py-3 text-sm text-muted-foreground">{new Date(pledge.created_at).toLocaleDateString()}</td>
+                      <td className="px-4 py-3 text-right">
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <button className="text-destructive hover:text-destructive/80 transition-colors p-1">
+                              <Trash2 size={16} />
+                            </button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Delete pledge?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This will permanently remove the ${pledge.amount} pledge from {pledge.name}. This action cannot be undone.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction onClick={() => handleDelete(pledge.id, pledge.name)} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">Delete</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
