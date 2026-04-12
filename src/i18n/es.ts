@@ -177,6 +177,9 @@ export const es: typeof en = {
     pledgeFormName: "Nombre",
     pledgeFormEmail: "Correo Electrónico",
     pledgeFormAmount: "Monto del Compromiso (AUD)",
+    pledgeFormCityCountry: "Ciudad / País",
+    pledgeFormNotes: "Notas",
+    pledgeFormMessage: "Mensaje",
     pledgeFormSuggested: "Sugerido: $20 — pero cualquier cantidad es apreciada",
     pledgeFormButton: "COMPROMETER MI APOYO",
     pledgeFormDisclaimer: "No se requiere pago ahora. Te contactaremos por correo cuando estemos listos para proceder.",
@@ -190,6 +193,9 @@ export const es: typeof en = {
     namePlaceholder: "Tu nombre",
     emailPlaceholder: "tu@correo.com",
     amountPlaceholder: "20",
+    cityCountryPlaceholder: "ej. Melbourne, Australia",
+    notesPlaceholder: "Notas adicionales (opcional)",
+    messagePlaceholder: "Un mensaje personal para Ángel (opcional)",
   },
 
   // 404
