@@ -178,10 +178,11 @@ const Contact = () => {
                       </div>
                       <button
                         type="submit"
-                        className="group inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-8 py-3.5 hover:brightness-110 transition-all rounded-lg"
+                        disabled={submitting}
+                        className="group inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-8 py-3.5 hover:brightness-110 transition-all rounded-lg disabled:opacity-50"
                       >
-                        {t.contactPage.send}
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        {submitting ? "Sending..." : t.contactPage.send}
+                        {!submitting && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
                       </button>
                     </form>
                   )}
