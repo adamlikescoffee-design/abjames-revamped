@@ -50,6 +50,30 @@ export type Database = {
         }
         Relationships: []
       }
+      wheelchair_journal: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          published_at: string
+          title: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          published_at?: string
+          title: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          published_at?: string
+          title?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
