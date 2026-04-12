@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import ScrollReveal from "@/components/ScrollReveal";
 import { format } from "date-fns";
+import wheelchairDonated from "@/assets/wheelchair-donated.png";
 
 interface JournalEntry {
   id: string;
@@ -66,6 +67,15 @@ const JournalSection = () => {
                     <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                       {entry.content}
                     </p>
+                    {entry.title.toLowerCase().includes("donated") && (
+                      <div className="mt-4 max-w-xs">
+                        <img
+                          src={wheelchairDonated}
+                          alt="The donated wheelchair"
+                          className="rounded-xl shadow-lg w-full object-cover"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </ScrollReveal>
