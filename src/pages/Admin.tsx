@@ -142,6 +142,54 @@ const Admin = () => {
     );
   }
 
+  const handleJournalSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!journalForm.title || !journalForm.content) {
+      toast.error("Title and content are required");
+      return;
+    }
+    setJournalSubmitting(true);
+
+    if (editingJournalId) {
+      const { error } = await supabase
+        .from("wheelchair_journal")
+        .update({ title: journalForm.title, content: journalForm.content })
+        .eq("id", editingJournalId);
+      setJournalSubmitting(false);
+      if (error) { toast.error("Failed to update entry"); return; }
+      setJournalEntries((prev) =>
+        prev.map((e) => e.id === editingJournalId ? { ...e, title: journalForm.title, content: journalForm.content } : e)
+      );
+      toast.success("Journal entry updated");
+    } else {
+      const { data, error } = await supabase
+        .from("wheelchair_journal")
+        .insert({ title: journalForm.title, content: journalForm.content })
+        .select()
+        .single();
+      setJournalSubmitting(false);
+      if (error) { toast.error("Failed to add entry"); return; }
+      setJournalEntries((prev) => [data, ...prev]);
+      toast.success("Journal entry added");
+    }
+    setJournalForm(emptyJournalForm);
+    setShowJournalForm(false);
+    setEditingJournalId(null);
+  };
+
+  const handleJournalDelete = async (id: string) => {
+    const { error } = await supabase.from("wheelchair_journal").delete().eq("id", id);
+    if (error) { toast.error("Failed to delete entry"); return; }
+    setJournalEntries((prev) => prev.filter((e) => e.id !== id));
+    toast.success("Journal entry deleted");
+  };
+
+  const startEditJournal = (entry: JournalEntry) => {
+    setJournalForm({ title: entry.title, content: entry.content });
+    setEditingJournalId(entry.id);
+    setShowJournalForm(true);
+  };
+
   const totalAmount = pledges.reduce((sum, p) => sum + p.amount, 0);
 
   const exportCSV = () => {
