@@ -31,8 +31,8 @@ const JournalSection = () => {
   if (entries.length === 0) return null;
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section className="py-10">
+      <div className="container mx-auto px-4 max-w-6xl">
         <ScrollReveal>
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
