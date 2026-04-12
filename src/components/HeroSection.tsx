@@ -26,21 +26,16 @@ const HeroSection = () => {
 
             <div className="space-y-4 text-foreground/85 text-base md:text-lg leading-relaxed max-w-xl">
               <p>
-                I'm a musician. I used to be a barista. These days I still appreciate great coffee.
+                I'm a recovering musician, who likes drinking great coffee everyday.
               </p>
               <p>
-                I work in{" "}
-                <a href="http://www.libertydigital.com.au/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                  digital marketing
-                </a>
-                . I love working with clients to help them succinctly and beautifully communicate what their organisation has to offer.
+                I'm passionate about helping the less fortunate and doing what I can to reduce unnecessary suffering in this world. I've spent most of my life doing this.
               </p>
               <p>
-                I'm also the founder of{" "}
+                I'm passionate about working with men to help them build great businesses. I founded the Fireside which is a group that supports men in business and life.{" "}
                 <a href="http://www.businessadvice.site/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                  Fireside Business Advice
-                </a>{" "}
-                which is a group supporting men in business. I'm passionate about helping young men succeed in business.
+                  Learn more about the Fireside here.
+                </a>
               </p>
             </div>
 
