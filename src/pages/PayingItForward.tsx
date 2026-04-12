@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { ArrowLeft, Accessibility, Heart, Users, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import angel1 from "@/assets/angel-1.jpg";
 import angel2 from "@/assets/angel-2.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";

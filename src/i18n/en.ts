@@ -159,6 +159,8 @@ export const en = {
     wheelchairStory3: "If anyone deserves help, it's these young men.",
     pledgeTitle: "Pledge Your Support",
     proposedTarget: "Proposed Target: $2,000",
+    pledgesReceived: "pledges received",
+    pledgedOf: "pledged of $2,000 goal",
     pledgeOnly: "pledges only",
     pledgeOnlyDesc: "— no payment is required right now.",
     estimatedCost: "The estimated cost for Angel's wheelchair is approximately",
