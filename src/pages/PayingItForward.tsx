@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Accessibility, Heart, Users, Loader2 } from "lucide-react";
+import { ArrowLeft, Accessibility, Heart, Users, Loader2, Newspaper, Mic, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useState, useEffect, useCallback } from "react";
@@ -68,6 +68,38 @@ const PayingItForward = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground mb-6">{t.payingItForward.title}</h1>
             <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-3xl">{t.payingItForward.p1}</p>
             <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-3xl mt-4">{t.payingItForward.p2}</p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Media highlights section */}
+      <section className="py-16 bg-card">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <ScrollReveal>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3 text-center">{t.payingItForward.mediaTitle}</h2>
+            <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">{t.payingItForward.mediaSubtitle}</p>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { icon: <Newspaper size={20} />, title: t.payingItForward.mediaCfa, desc: t.payingItForward.mediaCfaDesc },
+              { icon: <Mic size={20} />, title: t.payingItForward.mediaRadio, desc: t.payingItForward.mediaRadioDesc },
+              { icon: <Award size={20} />, title: t.payingItForward.mediaAoty, desc: t.payingItForward.mediaAotyDesc },
+            ].map((item, i) => (
+              <ScrollReveal key={i} animation="up" delay={i * 100}>
+                <div className="bg-secondary border border-border rounded-lg p-6 h-full">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">{item.icon}</div>
+                  <h3 className="font-heading text-sm font-bold text-foreground mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+          <ScrollReveal animation="up" delay={300}>
+            <div className="text-center mt-8">
+              <Link to="/media" className="inline-block text-primary font-heading font-semibold tracking-wider text-sm hover:underline">
+                {t.payingItForward.mediaSeeAll}
+              </Link>
+            </div>
           </ScrollReveal>
         </div>
       </section>
