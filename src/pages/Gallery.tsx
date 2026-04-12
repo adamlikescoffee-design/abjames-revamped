@@ -30,6 +30,9 @@ import gallery21 from "@/assets/gallery-21.jpg";
 import gallery22 from "@/assets/gallery-22.jpg";
 import gallery23 from "@/assets/gallery-23.jpeg";
 import gallery24 from "@/assets/gallery-24.jpg";
+import galleryAdam1 from "@/assets/gallery-adam-1.webp";
+import galleryAdam2 from "@/assets/gallery-adam-2.webp";
+import galleryAdam3 from "@/assets/gallery-adam-3.webp";
 
 const galleryImages = [
   { src: gallery01, alt: "Community event" },
@@ -56,6 +59,9 @@ const galleryImages = [
   { src: gallery22, alt: "Community spirit" },
   { src: gallery23, alt: "Community celebration" },
   { src: gallery24, alt: "Adam James portrait" },
+  { src: galleryAdam1, alt: "Adam in blue shirt" },
+  { src: galleryAdam2, alt: "Adam in overcoat" },
+  { src: galleryAdam3, alt: "Adam portrait" },
 ];
 
 const Gallery = () => {
