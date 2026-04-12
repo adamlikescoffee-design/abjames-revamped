@@ -43,7 +43,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_pledge_stats: {
+        Args: never
+        Returns: {
+          pledge_count: number
+          total_amount: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
