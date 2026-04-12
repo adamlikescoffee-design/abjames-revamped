@@ -10,6 +10,7 @@ const Index = () => {
       <Header />
       <HeroSection />
       <BlogSection />
+      <InstagramFeed />
       <Footer />
     </div>
   );
