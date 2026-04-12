@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Linkedin, Flame, Heart, Lock } from "lucide-react";
+import TikTokIcon from "@/components/TikTokIcon";
 import { Link } from "react-router-dom";
 import footerBg from "@/assets/footer-bg.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -89,6 +90,7 @@ const Footer = () => {
                 <a href="https://www.instagram.com/adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"><Instagram size={18} /></a>
                 <a href="https://www.linkedin.com/in/adam-likes-coffee/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"><Linkedin size={18} /></a>
                 <a href="https://www.firesidebusinessadvice.com/panellists/liberty-digital" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"><Flame size={18} /></a>
+                <a href="https://www.tiktok.com/@adam_likes_coffee" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 hover:text-primary hover:bg-foreground/20 transition-all"><TikTokIcon size={18} /></a>
               </div>
               <LanguageToggle />
             </div>
