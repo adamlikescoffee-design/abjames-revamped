@@ -13,7 +13,7 @@ const HeroSection = () => {
               alt="Adam James"
               width={600}
               height={900}
-              className="w-full max-w-md lg:max-w-lg object-contain"
+              className="w-[80%] max-w-md lg:max-w-lg object-contain"
             />
           </div>
         </ScrollReveal>
