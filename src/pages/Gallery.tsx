@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import galleryBg from "@/assets/gallery-bg.jpg";
+
 import { useLanguage } from "@/contexts/LanguageContext";
 
 import gallery01 from "@/assets/gallery-01.jpeg";
