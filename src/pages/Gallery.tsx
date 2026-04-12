@@ -33,6 +33,7 @@ import gallery24 from "@/assets/gallery-24.jpg";
 import galleryAdam1 from "@/assets/gallery-adam-1.webp";
 import galleryAdam2 from "@/assets/gallery-adam-2.webp";
 import galleryAdam3 from "@/assets/gallery-adam-3.webp";
+import galleryAdam4 from "@/assets/gallery-adam-4.jpg";
 
 const galleryImages = [
   { src: gallery01, alt: "Community event" },
@@ -62,6 +63,7 @@ const galleryImages = [
   { src: galleryAdam1, alt: "Adam in blue shirt" },
   { src: galleryAdam2, alt: "Adam in overcoat" },
   { src: galleryAdam3, alt: "Adam portrait" },
+  { src: galleryAdam4, alt: "Adam by blue wall" },
 ];
 
 const Gallery = () => {
