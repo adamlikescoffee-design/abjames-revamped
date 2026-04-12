@@ -202,6 +202,8 @@ export const es: typeof en = {
     emailPledgers: "enviaremos un correo a todos los participantes con los detalles de pago",
     atThatPoint: "en ese momento.",
     pledgeFormName: "Nombre",
+    pledgeFormPhone: "Teléfono",
+    phonePlaceholder: "Tu número de teléfono",
     pledgeFormEmail: "Correo Electrónico",
     pledgeFormAmount: "Monto del Compromiso (AUD)",
     pledgeFormCityCountry: "Ciudad / País",

@@ -200,6 +200,8 @@ export const en = {
     emailPledgers: "email all pledgers with payment details",
     atThatPoint: "at that point.",
     pledgeFormName: "Name",
+    pledgeFormPhone: "Phone",
+    phonePlaceholder: "Your phone number",
     pledgeFormEmail: "Email",
     pledgeFormAmount: "Pledge Amount (AUD)",
     pledgeFormCityCountry: "City / Country",

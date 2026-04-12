@@ -13,7 +13,7 @@ import PledgeSection from "@/components/pay-it-forward/PledgeSection";
 import MediaHighlights from "@/components/pay-it-forward/MediaHighlights";
 
 const PayingItForward = () => {
-  const [pledgeData, setPledgeData] = useState({ name: "", email: "", amount: "20", city_country: "", notes: "", message: "" });
+  const [pledgeData, setPledgeData] = useState({ name: "", email: "", phone: "", amount: "20", city_country: "", notes: "", message: "" });
   const [pledgeSubmitted, setPledgeSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [stats, setStats] = useState<{ pledge_count: number; total_amount: number } | null>(null);
