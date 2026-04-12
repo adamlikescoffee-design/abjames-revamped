@@ -171,7 +171,28 @@ const Admin = () => {
                 <div key={pledge.id} className="bg-secondary border border-border rounded-lg p-4 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="font-heading font-bold text-foreground">{pledge.name}</span>
-                    <span className="font-heading font-bold text-primary">${pledge.amount}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-heading font-bold text-primary">${pledge.amount}</span>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <button className="text-destructive hover:text-destructive/80 transition-colors p-1">
+                            <Trash2 size={16} />
+                          </button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete pledge?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This will permanently remove the ${pledge.amount} pledge from {pledge.name}. This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={() => handleDelete(pledge.id, pledge.name)} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">Delete</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <Mail size={14} className="text-muted-foreground" />
