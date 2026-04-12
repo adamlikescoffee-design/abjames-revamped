@@ -11,7 +11,7 @@ const Index = () => {
       <Header />
       <HeroSection />
       <BlogSection />
-      <InstagramFeed />
+      
       <ContactSection />
       <Footer />
     </div>
