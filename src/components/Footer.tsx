@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Flame, Heart } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Flame, Heart, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import footerBg from "@/assets/footer-bg.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
