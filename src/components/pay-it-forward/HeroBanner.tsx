@@ -7,12 +7,12 @@ const HeroBanner = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-[70vh] flex items-end">
+    <section className="relative min-h-[85vh] flex items-end">
       <div className="absolute inset-0">
         <img
           src={angel1}
           alt="Adam with Angel"
-          className="w-full h-full object-cover object-[left_20%]"
+          className="w-full h-full object-cover object-[left_30%_top_10%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
       </div>
