@@ -227,7 +227,7 @@ const PayingItForward = () => {
           </ScrollReveal>
         </div>
       </section>
-
+      <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4 max-w-4xl">
           <ScrollReveal>
             <div className="text-center space-y-6">
