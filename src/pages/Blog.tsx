@@ -1,25 +1,26 @@
 import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { blogPosts } from "@/data/blogPosts";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const { t } = useLanguage();
+  const posts = useLocalizedBlogPosts();
 
   const categoryCounts = useMemo(() => {
     const counts = new Map<string, number>();
-    counts.set("All", blogPosts.length);
-    blogPosts.forEach((p) => {
-      const cat = p.category || "Uncategorised";
+    counts.set("All", posts.length);
+    posts.forEach((p) => {
+      const cat = p.localizedCategory || "Uncategorised";
       counts.set(cat, (counts.get(cat) || 0) + 1);
     });
     return counts;
-  }, []);
+  }, [posts]);
 
   const categories = useMemo(
     () => ["All", ...Array.from(categoryCounts.keys()).filter((k) => k !== "All").sort()],
@@ -27,8 +28,8 @@ const Blog = () => {
   );
 
   const filtered = useMemo(
-    () => activeCategory === "All" ? blogPosts : blogPosts.filter((p) => (p.category || "Uncategorised") === activeCategory),
-    [activeCategory]
+    () => activeCategory === "All" ? posts : posts.filter((p) => (p.localizedCategory || "Uncategorised") === activeCategory),
+    [activeCategory, posts]
   );
 
   return (
@@ -64,11 +65,11 @@ const Blog = () => {
               <ScrollReveal key={post.slug} animation="up" delay={idx % 3 * 100}>
                 <Link to={`/blog/${post.slug}`} className="group block">
                   <div className="overflow-hidden rounded-lg mb-4">
-                    <img src={post.image} alt={post.title} loading="lazy" width={1200} height={800} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={post.image} alt={post.localizedTitle} loading="lazy" width={1200} height={800} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  {post.category && <span className="text-xs font-heading font-semibold tracking-wider text-primary uppercase">{post.category}</span>}
-                  <h2 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors mt-1 mb-2">{post.title}</h2>
-                  <p className="text-muted-foreground text-sm line-clamp-2">{post.excerpt}</p>
+                  {post.localizedCategory && <span className="text-xs font-heading font-semibold tracking-wider text-primary uppercase">{post.localizedCategory}</span>}
+                  <h2 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors mt-1 mb-2">{post.localizedTitle}</h2>
+                  <p className="text-muted-foreground text-sm line-clamp-2">{post.localizedExcerpt}</p>
                   {post.date && <p className="text-muted-foreground/60 text-xs mt-2">{post.date}</p>}
                 </Link>
               </ScrollReveal>
