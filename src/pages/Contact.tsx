@@ -126,12 +126,18 @@ const Contact = () => {
               <ScrollReveal animation="right">
                 <div className="bg-secondary/50 border border-border/50 rounded-2xl p-8 md:p-10">
                   {submitted ? (
-                    <div className="py-16 text-center">
-                      <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                        <Send size={22} className="text-primary" />
+                    <div className="py-16 text-center animate-in fade-in zoom-in-95 duration-500">
+                      <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-5 animate-bounce">
+                        <Send size={24} className="text-primary" />
                       </div>
-                      <h3 className="font-heading text-2xl font-bold text-foreground mb-2">{t.contactPage.thankYou}</h3>
-                      <p className="text-muted-foreground">{t.contactPage.thankYouText}</p>
+                      <h3 className="font-heading text-2xl font-bold text-foreground mb-3">{t.contactPage.thankYou}</h3>
+                      <p className="text-muted-foreground mb-6">{t.contactPage.thankYouText}</p>
+                      <button
+                        onClick={() => setSubmitted(false)}
+                        className="text-sm text-primary hover:underline font-heading font-semibold tracking-wider"
+                      >
+                        Send another message
+                      </button>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
