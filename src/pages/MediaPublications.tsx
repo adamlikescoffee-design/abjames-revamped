@@ -48,7 +48,7 @@ const publications = [
     description:
       "The inspiring story of Glen Sheppard, a 33-year-old author and poet born with Down syndrome, featured as part of the community work connected to Cup From Above.",
     source: "Media Feature",
-    images: [mediaSilentWriter, mediaFrontPage],
+    images: [mediaSilentWriter, mediaScreenshot, mediaFrontPage],
   },
   {
     title: "Liberty Enterprises — Social Enterprise Creating Opportunity",
@@ -56,6 +56,14 @@ const publications = [
       "Coverage of Liberty Enterprises, a social enterprise dedicated to creating real opportunities for women who have experienced domestic violence, homelessness, or other hardships.",
     source: "Courier Mail",
     images: [mediaLiberty],
+  },
+  {
+    title: "Cup From Above on 96five FM",
+    description:
+      "Adam James from Cup From Above discussing the current situation in Aspley and what is being done to solve the crisis at hand.",
+    source: "96five FM",
+    images: [],
+    audioUrl: "https://soundcloud.com/96five/adam-james-from-a-cup-from-above",
   },
   {
     title: "Local Police Espresso Initiative",
