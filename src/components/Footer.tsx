@@ -76,6 +76,7 @@ const Footer = () => {
                 <li><Link to="/media-publications" className="text-foreground/70 text-sm hover:text-primary transition-colors font-heading">{t.footer.media}</Link></li>
                 <li><Link to="/gallery" className="text-foreground/70 text-sm hover:text-primary transition-colors font-heading">{t.footer.photos}</Link></li>
                 <li><Link to="/contact" className="text-foreground/70 text-sm hover:text-primary transition-colors font-heading">{t.footer.contact}</Link></li>
+                <li><Link to="/admin/login" className="text-foreground/30 text-xs hover:text-primary transition-colors font-heading">Admin</Link></li>
               </ul>
             </div>
 
