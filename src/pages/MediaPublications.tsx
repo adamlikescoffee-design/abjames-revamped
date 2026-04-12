@@ -173,22 +173,24 @@ const MediaPublications = () => {
               <ScrollReveal key={idx} animation="up" delay={idx * 80}>
                 <div className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors">
                   {/* Images */}
-                  <div className={`grid ${pub.images.length === 1 ? 'grid-cols-1' : pub.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} gap-1`}>
-                    {pub.images.map((img, imgIdx) => (
-                      <div
-                        key={imgIdx}
-                        className="overflow-hidden cursor-pointer"
-                        onClick={() => openLightbox(img)}
-                      >
-                        <img
-                          src={img}
-                          alt={`${pub.title} - image ${imgIdx + 1}`}
-                          loading="lazy"
-                          className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  {pub.images.length > 0 && (
+                    <div className={`grid ${pub.images.length === 1 ? 'grid-cols-1' : pub.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} gap-1`}>
+                      {pub.images.map((img, imgIdx) => (
+                        <div
+                          key={imgIdx}
+                          className="overflow-hidden cursor-pointer"
+                          onClick={() => openLightbox(img)}
+                        >
+                          <img
+                            src={img}
+                            alt={`${pub.title} - image ${imgIdx + 1}`}
+                            loading="lazy"
+                            className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Text content */}
                   <div className="p-6">
@@ -201,6 +203,16 @@ const MediaPublications = () => {
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       {pub.description}
                     </p>
+                    {"audioUrl" in pub && pub.audioUrl && (
+                      <a
+                        href={pub.audioUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block mt-3 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all"
+                      >
+                        LISTEN ON SOUNDCLOUD →
+                      </a>
+                    )}
                   </div>
                 </div>
               </ScrollReveal>
