@@ -5,6 +5,7 @@ import blogCambodia from "@/assets/blog-cambodia.jpg";
 import aboutMusic from "@/assets/about-music.jpg";
 import aboutCoffee from "@/assets/about-coffee.jpg";
 import heroImage from "@/assets/adam-james-hero.webp";
+import galleryBg from "@/assets/gallery-bg.jpg";
 
 const galleryImages = [
   { src: heroImage, alt: "Adam James" },
