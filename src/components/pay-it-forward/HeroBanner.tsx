@@ -32,6 +32,9 @@ const HeroBanner = () => {
         <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-2xl">
           {t.payingItForward.p1}
         </p>
+        <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-2xl mt-4">
+          {t.payingItForward.p2}
+        </p>
       </div>
     </section>
   );
