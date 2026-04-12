@@ -28,7 +28,16 @@ interface Pledge {
   created_at: string;
 }
 
+interface JournalEntry {
+  id: string;
+  title: string;
+  content: string;
+  published_at: string;
+  created_at: string;
+}
+
 const emptyForm = { name: "", email: "", phone: "", amount: "", city_country: "", notes: "", message: "" };
+const emptyJournalForm = { title: "", content: "" };
 
 const Admin = () => {
   const { user, loading: authLoading, signOut } = useAuth();
@@ -38,6 +47,14 @@ const Admin = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [submitting, setSubmitting] = useState(false);
+
+  // Journal state
+  const [journalEntries, setJournalEntries] = useState<JournalEntry[]>([]);
+  const [journalLoading, setJournalLoading] = useState(true);
+  const [showJournalForm, setShowJournalForm] = useState(false);
+  const [journalForm, setJournalForm] = useState(emptyJournalForm);
+  const [editingJournalId, setEditingJournalId] = useState<string | null>(null);
+  const [journalSubmitting, setJournalSubmitting] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
