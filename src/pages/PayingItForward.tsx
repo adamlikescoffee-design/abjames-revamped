@@ -11,6 +11,7 @@ import HeroBanner from "@/components/pay-it-forward/HeroBanner";
 import WheelchairStory from "@/components/pay-it-forward/WheelchairStory";
 import PledgeSection from "@/components/pay-it-forward/PledgeSection";
 import MediaHighlights from "@/components/pay-it-forward/MediaHighlights";
+import JournalSection from "@/components/pay-it-forward/JournalSection";
 
 const PayingItForward = () => {
   const [pledgeData, setPledgeData] = useState({ name: "", email: "", phone: "", amount: "20", city_country: "", notes: "", message: "" });
@@ -64,6 +65,8 @@ const PayingItForward = () => {
 
 
       <WheelchairStory />
+
+      <JournalSection />
 
       <PledgeSection
         stats={stats}
