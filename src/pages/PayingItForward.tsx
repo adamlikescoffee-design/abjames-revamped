@@ -14,7 +14,19 @@ const PayingItForward = () => {
   const [pledgeData, setPledgeData] = useState({ name: "", email: "", amount: "20" });
   const [pledgeSubmitted, setPledgeSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [stats, setStats] = useState<{ pledge_count: number; total_amount: number } | null>(null);
   const { t } = useLanguage();
+
+  const fetchStats = useCallback(async () => {
+    const { data } = await supabase.rpc("get_pledge_stats");
+    if (data && data.length > 0) {
+      setStats({ pledge_count: Number(data[0].pledge_count), total_amount: Number(data[0].total_amount) });
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
 
   const handlePledgeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
