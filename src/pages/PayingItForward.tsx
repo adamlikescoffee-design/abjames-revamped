@@ -50,20 +50,28 @@ const PayingItForward = () => {
       setPledgeSubmitted(true);
       fetchStats();
 
-      // Send to Make.com webhook (fire-and-forget)
-      fetch("https://hook.eu2.make.com/tfo11b2di0h29prq78ey4v7zj08yib2y", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: pledgeData.name,
-          email: pledgeData.email,
-          phone: pledgeData.phone || null,
-          amount: parseFloat(pledgeData.amount),
-          city_country: pledgeData.city_country || null,
-          notes: pledgeData.notes || null,
-          message: pledgeData.message || null,
-        }),
-      }).catch((err) => console.error("Webhook error:", err));
+      // Send to Make.com webhook
+      try {
+        const webhookRes = await fetch("https://hook.eu2.make.com/tfo11b2di0h29prq78ey4v7zj08yib2y", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: pledgeData.name,
+            email: pledgeData.email,
+            phone: pledgeData.phone || null,
+            amount: parseFloat(pledgeData.amount),
+            city_country: pledgeData.city_country || null,
+            notes: pledgeData.notes || null,
+            message: pledgeData.message || null,
+          }),
+        });
+        if (!webhookRes.ok) {
+          toast.warning("Your pledge was saved, but the notification failed to send. We'll follow up manually.");
+        }
+      } catch (webhookErr) {
+        console.error("Webhook error:", webhookErr);
+        toast.warning("Your pledge was saved, but the notification failed to send. We'll follow up manually.");
+      }
     } catch (err) {
       console.error("Pledge error:", err);
       toast.error("Something went wrong. Please try again.");
