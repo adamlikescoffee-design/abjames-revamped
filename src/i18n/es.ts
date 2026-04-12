@@ -161,6 +161,8 @@ export const es: typeof en = {
     wheelchairStory3: "Si alguien merece ayuda, son estos jóvenes.",
     pledgeTitle: "Compromete Tu Apoyo",
     proposedTarget: "Meta Propuesta: $2,000",
+    pledgesReceived: "compromisos recibidos",
+    pledgedOf: "comprometidos de la meta de $2,000",
     pledgeOnly: "solo compromisos",
     pledgeOnlyDesc: "— no se requiere pago en este momento.",
     estimatedCost: "El costo estimado de la silla de ruedas de Ángel es aproximadamente",
