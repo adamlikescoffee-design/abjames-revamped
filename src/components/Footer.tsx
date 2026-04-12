@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Flame, Heart } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Flame, Heart, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import footerBg from "@/assets/footer-bg.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -30,9 +30,6 @@ const Footer = () => {
                 </Link>
                 !
               </p>
-              <Link to="/admin/login" className="text-foreground/30 text-xs hover:text-primary transition-colors font-heading mt-3 inline-block">
-                Admin
-              </Link>
             </div>
 
             <div>
@@ -104,13 +101,20 @@ const Footer = () => {
           <p className="text-foreground/40 text-xs font-heading tracking-wider">
             {t.footer.rights}
           </p>
-          <p className="text-foreground/40 text-xs font-heading tracking-wider flex items-center gap-1">
-            {t.footer.madeWith}{" "}
-            <Heart size={12} className="text-red-500 fill-red-500" /> {t.footer.by}{" "}
-            <a href="https://www.libertydigital.com.au/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-              LIBERTY DIGITAL
-            </a>
-          </p>
+          <div className="flex items-center gap-4">
+            <Link to="/admin/login" className="text-foreground/30 text-xs hover:text-primary transition-colors font-heading tracking-wider flex items-center gap-1.5">
+              <Lock size={10} />
+              Admin
+            </Link>
+            <span className="text-foreground/20">|</span>
+            <p className="text-foreground/40 text-xs font-heading tracking-wider flex items-center gap-1">
+              {t.footer.madeWith}{" "}
+              <Heart size={12} className="text-red-500 fill-red-500" /> {t.footer.by}{" "}
+              <a href="https://www.libertydigital.com.au/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                LIBERTY DIGITAL
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
