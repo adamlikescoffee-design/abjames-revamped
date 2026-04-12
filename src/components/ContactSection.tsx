@@ -60,7 +60,7 @@ const ContactSection = () => {
                   {[
                     { icon: Facebook, href: "https://www.facebook.com/adamjameslikescoffee" },
                     { icon: X, href: "https://x.com" },
-                    { icon: Instagram, href: "https://instagram.com" },
+                    { icon: Instagram, href: "https://www.instagram.com/adam_likes_coffee" },
                     { icon: Linkedin, href: "https://www.linkedin.com/in/adam-likes-coffee/" },
                   ].map(({ icon: Icon, href }, idx) => (
                     <a
