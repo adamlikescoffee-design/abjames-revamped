@@ -63,29 +63,19 @@ const Header = () => {
       {menuOpen && (
         <div className="md:hidden border-t border-border bg-background px-4 py-6 space-y-4 animate-reveal-up">
           <nav className="flex flex-col gap-3">
-            {navLinks.map((link) =>
-              link.href.startsWith("/#") ? (
-                <button
-                  key={link.label}
-                  onClick={() => handleNavClick(link.href)}
-                  className="font-heading text-sm font-semibold tracking-wider text-foreground/70 hover:text-primary transition-colors text-left"
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className={cn(
-                    "font-heading text-sm font-semibold tracking-wider transition-colors",
-                    isActive(link.href) ? "text-primary" : "text-foreground/70 hover:text-primary"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "font-heading text-sm font-semibold tracking-wider transition-colors",
+                  isActive(link.href) ? "text-primary" : "text-foreground/70 hover:text-primary"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
           <div className="flex gap-4 pt-2">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors"><Facebook size={20} /></a>
