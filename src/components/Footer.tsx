@@ -18,8 +18,8 @@ const Footer = () => {
       >
         <div className="absolute inset-0 bg-background/80" />
         <div className="relative z-10 container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+            <div className="lg:col-span-1">
               <h3 className="font-heading text-2xl font-bold text-foreground mb-4">
                 ADAM JAMES.
               </h3>
@@ -46,6 +46,24 @@ const Footer = () => {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+                <Flame size={16} className="text-primary" />
+                {t.footer.fireside}
+              </h3>
+              <p className="text-foreground/70 text-sm leading-relaxed mb-3">
+                {t.footer.firesideText}
+              </p>
+              <a
+                href="https://www.firesidebusinessadvice.com/panellists/liberty-digital"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:brightness-110 font-heading text-xs font-semibold tracking-wider transition-all"
+              >
+                {t.footer.firesideLink}
+              </a>
             </div>
 
             <div>
