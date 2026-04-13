@@ -29,6 +29,13 @@ const JournalSection = () => {
     fetchEntries();
   }, []);
 
+  useEffect(() => {
+    if (!loading && entries.length > 0 && window.location.hash) {
+      const el = document.getElementById(window.location.hash.slice(1));
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
+    }
+  }, [loading, entries]);
+
   if (loading) return null;
   if (entries.length === 0) return null;
 
