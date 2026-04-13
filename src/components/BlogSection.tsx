@@ -36,7 +36,7 @@ const BlogSection = () => {
         <ScrollReveal>
           <div className="text-center mt-10">
             <Link to="/blog" className="inline-block bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-8 py-3 rounded-lg hover:brightness-110 transition-all">
-              {t.blogSection.title} →
+              View All Posts →
             </Link>
           </div>
         </ScrollReveal>
