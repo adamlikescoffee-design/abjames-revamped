@@ -105,7 +105,7 @@ const PayingItForward = () => {
         onSubmit={handlePledgeSubmit}
       />
 
-      <MediaHighlights />
+      
 
       {/* CTA */}
       <section className="py-20 bg-secondary">
