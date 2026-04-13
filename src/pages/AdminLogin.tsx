@@ -22,11 +22,17 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
     if (error) {
+      setLoading(false);
       toast.error("Invalid credentials");
     } else {
-      navigate(redirectTo);
+      // Wait for onAuthStateChange to propagate the session before navigating
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+        if (event === "SIGNED_IN") {
+          subscription.unsubscribe();
+          navigate(redirectTo);
+        }
+      });
     }
   };
 
