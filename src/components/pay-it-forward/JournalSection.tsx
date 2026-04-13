@@ -91,7 +91,8 @@ const JournalSection = () => {
                   </div>
                 </div>
               </ScrollReveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
