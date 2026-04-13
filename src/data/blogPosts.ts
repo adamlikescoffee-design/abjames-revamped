@@ -93,6 +93,7 @@ export interface BlogPost {
   date?: string;
   category?: string;
   content: string[];
+  hidden?: boolean;
 }
 
 export const blogPosts: BlogPost[] = [
