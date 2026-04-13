@@ -53,22 +53,25 @@ const PayingItForward = () => {
 
       // Send to Make.com webhook
       try {
+        const webhookPayload = {
+          name: fullName,
+          email: pledgeData.email,
+          phone: pledgeData.phone || "",
+          pledge_amount: pledgeData.amount,
+          location: [pledgeData.city, pledgeData.country].filter(Boolean).join(", ") || "",
+          notes: pledgeData.notes || "",
+          message: pledgeData.message || "",
+        };
+        console.log("Pledge webhook payload:", webhookPayload);
+
+        const formBody = new FormData();
+        Object.entries(webhookPayload).forEach(([key, value]) => {
+          formBody.append(key, String(value));
+        });
+
         const webhookRes = await fetch("https://hook.eu2.make.com/tfo11b2di0h29prq78ey4v7zj08yib2y", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            firstName: pledgeData.firstName,
-            lastName: pledgeData.lastName,
-            name: fullName,
-            email: pledgeData.email,
-            phone: pledgeData.phone || null,
-            amount: parseFloat(pledgeData.amount),
-            city: pledgeData.city || null,
-            country: pledgeData.country || null,
-            city_country: [pledgeData.city, pledgeData.country].filter(Boolean).join(", ") || null,
-            notes: pledgeData.notes || null,
-            message: pledgeData.message || null,
-          }),
+          body: formBody,
         });
         if (!webhookRes.ok) {
           toast.warning("Your pledge was saved, but the notification failed to send. We'll follow up manually.");
