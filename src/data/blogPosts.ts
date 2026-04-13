@@ -56,6 +56,34 @@ import blogRevolutionizingVisibilityLibertyDigitalElevatesOnlyTintsWithAStellarW
 import blogBrewingCommunityHowALocalPoliceCoffeeInitiativeMirrorsOurHealthLifeChangeJourney from "@/assets/blog-brewing-community-how-a-local-police-coffee-initiative-mirrors-our-hea.jpeg";
 import blogLibertyEnterprisesASocialEnterpriseCreatingOpportunity from "@/assets/blog-liberty-enterprises-a-social-enterprise-creating-opportunity.png";
 import blogInTheMediaSilentWriterFindsTheKeysToSuccess from "@/assets/blog-in-the-media-silent-writer-finds-the-keys-to-success.webp";
+import blogMeOnPostcardRadio from "@/assets/blog-me-on-postcard-radio.jpg";
+import blogThoughtsOnHomelessness from "@/assets/blog-thoughts-on-homelessness.jpg";
+import blogAreYouHsp from "@/assets/blog-are-you-hsp.jpg";
+import blogWhyGardening from "@/assets/blog-why-gardening-is-necessary.jpg";
+import blogThoughtsOnMaslows from "@/assets/blog-thoughts-on-maslows.jpg";
+import blogTakingTheTimeToChill from "@/assets/blog-taking-the-time-to-chill.jpg";
+import blogNewLawsEquality from "@/assets/blog-new-laws-needed-for-equality.jpg";
+import blogNotThePeoplesChina from "@/assets/blog-not-the-peoples-china.jpg";
+import blogOccamsRazor from "@/assets/blog-occams-razor.jpg";
+import blogBondCleaning from "@/assets/blog-bond-cleaning-brisbane.jpg";
+import blogAlAkamAlKhamsa from "@/assets/blog-al-akam-al-khamsa.jpg";
+import blogBuildingAStorybrand from "@/assets/blog-building-a-storybrand.jpg";
+import blogWhyWeGetSick from "@/assets/blog-why-we-get-sick.jpg";
+import blogComparingJarisCasePt3 from "@/assets/blog-comparing-jaris-case-pt3.jpg";
+import blogComparingJarisCasePt4 from "@/assets/blog-comparing-jaris-case-pt4.jpg";
+import blogFatherArrested from "@/assets/blog-father-arrested.jpg";
+import blogMyAccountPart5 from "@/assets/blog-my-account-of-events-part-5.jpg";
+import blogCommunityConnectionCoffee from "@/assets/blog-community-connection-over-coffee.jpg";
+import blogMyAccountPart1 from "@/assets/blog-my-account-of-events-part-1.jpg";
+import blogMyAccountPart4 from "@/assets/blog-my-account-of-events-part-4.jpg";
+import blogHumanRightsFeminism from "@/assets/blog-human-rights-feminism.jpg";
+import blogWhatILearntHolidays from "@/assets/blog-what-i-learnt-these-holidays.jpg";
+import blogHaveYouGotTheTime from "@/assets/blog-have-you-got-the-time.jpg";
+import blogExistentialEpiphany from "@/assets/blog-existential-epiphany.jpg";
+import blogAccountabilityLeadership from "@/assets/blog-accountability-leadership.jpg";
+import blogChaplainFundraiser from "@/assets/blog-chaplain-fundraiser-speech.jpg";
+import blogComparingJarisCaseNo6 from "@/assets/blog-comparing-jaris-case-no6.jpg";
+import blogAspleyTuckerTokens from "@/assets/blog-aspley-tucker-tokens.jpg";
 
 export interface BlogPost {
   slug: string;
@@ -279,7 +307,7 @@ export const blogPosts: BlogPost[] = [
     slug: "me-on-postcard-radio",
     title: "Me on Postcard Radio",
     excerpt: "I had the honour of being interviewed by Paul Wetzig from Postcard Radio.  Here's the link if you wanna hear me talk with Paul about how my faith has ...",
-    image: blogDefault,
+    image: blogMeOnPostcardRadio,
     date: "",
     category: "Media",
     content: [
@@ -310,7 +338,7 @@ export const blogPosts: BlogPost[] = [
     slug: "thoughts-on-homelessness",
     title: "Thoughts on Homelessness",
     excerpt: "I've spent this week on the streets of Brisbane.  I'm up to day six.  Two more nights to go.  Every day I've been speaking with homeless folk and list...",
-    image: blogDefault,
+    image: blogThoughtsOnHomelessness,
     date: "",
     category: "Community",
     content: [
@@ -328,7 +356,7 @@ export const blogPosts: BlogPost[] = [
     slug: "are-you-hsp",
     title: "Are you a HSP?",
     excerpt: "A highly sensitive person (HSP) experiences our world differently than most people.  It is a biological difference, not psychological, that they’re bo...",
-    image: blogDefault,
+    image: blogAreYouHsp,
     date: "",
     category: "Lifestyle",
     content: [
@@ -368,7 +396,7 @@ export const blogPosts: BlogPost[] = [
     slug: "why-gardening-is-necessary-for-everyone",
     title: "Why Gardening Is Necessary For Everyone",
     excerpt: "Gardening is so good for you I don't think it should be considered merely as therapy.  I think it's so good for you that it's actually a necessity.  I...",
-    image: blogDefault,
+    image: blogWhyGardening,
     date: "",
     category: "Lifestyle",
     content: [
@@ -393,7 +421,7 @@ export const blogPosts: BlogPost[] = [
     slug: "thoughts-on-maslows-toward-a-psychology-of-being",
     title: "Thoughts on Maslow's “Toward a Psychology of Being”",
     excerpt: "Abraham Harold Maslow is the guy who came up with \"Maslow's Hierarchy of Needs\" which a lot of people have heard of but maybe aren't aware of its sign...",
-    image: blogDefault,
+    image: blogThoughtsOnMaslows,
     date: "",
     category: "Book Reviews",
     content: [
@@ -417,7 +445,7 @@ export const blogPosts: BlogPost[] = [
     slug: "taking-the-time-to-chill",
     title: "Taking The Time To Chill",
     excerpt: "I’ve put on a LOT of weight this year.  My PTSD flashbacks and overall anxiety levels are the worst they’ve ever been.  I slept over at a mate’s place...",
-    image: blogDefault,
+    image: blogTakingTheTimeToChill,
     date: "",
     category: "Lifestyle",
     content: [
@@ -442,7 +470,7 @@ export const blogPosts: BlogPost[] = [
     slug: "new-laws-needed-for-equality",
     title: "New Laws Needed For Equality",
     excerpt: "Most people are under no delusion that women are equally violent as men and, despite being less physically strong, equally capable of horrific crimes....",
-    image: blogDefault,
+    image: blogNewLawsEquality,
     date: "",
     category: "Community",
     content: [
@@ -463,7 +491,7 @@ export const blogPosts: BlogPost[] = [
     slug: "not-the-peoples-china",
     title: "Not The People's Republic Of China",
     excerpt: "I have many Chinese friends. I have 2 really close friends who are chinese. I visited China in 1999. I have walked along the great wall of China. I've...",
-    image: blogDefault,
+    image: blogNotThePeoplesChina,
     date: "",
     category: "Travel",
     content: [
@@ -474,7 +502,7 @@ export const blogPosts: BlogPost[] = [
     slug: "occams-razor-cutting-off-unnecessary-complexity",
     title: "Occam's Razor: Cutting Off Unnecessary Complexity",
     excerpt: "The term \"Occam's Razor\" comes from a misspelling of the name William of Ockham. William Ockham (circa 1287–1347) was an English Franciscan friar, the...",
-    image: blogDefault,
+    image: blogOccamsRazor,
     date: "",
     category: "Leadership",
     content: [
@@ -515,7 +543,7 @@ export const blogPosts: BlogPost[] = [
     slug: "bond-cleaning-brisbane",
     title: "Bond Cleaning Brisbane",
     excerpt: "Whenever you move house in Brisbane a bond clean is a necessary part of the ordeal.  When it comes to bond cleaning Brisbane, property managers are pa...",
-    image: blogDefault,
+    image: blogBondCleaning,
     date: "",
     category: "Notices",
     content: [
@@ -605,7 +633,7 @@ export const blogPosts: BlogPost[] = [
     slug: "al-akam-al-khamsa-the-five-decisions",
     title: "Al-aḥkām Al-khamsa:  The Five Decisions",
     excerpt: "I came across this idea in Islamic tradition today.  It's known as the \"5 Decisions\".  One of my contractors said to me \"it is Halal for me to do this...",
-    image: blogDefault,
+    image: blogAlAkamAlKhamsa,
     date: "",
     category: "Leadership",
     content: [
@@ -623,7 +651,7 @@ export const blogPosts: BlogPost[] = [
     slug: "building-a-storybrand-by-donald-miller-book-review",
     title: "Building a StoryBrand by Donald Miller:  Book Review",
     excerpt: "A friend recently recommended I read this book by Donald Miller.  It's a great short read packed full of interesting and useful information.  This is ...",
-    image: blogDefault,
+    image: blogBuildingAStorybrand,
     date: "",
     category: "Book Reviews",
     content: [
@@ -666,7 +694,7 @@ export const blogPosts: BlogPost[] = [
     slug: "book-review-of-why-we-get-sick-the-hidden-epidemic-at-the-root-of-most-chronic-diseaseand-how-to-fight-it",
     title: "Book Review of Why We Get Sick: The Hidden Epidemic at the Root of Most Chronic Disease―and How to Fight It",
     excerpt: "I recently read Dr. Benjamin Bikman’s book, Why We Get Sick. Bikman is a Brigham Young University scientist and biomedical professor whose expertise i...",
-    image: blogDefault,
+    image: blogWhyWeGetSick,
     date: "",
     category: "Book Reviews",
     content: [
@@ -779,7 +807,7 @@ export const blogPosts: BlogPost[] = [
     slug: "comparing-jaris-case-to-similar-cases-pt3",
     title: "Comparing Jari's Case To Similar Cases:  No.3 Kyralee Clark",
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
-    image: blogDefault,
+    image: blogComparingJarisCasePt3,
     date: "",
     category: "Community",
     content: [
@@ -813,7 +841,7 @@ export const blogPosts: BlogPost[] = [
     slug: "comparing-jaris-case-to-similar-cases-pt4",
     title: "Comparing Jari’s Case To Similar Cases:  No.4 Jennifer Board",
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
-    image: blogDefault,
+    image: blogComparingJarisCasePt4,
     date: "",
     category: "Community",
     content: [
@@ -851,7 +879,7 @@ export const blogPosts: BlogPost[] = [
     slug: "father-arrested-for-discussing-childs-gender-transition",
     title: "Father arrested for discussing child’s gender transition",
     excerpt: "A Canadian man was arrested this week after violating a court order that banned him from speaking publicly about his daughter’s gender transition....",
-    image: blogDefault,
+    image: blogFatherArrested,
     date: "",
     category: "Community",
     content: [
@@ -1117,7 +1145,7 @@ export const blogPosts: BlogPost[] = [
     slug: "my-account-of-events-part-5",
     title: "My Account Of Events:  Part 5",
     excerpt: "April 2019, a school chaplain from SU QLD referred \"someone in need\" to my charity.  The woman was stated to be a victim of DV and facing homelessness...",
-    image: blogDefault,
+    image: blogMyAccountPart5,
     date: "",
     category: "Community",
     content: [
@@ -1201,7 +1229,7 @@ export const blogPosts: BlogPost[] = [
     slug: "community-connection-over-coffee-local-police-and-residents-break-the-ice",
     title: "Community Connection Over Coffee: Local Police and Residents Break the Ice",
     excerpt: "In March 2016, residents in Brisbane North were invited to join a unique outreach session by the Queensland Police Service that paired a casual coffee...",
-    image: blogDefault,
+    image: blogCommunityConnectionCoffee,
     date: "",
     category: "Community",
     content: [
@@ -1264,7 +1292,7 @@ export const blogPosts: BlogPost[] = [
     slug: "my-account-of-events-part-1",
     title: "My Account Of Events: Part 1",
     excerpt: "I'm gonna share with you my story over the last 2 years. Conspiracy, police cover ups, crime & deception...",
-    image: blogDefault,
+    image: blogMyAccountPart1,
     date: "May 2021",
     category: "Community",
     content: [
@@ -1278,7 +1306,7 @@ export const blogPosts: BlogPost[] = [
     slug: "my-account-of-events-part-4",
     title: "My Account Of Events: Part 4",
     excerpt: "People get themselves in all sorts of crisis situations. They'll be an unfortunate innocent victim of one traumatic event...",
-    image: blogDefault,
+    image: blogMyAccountPart4,
     date: "May 2021",
     category: "Community",
     content: [
@@ -1293,7 +1321,7 @@ export const blogPosts: BlogPost[] = [
     slug: "human-rights-feminism-mens-rights",
     title: "Human Rights, Feminism & Men's Rights",
     excerpt: "Human Rights are a complex issue. It's something we've only really been able to articulate as a species in the last few hundred years...",
-    image: blogDefault,
+    image: blogHumanRightsFeminism,
     date: "July 2020",
     category: "Leadership",
     content: [
@@ -1386,7 +1414,7 @@ export const blogPosts: BlogPost[] = [
  title: "What I learnt these holidays...",
  excerpt:
  "All packed and ready to go. I began to realise something while wading in the middle of the lake. Looking around to see that it was at least an hours swim in any direction. I was pretty confident I wou...",
- image: blogDefault,
+ image: blogWhatILearntHolidays,
  date: "July 2015",
  category: "Reflections",
  content: [
@@ -1414,7 +1442,7 @@ export const blogPosts: BlogPost[] = [
  title: "Have You Got The time?",
  excerpt:
  "How do you view time?",
- image: blogDefault,
+ image: blogHaveYouGotTheTime,
  date: "May 2016",
  category: "Reflections",
  content: [
@@ -1433,7 +1461,7 @@ export const blogPosts: BlogPost[] = [
  title: "My existential epiphany",
  excerpt:
  "rnrnToday I was lying in a field in the hinterland. There had been some rain the night before, the air had a cold bite to it even though the sky was cloudless and the sun shone bright. Everything felt...",
- image: blogDefault,
+ image: blogExistentialEpiphany,
  date: "June 2016",
  category: "Reflections",
  content: [
@@ -1445,7 +1473,7 @@ export const blogPosts: BlogPost[] = [
  title: "Accountability, Leadership & Mentoring",
  excerpt:
  "I make a lot of difficult, intense and uncommon decisions in turbulent fragile situations every single day.",
- image: blogDefault,
+ image: blogAccountabilityLeadership,
  date: "July 2020",
  category: "Reflections",
  content: [
@@ -1471,7 +1499,7 @@ export const blogPosts: BlogPost[] = [
  title: "Speech from SU School Chaplain Fundraiser 8th June 2018",
  excerpt:
  "I'm honoured once again to be here and encourage the vital work of school chaplains in our community.",
- image: blogDefault,
+ image: blogChaplainFundraiser,
  date: "June 2018",
  category: "Speaking",
  content: [
@@ -1605,7 +1633,7 @@ export const blogPosts: BlogPost[] = [
  title: "Comparing Jari's Case To Similar Cases: No.6 Tammara Macrokanis",
  excerpt:
  "Jari Wise was murdered by his partner on February 29, 2020. The Tasmanian police did not investigate or charge his partner for his murder. It's been over 2 years. For detailed information about the st...",
- image: blogDefault,
+ image: blogComparingJarisCaseNo6,
  date: "July 2022",
  category: "Justice",
  content: [
@@ -1681,7 +1709,7 @@ export const blogPosts: BlogPost[] = [
  title: "In The Media: Aspley cafe's plea for community to get behind Tucker Tokens",
  excerpt:
  "The notion of paying it forward just got even easier thanks to the work of Aspley's Cup from Above. The cafe is offering Tucker Tokens - where customers can pre-purchase a meal for the city's homeless...",
- image: blogDefault,
+ image: blogAspleyTuckerTokens,
  date: "July 2016",
  category: "Media",
  content: [
