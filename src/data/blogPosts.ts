@@ -9,7 +9,7 @@ import blogCambodia from "@/assets/blog-cambodia.jpg";
 import blogAustralianYear from "@/assets/blog-australian-year.jpg";
 import blogChalk from "@/assets/blog-chalk.jpg";
 import blogRationality from "@/assets/blog-rationality.jpg";
-import blogDefault from "@/assets/blog-volunteering.jpg";
+
 import blog2021ReadingListReview from "@/assets/blog-2021-reading-list-review.jpg";
 import blogALessonFromJohnWooden from "@/assets/blog-a-lesson-from-john-wooden.jpg";
 import blogActorAdamJamesALifeInPerformance from "@/assets/blog-actor-adam-james-a-life-in-performance.webp";
