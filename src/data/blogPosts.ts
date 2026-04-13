@@ -10,6 +10,14 @@ import blogAustralianYear from "@/assets/blog-australian-year.jpg";
 import blogChalk from "@/assets/blog-chalk.jpg";
 import blogRationality from "@/assets/blog-rationality.jpg";
 import blogDefault from "@/assets/blog-volunteering.jpg";
+import blog2021ReadingListReview from "@/assets/blog-2021-reading-list-review.jpg";
+import blogALessonFromJohnWooden from "@/assets/blog-a-lesson-from-john-wooden.jpg";
+import blogActorAdamJamesALifeInPerformance from "@/assets/blog-actor-adam-james-a-life-in-performance.webp";
+import blogComparingJarisCaseToSimilarCasesPt1 from "@/assets/blog-comparing-jaris-case-to-similar-cases-pt1.jpg";
+import blogGreenTeaAndFatLoss from "@/assets/blog-green-tea-and-fat-loss.jpg";
+import blogInTheMediaCoffeeAsACureForCommunity from "@/assets/blog-in-the-media-coffee-as-a-cure-for-community.jpg";
+import blogInTheMediaRallyingAroundBella from "@/assets/blog-in-the-media-rallying-around-bella.jpg";
+import blogInclusionConfusion from "@/assets/blog-inclusion-confusion.jpg";
 
 export interface BlogPost {
   slug: string;
@@ -211,7 +219,7 @@ export const blogPosts: BlogPost[] = [
     slug: "inclusion-confusion",
     title: "Inclusion Confusion",
     excerpt: "Last year I was in a forum with some of the top leaders from Queensland to develop a thirty year plan for the state.  One of the questions was \"How do...",
-    image: blogDefault,
+    image: blogInclusionConfusion,
     date: "",
     category: "Community",
     content: [
@@ -245,7 +253,7 @@ export const blogPosts: BlogPost[] = [
     slug: "a-lesson-from-john-wooden",
     title: "A Lesson From John Wooden",
     excerpt: "A few years ago I learnt about John Wooden.  Considered by many as the greatest basketball coach of all time.  He had an extraordinary leadership styl...",
-    image: blogDefault,
+    image: blogALessonFromJohnWooden,
     date: "",
     category: "Leadership",
     content: [
@@ -534,7 +542,7 @@ export const blogPosts: BlogPost[] = [
     slug: "2021-reading-list-review",
     title: "2021 Reading List Review",
     excerpt: "This year I reduced my reading schedule to 40 books.  I was able to read several books that had been on my list for many years.  Here is my 2021 readi...",
-    image: blogDefault,
+    image: blog2021ReadingListReview,
     date: "",
     category: "Book Reviews",
     content: [
@@ -710,7 +718,7 @@ export const blogPosts: BlogPost[] = [
     slug: "comparing-jaris-case-to-similar-cases-pt1",
     title: "Comparing Jari's Case to Similar Cases:  No.1 Matthew Leadbetter & Katherine Field & Her Unborn Child",
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
-    image: blogDefault,
+    image: blogComparingJarisCaseToSimilarCasesPt1,
     date: "",
     category: "Community",
     content: [
@@ -935,7 +943,7 @@ export const blogPosts: BlogPost[] = [
     slug: "in-the-media-coffee-as-a-cure-for-community",
     title: "In The Media:  Coffee As A Cure For Community",
     excerpt: "Link to the original article online 25 November 2017....",
-    image: blogDefault,
+    image: blogInTheMediaCoffeeAsACureForCommunity,
     date: "",
     category: "Media",
     content: [
@@ -982,7 +990,7 @@ export const blogPosts: BlogPost[] = [
     slug: "in-the-media-rallying-around-bella",
     title: "In The Media:  Rallying Around Bella",
     excerpt: "From sometime in 2012...",
-    image: blogDefault,
+    image: blogInTheMediaRallyingAroundBella,
     date: "",
     category: "Media",
     content: [
@@ -1096,7 +1104,7 @@ export const blogPosts: BlogPost[] = [
     slug: "green-tea-and-fat-loss",
     title: "Green Tea and Fat Loss: What's the Connection?",
     excerpt: "Let's have a yarn about green tea and how it's helped me shed a few kilos....",
-    image: blogDefault,
+    image: blogGreenTeaAndFatLoss,
     date: "",
     category: "Lifestyle",
     content: [
@@ -1183,7 +1191,7 @@ export const blogPosts: BlogPost[] = [
     slug: "actor-adam-james-a-life-in-performance",
     title: "Actor Adam James: A Life in Performance",
     excerpt: "Source: Grokipedia – Adam James (actor)...",
-    image: blogDefault,
+    image: blogActorAdamJamesALifeInPerformance,
     date: "",
     category: "Lifestyle",
     content: [
