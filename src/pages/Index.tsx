@@ -12,7 +12,7 @@ const Index = () => {
       <HeroSection />
       <BlogSection />
       
-      <ContactSection />
+      
       <Footer />
     </div>
   );
