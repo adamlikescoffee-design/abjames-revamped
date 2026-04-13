@@ -18,6 +18,44 @@ import blogGreenTeaAndFatLoss from "@/assets/blog-green-tea-and-fat-loss.jpg";
 import blogInTheMediaCoffeeAsACureForCommunity from "@/assets/blog-in-the-media-coffee-as-a-cure-for-community.jpg";
 import blogInTheMediaRallyingAroundBella from "@/assets/blog-in-the-media-rallying-around-bella.jpg";
 import blogInclusionConfusion from "@/assets/blog-inclusion-confusion.jpg";
+import blogChaplinsGreatSpeech from "@/assets/blog-chaplins-great-speech.png";
+import blogGenderWageNonGap from "@/assets/blog-gender-wage-non-gap.jpg";
+import blogTwentyTwentyBookList from "@/assets/blog-twenty-twenty-book-list.jpg";
+import blogTurnaroundYourLockdown from "@/assets/blog-turnaround-your-lockdown.jpeg";
+import blogTheJamesWebbTelescope from "@/assets/blog-the-james-webb-telescope.jpeg";
+import blogNicomacheanEthicsBookReview from "@/assets/blog-nicomachean-ethics-book-review.jpg";
+import blogThePowerfulImageOfAFrailOldLionMomentsBeforeHisDeath from "@/assets/blog-the-powerful-image-of-a-frail-old-lion-moments-before-his-death.jpg";
+import blogComparingJarisCaseToSimilarCasesNo2DanielleJordan from "@/assets/blog-comparing-jaris-case-to-similar-cases-no-2-danielle-jordan.jpeg";
+import blogComparingJarisCaseToSimilarCases from "@/assets/blog-comparing-jaris-case-to-similar-cases.jpg";
+import blogComparingJarisCaseToSimilarCasesNo7MichelleRuitenbeek from "@/assets/blog-comparing-jaris-case-to-similar-cases-no-7-michelle-ruitenbeek.jpg";
+import blogComparingJarisCaseToSimilarCasesCaseNo7VeroniqueSakrSiennaAbdallahAngelinaAntony from "@/assets/blog-comparing-jaris-case-to-similar-cases-case-no-7-veronique-sakr-sienna-.jpeg";
+import blogNorwegianFeministFacesThreeYearsInPrisonForHatefulTweetsAllegedlyCriticisingTransgenderism from "@/assets/blog-norwegian-feminist-faces-three-years-in-prison-for-hateful-tweets-alle.png";
+import blogSpeechlessControllingWordsControllingMindsByMichaelKnowles from "@/assets/blog-speechless-controlling-words-controlling-minds-by-michael-knowles.jpg";
+import blogSurvivorshipBias from "@/assets/blog-survivorship-bias.jpg";
+import blogMyAccountOfEventsPart2 from "@/assets/blog-my-account-of-events-part-2.jpeg";
+import blogMyAccountOfEventsPart3 from "@/assets/blog-my-account-of-events-part-3.jpeg";
+import blogInTheMediaAspleysCupFromAboveCafeToCloseDoorsThisMonth from "@/assets/blog-in-the-media-aspleys-cup-from-above-cafe-to-close-doors-this-month.jpeg";
+import blogSuspendedCoffeeMovementGainsSupportersAroundAustralia from "@/assets/blog-suspended-coffee-movement-gains-supporters-around-australia.jpg";
+import blogCaffeineKindnessOnAbcRadioNational from "@/assets/blog-caffeine-kindness-on-abc-radio-national.png";
+import blogTheOneWhereICutAWormOutOfMyChest from "@/assets/blog-the-one-where-i-cut-a-worm-out-of-my-chest.jpg";
+import blogMusicConnects from "@/assets/blog-music-connects.jpg";
+import blogWhatsInANameOtherNoteworthyAdamJamesEs from "@/assets/blog-whats-in-a-name-other-noteworthy-adam-james-es.webp";
+import blogCaffeineAndKindnessTheStoryBehindTheSuspendedCoffeeMovementInAustralia from "@/assets/blog-caffeine-and-kindness-the-story-behind-the-suspended-coffee-movement-i.png";
+import blogAVengefulActRememberingTheMaroochydoreArsonCase from "@/assets/blog-a-vengeful-act-remembering-the-maroochydore-arson-case.webp";
+import blogCoffeeCommunityAndSecondChancesHowOneCafeTurnedASetbackIntoPurpose from "@/assets/blog-coffee-community-and-second-chances-how-one-cafe-turned-a-setback-into.png";
+import blogInvictusByWilliamErnestHenley from "@/assets/blog-invictus-by-william-ernest-henley.webp";
+import blogLogicalFallacies from "@/assets/blog-logical-fallacies.png";
+import blogCharityDetox from "@/assets/blog-charity-detox.jpg";
+import blogGoWithTheFlow from "@/assets/blog-go-with-the-flow.jpg";
+import blogFromIdeologyToPrincipleCentredLiving from "@/assets/blog-from-ideology-to-principle-centred-living.jpg";
+import blogBookReviewTheHumanSuperorganismHowTheMicrobiomeIsRevolutionizingThePursuitOfAHealthyLife from "@/assets/blog-book-review-the-human-superorganism-how-the-microbiome-is-revolutioniz.jpg";
+import blogChinesePoliceCageAndInterrogateAManForCriticisingATrafficCopInAPrivateMessageOnline from "@/assets/blog-chinese-police-cage-and-interrogate-a-man-for-criticising-a-traffic-co.jpeg";
+import blogInTheMediaALittleHelpFromAbove from "@/assets/blog-in-the-media-a-little-help-from-above.jpg";
+import blogEmpoweringBusinessLibertyDigitalMarketingCommunications from "@/assets/blog-empowering-business-liberty-digital-marketing-communications.jpg";
+import blogRevolutionizingVisibilityLibertyDigitalElevatesOnlyTintsWithAStellarWebsiteAndDigitalMarketingOverhaul from "@/assets/blog-revolutionizing-visibility-liberty-digital-elevates-only-tints-with-a-.webp";
+import blogBrewingCommunityHowALocalPoliceCoffeeInitiativeMirrorsOurHealthLifeChangeJourney from "@/assets/blog-brewing-community-how-a-local-police-coffee-initiative-mirrors-our-hea.jpeg";
+import blogLibertyEnterprisesASocialEnterpriseCreatingOpportunity from "@/assets/blog-liberty-enterprises-a-social-enterprise-creating-opportunity.png";
+import blogInTheMediaSilentWriterFindsTheKeysToSuccess from "@/assets/blog-in-the-media-silent-writer-finds-the-keys-to-success.webp";
 
 export interface BlogPost {
   slug: string;
@@ -315,7 +353,7 @@ export const blogPosts: BlogPost[] = [
     slug: "chaplins-great-speech",
     title: "Chaplin's Great Speech",
     excerpt: "Charlie Chaplin & Hitler were both born within a week of each other (Chaplin 4/16/1889, Hitler 4/20/1889), they were roughly the same height and weigh...",
-    image: blogDefault,
+    image: blogChaplinsGreatSpeech,
     date: "",
     category: "Leadership",
     content: [
@@ -456,7 +494,7 @@ export const blogPosts: BlogPost[] = [
     slug: "gender-wage-non-gap",
     title: "Gender Wage Non-gap",
     excerpt: "All numbers from ABS 2019....",
-    image: blogDefault,
+    image: blogGenderWageNonGap,
     date: "",
     category: "Community",
     content: [
@@ -490,7 +528,7 @@ export const blogPosts: BlogPost[] = [
     slug: "twenty-twenty-book-list",
     title: "Twenty Twenty Book List",
     excerpt: "I got through 58 books last year which I think just might be my PB....",
-    image: blogDefault,
+    image: blogTwentyTwentyBookList,
     date: "",
     category: "Book Reviews",
     content: [
@@ -510,7 +548,7 @@ export const blogPosts: BlogPost[] = [
     slug: "turnaround-your-lockdown",
     title: "Turnaround Your Lockdown",
     excerpt: "In 1665, the bubonic plague was ravishing London.  About 15% of the population died.  Entire villages went into lockdown.  Institutions and of course ...",
-    image: blogDefault,
+    image: blogTurnaroundYourLockdown,
     date: "",
     category: "Lifestyle",
     content: [
@@ -524,7 +562,7 @@ export const blogPosts: BlogPost[] = [
     slug: "the-james-webb-telescope",
     title: "The James Webb Telescope",
     excerpt: "This is going to be one of the biggest advancements for humanity in our life time.  Certainly at least for the year 2022.  The James Webb Space Telesc...",
-    image: blogDefault,
+    image: blogTheJamesWebbTelescope,
     date: "",
     category: "Science",
     content: [
@@ -603,7 +641,7 @@ export const blogPosts: BlogPost[] = [
     slug: "nicomachean-ethics-book-review",
     title: "Nicomachean Ethics – Book Review",
     excerpt: "I recently finished reading Nicomachean Ethics by Aristotle.  This is a true classic.  It's one of the most influential books of all time.  It has bee...",
-    image: blogDefault,
+    image: blogNicomacheanEthicsBookReview,
     date: "",
     category: "Book Reviews",
     content: [
@@ -653,7 +691,7 @@ export const blogPosts: BlogPost[] = [
     slug: "the-powerful-image-of-a-frail-old-lion-moments-before-his-death",
     title: "The powerful image of a frail old lion moments before his death",
     excerpt: "These heart-breaking images show the final moments of a frail old lion who was once king of his land before he starved to death....",
-    image: blogDefault,
+    image: blogThePowerfulImageOfAFrailOldLionMomentsBeforeHisDeath,
     date: "",
     category: "Lifestyle",
     content: [
@@ -678,7 +716,7 @@ export const blogPosts: BlogPost[] = [
     slug: "comparing-jaris-case-to-similar-cases-no-2-danielle-jordan",
     title: "Comparing Jari's Case To Similar Cases: No.2 Danielle Jordan",
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
-    image: blogDefault,
+    image: blogComparingJarisCaseToSimilarCasesNo2DanielleJordan,
     date: "",
     category: "Community",
     content: [
@@ -698,7 +736,7 @@ export const blogPosts: BlogPost[] = [
     slug: "comparing-jaris-case-to-similar-cases",
     title: "Comparing Jari's Case To Similar Cases:  No.5 Gayle Potter",
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
-    image: blogDefault,
+    image: blogComparingJarisCaseToSimilarCases,
     date: "",
     category: "Community",
     content: [
@@ -758,7 +796,7 @@ export const blogPosts: BlogPost[] = [
     slug: "comparing-jaris-case-to-similar-cases-no-7-michelle-ruitenbeek",
     title: "Comparing Jari’s Case To Similar Cases: No.7 Michelle Ruitenbeek",
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
-    image: blogDefault,
+    image: blogComparingJarisCaseToSimilarCasesNo7MichelleRuitenbeek,
     date: "",
     category: "Community",
     content: [
@@ -788,7 +826,7 @@ export const blogPosts: BlogPost[] = [
     slug: "comparing-jaris-case-to-similar-cases-case-no-7-veronique-sakr-sienna-abdallah-angelina-antony",
     title: "Comparing Jari’s Case To Similar Cases: Case No.7 Veronique Sakr, Sienna Abdallah, Angelina & Antony",
     excerpt: "Jari Wise was murdered by his partner on February 29, 2020.  The Tasmanian police did not investigate or charge his partner for his murder.  It’s been...",
-    image: blogDefault,
+    image: blogComparingJarisCaseToSimilarCasesCaseNo7VeroniqueSakrSiennaAbdallahAngelinaAntony,
     date: "",
     category: "Community",
     content: [
@@ -838,7 +876,7 @@ export const blogPosts: BlogPost[] = [
     slug: "norwegian-feminist-faces-three-years-in-prison-for-hateful-tweets-allegedly-criticising-transgenderism",
     title: "Norwegian feminist faces three years in prison for 'hateful' tweets (for allegedly) criticising transgenderism",
     excerpt: "“Jentoft, who is male and an advisor in FRI, presents himself as a lesbian – that’s how bonkers the organisation which supposedly works to protect you...",
-    image: blogDefault,
+    image: blogNorwegianFeministFacesThreeYearsInPrisonForHatefulTweetsAllegedlyCriticisingTransgenderism,
     date: "",
     category: "Community",
     content: [
@@ -863,7 +901,7 @@ export const blogPosts: BlogPost[] = [
     slug: "speechless-controlling-words-controlling-minds-by-michael-knowles",
     title: "Speechless: Controlling Words, Controlling Minds by Michael Knowles – Book Summary & review",
     excerpt: "Political commentator and media personality Michael Knowles has authored an examination of politically correct speech in his book Speechless: Controll...",
-    image: blogDefault,
+    image: blogSpeechlessControllingWordsControllingMindsByMichaelKnowles,
     date: "",
     category: "Book Reviews",
     content: [
@@ -888,7 +926,7 @@ export const blogPosts: BlogPost[] = [
     slug: "survivorship-bias",
     title: "Survivorship Bias",
     excerpt: "During World War II, fighter planes would come back from battle with bullet holes. The Allies initially sought to strengthen the most commonly damaged...",
-    image: blogDefault,
+    image: blogSurvivorshipBias,
     date: "",
     category: "Leadership",
     content: [
@@ -901,7 +939,7 @@ export const blogPosts: BlogPost[] = [
     slug: "my-account-of-events-part-2",
     title: "My Account Of Events:  Part 2",
     excerpt: "I'm passionate about helping people out of crisis situations. When I was young I went through hell and noone was there for me. I had a few well intent...",
-    image: blogDefault,
+    image: blogMyAccountOfEventsPart2,
     date: "",
     category: "Community",
     content: [
@@ -920,7 +958,7 @@ export const blogPosts: BlogPost[] = [
     slug: "my-account-of-events-part-3",
     title: "My Account Of Events:  Part 3",
     excerpt: "One night a woman set fire to the facility we were in, to suicide by fire. She was under house arrest for arson. She was a giant woman. Taller than me...",
-    image: blogDefault,
+    image: blogMyAccountOfEventsPart3,
     date: "",
     category: "Community",
     content: [
@@ -968,7 +1006,7 @@ export const blogPosts: BlogPost[] = [
     slug: "in-the-media-aspleys-cup-from-above-cafe-to-close-doors-this-month",
     title: "In The Media:  Aspley’s Cup From Above Cafe to close doors this month",
     excerpt: "A social enterprise made the shock announcement it would close its doors on April 29 less than a year after it spent up to $30,000 on upgrades to its ...",
-    image: blogDefault,
+    image: blogInTheMediaAspleysCupFromAboveCafeToCloseDoorsThisMonth,
     date: "",
     category: "Media",
     content: [
@@ -1001,7 +1039,7 @@ export const blogPosts: BlogPost[] = [
     slug: "suspended-coffee-movement-gains-supporters-around-australia",
     title: "Suspended coffee movement gains supporters around Australia",
     excerpt: "https://www.abc.net.au/radionational/archived/rnfirstbite/suspended-coffee-movement-gains-supporters-around-australia/5505160...",
-    image: blogDefault,
+    image: blogSuspendedCoffeeMovementGainsSupportersAroundAustralia,
     date: "",
     category: "Community",
     content: [
@@ -1026,7 +1064,7 @@ export const blogPosts: BlogPost[] = [
     slug: "caffeine-kindness-on-abc-radio-national",
     title: "Caffeine Kindness on ABC Radio National",
     excerpt: "Originally Broadcast Sat 31 May 2014 at 9:48am...",
-    image: blogDefault,
+    image: blogCaffeineKindnessOnAbcRadioNational,
     date: "",
     category: "Media",
     content: [
@@ -1041,7 +1079,7 @@ export const blogPosts: BlogPost[] = [
     slug: "the-one-where-i-cut-a-worm-out-of-my-chest",
     title: "The One Where I Cut A Worm Out Of My Chest",
     excerpt: "When I was about 20 years old I was working on a farm just outside the township of Shepparton in Northern Victoria.  I was working hard and living in ...",
-    image: blogDefault,
+    image: blogTheOneWhereICutAWormOutOfMyChest,
     date: "",
     category: "Travel",
     content: [
@@ -1060,7 +1098,7 @@ export const blogPosts: BlogPost[] = [
     slug: "music-connects",
     title: "Music, Connection, Old Love & Bob Marley",
     excerpt: "Today I went into the city to explore and capture some images and develop some ideas about connection and community.  I sought for photos to illustrat...",
-    image: blogDefault,
+    image: blogMusicConnects,
     date: "",
     category: "Lifestyle",
     content: [
@@ -1123,7 +1161,7 @@ export const blogPosts: BlogPost[] = [
     slug: "whats-in-a-name-other-noteworthy-adam-james-es",
     title: "What's in a name? Other Noteworthy Adam James – es",
     excerpt: "It turns out the name Adam James is shared by several public figures across diverse fields. Here’s a look at some of the more prominent ones, what the...",
-    image: blogDefault,
+    image: blogWhatsInANameOtherNoteworthyAdamJamesEs,
     date: "",
     category: "Lifestyle",
     content: [
@@ -1138,7 +1176,7 @@ export const blogPosts: BlogPost[] = [
     slug: "caffeine-and-kindness-the-story-behind-the-suspended-coffee-movement-in-australia",
     title: "Caffeine and Kindness: The Story Behind the Suspended Coffee Movement in Australia",
     excerpt: "Originally broadcast on ABC Radio National’s “First Bite” with Adam James...",
-    image: blogDefault,
+    image: blogCaffeineAndKindnessTheStoryBehindTheSuspendedCoffeeMovementInAustralia,
     date: "",
     category: "Community",
     content: [
@@ -1175,7 +1213,7 @@ export const blogPosts: BlogPost[] = [
     slug: "a-vengeful-act-remembering-the-maroochydore-arson-case",
     title: "Remembering one of the Sunny Coast Arson Cases",
     excerpt: "This event happened in October 2010.  It was one of many arson events I had while doing this work....",
-    image: blogDefault,
+    image: blogAVengefulActRememberingTheMaroochydoreArsonCase,
     date: "",
     category: "Community",
     content: [
@@ -1208,7 +1246,7 @@ export const blogPosts: BlogPost[] = [
     slug: "coffee-community-and-second-chances-how-one-cafe-turned-a-setback-into-purpose",
     title: "Coffee, community and second chances: how one café turned a setback into purpose",
     excerpt: "The story of Cup From Above is a reminder: when you align mission and model, you not only survive bumps in the road—you thrive....",
-    image: blogDefault,
+    image: blogCoffeeCommunityAndSecondChancesHowOneCafeTurnedASetbackIntoPurpose,
     date: "",
     category: "Community",
     content: [
@@ -1272,7 +1310,7 @@ export const blogPosts: BlogPost[] = [
     slug: "invictus-by-william-ernest-henley",
     title: "Invictus by William Ernest Henley",
     excerpt: "It matters not how strait the gate, How charged with punishments the scroll, I am the master of my fate, I am the captain of my soul.",
-    image: blogDefault,
+    image: blogInvictusByWilliamErnestHenley,
     date: "February 2025",
     category: "Community",
     content: [
@@ -1287,7 +1325,7 @@ export const blogPosts: BlogPost[] = [
     slug: "logical-fallacies",
     title: "Logical Fallacies: How To Spot A Dishonest Argument",
     excerpt: "A logical fallacy is a statement that seems to be true until you apply the rules of logic. Then, you realise that it's not...",
-    image: blogDefault,
+    image: blogLogicalFallacies,
     date: "July 2020",
     category: "Leadership",
     content: [
@@ -1328,7 +1366,7 @@ export const blogPosts: BlogPost[] = [
     slug: "charity-detox",
     title: "Charity Detox — A Book Review of Toxic Charity by Robert Lupton",
     excerpt: "Robert Lupton directly challenges the 'white missionary colonialist saviour' approach to charity. If you're not religious don't think you're immune...",
-    image: blogDefault,
+    image: blogCharityDetox,
     date: "July 2020",
     category: "Book Reviews",
     content: [
@@ -1461,7 +1499,7 @@ export const blogPosts: BlogPost[] = [
  title: "Go With The Flow",
  excerpt:
  "Have you ever experienced a time when you felt like you were \"in the zone\"? Where you were so involved in what you were doing that everything else around you disappeared and time seemed to stand still...",
- image: blogDefault,
+ image: blogGoWithTheFlow,
  date: "November 2018",
  category: "Reflections",
  content: [
@@ -1523,7 +1561,7 @@ export const blogPosts: BlogPost[] = [
  title: "From Ideology To Principle Centred Living",
  excerpt:
  "\"Ideology is strong exactly because it is no longer experienced as ideology... we feel free because we lack the very language to articulate our unfreedom.\"\"• Slavoj Å½iÅ¾ek, In Defense of Lost Causes ...",
- image: blogDefault,
+ image: blogFromIdeologyToPrincipleCentredLiving,
  date: "July 2020",
  category: "Reflections",
  content: [
@@ -1553,7 +1591,7 @@ export const blogPosts: BlogPost[] = [
  title: "Book Review - The Human Superorganism: How the Microbiome Is Revolutionizing the Pursuit of a Healthy Life",
  excerpt:
  "n The Human Superorganism: How the Microbiome Is Revolutionizing the Pursuit of a Healthy Life by Rodney Dietert",
- image: blogDefault,
+ image: blogBookReviewTheHumanSuperorganismHowTheMicrobiomeIsRevolutionizingThePursuitOfAHealthyLife,
  date: "May 2022",
  category: "Book Reviews",
  content: [
@@ -1596,7 +1634,7 @@ export const blogPosts: BlogPost[] = [
  title: "Chinese police cage and interrogate a man for criticising a traffic cop in a 'private' message online",
  excerpt:
  "A viral video from China shows a man in a medieval cage being interrogated by police.",
- image: blogDefault,
+ image: blogChinesePoliceCageAndInterrogateAManForCriticisingATrafficCopInAPrivateMessageOnline,
  date: "October 2022",
  category: "Human Rights",
  content: [
@@ -1613,7 +1651,7 @@ export const blogPosts: BlogPost[] = [
  title: "In The Media: A Little Help From Above",
  excerpt:
  "Cup from Above offers help to jobseekers and disadvantagednn. ",
- image: blogDefault,
+ image: blogInTheMediaALittleHelpFromAbove,
  date: "May 2023",
  category: "Media",
  content: [
@@ -1672,7 +1710,7 @@ export const blogPosts: BlogPost[] = [
  title: "Liberty Digital - Marketing & Communications",
  excerpt:
  "With a passion for helping businesses succeed, Adam James provides clients with various marketing services through his business Liberty Digital. His journey into the world of digital marketing began y...",
- image: blogDefault,
+ image: blogEmpoweringBusinessLibertyDigitalMarketingCommunications,
  date: "September 2023",
  category: "Business",
  content: [
@@ -1690,7 +1728,7 @@ export const blogPosts: BlogPost[] = [
  title: "Revolutionizing Visibility: Liberty Digital Elevates Only Tints with a Stellar Website and Digital Marketing Overhaul",
  excerpt:
  "Introductio . ",
- image: blogDefault,
+ image: blogRevolutionizingVisibilityLibertyDigitalElevatesOnlyTintsWithAStellarWebsiteAndDigitalMarketingOverhaul,
  date: "December 2023",
  category: "Business",
  content: [
@@ -1716,7 +1754,7 @@ export const blogPosts: BlogPost[] = [
  title: "Brewing Community: How a Local Police Coffee Initiative Mirrors Our Health & Life-Change Journey",
  excerpt:
  "When I came across the story of a local police-cafÃ© initiative titled \"Local Police Espresso\", I was struck not just by the novelty of officers serving coffee, but by how the story reflects the deepe...",
- image: blogDefault,
+ image: blogBrewingCommunityHowALocalPoliceCoffeeInitiativeMirrorsOurHealthLifeChangeJourney,
  date: "November 2025",
  category: "Community",
  content: [
@@ -1748,7 +1786,7 @@ export const blogPosts: BlogPost[] = [
  title: "Liberty Enterprises: A Social Enterprise Creating Opportunity",
  excerpt:
  "Link to the original article Courier Mail.",
- image: blogDefault,
+ image: blogLibertyEnterprisesASocialEnterpriseCreatingOpportunity,
  date: "November 2025",
  category: "Social Enterprise",
  content: [
@@ -1783,7 +1821,7 @@ export const blogPosts: BlogPost[] = [
  title: "In The Media: Silent Writer Finds The Keys to Success",
  excerpt:
  "Story Overview:",
- image: blogDefault,
+ image: blogInTheMediaSilentWriterFindsTheKeysToSuccess,
  date: "November 2025",
  category: "Media",
  content: [
