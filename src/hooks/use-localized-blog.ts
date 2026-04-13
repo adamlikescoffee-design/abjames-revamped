@@ -14,7 +14,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
   const { lang } = useLanguage();
 
   return useMemo(() => {
-    return blogPosts.map((post) => {
+    return blogPosts.filter((p) => !p.hidden).map((post) => {
       if (lang === "es") {
         const es = blogPostsEs[post.slug];
         return {
