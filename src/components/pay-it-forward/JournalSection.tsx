@@ -1,8 +1,9 @@
-import { BookOpen, CalendarDays } from "lucide-react";
+import { BookOpen, CalendarDays, Link as LinkIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import ScrollReveal from "@/components/ScrollReveal";
 import { format } from "date-fns";
+import { toast } from "sonner";
 import wheelchairDonated from "@/assets/wheelchair-donated.png";
 
 interface JournalEntry {
