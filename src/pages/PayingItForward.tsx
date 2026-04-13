@@ -62,12 +62,22 @@ const PayingItForward = () => {
           notes: pledgeData.notes || "",
           message: pledgeData.message || "",
         };
-        console.log("Pledge webhook payload:", webhookPayload);
+        console.log("Pledge webhook payload:", JSON.stringify(webhookPayload));
+        console.log("pledge_amount value:", webhookPayload.pledge_amount, "type:", typeof webhookPayload.pledge_amount);
 
         const formBody = new FormData();
-        Object.entries(webhookPayload).forEach(([key, value]) => {
-          formBody.append(key, String(value));
-        });
+        formBody.append("name", webhookPayload.name);
+        formBody.append("email", webhookPayload.email);
+        formBody.append("phone", webhookPayload.phone);
+        formBody.append("pledge_amount", String(webhookPayload.pledge_amount));
+        formBody.append("location", webhookPayload.location);
+        formBody.append("notes", webhookPayload.notes);
+        formBody.append("message", webhookPayload.message);
+
+        // Log all FormData entries for verification
+        for (const [key, value] of formBody.entries()) {
+          console.log(`FormData entry: ${key} = ${value}`);
+        }
 
         const webhookRes = await fetch("https://hook.eu2.make.com/tfo11b2di0h29prq78ey4v7zj08yib2y", {
           method: "POST",
