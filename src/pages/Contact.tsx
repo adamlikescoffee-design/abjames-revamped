@@ -26,10 +26,22 @@ const Contact = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const { data, error } = await supabase.functions.invoke('contact-webhook', {
+      // Save via edge function (Supabase + Make.com webhook)
+      const { error } = await supabase.functions.invoke('contact-webhook', {
         body: { name: formData.name, email: formData.email, message: formData.message },
       });
       if (error) throw error;
+
+      // Also send as FormData directly to Make.com for reliable field mapping
+      const payload = { name: formData.name, email: formData.email, message: formData.message };
+      console.log("Contact webhook payload:", payload);
+      const formBody = new FormData();
+      Object.entries(payload).forEach(([key, value]) => formBody.append(key, value));
+      await fetch("https://hook.eu2.make.com/bopfcq13tkndzbye9l19h6yaf83d3b4v", {
+        method: "POST",
+        body: formBody,
+      });
+
       setSubmitted(true);
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
