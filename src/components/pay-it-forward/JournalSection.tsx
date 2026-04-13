@@ -51,9 +51,17 @@ const JournalSection = () => {
           <div className="absolute left-4 top-0 bottom-0 w-px bg-border hidden md:block" />
 
           <div className="space-y-8">
-            {entries.map((entry, idx) => (
+            {entries.map((entry, idx) => {
+              const slug = entry.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+              const anchor = `journal-${slug}`;
+              const copyLink = () => {
+                const url = `${window.location.origin}/paying-it-forward#${anchor}`;
+                navigator.clipboard.writeText(url);
+                toast.success("Link copied to clipboard!");
+              };
+              return (
               <ScrollReveal key={entry.id} delay={idx * 80}>
-                <div className="md:pl-12 relative">
+                <div id={anchor} className="md:pl-12 relative scroll-mt-24">
                   {/* Timeline dot */}
                   <div className="absolute left-2.5 top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background hidden md:block" />
 
@@ -61,6 +69,9 @@ const JournalSection = () => {
                     <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
                       <CalendarDays size={12} />
                       {format(new Date(entry.published_at), "MMMM d, yyyy · h:mm a")}
+                      <button onClick={copyLink} className="ml-auto text-muted-foreground hover:text-primary transition-colors" title="Copy link to this entry">
+                        <LinkIcon size={14} />
+                      </button>
                     </div>
                     <h3 className="font-heading text-lg font-bold text-foreground mb-2">
                       {entry.title}
