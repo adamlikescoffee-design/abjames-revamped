@@ -1325,6 +1325,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "human-rights-feminism-mens-rights",
+    hidden: true,
     title: "Human Rights, Feminism & Men's Rights",
     excerpt: "Human Rights are a complex issue. It's something we've only really been able to articulate as a species in the last few hundred years...",
     image: blogHumanRightsFeminism,
