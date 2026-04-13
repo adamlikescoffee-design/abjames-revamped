@@ -17,7 +17,7 @@ const BlogSection = () => {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, idx) => (
+          {posts.slice(0, 6).map((post, idx) => (
             <ScrollReveal key={post.slug} animation="scale" delay={idx * 100}>
               <Link to={`/blog/${post.slug}`} className="group block bg-card rounded-lg overflow-hidden hover:ring-2 hover:ring-primary transition-all duration-300 h-full">
                 <div className="overflow-hidden">
@@ -32,6 +32,14 @@ const BlogSection = () => {
             </ScrollReveal>
           ))}
         </div>
+
+        <ScrollReveal>
+          <div className="text-center mt-10">
+            <Link to="/blog" className="inline-block bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-8 py-3 rounded-lg hover:brightness-110 transition-all">
+              {t.blogSection.title} →
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
