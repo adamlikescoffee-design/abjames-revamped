@@ -966,6 +966,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "my-account-of-events-part-2",
+    hidden: true,
     title: "My Account Of Events:  Part 2",
     excerpt: "I'm passionate about helping people out of crisis situations. When I was young I went through hell and noone was there for me. I had a few well intent...",
     image: blogMyAccountOfEventsPart2,
@@ -985,6 +986,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "my-account-of-events-part-3",
+    hidden: true,
     title: "My Account Of Events:  Part 3",
     excerpt: "One night a woman set fire to the facility we were in, to suicide by fire. She was under house arrest for arson. She was a giant woman. Taller than me...",
     image: blogMyAccountOfEventsPart3,
@@ -1144,6 +1146,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "my-account-of-events-part-5",
+    hidden: true,
     title: "My Account Of Events:  Part 5",
     excerpt: "April 2019, a school chaplain from SU QLD referred \"someone in need\" to my charity.  The woman was stated to be a victim of DV and facing homelessness...",
     image: blogMyAccountPart5,
@@ -1291,6 +1294,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "my-account-of-events-part-1",
+    hidden: true,
     title: "My Account Of Events: Part 1",
     excerpt: "I'm gonna share with you my story over the last 2 years. Conspiracy, police cover ups, crime & deception...",
     image: blogMyAccountPart1,
@@ -1305,6 +1309,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "my-account-of-events-part-4",
+    hidden: true,
     title: "My Account Of Events: Part 4",
     excerpt: "People get themselves in all sorts of crisis situations. They'll be an unfortunate innocent victim of one traumatic event...",
     image: blogMyAccountPart4,
