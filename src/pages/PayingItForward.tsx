@@ -142,6 +142,60 @@ const PayingItForward = () => {
         </div>
       </section>
 
+      {/* Fireside & Liberty Digital Promo */}
+      <section className="py-12 bg-background border-t border-border">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ScrollReveal animation="up" delay={0}>
+              <a
+                href="https://www.thefiresideaus.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-secondary border border-border rounded-2xl p-8 hover:border-primary/30 transition-colors h-full"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    🔥
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-foreground">
+                    {t.payingItForward.firesidePromo}
+                  </h3>
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  {t.payingItForward.firesidePromoDesc}
+                </p>
+                <span className="text-primary font-heading font-semibold tracking-wider text-xs hover:underline">
+                  {t.payingItForward.firesidePromoLink}
+                </span>
+              </a>
+            </ScrollReveal>
+            <ScrollReveal animation="up" delay={100}>
+              <a
+                href="https://www.libertydigital.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-secondary border border-border rounded-2xl p-8 hover:border-primary/30 transition-colors h-full"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    🚀
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-foreground">
+                    {t.payingItForward.libertyPromo}
+                  </h3>
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  {t.payingItForward.libertyPromoDesc}
+                </p>
+                <span className="text-primary font-heading font-semibold tracking-wider text-xs hover:underline">
+                  {t.payingItForward.libertyPromoLink}
+                </span>
+              </a>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
