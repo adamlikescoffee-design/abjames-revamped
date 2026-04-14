@@ -15,8 +15,16 @@ const AdminLogin = () => {
   const [resetSent, setResetSent] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { session } = useAuth();
 
   const redirectTo = (location.state as { from?: string })?.from || "/admin";
+
+  // If already authenticated, redirect to admin
+  useEffect(() => {
+    if (session) {
+      navigate(redirectTo, { replace: true });
+    }
+  }, [session, navigate, redirectTo]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
