@@ -5,6 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import wheelchairDonated from "@/assets/wheelchair-donated.png";
+import wheelchairQuitoDelivery from "@/assets/wheelchair-quito-delivery.png";
 
 interface JournalEntry {
   id: string;
@@ -91,6 +92,15 @@ const JournalSection = () => {
                         <img
                           src={wheelchairDonated}
                           alt="The donated wheelchair"
+                          className="rounded-xl shadow-lg w-full object-cover"
+                        />
+                      </div>
+                    )}
+                    {entry.title.toLowerCase().includes("delivered to quito") && (
+                      <div className="mt-4 max-w-xs">
+                        <img
+                          src={wheelchairQuitoDelivery}
+                          alt="Wheelchair packaged for delivery to Quito"
                           className="rounded-xl shadow-lg w-full object-cover"
                         />
                       </div>
