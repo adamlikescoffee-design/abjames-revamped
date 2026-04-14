@@ -469,6 +469,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "new-laws-needed-for-equality",
+    hidden: true,
     title: "New Laws Needed For Equality",
     excerpt: "Most people are under no delusion that women are equally violent as men and, despite being less physically strong, equally capable of horrific crimes....",
     image: blogNewLawsEquality,
