@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
+import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 import { Loader2, Lock, Eye, EyeOff } from "lucide-react";
 
@@ -15,8 +16,16 @@ const AdminLogin = () => {
   const [resetSent, setResetSent] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { session } = useAuth();
 
   const redirectTo = (location.state as { from?: string })?.from || "/admin";
+
+  // If already authenticated, redirect to admin
+  useEffect(() => {
+    if (session) {
+      navigate(redirectTo, { replace: true });
+    }
+  }, [session, navigate, redirectTo]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
