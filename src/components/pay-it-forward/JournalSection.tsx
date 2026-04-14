@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { toast } from "sonner";
 import wheelchairDonated from "@/assets/wheelchair-donated.png";
 import wheelchairQuitoDelivery from "@/assets/wheelchair-quito-delivery.png";
+import wheelchairBusTicket from "@/assets/wheelchair-bus-ticket.png";
 
 interface JournalEntry {
   id: string;
@@ -101,12 +102,21 @@ const JournalSection = () => {
                       </div>
                     )}
                     {entry.title.toLowerCase().includes("delivered to quito") && (
-                      <div className="mt-4 max-w-xs">
-                        <img
-                          src={wheelchairQuitoDelivery}
-                          alt="Wheelchair packaged for delivery to Quito"
-                          className="rounded-xl shadow-lg w-full object-cover"
-                        />
+                      <div className="mt-4 flex flex-wrap gap-4">
+                        <div className="max-w-xs">
+                          <img
+                            src={wheelchairQuitoDelivery}
+                            alt="Wheelchair packaged for delivery to Quito"
+                            className="rounded-xl shadow-lg w-full object-cover"
+                          />
+                        </div>
+                        <div className="max-w-xs">
+                          <img
+                            src={wheelchairBusTicket}
+                            alt="Bus ticket for wheelchair delivery to Quito"
+                            className="rounded-xl shadow-lg w-full object-cover"
+                          />
+                        </div>
                       </div>
                     )}
                   </div>
