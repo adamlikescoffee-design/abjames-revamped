@@ -23,7 +23,7 @@ export const es: typeof en = {
     p2After: " y hacer lo que puedo para reducir el sufrimiento innecesario en este mundo.",
     p3Before: "Fundé Fireside, un grupo que apoya a hombres en los negocios y en la vida. ",
     firesideLink: "Conoce más sobre Fireside aquí.",
-    p3Mid: "  Trabajo con hombres para ayudarlos a construir grandes negocios que resuelvan problemas difíciles y hagan del mundo un lugar mejor. También me gusta construir ",
+    p3Mid: " Trabajo con hombres para ayudarlos a construir grandes negocios que resuelvan problemas difíciles y hagan del mundo un lugar mejor. Trabajo con muchas Startups que están haciendo cosas increíbles. También me gusta construir ",
     p3WebLink: "sitios web hermosos y funcionales",
     p3WebAfter: "... que son muy fáciles de encontrar a través de ",
     p3SeoLink: "SEO",
