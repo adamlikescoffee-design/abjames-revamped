@@ -220,7 +220,7 @@ export const en = {
     involvedText: "Do you know someone who really needs help? Do you want to work together to help reduce unnecessary suffering? Do you want to collaborate to pay it forward?",
     getInTouch: "GET IN TOUCH",
     firesidePromo: "The Fireside",
-    firesidePromoDesc: "A supportive community for men in business. Honest conversations, mentorship, and growth — around the fire.",
+    firesidePromoDesc: "A supportive community for men in business. Learn from men who have built a 7-9 figure business. Mentorship, referrals and growth — around the fireside.",
     firesidePromoLink: "LEARN MORE →",
     libertyPromo: "Liberty Digital",
     libertyPromoDesc: "Helping businesses tell their stories through compelling digital marketing, SEO, and beautiful websites.",

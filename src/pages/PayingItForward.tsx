@@ -153,7 +153,7 @@ const PayingItForward = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ScrollReveal animation="up" delay={0}>
               <a
-                href="https://www.thefiresideaus.com"
+                href="https://www.firesidebusinessadvice.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block bg-secondary border border-border rounded-2xl p-8 hover:border-primary/30 transition-colors h-full"

@@ -222,7 +222,7 @@ export const es: typeof en = {
     involvedText: "¿Conoces a alguien que realmente necesita ayuda? ¿Quieres trabajar juntos para reducir el sufrimiento innecesario? ¿Quieres colaborar para pagar hacia adelante?",
     getInTouch: "CONTÁCTAME",
     firesidePromo: "The Fireside",
-    firesidePromoDesc: "Una comunidad de apoyo para hombres en los negocios. Conversaciones honestas, mentoría y crecimiento — alrededor del fuego.",
+    firesidePromoDesc: "Una comunidad de apoyo para hombres en los negocios. Aprende de hombres que han construido negocios de 7-9 cifras. Mentoría, referencias y crecimiento — alrededor del fireside.",
     firesidePromoLink: "MÁS INFORMACIÓN →",
     libertyPromo: "Liberty Digital",
     libertyPromoDesc: "Ayudando a las empresas a contar sus historias a través de marketing digital, SEO y sitios web hermosos.",
