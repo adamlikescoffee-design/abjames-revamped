@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { toast } from "sonner";
 import wheelchairDonated from "@/assets/wheelchair-donated.png";
 import wheelchairQuitoDelivery from "@/assets/wheelchair-quito-delivery.png";
+import wheelchairBusTicket from "@/assets/wheelchair-bus-ticket.png";
 
 interface JournalEntry {
   id: string;
