@@ -96,6 +96,15 @@ const JournalSection = () => {
                         />
                       </div>
                     )}
+                    {entry.title.toLowerCase().includes("delivered to quito") && (
+                      <div className="mt-4 max-w-xs">
+                        <img
+                          src={wheelchairQuitoDelivery}
+                          alt="Wheelchair packaged for delivery to Quito"
+                          className="rounded-xl shadow-lg w-full object-cover"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </ScrollReveal>
