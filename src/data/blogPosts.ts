@@ -1129,6 +1129,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "music-connects",
+    hidden: true,
     title: "Music, Connection, Old Love & Bob Marley",
     excerpt: "Today I went into the city to explore and capture some images and develop some ideas about connection and community.  I sought for photos to illustrat...",
     image: blogMusicConnects,
