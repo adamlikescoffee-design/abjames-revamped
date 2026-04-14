@@ -85,7 +85,11 @@ const JournalSection = () => {
                       {entry.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                      {entry.content}
+                      {entry.content.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+                        part.match(/^https?:\/\//) ? (
+                          <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">{part}</a>
+                        ) : part
+                      )}
                     </p>
                     {entry.title.toLowerCase().includes("donated") && (
                       <div className="mt-4 max-w-xs">
