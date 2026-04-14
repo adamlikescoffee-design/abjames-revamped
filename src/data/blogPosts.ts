@@ -543,6 +543,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "bond-cleaning-brisbane",
+    hidden: true,
     title: "Bond Cleaning Brisbane",
     excerpt: "Whenever you move house in Brisbane a bond clean is a necessary part of the ordeal.  When it comes to bond cleaning Brisbane, property managers are pa...",
     image: blogBondCleaning,
