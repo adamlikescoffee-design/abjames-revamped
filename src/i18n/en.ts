@@ -21,7 +21,7 @@ export const en = {
     p2After: " and doing what I can to reduce unnecessary suffering in this world.",
     p3Before: "I founded the Fireside, which is a group that supports men in business and life. ",
     firesideLink: "Learn more about the Fireside here.",
-    p3Mid: "  I work with men to help them build great businesses that solve difficult problems and make the world better.   I also like building ",
+    p3Mid: " I work with men to help them build great businesses that solve difficult problems and make the world better. I work with many Startups that are doing amazing things. I also like building ",
     p3WebLink: "beautiful and functional websites",
     p3WebAfter: "... that are really easy to find through ",
     p3SeoLink: "SEO",
