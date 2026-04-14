@@ -121,19 +121,24 @@ const PayingItForward = () => {
       
 
       {/* CTA */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary to-primary/5" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="relative container mx-auto px-4 max-w-3xl">
           <ScrollReveal>
-            <div className="text-center space-y-6">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+            <div className="text-center space-y-8">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary font-heading text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full">
+                ✦ Pay It Forward
+              </div>
+              <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground leading-tight">
                 {t.payingItForward.involvedTitle}
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
                 {t.payingItForward.involvedText}
               </p>
               <Link
                 to="/contact"
-                className="inline-block bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-8 py-3 hover:brightness-110 transition-all rounded-lg"
+                className="inline-block bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-10 py-4 hover:brightness-110 hover:scale-105 transition-all rounded-full shadow-lg shadow-primary/20"
               >
                 {t.payingItForward.getInTouch}
               </Link>
