@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import wheelchairDonated from "@/assets/wheelchair-donated.png";
 import wheelchairQuitoDelivery from "@/assets/wheelchair-quito-delivery.png";
 import wheelchairBusTicket from "@/assets/wheelchair-bus-ticket.png";
+import wheelchairHenryDelivery from "@/assets/wheelchair-henry-delivery.png";
 
 interface JournalEntry {
   id: string;
