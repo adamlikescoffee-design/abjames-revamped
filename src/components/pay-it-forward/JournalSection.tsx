@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import wheelchairDonated from "@/assets/wheelchair-donated.png";
 import wheelchairQuitoDelivery from "@/assets/wheelchair-quito-delivery.png";
 import wheelchairBusTicket from "@/assets/wheelchair-bus-ticket.png";
+import wheelchairHenryDelivery from "@/assets/wheelchair-henry-delivery.png";
 
 interface JournalEntry {
   id: string;
@@ -117,6 +118,15 @@ const JournalSection = () => {
                             className="rounded-xl shadow-lg w-full object-cover"
                           />
                         </div>
+                      </div>
+                    )}
+                    {entry.title.toLowerCase().includes("huge thanks to henry") && (
+                      <div className="mt-4 max-w-sm">
+                        <img
+                          src={wheelchairHenryDelivery}
+                          alt="Henry Padilla delivering the wheelchair in Quito"
+                          className="rounded-xl shadow-lg w-full object-cover"
+                        />
                       </div>
                     )}
                   </div>
