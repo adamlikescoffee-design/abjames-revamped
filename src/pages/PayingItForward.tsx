@@ -136,12 +136,22 @@ const PayingItForward = () => {
               <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
                 {t.payingItForward.involvedText}
               </p>
-              <Link
-                to="/contact"
-                className="inline-block bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-10 py-4 hover:brightness-110 hover:scale-105 transition-all rounded-full shadow-lg shadow-primary/20"
-              >
-                {t.payingItForward.getInTouch}
-              </Link>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  to="/contact"
+                  className="inline-block bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm px-10 py-4 hover:brightness-110 hover:scale-105 transition-all rounded-full shadow-lg shadow-primary/20"
+                >
+                  {t.payingItForward.getInTouch}
+                </Link>
+                <a
+                  href="https://www.facebook.com/groups/abjamesfriends"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-secondary text-foreground border border-border font-heading font-semibold tracking-wider text-sm px-10 py-4 hover:border-primary/50 hover:scale-105 transition-all rounded-full"
+                >
+                  Join the Facebook Group
+                </a>
+              </div>
             </div>
           </ScrollReveal>
         </div>
