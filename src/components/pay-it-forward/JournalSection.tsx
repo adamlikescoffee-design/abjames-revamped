@@ -8,6 +8,14 @@ import wheelchairDonated from "@/assets/wheelchair-donated.png";
 import wheelchairQuitoDelivery from "@/assets/wheelchair-quito-delivery.png";
 import wheelchairBusTicket from "@/assets/wheelchair-bus-ticket.png";
 import wheelchairHenryDelivery from "@/assets/wheelchair-henry-delivery.png";
+import thankyou1 from "@/assets/wheelchair-thankyou-1.jpg";
+import thankyou2 from "@/assets/wheelchair-thankyou-2.jpg";
+import thankyou3 from "@/assets/wheelchair-thankyou-3.jpg";
+import thankyou4 from "@/assets/wheelchair-thankyou-4.jpg";
+import thankyou5 from "@/assets/wheelchair-thankyou-5.jpg";
+import thankyou6 from "@/assets/wheelchair-thankyou-6.jpg";
+
+const thankYouImages = [thankyou1, thankyou2, thankyou3, thankyou4, thankyou5, thankyou6];
 
 interface JournalEntry {
   id: string;
@@ -118,6 +126,19 @@ const JournalSection = () => {
                             className="rounded-xl shadow-lg w-full object-cover"
                           />
                         </div>
+                      </div>
+                    )}
+                    {entry.title.toLowerCase().includes("thank you to everyone") && (
+                      <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {thankYouImages.map((src, i) => (
+                          <img
+                            key={i}
+                            src={src}
+                            alt={`Wheelchair handover celebration photo ${i + 1}`}
+                            className="rounded-xl shadow-lg w-full h-48 object-cover"
+                            loading="lazy"
+                          />
+                        ))}
                       </div>
                     )}
                     {entry.title.toLowerCase().includes("huge thanks to henry") && (
