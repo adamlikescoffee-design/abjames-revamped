@@ -432,6 +432,44 @@ const MediaPublications = () => {
             </div>
           )}
 
+          {/* Layout toggle */}
+          {filteredPublications.length > 0 && (
+            <div className="flex items-center justify-end mb-6">
+              <div
+                role="group"
+                aria-label={lang === "es" ? "Cambiar diseño" : "Switch layout"}
+                className="inline-flex items-center gap-1 p-1 rounded-full border border-border/60 bg-card/60 backdrop-blur-sm"
+              >
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode("masonry")}
+                  aria-pressed={layoutMode === "masonry"}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-heading text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+                    layoutMode === "masonry"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <LayoutGrid size={13} />
+                  {lang === "es" ? "Mosaico" : "Masonry"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode("list")}
+                  aria-pressed={layoutMode === "list"}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-heading text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+                    layoutMode === "list"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Rows3 size={13} />
+                  {lang === "es" ? "Lista" : "List"}
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Featured Section */}
           {featuredPubs.length > 0 && (
             <ScrollReveal>
