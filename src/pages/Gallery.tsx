@@ -147,7 +147,10 @@ const Gallery = () => {
 
       {lightboxIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center" onClick={closeLightbox}>
-          <button onClick={(e) => { e.stopPropagation(); handleShare(); }} aria-label="Copy link to image" className="absolute top-4 right-16 text-foreground/70 hover:text-foreground transition-colors z-10">{copied ? <Check size={28} /> : <Share2 size={28} />}</button>
+          <button onClick={(e) => { e.stopPropagation(); handleShare(); }} aria-label="Copy link to image" className="absolute top-4 right-16 flex flex-col items-center gap-1 text-foreground/70 hover:text-foreground transition-colors z-10">
+            {copied ? <Check size={28} /> : <Share2 size={28} />}
+            <span className="text-xs font-mono leading-none">{copied ? "Copied!" : `Copy link · #image=${lightboxIndex}`}</span>
+          </button>
           <button onClick={closeLightbox} className="absolute top-4 right-4 text-foreground/70 hover:text-foreground transition-colors z-10"><X size={32} /></button>
           <button onClick={(e) => { e.stopPropagation(); goPrev(); }} className="absolute left-4 text-foreground/70 hover:text-foreground transition-colors z-10"><ChevronLeft size={40} /></button>
           <button onClick={(e) => { e.stopPropagation(); goNext(); }} className="absolute right-4 text-foreground/70 hover:text-foreground transition-colors z-10"><ChevronRight size={40} /></button>
