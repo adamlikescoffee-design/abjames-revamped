@@ -359,7 +359,7 @@ const MediaPublications = () => {
           <div className="absolute inset-0 bg-background/85" />
         </div>
 
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <ScrollReveal>
             <div className="text-center mb-6">
               <span className="inline-flex items-center gap-2 text-primary font-heading text-xs font-semibold tracking-[0.2em] uppercase mb-4">
@@ -423,21 +423,21 @@ const MediaPublications = () => {
           {/* Featured Section */}
           {featuredPubs.length > 0 && (
             <ScrollReveal>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6 md:mb-8 flex items-center gap-3">
                 <span className="w-8 h-px bg-primary" />
                 {lang === "es" ? "Artículos Destacados" : "Featured Coverage"}
               </h2>
             </ScrollReveal>
           )}
 
-          <div className="space-y-12 mb-16">
+          <div className="space-y-8 md:space-y-12 mb-12 md:mb-16">
             {featuredPubs.map((pub, idx) => (
               <ScrollReveal key={idx} animation={idx % 2 === 0 ? "left" : "right"} delay={idx * 100}>
                 <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
                   <div className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
                     {/* Image Gallery — uncropped, natural aspect ratio */}
                     {pub.images.length > 0 && (
-                      <div className="lg:w-1/2 shrink-0 bg-black/40 p-4 md:p-6 flex items-center justify-center">
+                      <div className="lg:w-1/2 shrink-0 bg-black/40 p-3 sm:p-4 md:p-6 flex items-center justify-center">
                         {pub.images.length === 1 ? (
                           <div
                             className="cursor-pointer overflow-hidden rounded-lg group/img w-full"
@@ -451,7 +451,7 @@ const MediaPublications = () => {
                             />
                           </div>
                         ) : (
-                          <div className="grid grid-cols-2 gap-3 w-full">
+                          <div className="grid grid-cols-2 gap-2 sm:gap-3 w-full">
                             {pub.images.slice(0, 4).map((img, imgIdx) => (
                               <div
                                 key={imgIdx}
@@ -483,11 +483,11 @@ const MediaPublications = () => {
                     )}
 
                     {/* Content */}
-                    <div className="flex-1 p-6 md:p-10 flex flex-col justify-center">
+                    <div className="flex-1 p-5 sm:p-6 md:p-10 flex flex-col justify-center">
                       <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
-                      <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
-                      <p className="text-muted-foreground text-base leading-relaxed">{getDesc(pub)}</p>
+                      <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
+                      <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{getDesc(pub)}</p>
                       {pub.audioUrl && (
                         <a href={pub.audioUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-5 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all">
                           <Mic size={14} />
@@ -504,19 +504,19 @@ const MediaPublications = () => {
           {/* All Coverage */}
           {regularPubs.length > 0 && (
             <ScrollReveal>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6 md:mb-8 flex items-center gap-3">
                 <span className="w-8 h-px bg-primary" />
                 {lang === "es" ? "Toda la Cobertura" : "All Coverage"}
               </h2>
             </ScrollReveal>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-12 md:mb-16">
             {regularPubs.map((pub, idx) => (
               <ScrollReveal key={idx} animation="up" delay={idx * 80}>
                 <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 h-full flex flex-col">
                   {pub.images.length > 0 && (
-                    <div className="bg-black/40 p-3 flex items-center justify-center">
+                    <div className="bg-black/40 p-3 sm:p-4 flex items-center justify-center">
                       <div className={`grid ${pub.images.length >= 2 ? 'grid-cols-2' : 'grid-cols-1'} gap-2 w-full`}>
                         {pub.images.slice(0, 2).map((img, imgIdx) => (
                           <div key={imgIdx} className="overflow-hidden rounded-md cursor-pointer bg-background/30" onClick={() => openLightbox(img)}>
@@ -541,7 +541,7 @@ const MediaPublications = () => {
                     </div>
                   )}
 
-                  <div className="p-5 flex-1 flex flex-col">
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col">
                     <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
                     <h3 className="font-heading text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
