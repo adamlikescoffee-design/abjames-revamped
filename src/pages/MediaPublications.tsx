@@ -352,8 +352,27 @@ const ShareDownload = ({ title, description, imageUrl, externalUrl, lang, size =
 const MediaPublications = () => {
   const { lang, t } = useLanguage();
   const allImages = publications.flatMap((pub) =>
-    pub.images.map((img, i) => ({ src: img, alt: `${pub.title} - image ${i + 1}` }))
+    pub.images.map((img, i) => ({
+      src: img,
+      alt: `${pub.title} - image ${i + 1}`,
+      title: lang === "es" ? pub.titleEs : pub.title,
+      source: lang === "es" ? pub.sourceEs : pub.source,
+      year: pub.year,
+      type: pub.type,
+      indexInPub: i + 1,
+      totalInPub: pub.images.length,
+    }))
   );
+
+  const [captionVisible, setCaptionVisible] = useState<boolean>(() => {
+    if (typeof window === "undefined") return true;
+    return localStorage.getItem("mediaLightboxCaption") !== "0";
+  });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("mediaLightboxCaption", captionVisible ? "1" : "0");
+    }
+  }, [captionVisible]);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [detailPub, setDetailPub] = useState<Publication | null>(null);
@@ -489,9 +508,63 @@ const MediaPublications = () => {
               </button>
             </>
           )}
-          <img src={allImages[lightboxIndex].src} alt={allImages[lightboxIndex].alt} className="max-h-[90vh] max-w-[90vw] object-contain" onClick={(e) => e.stopPropagation()} />
+          <div
+            className="relative flex flex-col items-center justify-center max-w-[92vw] max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={allImages[lightboxIndex].src}
+              alt={allImages[lightboxIndex].alt}
+              className={`object-contain ${captionVisible ? "max-h-[78vh]" : "max-h-[90vh]"} max-w-[92vw] transition-[max-height] duration-300`}
+            />
+            {captionVisible && (
+              <div className="mt-4 w-full max-w-3xl px-4 py-3 rounded-xl bg-background/50 backdrop-blur-md border border-border/40 text-center">
+                <h3 className="text-foreground font-heading text-sm sm:text-base font-semibold leading-snug mb-1.5">
+                  {allImages[lightboxIndex].title}
+                </h3>
+                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-muted-foreground font-heading text-[10px] sm:text-[11px] tracking-[0.15em] uppercase">
+                  <span className="inline-flex items-center gap-1.5 text-primary">
+                    <Newspaper size={11} />
+                    {allImages[lightboxIndex].source}
+                  </span>
+                  {allImages[lightboxIndex].year && (
+                    <>
+                      <span aria-hidden="true" className="opacity-50">•</span>
+                      <span>{allImages[lightboxIndex].year}</span>
+                    </>
+                  )}
+                  <span aria-hidden="true" className="opacity-50">•</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    {typeIcon(allImages[lightboxIndex].type)}
+                    {typeLabel(allImages[lightboxIndex].type, lang)}
+                  </span>
+                  {allImages[lightboxIndex].totalInPub > 1 && (
+                    <>
+                      <span aria-hidden="true" className="opacity-50">•</span>
+                      <span>
+                        {lang === "es" ? "Imagen" : "Image"} {allImages[lightboxIndex].indexInPub} / {allImages[lightboxIndex].totalInPub}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Caption toggle */}
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setCaptionVisible((v) => !v); }}
+            aria-pressed={captionVisible}
+            className="absolute top-4 right-16 z-20 h-11 px-3 flex items-center gap-1.5 rounded-full bg-background/40 hover:bg-background/70 text-foreground/80 hover:text-foreground transition-colors backdrop-blur-sm font-heading text-[10px] font-semibold tracking-[0.15em] uppercase"
+          >
+            {captionVisible
+              ? (lang === "es" ? "Ocultar título" : "Hide caption")
+              : (lang === "es" ? "Mostrar título" : "Show caption")}
+          </button>
+
           {allImages.length > 1 && (
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-background/40 backdrop-blur-sm text-foreground/80 text-xs font-heading tracking-[0.15em]">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-background/40 backdrop-blur-sm text-foreground/80 text-xs font-heading tracking-[0.15em]">
               {lightboxIndex + 1} / {allImages.length}
             </div>
           )}
