@@ -355,6 +355,7 @@ const MediaPublications = () => {
   );
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [detailPub, setDetailPub] = useState<Publication | null>(null);
 
   const openLightbox = (src: string) => {
     const idx = allImages.findIndex((img) => img.src === src);
@@ -385,6 +386,19 @@ const MediaPublications = () => {
       window.removeEventListener("keydown", handleKey);
     };
   }, [lightboxIndex, goPrev, goNext]);
+
+  useEffect(() => {
+    if (!detailPub) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDetailPub(null);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [detailPub]);
 
   const getTitle = (pub: Publication) => lang === "es" ? pub.titleEs : pub.title;
   const getDesc = (pub: Publication) => lang === "es" ? pub.descriptionEs : pub.description;
@@ -458,6 +472,105 @@ const MediaPublications = () => {
               {lightboxIndex + 1} / {allImages.length}
             </div>
           )}
+        </div>
+      )}
+
+      {/* Detail Modal */}
+      {detailPub && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+          onClick={() => setDetailPub(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="pub-detail-title"
+        >
+          <div
+            className="relative bg-card border border-border/60 rounded-2xl max-w-3xl w-full my-8 max-h-[90vh] overflow-y-auto shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setDetailPub(null)}
+              aria-label={lang === "es" ? "Cerrar" : "Close"}
+              className="absolute top-3 right-3 z-10 h-10 w-10 flex items-center justify-center rounded-full bg-background/70 hover:bg-background text-foreground/80 hover:text-foreground transition-colors backdrop-blur-sm"
+            >
+              <X size={20} />
+            </button>
+
+            {detailPub.images.length > 0 && (
+              <div className="bg-black/40 p-4 sm:p-6 flex items-center justify-center">
+                <img
+                  src={detailPub.images[0]}
+                  alt={getTitle(detailPub)}
+                  className="w-full max-h-[50vh] object-contain rounded-lg cursor-zoom-in"
+                  onClick={() => { const src = detailPub.images[0]; setDetailPub(null); openLightbox(src); }}
+                />
+              </div>
+            )}
+
+            <div className="p-5 sm:p-8">
+              {/* Dedicated metadata section */}
+              <div className="mb-5 pb-5 border-b border-border/50">
+                <span className="block text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.2em] uppercase mb-3">
+                  {lang === "es" ? "Detalles" : "Details"}
+                </span>
+                <dl className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                  <div>
+                    <dt className="text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.18em] uppercase mb-1">
+                      {lang === "es" ? "Fuente" : "Source"}
+                    </dt>
+                    <dd className="inline-flex items-center gap-1.5 text-primary font-heading text-sm font-semibold">
+                      <Newspaper size={13} />
+                      {getSource(detailPub)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.18em] uppercase mb-1">
+                      {lang === "es" ? "Año" : "Year"}
+                    </dt>
+                    <dd className="text-foreground font-heading text-sm font-semibold">
+                      {detailPub.year || "—"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.18em] uppercase mb-1">
+                      {lang === "es" ? "Tipo" : "Type"}
+                    </dt>
+                    <dd className="inline-flex items-center gap-1.5 text-foreground font-heading text-sm font-semibold">
+                      {typeIcon(detailPub.type)}
+                      {typeLabel(detailPub.type, lang)}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <h2 id="pub-detail-title" className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-4 leading-tight">
+                {getTitle(detailPub)}
+              </h2>
+              <p className="text-muted-foreground text-base leading-relaxed whitespace-pre-line">
+                {getDesc(detailPub)}
+              </p>
+
+              {detailPub.audioUrl && (
+                <a
+                  href={detailPub.audioUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground font-heading text-sm font-semibold tracking-wider transition-colors"
+                >
+                  <Mic size={14} />
+                  {t.mediaPage.listenOnSoundcloud}
+                </a>
+              )}
+
+              <ShareDownload
+                title={getTitle(detailPub)}
+                description={getDesc(detailPub)}
+                imageUrl={detailPub.images[0]}
+                externalUrl={detailPub.externalUrl || detailPub.audioUrl}
+                lang={lang}
+              />
+            </div>
+          </div>
         </div>
       )}
 
@@ -595,7 +708,13 @@ const MediaPublications = () => {
                     <div className="flex-1 p-5 sm:p-6 md:p-10 flex flex-col justify-center">
                       <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
-                      <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
+                      <button
+                        type="button"
+                        onClick={() => setDetailPub(pub)}
+                        className="text-left font-heading text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4 leading-tight group-hover:text-primary hover:text-primary transition-colors"
+                      >
+                        {getTitle(pub)}
+                      </button>
                       <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{getDesc(pub)}</p>
                       {pub.audioUrl && (
                         <a href={pub.audioUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-5 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all">
@@ -660,7 +779,13 @@ const MediaPublications = () => {
                   <div className="p-5 sm:p-6 flex-1 flex flex-col">
                     <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
-                    <h3 className="font-heading text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
+                    <button
+                      type="button"
+                      onClick={() => setDetailPub(pub)}
+                      className="text-left font-heading text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary hover:text-primary transition-colors"
+                    >
+                      {getTitle(pub)}
+                    </button>
                     <p className="text-muted-foreground text-sm leading-relaxed flex-1">{getDesc(pub)}</p>
                     {pub.audioUrl && (
                       <a href={pub.audioUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-3 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all">
