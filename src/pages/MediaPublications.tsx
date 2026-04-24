@@ -355,6 +355,7 @@ const MediaPublications = () => {
   );
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [detailPub, setDetailPub] = useState<Publication | null>(null);
 
   const openLightbox = (src: string) => {
     const idx = allImages.findIndex((img) => img.src === src);
