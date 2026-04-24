@@ -318,17 +318,37 @@ const MediaPublications = () => {
       {/* Lightbox */}
       {lightboxIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={closeLightbox}>
-          <button onClick={closeLightbox} className="absolute top-4 right-4 text-foreground/70 hover:text-foreground transition-colors z-10"><X size={32} /></button>
+          <button
+            onClick={closeLightbox}
+            aria-label={lang === "es" ? "Cerrar" : "Close"}
+            className="absolute top-4 right-4 z-20 h-11 w-11 flex items-center justify-center rounded-full bg-background/40 hover:bg-background/70 text-foreground/80 hover:text-foreground transition-colors backdrop-blur-sm"
+          >
+            <X size={24} />
+          </button>
           {allImages.length > 1 && (
             <>
-              <button onClick={(e) => { e.stopPropagation(); goPrev(); }} className="absolute left-4 text-foreground/70 hover:text-foreground transition-colors z-10"><ChevronLeft size={40} /></button>
-              <button onClick={(e) => { e.stopPropagation(); goNext(); }} className="absolute right-4 text-foreground/70 hover:text-foreground transition-colors z-10"><ChevronRight size={40} /></button>
+              <button
+                onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                aria-label={lang === "es" ? "Anterior" : "Previous"}
+                className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 h-12 w-12 md:h-14 md:w-14 flex items-center justify-center rounded-full bg-background/40 hover:bg-primary text-foreground/90 hover:text-primary-foreground transition-colors backdrop-blur-sm shadow-lg"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); goNext(); }}
+                aria-label={lang === "es" ? "Siguiente" : "Next"}
+                className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 h-12 w-12 md:h-14 md:w-14 flex items-center justify-center rounded-full bg-background/40 hover:bg-primary text-foreground/90 hover:text-primary-foreground transition-colors backdrop-blur-sm shadow-lg"
+              >
+                <ChevronRight size={32} />
+              </button>
             </>
           )}
           <img src={allImages[lightboxIndex].src} alt={allImages[lightboxIndex].alt} className="max-h-[90vh] max-w-[90vw] object-contain" onClick={(e) => e.stopPropagation()} />
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-foreground/50 text-sm font-heading tracking-wider">
-            {lightboxIndex + 1} / {allImages.length}
-          </div>
+          {allImages.length > 1 && (
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-background/40 backdrop-blur-sm text-foreground/80 text-xs font-heading tracking-[0.15em]">
+              {lightboxIndex + 1} / {allImages.length}
+            </div>
+          )}
         </div>
       )}
 
