@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -404,15 +405,37 @@ const MediaPublications = () => {
   const getDesc = (pub: Publication) => lang === "es" ? pub.descriptionEs : pub.description;
   const getSource = (pub: Publication) => lang === "es" ? pub.sourceEs : pub.source;
 
-  // Filters
-  const [activeSource, setActiveSource] = useState<string | null>(null);
-  const [activeYear, setActiveYear] = useState<string | null>(null);
-  const [activeType, setActiveType] = useState<string | null>(null);
+  // Filters — synced with URL query params (?source=&year=&type=)
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeSource = searchParams.get("source");
+  const activeYear = searchParams.get("year");
+  const activeType = searchParams.get("type");
 
-  const toggleSource = (s: string) => setActiveSource((cur) => (cur === s ? null : s));
-  const toggleYear = (y: string) => setActiveYear((cur) => (cur === y ? null : y));
-  const toggleType = (ty: string) => setActiveType((cur) => (cur === ty ? null : ty));
-  const clearFilters = () => { setActiveSource(null); setActiveYear(null); setActiveType(null); };
+  const updateParam = (key: "source" | "year" | "type", value: string | null) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value === null) next.delete(key);
+      else next.set(key, value);
+      return next;
+    }, { replace: true });
+  };
+
+  const setActiveSource = (v: string | null) => updateParam("source", v);
+  const setActiveYear = (v: string | null) => updateParam("year", v);
+  const setActiveType = (v: string | null) => updateParam("type", v);
+
+  const toggleSource = (s: string) => setActiveSource(activeSource === s ? null : s);
+  const toggleYear = (y: string) => setActiveYear(activeYear === y ? null : y);
+  const toggleType = (ty: string) => setActiveType(activeType === ty ? null : ty);
+  const clearFilters = () => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.delete("source");
+      next.delete("year");
+      next.delete("type");
+      return next;
+    }, { replace: true });
+  };
   const hasFilters = activeSource !== null || activeYear !== null || activeType !== null;
 
   const matchesFilters = (p: Publication) =>
