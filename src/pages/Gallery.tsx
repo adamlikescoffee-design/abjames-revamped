@@ -2,9 +2,10 @@ import { useState, useCallback, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Share2, Check } from "lucide-react";
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { toast } from "@/hooks/use-toast";
 
 import gallery01 from "@/assets/gallery-01.jpeg";
 
@@ -68,6 +69,7 @@ const galleryImages = [
 
 const Gallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [copied, setCopied] = useState(false);
   const { t } = useLanguage();
 
   const closeLightbox = () => setLightboxIndex(null);
@@ -79,6 +81,50 @@ const Gallery = () => {
   const goNext = useCallback(() => {
     setLightboxIndex((prev) => prev !== null ? (prev + 1) % galleryImages.length : null);
   }, []);
+
+  // Sync lightbox index with URL hash (#image=N) for shareable links
+  useEffect(() => {
+    const parseHash = () => {
+      const m = window.location.hash.match(/image=(\d+)/);
+      if (m) {
+        const n = parseInt(m[1], 10);
+        if (!isNaN(n) && n >= 0 && n < galleryImages.length) {
+          setLightboxIndex(n);
+          return;
+        }
+      }
+      setLightboxIndex(null);
+    };
+    parseHash();
+    window.addEventListener("hashchange", parseHash);
+    return () => window.removeEventListener("hashchange", parseHash);
+  }, []);
+
+  useEffect(() => {
+    if (lightboxIndex === null) {
+      if (window.location.hash.startsWith("#image=")) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      }
+    } else {
+      const newHash = `#image=${lightboxIndex}`;
+      if (window.location.hash !== newHash) {
+        history.replaceState(null, "", window.location.pathname + window.location.search + newHash);
+      }
+    }
+  }, [lightboxIndex]);
+
+  const handleShare = async () => {
+    if (lightboxIndex === null) return;
+    const url = `${window.location.origin}${window.location.pathname}#image=${lightboxIndex}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      toast({ title: "Link copied", description: "Image link copied to clipboard." });
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast({ title: "Copy failed", description: url });
+    }
+  };
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -101,6 +147,7 @@ const Gallery = () => {
 
       {lightboxIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center" onClick={closeLightbox}>
+          <button onClick={(e) => { e.stopPropagation(); handleShare(); }} aria-label="Copy link to image" className="absolute top-4 right-16 text-foreground/70 hover:text-foreground transition-colors z-10">{copied ? <Check size={28} /> : <Share2 size={28} />}</button>
           <button onClick={closeLightbox} className="absolute top-4 right-4 text-foreground/70 hover:text-foreground transition-colors z-10"><X size={32} /></button>
           <button onClick={(e) => { e.stopPropagation(); goPrev(); }} className="absolute left-4 text-foreground/70 hover:text-foreground transition-colors z-10"><ChevronLeft size={40} /></button>
           <button onClick={(e) => { e.stopPropagation(); goNext(); }} className="absolute right-4 text-foreground/70 hover:text-foreground transition-colors z-10"><ChevronRight size={40} /></button>
