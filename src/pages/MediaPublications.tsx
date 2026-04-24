@@ -281,11 +281,29 @@ const MediaPublications = () => {
   const getDesc = (pub: Publication) => lang === "es" ? pub.descriptionEs : pub.description;
   const getSource = (pub: Publication) => lang === "es" ? pub.sourceEs : pub.source;
 
-  // Separate featured from regular
-  const featuredPubs = publications.filter((p) => p.featured);
-  const regularPubs = publications.filter((p) => !p.featured);
+  // Filters
+  const [activeSource, setActiveSource] = useState<string | null>(null);
+  const [activeYear, setActiveYear] = useState<string | null>(null);
+  const [activeType, setActiveType] = useState<string | null>(null);
 
-  // Stats
+  const toggleSource = (s: string) => setActiveSource((cur) => (cur === s ? null : s));
+  const toggleYear = (y: string) => setActiveYear((cur) => (cur === y ? null : y));
+  const toggleType = (ty: string) => setActiveType((cur) => (cur === ty ? null : ty));
+  const clearFilters = () => { setActiveSource(null); setActiveYear(null); setActiveType(null); };
+  const hasFilters = activeSource !== null || activeYear !== null || activeType !== null;
+
+  const matchesFilters = (p: Publication) =>
+    (activeSource === null || p.source === activeSource) &&
+    (activeYear === null || p.year === activeYear) &&
+    (activeType === null || p.type === activeType);
+
+  const filteredPublications = publications.filter(matchesFilters);
+
+  // Separate featured from regular (within filtered set)
+  const featuredPubs = filteredPublications.filter((p) => p.featured);
+  const regularPubs = filteredPublications.filter((p) => !p.featured);
+
+  // Stats (always reflect full dataset)
   const stats = [
     { label: lang === "es" ? "Artículos Publicados" : "Published Features", value: publications.filter((p) => p.type === "print").length.toString() },
     { label: lang === "es" ? "Entrevistas de Radio" : "Radio Interviews", value: publications.filter((p) => p.type === "radio").length.toString() },
