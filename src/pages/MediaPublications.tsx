@@ -164,6 +164,42 @@ const typeIcon = (type: string) => {
   }
 };
 
+const typeLabel = (type: string, lang: string) => {
+  const map: Record<string, { en: string; es: string }> = {
+    radio: { en: "Radio", es: "Radio" },
+    tv: { en: "TV", es: "TV" },
+    online: { en: "Online", es: "En Línea" },
+    print: { en: "Print", es: "Impreso" },
+  };
+  const entry = map[type] ?? map.print;
+  return lang === "es" ? entry.es : entry.en;
+};
+
+interface MetaRowProps {
+  source: string;
+  year?: string;
+  type: string;
+  lang: string;
+}
+
+const MetaRow = ({ source, year, type, lang }: MetaRowProps) => (
+  <div className="flex flex-wrap items-center gap-2 mb-3">
+    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
+      <Newspaper size={11} />
+      {source}
+    </span>
+    {year && (
+      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary/80 border border-border/50 text-foreground/80 font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
+        {year}
+      </span>
+    )}
+    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary/80 border border-border/50 text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
+      {typeIcon(type)}
+      {typeLabel(type, lang)}
+    </span>
+  </div>
+);
+
 const MediaPublications = () => {
   const { lang, t } = useLanguage();
   const allImages = publications.flatMap((pub) =>
@@ -332,13 +368,8 @@ const MediaPublications = () => {
 
                     {/* Content */}
                     <div className="flex-1 p-6 md:p-10 flex flex-col justify-center">
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="inline-flex items-center gap-1.5 text-primary font-heading text-xs font-semibold tracking-[0.2em] uppercase">
-                          {typeIcon(pub.type)}
-                          {getSource(pub)}
-                        </span>
-                        {pub.year && <span className="text-muted-foreground/50 text-xs font-heading tracking-wider">· {pub.year}</span>}
-                      </div>
+                      <MetaRow source={getSource(pub)} year={pub.year} type={pub.type} lang={lang} />
+
                       <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
                       <p className="text-muted-foreground text-base leading-relaxed">{getDesc(pub)}</p>
                       {pub.audioUrl && (
@@ -393,13 +424,8 @@ const MediaPublications = () => {
                   )}
 
                   <div className="p-5 flex-1 flex flex-col">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="inline-flex items-center gap-1.5 text-primary font-heading text-xs font-semibold tracking-wider uppercase">
-                        {typeIcon(pub.type)}
-                        {getSource(pub)}
-                      </span>
-                      {pub.year && <span className="text-muted-foreground/50 text-xs font-heading">· {pub.year}</span>}
-                    </div>
+                    <MetaRow source={getSource(pub)} year={pub.year} type={pub.type} lang={lang} />
+
                     <h3 className="font-heading text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed flex-1">{getDesc(pub)}</p>
                     {pub.audioUrl && (
