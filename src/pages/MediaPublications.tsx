@@ -632,7 +632,7 @@ const MediaPublications = () => {
               <ScrollReveal key={idx} animation="up" delay={idx * 80}>
                 <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 h-full flex flex-col">
                   {pub.images.length > 0 && (
-                    <div className="bg-black/40 p-3 flex items-center justify-center">
+                    <div className="bg-black/40 p-3 sm:p-4 flex items-center justify-center">
                       <div className={`grid ${pub.images.length >= 2 ? 'grid-cols-2' : 'grid-cols-1'} gap-2 w-full`}>
                         {pub.images.slice(0, 2).map((img, imgIdx) => (
                           <div key={imgIdx} className="overflow-hidden rounded-md cursor-pointer bg-background/30" onClick={() => openLightbox(img)}>
