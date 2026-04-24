@@ -61,7 +61,7 @@ const galleryImages = [
   { src: gallery22, alt: "Community spirit" },
   { src: gallery23, alt: "Community celebration" },
   { src: gallery24, alt: "Adam James portrait" },
-  { src: galleryAdam1, alt: "Adam in blue shirt" },
+  
   { src: galleryAdam2, alt: "Adam in overcoat" },
   { src: galleryAdam3, alt: "Adam portrait" },
   { src: galleryAdam4, alt: "Adam by blue wall" },
