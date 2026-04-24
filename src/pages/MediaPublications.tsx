@@ -2,8 +2,9 @@ import { useState, useCallback, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import { X, ChevronLeft, ChevronRight, ExternalLink, Radio, Newspaper, Tv, Mic, Filter } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ExternalLink, Radio, Newspaper, Tv, Mic, Filter, Share2, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 import galleryBg from "@/assets/gallery-bg.jpg";
 
 import mediaCourierMail from "@/assets/media-courier-mail.jpg";
@@ -235,6 +236,114 @@ const MetaRow = ({ source, sourceKey, year, type, lang, activeSource, activeYear
         {typeIcon(type)}
         {typeLabel(type, lang)}
       </button>
+    </div>
+  );
+};
+
+const slugify = (s: string) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+
+const getExt = (url: string) => {
+  const m = url.split("?")[0].match(/\.([a-zA-Z0-9]+)$/);
+  return m ? m[1].toLowerCase() : "jpg";
+};
+
+interface ShareDownloadProps {
+  title: string;
+  description: string;
+  imageUrl?: string;
+  externalUrl?: string;
+  lang: string;
+  size?: "sm" | "md";
+}
+
+const ShareDownload = ({ title, description, imageUrl, externalUrl, lang, size = "md" }: ShareDownloadProps) => {
+  const { toast } = useToast();
+  const labels = {
+    share: lang === "es" ? "Compartir" : "Share",
+    download: lang === "es" ? "Descargar" : "Download",
+    copied: lang === "es" ? "Enlace copiado" : "Link copied",
+    copiedDesc: lang === "es" ? "El enlace se copió al portapapeles." : "The link was copied to your clipboard.",
+    dlOk: lang === "es" ? "Descarga iniciada" : "Download started",
+    dlErr: lang === "es" ? "No se pudo descargar" : "Could not download",
+    shareErr: lang === "es" ? "No se pudo compartir" : "Could not share",
+  };
+
+  const handleShare = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const shareUrl = externalUrl || (typeof window !== "undefined" ? `${window.location.origin}${window.location.pathname}#${slugify(title)}` : "");
+    const shareData = { title, text: description, url: shareUrl };
+    try {
+      if (typeof navigator !== "undefined" && (navigator as Navigator).share) {
+        await (navigator as Navigator).share(shareData);
+        return;
+      }
+      await navigator.clipboard.writeText(shareUrl);
+      toast({ title: labels.copied, description: labels.copiedDesc });
+    } catch (err) {
+      // User-cancelled share is not an error worth surfacing
+      if ((err as Error)?.name === "AbortError") return;
+      toast({ title: labels.shareErr, variant: "destructive" });
+    }
+  };
+
+  const handleDownload = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!imageUrl) return;
+    try {
+      const res = await fetch(imageUrl);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${slugify(title)}.${getExt(imageUrl)}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      toast({ title: labels.dlOk });
+    } catch {
+      toast({ title: labels.dlErr, variant: "destructive" });
+    }
+  };
+
+  const padding = size === "sm" ? "px-2.5 py-1.5 text-[11px]" : "px-3 py-1.5 text-xs";
+  const iconSize = size === "sm" ? 12 : 14;
+
+  return (
+    <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-border/40">
+      <button
+        type="button"
+        onClick={handleShare}
+        className={`inline-flex items-center gap-1.5 ${padding} rounded-full border border-border/60 bg-secondary/60 text-foreground/80 font-heading font-semibold tracking-[0.12em] uppercase hover:border-primary/60 hover:text-primary transition-colors`}
+        aria-label={labels.share}
+      >
+        <Share2 size={iconSize} />
+        {labels.share}
+      </button>
+      {imageUrl && (
+        <button
+          type="button"
+          onClick={handleDownload}
+          className={`inline-flex items-center gap-1.5 ${padding} rounded-full border border-border/60 bg-secondary/60 text-foreground/80 font-heading font-semibold tracking-[0.12em] uppercase hover:border-primary/60 hover:text-primary transition-colors`}
+          aria-label={labels.download}
+        >
+          <Download size={iconSize} />
+          {labels.download}
+        </button>
+      )}
+      {externalUrl && (
+        <a
+          href={externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className={`inline-flex items-center gap-1.5 ${padding} rounded-full border border-border/60 bg-secondary/60 text-foreground/80 font-heading font-semibold tracking-[0.12em] uppercase hover:border-primary/60 hover:text-primary transition-colors`}
+        >
+          <ExternalLink size={iconSize} />
+          {lang === "es" ? "Abrir" : "Open"}
+        </a>
+      )}
     </div>
   );
 };
@@ -494,6 +603,13 @@ const MediaPublications = () => {
                           {t.mediaPage.listenOnSoundcloud}
                         </a>
                       )}
+                      <ShareDownload
+                        title={getTitle(pub)}
+                        description={getDesc(pub)}
+                        imageUrl={pub.images[0]}
+                        externalUrl={pub.externalUrl || pub.audioUrl}
+                        lang={lang}
+                      />
                     </div>
                   </div>
                 </div>
@@ -558,6 +674,14 @@ const MediaPublications = () => {
                         {lang === "es" ? "VER MÁS →" : "VIEW MORE →"}
                       </a>
                     )}
+                    <ShareDownload
+                      title={getTitle(pub)}
+                      description={getDesc(pub)}
+                      imageUrl={pub.images[0]}
+                      externalUrl={pub.externalUrl || pub.audioUrl}
+                      lang={lang}
+                      size="sm"
+                    />
                   </div>
                 </div>
               </ScrollReveal>
