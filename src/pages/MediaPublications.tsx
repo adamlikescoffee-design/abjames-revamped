@@ -363,6 +363,43 @@ const MediaPublications = () => {
             </div>
           </ScrollReveal>
 
+          {/* Active filters bar */}
+          {hasFilters && (
+            <div className="mb-10 flex flex-wrap items-center gap-2 p-4 rounded-lg bg-card/60 backdrop-blur-sm border border-border/50">
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground font-heading text-xs font-semibold tracking-[0.15em] uppercase mr-1">
+                <Filter size={12} />
+                {lang === "es" ? "Filtrando por:" : "Filtering by:"}
+              </span>
+              {activeSource && (
+                <button type="button" onClick={() => setActiveSource(null)} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary text-primary-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase hover:brightness-110 transition">
+                  {activeSource}<X size={11} />
+                </button>
+              )}
+              {activeYear && (
+                <button type="button" onClick={() => setActiveYear(null)} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary text-primary-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase hover:brightness-110 transition">
+                  {activeYear}<X size={11} />
+                </button>
+              )}
+              {activeType && (
+                <button type="button" onClick={() => setActiveType(null)} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary text-primary-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase hover:brightness-110 transition">
+                  {typeLabel(activeType, lang)}<X size={11} />
+                </button>
+              )}
+              <button type="button" onClick={clearFilters} className="ml-auto text-muted-foreground hover:text-primary font-heading text-xs font-semibold tracking-wider uppercase transition-colors">
+                {lang === "es" ? "Limpiar todo" : "Clear all"}
+              </button>
+            </div>
+          )}
+
+          {hasFilters && filteredPublications.length === 0 && (
+            <div className="text-center py-16 text-muted-foreground">
+              <p className="font-heading text-lg mb-3">{lang === "es" ? "Sin resultados" : "No matching coverage"}</p>
+              <button onClick={clearFilters} className="text-primary font-heading text-sm font-semibold tracking-wider uppercase hover:underline">
+                {lang === "es" ? "Limpiar filtros" : "Clear filters"}
+              </button>
+            </div>
+          )}
+
           {/* Featured Section */}
           <ScrollReveal>
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
