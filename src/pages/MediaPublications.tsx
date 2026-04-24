@@ -468,7 +468,7 @@ const MediaPublications = () => {
           <div className="absolute inset-0 bg-background/85" />
         </div>
 
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
           <ScrollReveal>
             <div className="text-center mb-6">
               <span className="inline-flex items-center gap-2 text-primary font-heading text-xs font-semibold tracking-[0.2em] uppercase mb-4">
