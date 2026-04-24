@@ -475,6 +475,105 @@ const MediaPublications = () => {
         </div>
       )}
 
+      {/* Detail Modal */}
+      {detailPub && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+          onClick={() => setDetailPub(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="pub-detail-title"
+        >
+          <div
+            className="relative bg-card border border-border/60 rounded-2xl max-w-3xl w-full my-8 max-h-[90vh] overflow-y-auto shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setDetailPub(null)}
+              aria-label={lang === "es" ? "Cerrar" : "Close"}
+              className="absolute top-3 right-3 z-10 h-10 w-10 flex items-center justify-center rounded-full bg-background/70 hover:bg-background text-foreground/80 hover:text-foreground transition-colors backdrop-blur-sm"
+            >
+              <X size={20} />
+            </button>
+
+            {detailPub.images.length > 0 && (
+              <div className="bg-black/40 p-4 sm:p-6 flex items-center justify-center">
+                <img
+                  src={detailPub.images[0]}
+                  alt={getTitle(detailPub)}
+                  className="w-full max-h-[50vh] object-contain rounded-lg cursor-zoom-in"
+                  onClick={() => { const src = detailPub.images[0]; setDetailPub(null); openLightbox(src); }}
+                />
+              </div>
+            )}
+
+            <div className="p-5 sm:p-8">
+              {/* Dedicated metadata section */}
+              <div className="mb-5 pb-5 border-b border-border/50">
+                <span className="block text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.2em] uppercase mb-3">
+                  {lang === "es" ? "Detalles" : "Details"}
+                </span>
+                <dl className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                  <div>
+                    <dt className="text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.18em] uppercase mb-1">
+                      {lang === "es" ? "Fuente" : "Source"}
+                    </dt>
+                    <dd className="inline-flex items-center gap-1.5 text-primary font-heading text-sm font-semibold">
+                      <Newspaper size={13} />
+                      {getSource(detailPub)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.18em] uppercase mb-1">
+                      {lang === "es" ? "Año" : "Year"}
+                    </dt>
+                    <dd className="text-foreground font-heading text-sm font-semibold">
+                      {detailPub.year || "—"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.18em] uppercase mb-1">
+                      {lang === "es" ? "Tipo" : "Type"}
+                    </dt>
+                    <dd className="inline-flex items-center gap-1.5 text-foreground font-heading text-sm font-semibold">
+                      {typeIcon(detailPub.type)}
+                      {typeLabel(detailPub.type, lang)}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <h2 id="pub-detail-title" className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-4 leading-tight">
+                {getTitle(detailPub)}
+              </h2>
+              <p className="text-muted-foreground text-base leading-relaxed whitespace-pre-line">
+                {getDesc(detailPub)}
+              </p>
+
+              {detailPub.audioUrl && (
+                <a
+                  href={detailPub.audioUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground font-heading text-sm font-semibold tracking-wider transition-colors"
+                >
+                  <Mic size={14} />
+                  {t.mediaPage.listenOnSoundcloud}
+                </a>
+              )}
+
+              <ShareDownload
+                title={getTitle(detailPub)}
+                description={getDesc(detailPub)}
+                imageUrl={detailPub.images[0]}
+                externalUrl={detailPub.externalUrl || detailPub.audioUrl}
+                lang={lang}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section with background */}
       <section className="relative pt-28 pb-16">
         <div className="fixed inset-0 -z-10">
