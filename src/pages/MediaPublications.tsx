@@ -561,7 +561,13 @@ const MediaPublications = () => {
             </ScrollReveal>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-12 md:mb-16">
+          <div
+            className={
+              layoutMode === "masonry"
+                ? "columns-1 md:columns-2 gap-5 sm:gap-6 mb-12 md:mb-16 [&>*]:mb-5 sm:[&>*]:mb-6 [&>*]:break-inside-avoid"
+                : "flex flex-col gap-5 sm:gap-6 mb-12 md:mb-16 max-w-3xl mx-auto"
+            }
+          >
             {regularPubs.map((pub, idx) => (
               <ScrollReveal key={idx} animation="up" delay={idx * 80}>
                 <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 h-full flex flex-col">
