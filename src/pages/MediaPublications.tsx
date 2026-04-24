@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -392,6 +392,38 @@ const MediaPublications = () => {
     setLightboxIndex((prev) => prev !== null ? (prev + 1) % allImages.length : null);
   }, [allImages.length]);
 
+  // Swipe gestures for the lightbox (mobile)
+  const touchStart = useRef<{ x: number; y: number; t: number } | null>(null);
+  const [swipeOffset, setSwipeOffset] = useState(0);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return;
+    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() };
+    setSwipeOffset(0);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart.current || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - touchStart.current.x;
+    const dy = e.touches[0].clientY - touchStart.current.y;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      setSwipeOffset(dx);
+    }
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart.current) return;
+    const dx = (e.changedTouches[0]?.clientX ?? touchStart.current.x) - touchStart.current.x;
+    const dy = (e.changedTouches[0]?.clientY ?? touchStart.current.y) - touchStart.current.y;
+    const dt = Date.now() - touchStart.current.t;
+    const threshold = 50;
+    const isHorizontal = Math.abs(dx) > Math.abs(dy);
+    const isFast = dt < 500 && Math.abs(dx) > 30;
+    if (isHorizontal && allImages.length > 1 && (Math.abs(dx) > threshold || isFast)) {
+      if (dx < 0) goNext();
+      else goPrev();
+    }
+    touchStart.current = null;
+    setSwipeOffset(0);
+  };
+
   useEffect(() => {
     if (lightboxIndex === null) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -482,7 +514,14 @@ const MediaPublications = () => {
 
       {/* Lightbox */}
       {lightboxIndex !== null && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={closeLightbox}>
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center touch-pan-y select-none"
+          onClick={closeLightbox}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+        >
           <button
             onClick={closeLightbox}
             aria-label={lang === "es" ? "Cerrar" : "Close"}
@@ -511,11 +550,16 @@ const MediaPublications = () => {
           <div
             className="relative flex flex-col items-center justify-center max-w-[92vw] max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              transform: swipeOffset !== 0 ? `translateX(${swipeOffset}px)` : undefined,
+              transition: swipeOffset === 0 ? "transform 200ms ease-out" : "none",
+            }}
           >
             <img
               src={allImages[lightboxIndex].src}
               alt={allImages[lightboxIndex].alt}
-              className={`object-contain ${captionVisible ? "max-h-[78vh]" : "max-h-[90vh]"} max-w-[92vw] transition-[max-height] duration-300`}
+              draggable={false}
+              className={`object-contain ${captionVisible ? "max-h-[78vh]" : "max-h-[90vh]"} max-w-[92vw] transition-[max-height] duration-300 pointer-events-none`}
             />
             {captionVisible && (
               <div className="mt-4 w-full max-w-3xl px-4 py-3 rounded-xl bg-background/50 backdrop-blur-md border border-border/40 text-center">
