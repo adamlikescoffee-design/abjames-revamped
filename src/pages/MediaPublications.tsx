@@ -368,13 +368,8 @@ const MediaPublications = () => {
 
                     {/* Content */}
                     <div className="flex-1 p-6 md:p-10 flex flex-col justify-center">
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="inline-flex items-center gap-1.5 text-primary font-heading text-xs font-semibold tracking-[0.2em] uppercase">
-                          {typeIcon(pub.type)}
-                          {getSource(pub)}
-                        </span>
-                        {pub.year && <span className="text-muted-foreground/50 text-xs font-heading tracking-wider">· {pub.year}</span>}
-                      </div>
+                      <MetaRow source={getSource(pub)} year={pub.year} type={pub.type} lang={lang} />
+
                       <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
                       <p className="text-muted-foreground text-base leading-relaxed">{getDesc(pub)}</p>
                       {pub.audioUrl && (
