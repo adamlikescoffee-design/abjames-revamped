@@ -514,7 +514,14 @@ const MediaPublications = () => {
 
       {/* Lightbox */}
       {lightboxIndex !== null && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={closeLightbox}>
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center touch-pan-y select-none"
+          onClick={closeLightbox}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+        >
           <button
             onClick={closeLightbox}
             aria-label={lang === "es" ? "Cerrar" : "Close"}
