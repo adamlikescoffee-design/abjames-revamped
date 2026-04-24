@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import { X, ChevronLeft, ChevronRight, ExternalLink, Radio, Newspaper, Tv, Mic } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ExternalLink, Radio, Newspaper, Tv, Mic, Filter } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import galleryBg from "@/assets/gallery-bg.jpg";
 
@@ -177,28 +177,67 @@ const typeLabel = (type: string, lang: string) => {
 
 interface MetaRowProps {
   source: string;
+  sourceKey: string;
   year?: string;
   type: string;
   lang: string;
+  activeSource: string | null;
+  activeYear: string | null;
+  activeType: string | null;
+  onToggleSource: (s: string) => void;
+  onToggleYear: (y: string) => void;
+  onToggleType: (t: string) => void;
 }
 
-const MetaRow = ({ source, year, type, lang }: MetaRowProps) => (
-  <div className="flex flex-wrap items-center gap-2 mb-3">
-    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
-      <Newspaper size={11} />
-      {source}
-    </span>
-    {year && (
-      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary/80 border border-border/50 text-foreground/80 font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
-        {year}
-      </span>
-    )}
-    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary/80 border border-border/50 text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
-      {typeIcon(type)}
-      {typeLabel(type, lang)}
-    </span>
-  </div>
-);
+const MetaRow = ({ source, sourceKey, year, type, lang, activeSource, activeYear, activeType, onToggleSource, onToggleYear, onToggleType }: MetaRowProps) => {
+  const isSourceActive = activeSource === sourceKey;
+  const isYearActive = year ? activeYear === year : false;
+  const isTypeActive = activeType === type;
+  return (
+    <div className="flex flex-wrap items-center gap-2 mb-3">
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onToggleSource(sourceKey); }}
+        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-heading text-[10px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+          isSourceActive
+            ? "bg-primary text-primary-foreground"
+            : "bg-primary/10 text-primary hover:bg-primary/20"
+        }`}
+        aria-pressed={isSourceActive}
+      >
+        <Newspaper size={11} />
+        {source}
+      </button>
+      {year && (
+        <button
+          type="button"
+          onClick={(e) => { e.stopPropagation(); onToggleYear(year); }}
+          className={`inline-flex items-center px-2.5 py-1 rounded-full border font-heading text-[10px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+            isYearActive
+              ? "bg-primary text-primary-foreground border-primary"
+              : "bg-secondary/80 border-border/50 text-foreground/80 hover:border-primary/50"
+          }`}
+          aria-pressed={isYearActive}
+        >
+          {year}
+        </button>
+      )}
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onToggleType(type); }}
+        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border font-heading text-[10px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+          isTypeActive
+            ? "bg-primary text-primary-foreground border-primary"
+            : "bg-secondary/80 border-border/50 text-muted-foreground hover:border-primary/50"
+        }`}
+        aria-pressed={isTypeActive}
+      >
+        {typeIcon(type)}
+        {typeLabel(type, lang)}
+      </button>
+    </div>
+  );
+};
 
 const MediaPublications = () => {
   const { lang, t } = useLanguage();
@@ -242,11 +281,29 @@ const MediaPublications = () => {
   const getDesc = (pub: Publication) => lang === "es" ? pub.descriptionEs : pub.description;
   const getSource = (pub: Publication) => lang === "es" ? pub.sourceEs : pub.source;
 
-  // Separate featured from regular
-  const featuredPubs = publications.filter((p) => p.featured);
-  const regularPubs = publications.filter((p) => !p.featured);
+  // Filters
+  const [activeSource, setActiveSource] = useState<string | null>(null);
+  const [activeYear, setActiveYear] = useState<string | null>(null);
+  const [activeType, setActiveType] = useState<string | null>(null);
 
-  // Stats
+  const toggleSource = (s: string) => setActiveSource((cur) => (cur === s ? null : s));
+  const toggleYear = (y: string) => setActiveYear((cur) => (cur === y ? null : y));
+  const toggleType = (ty: string) => setActiveType((cur) => (cur === ty ? null : ty));
+  const clearFilters = () => { setActiveSource(null); setActiveYear(null); setActiveType(null); };
+  const hasFilters = activeSource !== null || activeYear !== null || activeType !== null;
+
+  const matchesFilters = (p: Publication) =>
+    (activeSource === null || p.source === activeSource) &&
+    (activeYear === null || p.year === activeYear) &&
+    (activeType === null || p.type === activeType);
+
+  const filteredPublications = publications.filter(matchesFilters);
+
+  // Separate featured from regular (within filtered set)
+  const featuredPubs = filteredPublications.filter((p) => p.featured);
+  const regularPubs = filteredPublications.filter((p) => !p.featured);
+
+  // Stats (always reflect full dataset)
   const stats = [
     { label: lang === "es" ? "Artículos Publicados" : "Published Features", value: publications.filter((p) => p.type === "print").length.toString() },
     { label: lang === "es" ? "Entrevistas de Radio" : "Radio Interviews", value: publications.filter((p) => p.type === "radio").length.toString() },
@@ -306,13 +363,52 @@ const MediaPublications = () => {
             </div>
           </ScrollReveal>
 
+          {/* Active filters bar */}
+          {hasFilters && (
+            <div className="mb-10 flex flex-wrap items-center gap-2 p-4 rounded-lg bg-card/60 backdrop-blur-sm border border-border/50">
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground font-heading text-xs font-semibold tracking-[0.15em] uppercase mr-1">
+                <Filter size={12} />
+                {lang === "es" ? "Filtrando por:" : "Filtering by:"}
+              </span>
+              {activeSource && (
+                <button type="button" onClick={() => setActiveSource(null)} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary text-primary-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase hover:brightness-110 transition">
+                  {activeSource}<X size={11} />
+                </button>
+              )}
+              {activeYear && (
+                <button type="button" onClick={() => setActiveYear(null)} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary text-primary-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase hover:brightness-110 transition">
+                  {activeYear}<X size={11} />
+                </button>
+              )}
+              {activeType && (
+                <button type="button" onClick={() => setActiveType(null)} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary text-primary-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase hover:brightness-110 transition">
+                  {typeLabel(activeType, lang)}<X size={11} />
+                </button>
+              )}
+              <button type="button" onClick={clearFilters} className="ml-auto text-muted-foreground hover:text-primary font-heading text-xs font-semibold tracking-wider uppercase transition-colors">
+                {lang === "es" ? "Limpiar todo" : "Clear all"}
+              </button>
+            </div>
+          )}
+
+          {hasFilters && filteredPublications.length === 0 && (
+            <div className="text-center py-16 text-muted-foreground">
+              <p className="font-heading text-lg mb-3">{lang === "es" ? "Sin resultados" : "No matching coverage"}</p>
+              <button onClick={clearFilters} className="text-primary font-heading text-sm font-semibold tracking-wider uppercase hover:underline">
+                {lang === "es" ? "Limpiar filtros" : "Clear filters"}
+              </button>
+            </div>
+          )}
+
           {/* Featured Section */}
-          <ScrollReveal>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
-              <span className="w-8 h-px bg-primary" />
-              {lang === "es" ? "Artículos Destacados" : "Featured Coverage"}
-            </h2>
-          </ScrollReveal>
+          {featuredPubs.length > 0 && (
+            <ScrollReveal>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
+                <span className="w-8 h-px bg-primary" />
+                {lang === "es" ? "Artículos Destacados" : "Featured Coverage"}
+              </h2>
+            </ScrollReveal>
+          )}
 
           <div className="space-y-12 mb-16">
             {featuredPubs.map((pub, idx) => (
@@ -368,7 +464,7 @@ const MediaPublications = () => {
 
                     {/* Content */}
                     <div className="flex-1 p-6 md:p-10 flex flex-col justify-center">
-                      <MetaRow source={getSource(pub)} year={pub.year} type={pub.type} lang={lang} />
+                      <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
                       <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
                       <p className="text-muted-foreground text-base leading-relaxed">{getDesc(pub)}</p>
@@ -386,12 +482,14 @@ const MediaPublications = () => {
           </div>
 
           {/* All Coverage */}
-          <ScrollReveal>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
-              <span className="w-8 h-px bg-primary" />
-              {lang === "es" ? "Toda la Cobertura" : "All Coverage"}
-            </h2>
-          </ScrollReveal>
+          {regularPubs.length > 0 && (
+            <ScrollReveal>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
+                <span className="w-8 h-px bg-primary" />
+                {lang === "es" ? "Toda la Cobertura" : "All Coverage"}
+              </h2>
+            </ScrollReveal>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
             {regularPubs.map((pub, idx) => (
@@ -424,7 +522,7 @@ const MediaPublications = () => {
                   )}
 
                   <div className="p-5 flex-1 flex flex-col">
-                    <MetaRow source={getSource(pub)} year={pub.year} type={pub.type} lang={lang} />
+                    <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
                     <h3 className="font-heading text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed flex-1">{getDesc(pub)}</p>
