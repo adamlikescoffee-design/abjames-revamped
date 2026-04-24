@@ -352,8 +352,27 @@ const ShareDownload = ({ title, description, imageUrl, externalUrl, lang, size =
 const MediaPublications = () => {
   const { lang, t } = useLanguage();
   const allImages = publications.flatMap((pub) =>
-    pub.images.map((img, i) => ({ src: img, alt: `${pub.title} - image ${i + 1}` }))
+    pub.images.map((img, i) => ({
+      src: img,
+      alt: `${pub.title} - image ${i + 1}`,
+      title: lang === "es" ? pub.titleEs : pub.title,
+      source: lang === "es" ? pub.sourceEs : pub.source,
+      year: pub.year,
+      type: pub.type,
+      indexInPub: i + 1,
+      totalInPub: pub.images.length,
+    }))
   );
+
+  const [captionVisible, setCaptionVisible] = useState<boolean>(() => {
+    if (typeof window === "undefined") return true;
+    return localStorage.getItem("mediaLightboxCaption") !== "0";
+  });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("mediaLightboxCaption", captionVisible ? "1" : "0");
+    }
+  }, [captionVisible]);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [detailPub, setDetailPub] = useState<Publication | null>(null);
