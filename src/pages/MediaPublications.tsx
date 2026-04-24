@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import { X, ChevronLeft, ChevronRight, ExternalLink, Radio, Newspaper, Tv, Mic, Filter } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ExternalLink, Radio, Newspaper, Tv, Mic, Filter, LayoutGrid, Rows3 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import galleryBg from "@/assets/gallery-bg.jpg";
 
@@ -299,6 +299,18 @@ const MediaPublications = () => {
 
   const filteredPublications = publications.filter(matchesFilters);
 
+  // Layout mode: masonry (default, CSS columns) or list (single column)
+  const [layoutMode, setLayoutMode] = useState<"masonry" | "list">(() => {
+    if (typeof window === "undefined") return "masonry";
+    const saved = window.localStorage.getItem("mediaLayoutMode");
+    return saved === "list" ? "list" : "masonry";
+  });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("mediaLayoutMode", layoutMode);
+    }
+  }, [layoutMode]);
+
   // Separate featured from regular (within filtered set)
   const featuredPubs = filteredPublications.filter((p) => p.featured);
   const regularPubs = filteredPublications.filter((p) => !p.featured);
@@ -420,6 +432,44 @@ const MediaPublications = () => {
             </div>
           )}
 
+          {/* Layout toggle */}
+          {filteredPublications.length > 0 && (
+            <div className="flex items-center justify-end mb-6">
+              <div
+                role="group"
+                aria-label={lang === "es" ? "Cambiar diseño" : "Switch layout"}
+                className="inline-flex items-center gap-1 p-1 rounded-full border border-border/60 bg-card/60 backdrop-blur-sm"
+              >
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode("masonry")}
+                  aria-pressed={layoutMode === "masonry"}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-heading text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+                    layoutMode === "masonry"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <LayoutGrid size={13} />
+                  {lang === "es" ? "Mosaico" : "Masonry"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode("list")}
+                  aria-pressed={layoutMode === "list"}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-heading text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+                    layoutMode === "list"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Rows3 size={13} />
+                  {lang === "es" ? "Lista" : "List"}
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Featured Section */}
           {featuredPubs.length > 0 && (
             <ScrollReveal>
@@ -511,7 +561,13 @@ const MediaPublications = () => {
             </ScrollReveal>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-12 md:mb-16">
+          <div
+            className={
+              layoutMode === "masonry"
+                ? "columns-1 md:columns-2 gap-5 sm:gap-6 mb-12 md:mb-16 [&>*]:mb-5 sm:[&>*]:mb-6 [&>*]:break-inside-avoid"
+                : "flex flex-col gap-5 sm:gap-6 mb-12 md:mb-16 max-w-3xl mx-auto"
+            }
+          >
             {regularPubs.map((pub, idx) => (
               <ScrollReveal key={idx} animation="up" delay={idx * 80}>
                 <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 h-full flex flex-col">
