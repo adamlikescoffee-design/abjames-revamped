@@ -482,12 +482,14 @@ const MediaPublications = () => {
           </div>
 
           {/* All Coverage */}
-          <ScrollReveal>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
-              <span className="w-8 h-px bg-primary" />
-              {lang === "es" ? "Toda la Cobertura" : "All Coverage"}
-            </h2>
-          </ScrollReveal>
+          {regularPubs.length > 0 && (
+            <ScrollReveal>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
+                <span className="w-8 h-px bg-primary" />
+                {lang === "es" ? "Toda la Cobertura" : "All Coverage"}
+              </h2>
+            </ScrollReveal>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
             {regularPubs.map((pub, idx) => (
