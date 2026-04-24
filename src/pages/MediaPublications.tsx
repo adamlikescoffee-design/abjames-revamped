@@ -278,59 +278,71 @@ const MediaPublications = () => {
             </h2>
           </ScrollReveal>
 
-          <div className="space-y-8 mb-16">
+          <div className="space-y-12 mb-16">
             {featuredPubs.map((pub, idx) => (
               <ScrollReveal key={idx} animation={idx % 2 === 0 ? "left" : "right"} delay={idx * 100}>
-                <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5">
+                <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
                   <div className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                    {/* Image Grid */}
+                    {/* Image Gallery — uncropped, natural aspect ratio */}
                     {pub.images.length > 0 && (
-                      <div className="lg:w-3/5 shrink-0">
-                        <div className={`grid ${pub.images.length === 1 ? 'grid-cols-1' : pub.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2'} gap-0.5 h-full`}>
-                          {pub.images.slice(0, 4).map((img, imgIdx) => (
-                            <div
-                              key={imgIdx}
-                              className={`overflow-hidden cursor-pointer ${
-                                pub.images.length === 1 ? '' :
-                                pub.images.length === 3 && imgIdx === 0 ? 'col-span-2' :
-                                pub.images.length >= 5 && imgIdx === 0 ? 'col-span-2' : ''
-                              }`}
-                              onClick={() => openLightbox(img)}
-                            >
-                              <img
-                                src={img}
-                                alt={`${getTitle(pub)} - ${imgIdx + 1}`}
-                                loading="lazy"
-                                className="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
-                              />
-                            </div>
-                          ))}
-                          {pub.images.length > 4 && (
-                            <div
-                              className="relative overflow-hidden cursor-pointer"
-                              onClick={() => openLightbox(pub.images[4])}
-                            >
-                              <img src={pub.images[4]} alt="" loading="lazy" className="w-full h-48 md:h-64 object-cover brightness-50" />
-                              <span className="absolute inset-0 flex items-center justify-center text-foreground font-heading font-bold text-lg">+{pub.images.length - 4}</span>
-                            </div>
-                          )}
-                        </div>
+                      <div className="lg:w-1/2 shrink-0 bg-black/40 p-4 md:p-6 flex items-center justify-center">
+                        {pub.images.length === 1 ? (
+                          <div
+                            className="cursor-pointer overflow-hidden rounded-lg group/img w-full"
+                            onClick={() => openLightbox(pub.images[0])}
+                          >
+                            <img
+                              src={pub.images[0]}
+                              alt={`${getTitle(pub)}`}
+                              loading="lazy"
+                              className="w-full max-h-[600px] object-contain group-hover/img:scale-[1.02] transition-transform duration-500"
+                            />
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-2 gap-3 w-full">
+                            {pub.images.slice(0, 4).map((img, imgIdx) => (
+                              <div
+                                key={imgIdx}
+                                className={`cursor-pointer overflow-hidden rounded-lg bg-background/30 ${
+                                  pub.images.length === 3 && imgIdx === 0 ? 'col-span-2' : ''
+                                }`}
+                                onClick={() => openLightbox(img)}
+                              >
+                                <img
+                                  src={img}
+                                  alt={`${getTitle(pub)} - ${imgIdx + 1}`}
+                                  loading="lazy"
+                                  className="w-full h-full max-h-[300px] object-contain hover:scale-[1.03] transition-transform duration-500"
+                                />
+                              </div>
+                            ))}
+                            {pub.images.length > 4 && (
+                              <div
+                                className="relative cursor-pointer overflow-hidden rounded-lg bg-background/30"
+                                onClick={() => openLightbox(pub.images[4])}
+                              >
+                                <img src={pub.images[4]} alt="" loading="lazy" className="w-full h-full max-h-[300px] object-contain brightness-50" />
+                                <span className="absolute inset-0 flex items-center justify-center text-foreground font-heading font-bold text-xl">+{pub.images.length - 4}</span>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
                     )}
 
                     {/* Content */}
-                    <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="inline-flex items-center gap-1.5 text-primary font-heading text-xs font-semibold tracking-wider uppercase">
+                    <div className="flex-1 p-6 md:p-10 flex flex-col justify-center">
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="inline-flex items-center gap-1.5 text-primary font-heading text-xs font-semibold tracking-[0.2em] uppercase">
                           {typeIcon(pub.type)}
                           {getSource(pub)}
                         </span>
-                        {pub.year && <span className="text-muted-foreground/50 text-xs font-heading">· {pub.year}</span>}
+                        {pub.year && <span className="text-muted-foreground/50 text-xs font-heading tracking-wider">· {pub.year}</span>}
                       </div>
-                      <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{getDesc(pub)}</p>
+                      <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
+                      <p className="text-muted-foreground text-base leading-relaxed">{getDesc(pub)}</p>
                       {pub.audioUrl && (
-                        <a href={pub.audioUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all">
+                        <a href={pub.audioUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-5 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all">
                           <Mic size={14} />
                           {t.mediaPage.listenOnSoundcloud}
                         </a>
@@ -355,17 +367,19 @@ const MediaPublications = () => {
               <ScrollReveal key={idx} animation="up" delay={idx * 80}>
                 <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 h-full flex flex-col">
                   {pub.images.length > 0 && (
-                    <div className={`grid ${pub.images.length >= 2 ? 'grid-cols-2' : 'grid-cols-1'} gap-0.5`}>
-                      {pub.images.slice(0, 2).map((img, imgIdx) => (
-                        <div key={imgIdx} className="overflow-hidden cursor-pointer" onClick={() => openLightbox(img)}>
-                          <img
-                            src={img}
-                            alt={`${getTitle(pub)} - ${imgIdx + 1}`}
-                            loading="lazy"
-                            className="w-full h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-700"
-                          />
-                        </div>
-                      ))}
+                    <div className="bg-black/40 p-3 flex items-center justify-center">
+                      <div className={`grid ${pub.images.length >= 2 ? 'grid-cols-2' : 'grid-cols-1'} gap-2 w-full`}>
+                        {pub.images.slice(0, 2).map((img, imgIdx) => (
+                          <div key={imgIdx} className="overflow-hidden rounded-md cursor-pointer bg-background/30" onClick={() => openLightbox(img)}>
+                            <img
+                              src={img}
+                              alt={`${getTitle(pub)} - ${imgIdx + 1}`}
+                              loading="lazy"
+                              className="w-full max-h-64 object-contain hover:scale-[1.03] transition-transform duration-500"
+                            />
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
 
