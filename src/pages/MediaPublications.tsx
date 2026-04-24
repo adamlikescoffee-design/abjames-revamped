@@ -680,7 +680,13 @@ const MediaPublications = () => {
                   <div className="p-5 sm:p-6 flex-1 flex flex-col">
                     <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
-                    <h3 className="font-heading text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
+                    <button
+                      type="button"
+                      onClick={() => setDetailPub(pub)}
+                      className="text-left font-heading text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary hover:text-primary transition-colors"
+                    >
+                      {getTitle(pub)}
+                    </button>
                     <p className="text-muted-foreground text-sm leading-relaxed flex-1">{getDesc(pub)}</p>
                     {pub.audioUrl && (
                       <a href={pub.audioUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-3 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all">
