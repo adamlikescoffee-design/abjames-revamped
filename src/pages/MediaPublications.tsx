@@ -430,7 +430,7 @@ const MediaPublications = () => {
             </ScrollReveal>
           )}
 
-          <div className="space-y-12 mb-16">
+          <div className="space-y-8 md:space-y-12 mb-12 md:mb-16">
             {featuredPubs.map((pub, idx) => (
               <ScrollReveal key={idx} animation={idx % 2 === 0 ? "left" : "right"} delay={idx * 100}>
                 <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
