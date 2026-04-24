@@ -483,7 +483,7 @@ const MediaPublications = () => {
                     )}
 
                     {/* Content */}
-                    <div className="flex-1 p-6 md:p-10 flex flex-col justify-center">
+                    <div className="flex-1 p-5 sm:p-6 md:p-10 flex flex-col justify-center">
                       <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
                       <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
