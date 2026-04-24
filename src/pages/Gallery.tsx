@@ -162,7 +162,7 @@ const Gallery = () => {
             <p className="text-muted-foreground text-center mb-12 max-w-lg mx-auto">{t.gallery.subtitle}</p>
           </ScrollReveal>
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {galleryImages.map((img, idx) => (
               <ScrollReveal key={idx} animation="scale" delay={idx % 6 * 80}>
                 <div className="break-inside-avoid overflow-hidden rounded-lg cursor-pointer" onClick={() => setLightboxIndex(idx)}>
