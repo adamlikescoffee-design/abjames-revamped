@@ -674,6 +674,14 @@ const MediaPublications = () => {
                         {lang === "es" ? "VER MÁS →" : "VIEW MORE →"}
                       </a>
                     )}
+                    <ShareDownload
+                      title={getTitle(pub)}
+                      description={getDesc(pub)}
+                      imageUrl={pub.images[0]}
+                      externalUrl={pub.externalUrl || pub.audioUrl}
+                      lang={lang}
+                      size="sm"
+                    />
                   </div>
                 </div>
               </ScrollReveal>
