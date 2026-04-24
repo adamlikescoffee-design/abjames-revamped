@@ -451,7 +451,7 @@ const MediaPublications = () => {
                             />
                           </div>
                         ) : (
-                          <div className="grid grid-cols-2 gap-3 w-full">
+                          <div className="grid grid-cols-2 gap-2 sm:gap-3 w-full">
                             {pub.images.slice(0, 4).map((img, imgIdx) => (
                               <div
                                 key={imgIdx}
