@@ -392,6 +392,38 @@ const MediaPublications = () => {
     setLightboxIndex((prev) => prev !== null ? (prev + 1) % allImages.length : null);
   }, [allImages.length]);
 
+  // Swipe gestures for the lightbox (mobile)
+  const touchStart = useRef<{ x: number; y: number; t: number } | null>(null);
+  const [swipeOffset, setSwipeOffset] = useState(0);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return;
+    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() };
+    setSwipeOffset(0);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart.current || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - touchStart.current.x;
+    const dy = e.touches[0].clientY - touchStart.current.y;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      setSwipeOffset(dx);
+    }
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart.current) return;
+    const dx = (e.changedTouches[0]?.clientX ?? touchStart.current.x) - touchStart.current.x;
+    const dy = (e.changedTouches[0]?.clientY ?? touchStart.current.y) - touchStart.current.y;
+    const dt = Date.now() - touchStart.current.t;
+    const threshold = 50;
+    const isHorizontal = Math.abs(dx) > Math.abs(dy);
+    const isFast = dt < 500 && Math.abs(dx) > 30;
+    if (isHorizontal && allImages.length > 1 && (Math.abs(dx) > threshold || isFast)) {
+      if (dx < 0) goNext();
+      else goPrev();
+    }
+    touchStart.current = null;
+    setSwipeOffset(0);
+  };
+
   useEffect(() => {
     if (lightboxIndex === null) return;
     const handleKey = (e: KeyboardEvent) => {
