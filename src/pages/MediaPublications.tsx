@@ -299,6 +299,18 @@ const MediaPublications = () => {
 
   const filteredPublications = publications.filter(matchesFilters);
 
+  // Layout mode: masonry (default, CSS columns) or list (single column)
+  const [layoutMode, setLayoutMode] = useState<"masonry" | "list">(() => {
+    if (typeof window === "undefined") return "masonry";
+    const saved = window.localStorage.getItem("mediaLayoutMode");
+    return saved === "list" ? "list" : "masonry";
+  });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("mediaLayoutMode", layoutMode);
+    }
+  }, [layoutMode]);
+
   // Separate featured from regular (within filtered set)
   const featuredPubs = filteredPublications.filter((p) => p.featured);
   const regularPubs = filteredPublications.filter((p) => !p.featured);
