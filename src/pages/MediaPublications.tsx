@@ -2,8 +2,9 @@ import { useState, useCallback, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import { X, ChevronLeft, ChevronRight, ExternalLink, Radio, Newspaper, Tv, Mic, Filter } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ExternalLink, Radio, Newspaper, Tv, Mic, Filter, Share2, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 import galleryBg from "@/assets/gallery-bg.jpg";
 
 import mediaCourierMail from "@/assets/media-courier-mail.jpg";
