@@ -546,7 +546,7 @@ const MediaPublications = () => {
                   <div className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
                     {/* Image Gallery — uncropped, natural aspect ratio */}
                     {pub.images.length > 0 && (
-                      <div className="lg:w-1/2 shrink-0 bg-black/40 p-4 md:p-6 flex items-center justify-center">
+                      <div className="lg:w-1/2 shrink-0 bg-black/40 p-3 sm:p-4 md:p-6 flex items-center justify-center">
                         {pub.images.length === 1 ? (
                           <div
                             className="cursor-pointer overflow-hidden rounded-lg group/img w-full"
