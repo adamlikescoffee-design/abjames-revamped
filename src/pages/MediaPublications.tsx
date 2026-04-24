@@ -387,6 +387,19 @@ const MediaPublications = () => {
     };
   }, [lightboxIndex, goPrev, goNext]);
 
+  useEffect(() => {
+    if (!detailPub) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDetailPub(null);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [detailPub]);
+
   const getTitle = (pub: Publication) => lang === "es" ? pub.titleEs : pub.title;
   const getDesc = (pub: Publication) => lang === "es" ? pub.descriptionEs : pub.description;
   const getSource = (pub: Publication) => lang === "es" ? pub.sourceEs : pub.source;
