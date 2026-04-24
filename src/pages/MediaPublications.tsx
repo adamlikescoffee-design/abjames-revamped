@@ -603,6 +603,13 @@ const MediaPublications = () => {
                           {t.mediaPage.listenOnSoundcloud}
                         </a>
                       )}
+                      <ShareDownload
+                        title={getTitle(pub)}
+                        description={getDesc(pub)}
+                        imageUrl={pub.images[0]}
+                        externalUrl={pub.externalUrl || pub.audioUrl}
+                        lang={lang}
+                      />
                     </div>
                   </div>
                 </div>
