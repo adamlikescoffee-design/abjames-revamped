@@ -532,7 +532,7 @@ const MediaPublications = () => {
           {/* Featured Section */}
           {featuredPubs.length > 0 && (
             <ScrollReveal>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8 flex items-center gap-3">
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6 md:mb-8 flex items-center gap-3">
                 <span className="w-8 h-px bg-primary" />
                 {lang === "es" ? "Artículos Destacados" : "Featured Coverage"}
               </h2>
