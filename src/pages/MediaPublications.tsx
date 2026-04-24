@@ -627,7 +627,7 @@ const MediaPublications = () => {
             </ScrollReveal>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-12 md:mb-16">
             {regularPubs.map((pub, idx) => (
               <ScrollReveal key={idx} animation="up" delay={idx * 80}>
                 <div className="group bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 h-full flex flex-col">
