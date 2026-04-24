@@ -177,28 +177,67 @@ const typeLabel = (type: string, lang: string) => {
 
 interface MetaRowProps {
   source: string;
+  sourceKey: string;
   year?: string;
   type: string;
   lang: string;
+  activeSource: string | null;
+  activeYear: string | null;
+  activeType: string | null;
+  onToggleSource: (s: string) => void;
+  onToggleYear: (y: string) => void;
+  onToggleType: (t: string) => void;
 }
 
-const MetaRow = ({ source, year, type, lang }: MetaRowProps) => (
-  <div className="flex flex-wrap items-center gap-2 mb-3">
-    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
-      <Newspaper size={11} />
-      {source}
-    </span>
-    {year && (
-      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary/80 border border-border/50 text-foreground/80 font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
-        {year}
-      </span>
-    )}
-    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary/80 border border-border/50 text-muted-foreground font-heading text-[10px] font-semibold tracking-[0.15em] uppercase">
-      {typeIcon(type)}
-      {typeLabel(type, lang)}
-    </span>
-  </div>
-);
+const MetaRow = ({ source, sourceKey, year, type, lang, activeSource, activeYear, activeType, onToggleSource, onToggleYear, onToggleType }: MetaRowProps) => {
+  const isSourceActive = activeSource === sourceKey;
+  const isYearActive = year ? activeYear === year : false;
+  const isTypeActive = activeType === type;
+  return (
+    <div className="flex flex-wrap items-center gap-2 mb-3">
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onToggleSource(sourceKey); }}
+        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-heading text-[10px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+          isSourceActive
+            ? "bg-primary text-primary-foreground"
+            : "bg-primary/10 text-primary hover:bg-primary/20"
+        }`}
+        aria-pressed={isSourceActive}
+      >
+        <Newspaper size={11} />
+        {source}
+      </button>
+      {year && (
+        <button
+          type="button"
+          onClick={(e) => { e.stopPropagation(); onToggleYear(year); }}
+          className={`inline-flex items-center px-2.5 py-1 rounded-full border font-heading text-[10px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+            isYearActive
+              ? "bg-primary text-primary-foreground border-primary"
+              : "bg-secondary/80 border-border/50 text-foreground/80 hover:border-primary/50"
+          }`}
+          aria-pressed={isYearActive}
+        >
+          {year}
+        </button>
+      )}
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onToggleType(type); }}
+        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border font-heading text-[10px] font-semibold tracking-[0.15em] uppercase transition-colors ${
+          isTypeActive
+            ? "bg-primary text-primary-foreground border-primary"
+            : "bg-secondary/80 border-border/50 text-muted-foreground hover:border-primary/50"
+        }`}
+        aria-pressed={isTypeActive}
+      >
+        {typeIcon(type)}
+        {typeLabel(type, lang)}
+      </button>
+    </div>
+  );
+};
 
 const MediaPublications = () => {
   const { lang, t } = useLanguage();
