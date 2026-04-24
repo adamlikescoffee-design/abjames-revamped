@@ -550,11 +550,16 @@ const MediaPublications = () => {
           <div
             className="relative flex flex-col items-center justify-center max-w-[92vw] max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              transform: swipeOffset !== 0 ? `translateX(${swipeOffset}px)` : undefined,
+              transition: swipeOffset === 0 ? "transform 200ms ease-out" : "none",
+            }}
           >
             <img
               src={allImages[lightboxIndex].src}
               alt={allImages[lightboxIndex].alt}
-              className={`object-contain ${captionVisible ? "max-h-[78vh]" : "max-h-[90vh]"} max-w-[92vw] transition-[max-height] duration-300`}
+              draggable={false}
+              className={`object-contain ${captionVisible ? "max-h-[78vh]" : "max-h-[90vh]"} max-w-[92vw] transition-[max-height] duration-300 pointer-events-none`}
             />
             {captionVisible && (
               <div className="mt-4 w-full max-w-3xl px-4 py-3 rounded-xl bg-background/50 backdrop-blur-md border border-border/40 text-center">
