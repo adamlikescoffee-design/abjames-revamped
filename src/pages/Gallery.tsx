@@ -7,7 +7,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 import gallery01 from "@/assets/gallery-01.jpeg";
-import gallery02 from "@/assets/gallery-02.jpeg";
+
 import gallery03 from "@/assets/gallery-03.jpg";
 import gallery04 from "@/assets/gallery-04.jpg";
 import gallery05 from "@/assets/gallery-05.jpg";
@@ -37,7 +37,7 @@ import galleryAdam4 from "@/assets/gallery-adam-4.jpg";
 
 const galleryImages = [
   { src: gallery01, alt: "Community event" },
-  { src: gallery02, alt: "Ned and Sasha" },
+  
   { src: gallery03, alt: "Community gathering" },
   { src: gallery04, alt: "Friends and community" },
   { src: gallery05, alt: "Cup From Above café" },
