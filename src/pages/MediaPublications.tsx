@@ -487,7 +487,7 @@ const MediaPublications = () => {
                       <MetaRow source={getSource(pub)} sourceKey={pub.source} year={pub.year} type={pub.type} lang={lang} activeSource={activeSource} activeYear={activeYear} activeType={activeType} onToggleSource={toggleSource} onToggleYear={toggleYear} onToggleType={toggleType} />
 
                       <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4 leading-tight group-hover:text-primary transition-colors">{getTitle(pub)}</h3>
-                      <p className="text-muted-foreground text-base leading-relaxed">{getDesc(pub)}</p>
+                      <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{getDesc(pub)}</p>
                       {pub.audioUrl && (
                         <a href={pub.audioUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-5 text-primary hover:brightness-110 font-heading text-sm font-semibold tracking-wider transition-all">
                           <Mic size={14} />
