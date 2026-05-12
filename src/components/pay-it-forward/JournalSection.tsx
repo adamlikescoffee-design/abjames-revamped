@@ -166,6 +166,19 @@ const JournalSection = () => {
                         />
                       </div>
                     )}
+                    {entry.title.toLowerCase().includes("catch-up with angel") && (
+                      <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {angelCatchupImages.map((img, i) => (
+                          <img
+                            key={i}
+                            src={img.src}
+                            alt={img.alt}
+                            className="rounded-xl shadow-lg w-full h-48 object-cover"
+                            loading="lazy"
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </ScrollReveal>
