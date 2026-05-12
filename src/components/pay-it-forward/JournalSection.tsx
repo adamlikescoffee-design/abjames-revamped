@@ -19,7 +19,7 @@ import angelCatchup2 from "@/assets/angel-catchup-2.jpg";
 import angelCatchup3 from "@/assets/angel-catchup-3.jpg";
 import angelCatchup4 from "@/assets/angel-catchup-4.jpg";
 import angelCatchup5 from "@/assets/angel-catchup-5.jpg";
-import angelCatchupChat1 from "@/assets/angel-catchup-chat-1.jpg";
+
 import angelCatchupChat2 from "@/assets/angel-catchup-chat-2.webp";
 
 const thankYouImages = [thankyou1, thankyou2, thankyou3, thankyou4, thankyou5, thankyou6];
@@ -29,8 +29,7 @@ const angelCatchupImages = [
   { src: angelCatchup2, alt: "Adam with Angel and his brother" },
   { src: angelCatchup5, alt: "Adam talking with Angel, holding a book" },
   { src: angelCatchup3, alt: "Loading the wheelchair into the car" },
-  { src: angelCatchupChat1, alt: "WhatsApp message from Elias asking for help" },
-  { src: angelCatchupChat2, alt: "WhatsApp follow-up about stove and refrigerator costs" },
+  { src: angelCatchupChat2, alt: "WhatsApp message from Elias about stove and refrigerator costs" },
 ];
 
 interface JournalEntry {
