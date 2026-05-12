@@ -122,10 +122,10 @@ const JournalSection = () => {
               const images = entry.images;
               const gridClass =
                 images.length === 1
-                  ? "grid grid-cols-1 max-w-sm gap-3"
+                  ? "max-w-sm"
                   : images.length === 2
-                    ? "grid grid-cols-2 max-w-2xl gap-3"
-                    : "grid grid-cols-2 sm:grid-cols-3 gap-3";
+                    ? "columns-2 max-w-2xl gap-3 [&>*]:mb-3"
+                    : "columns-2 sm:columns-3 gap-3 [&>*]:mb-3";
               return (
                 <ScrollReveal key={entry.id} delay={idx * 80}>
                   <div id={anchor} className="md:pl-12 relative scroll-mt-24">
@@ -154,12 +154,12 @@ const JournalSection = () => {
                               key={i}
                               type="button"
                               onClick={() => setLightbox({ images, index: i })}
-                              className="group w-full h-48 overflow-hidden rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                              className="group block w-full break-inside-avoid overflow-hidden rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
                             >
                               <img
                                 src={img.url}
                                 alt={img.alt || `${entry.title} photo ${i + 1}`}
-                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                                 loading="lazy"
                               />
                             </button>
