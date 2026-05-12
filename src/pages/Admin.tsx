@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone, Download, BookOpen, Pencil } from "lucide-react";
+import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone, Download, BookOpen, Pencil, Upload, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import {
   AlertDialog,
@@ -28,13 +28,27 @@ interface Pledge {
   created_at: string;
 }
 
+interface JournalImage {
+  url: string;
+  alt?: string;
+  path?: string; // storage path inside the bucket, when uploaded via admin
+}
+
 interface JournalEntry {
   id: string;
   title: string;
   content: string;
   published_at: string;
   created_at: string;
+  images: JournalImage[];
 }
+
+const normalizeImages = (raw: unknown): JournalImage[] => {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map((i: any) => (typeof i === "string" ? { url: i } : i?.url ? { url: i.url, alt: i.alt, path: i.path } : null))
+    .filter(Boolean) as JournalImage[];
+};
 
 const emptyForm = { name: "", email: "", phone: "", amount: "", city_country: "", notes: "", message: "" };
 const emptyJournalForm = { title: "", content: "" };
