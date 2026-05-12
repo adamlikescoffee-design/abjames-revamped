@@ -1,5 +1,5 @@
-import { BookOpen, CalendarDays, Link as LinkIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { BookOpen, CalendarDays, ChevronLeft, ChevronRight, Link as LinkIcon, X } from "lucide-react";
+import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import ScrollReveal from "@/components/ScrollReveal";
 import { format } from "date-fns";
@@ -19,11 +19,16 @@ import angelCatchup2 from "@/assets/angel-catchup-2.jpg";
 import angelCatchup3 from "@/assets/angel-catchup-3.jpg";
 import angelCatchup4 from "@/assets/angel-catchup-4.jpg";
 import angelCatchup5 from "@/assets/angel-catchup-5.jpg";
-
 import angelCatchupChat2 from "@/assets/angel-catchup-chat-2.webp";
 
-const thankYouImages = [thankyou1, thankyou2, thankyou3, thankyou4, thankyou5, thankyou6];
-const angelCatchupImages = [
+type JournalImage = { src: string; alt: string };
+
+const thankYouImages: JournalImage[] = [thankyou1, thankyou2, thankyou3, thankyou4, thankyou5, thankyou6].map((src, i) => ({
+  src,
+  alt: `Wheelchair handover celebration photo ${i + 1}`,
+}));
+
+const angelCatchupImages: JournalImage[] = [
   { src: angelCatchup1, alt: "Adam and Elias in the kitchen with supplies" },
   { src: angelCatchup4, alt: "Carrying groceries up to the apartment" },
   { src: angelCatchup2, alt: "Adam with Angel and his brother" },
@@ -31,6 +36,21 @@ const angelCatchupImages = [
   { src: angelCatchup3, alt: "Loading the wheelchair into the car" },
   { src: angelCatchupChat2, alt: "WhatsApp message from Elias about stove and refrigerator costs" },
 ];
+
+const getEntryImages = (title: string): JournalImage[] => {
+  const t = title.toLowerCase();
+  if (t.includes("donated")) return [{ src: wheelchairDonated, alt: "The donated wheelchair" }];
+  if (t.includes("delivered to quito"))
+    return [
+      { src: wheelchairQuitoDelivery, alt: "Wheelchair packaged for delivery to Quito" },
+      { src: wheelchairBusTicket, alt: "Bus ticket for wheelchair delivery to Quito" },
+    ];
+  if (t.includes("thank you to everyone")) return thankYouImages;
+  if (t.includes("huge thanks to henry"))
+    return [{ src: wheelchairHenryDelivery, alt: "Henry Padilla delivering the wheelchair in Quito" }];
+  if (t.includes("catch-up with angel")) return angelCatchupImages;
+  return [];
+};
 
 interface JournalEntry {
   id: string;
@@ -42,6 +62,7 @@ interface JournalEntry {
 const JournalSection = () => {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [lightbox, setLightbox] = useState<{ images: JournalImage[]; index: number } | null>(null);
 
   useEffect(() => {
     const fetchEntries = async () => {
@@ -62,8 +83,54 @@ const JournalSection = () => {
     }
   }, [loading, entries]);
 
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+  const nextImage = useCallback(
+    () => setLightbox((lb) => (lb ? { ...lb, index: (lb.index + 1) % lb.images.length } : lb)),
+    []
+  );
+  const prevImage = useCallback(
+    () => setLightbox((lb) => (lb ? { ...lb, index: (lb.index - 1 + lb.images.length) % lb.images.length } : lb)),
+    []
+  );
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      else if (e.key === "ArrowRight") nextImage();
+      else if (e.key === "ArrowLeft") prevImage();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [lightbox, closeLightbox, nextImage, prevImage]);
+
   if (loading) return null;
   if (entries.length === 0) return null;
+
+  const renderImageGrid = (images: JournalImage[], gridClass: string, sizeClass: string) => (
+    <div className={`mt-4 ${gridClass}`}>
+      {images.map((img, i) => (
+        <button
+          key={i}
+          type="button"
+          onClick={() => setLightbox({ images, index: i })}
+          className={`group ${sizeClass} overflow-hidden rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-primary`}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <section className="py-10">
@@ -73,14 +140,11 @@ const JournalSection = () => {
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
               <BookOpen size={18} className="text-primary" />
             </div>
-            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
-              Journal Updates
-            </h2>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">Journal Updates</h2>
           </div>
         </ScrollReveal>
 
         <div className="relative">
-          {/* Timeline line */}
           <div className="absolute left-4 top-0 bottom-0 w-px bg-border hidden md:block" />
 
           <div className="space-y-8">
@@ -92,100 +156,94 @@ const JournalSection = () => {
                 navigator.clipboard.writeText(url);
                 toast.success("Link copied to clipboard!");
               };
+              const images = getEntryImages(entry.title);
+              const t = entry.title.toLowerCase();
               return (
-              <ScrollReveal key={entry.id} delay={idx * 80}>
-                <div id={anchor} className="md:pl-12 relative scroll-mt-24">
-                  {/* Timeline dot */}
-                  <div className="absolute left-2.5 top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background hidden md:block" />
+                <ScrollReveal key={entry.id} delay={idx * 80}>
+                  <div id={anchor} className="md:pl-12 relative scroll-mt-24">
+                    <div className="absolute left-2.5 top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background hidden md:block" />
 
-                  <div className="bg-secondary/50 border border-border/50 rounded-xl p-6">
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                      <CalendarDays size={12} />
-                      {format(new Date(entry.published_at), "MMMM d, yyyy · h:mm a")}
-                      <button onClick={copyLink} className="ml-auto text-muted-foreground hover:text-primary transition-colors" title="Copy link to this entry">
-                        <LinkIcon size={14} />
-                      </button>
-                    </div>
-                    <h3 className="font-heading text-lg font-bold text-foreground mb-2">
-                      {entry.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                      {entry.content.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
-                        part.match(/^https?:\/\//) ? (
-                          <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">{part}</a>
-                        ) : part
+                    <div className="bg-secondary/50 border border-border/50 rounded-xl p-6">
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                        <CalendarDays size={12} />
+                        {format(new Date(entry.published_at), "MMMM d, yyyy · h:mm a")}
+                        <button onClick={copyLink} className="ml-auto text-muted-foreground hover:text-primary transition-colors" title="Copy link to this entry">
+                          <LinkIcon size={14} />
+                        </button>
+                      </div>
+                      <h3 className="font-heading text-lg font-bold text-foreground mb-2">{entry.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                        {entry.content.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+                          part.match(/^https?:\/\//) ? (
+                            <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">{part}</a>
+                          ) : part
+                        )}
+                      </p>
+                      {images.length > 0 && (
+                        t.includes("donated") || t.includes("huge thanks to henry")
+                          ? renderImageGrid(images, "max-w-xs", "w-full aspect-square")
+                          : t.includes("delivered to quito")
+                            ? renderImageGrid(images, "flex flex-wrap gap-4", "w-full max-w-xs aspect-[3/4]")
+                            : renderImageGrid(images, "grid grid-cols-2 sm:grid-cols-3 gap-3", "w-full h-48")
                       )}
-                    </p>
-                    {entry.title.toLowerCase().includes("donated") && (
-                      <div className="mt-4 max-w-xs">
-                        <img
-                          src={wheelchairDonated}
-                          alt="The donated wheelchair"
-                          className="rounded-xl shadow-lg w-full object-cover"
-                        />
-                      </div>
-                    )}
-                    {entry.title.toLowerCase().includes("delivered to quito") && (
-                      <div className="mt-4 flex flex-wrap gap-4">
-                        <div className="max-w-xs">
-                          <img
-                            src={wheelchairQuitoDelivery}
-                            alt="Wheelchair packaged for delivery to Quito"
-                            className="rounded-xl shadow-lg w-full object-cover"
-                          />
-                        </div>
-                        <div className="max-w-xs">
-                          <img
-                            src={wheelchairBusTicket}
-                            alt="Bus ticket for wheelchair delivery to Quito"
-                            className="rounded-xl shadow-lg w-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    )}
-                    {entry.title.toLowerCase().includes("thank you to everyone") && (
-                      <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        {thankYouImages.map((src, i) => (
-                          <img
-                            key={i}
-                            src={src}
-                            alt={`Wheelchair handover celebration photo ${i + 1}`}
-                            className="rounded-xl shadow-lg w-full h-48 object-cover"
-                            loading="lazy"
-                          />
-                        ))}
-                      </div>
-                    )}
-                    {entry.title.toLowerCase().includes("huge thanks to henry") && (
-                      <div className="mt-4 max-w-sm">
-                        <img
-                          src={wheelchairHenryDelivery}
-                          alt="Henry Padilla delivering the wheelchair in Quito"
-                          className="rounded-xl shadow-lg w-full object-cover"
-                        />
-                      </div>
-                    )}
-                    {entry.title.toLowerCase().includes("catch-up with angel") && (
-                      <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        {angelCatchupImages.map((img, i) => (
-                          <img
-                            key={i}
-                            src={img.src}
-                            alt={img.alt}
-                            className="rounded-xl shadow-lg w-full h-48 object-cover"
-                            loading="lazy"
-                          />
-                        ))}
-                      </div>
-                    )}
+                    </div>
                   </div>
-                </div>
-              </ScrollReveal>
+                </ScrollReveal>
               );
             })}
           </div>
         </div>
       </div>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          <button
+            type="button"
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 w-11 h-11 rounded-full bg-secondary/80 hover:bg-secondary text-foreground flex items-center justify-center transition-colors"
+            aria-label="Close"
+          >
+            <X size={22} />
+          </button>
+
+          {lightbox.images.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-secondary/80 hover:bg-secondary text-foreground flex items-center justify-center transition-colors"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-secondary/80 hover:bg-secondary text-foreground flex items-center justify-center transition-colors"
+                aria-label="Next image"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </>
+          )}
+
+          <img
+            src={lightbox.images[lightbox.index].src}
+            alt={lightbox.images[lightbox.index].alt}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+          />
+
+          {lightbox.images.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-secondary/80 text-xs font-mono text-foreground">
+              {lightbox.index + 1} / {lightbox.images.length}
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 };
