@@ -192,10 +192,50 @@ const Admin = () => {
   };
 
   const handleJournalDelete = async (id: string) => {
+    const entry = journalEntries.find((e) => e.id === id);
+    if (entry?.images?.length) {
+      const paths = entry.images.map((i) => i.path).filter(Boolean) as string[];
+      if (paths.length) await supabase.storage.from("journal-images").remove(paths);
+    }
     const { error } = await supabase.from("wheelchair_journal").delete().eq("id", id);
     if (error) { toast.error("Failed to delete entry"); return; }
     setJournalEntries((prev) => prev.filter((e) => e.id !== id));
     toast.success("Journal entry deleted");
+  };
+
+  const handleImageUpload = async (entryId: string, files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    const entry = journalEntries.find((e) => e.id === entryId);
+    if (!entry) return;
+    const uploaded: JournalImage[] = [];
+    for (const file of Array.from(files)) {
+      const ext = file.name.split(".").pop() || "jpg";
+      const path = `${entryId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const { error } = await supabase.storage.from("journal-images").upload(path, file, { contentType: file.type });
+      if (error) { toast.error(`Failed to upload ${file.name}`); continue; }
+      const { data: pub } = supabase.storage.from("journal-images").getPublicUrl(path);
+      uploaded.push({ url: pub.publicUrl, path, alt: file.name.replace(/\.[^.]+$/, "") });
+    }
+    if (uploaded.length === 0) return;
+    const newImages = [...entry.images, ...uploaded];
+    const { error } = await supabase.from("wheelchair_journal").update({ images: newImages as any }).eq("id", entryId);
+    if (error) { toast.error("Saved files but failed to update entry"); return; }
+    setJournalEntries((prev) => prev.map((e) => e.id === entryId ? { ...e, images: newImages } : e));
+    toast.success(`Added ${uploaded.length} image${uploaded.length === 1 ? "" : "s"}`);
+  };
+
+  const handleImageRemove = async (entryId: string, index: number) => {
+    const entry = journalEntries.find((e) => e.id === entryId);
+    if (!entry) return;
+    const target = entry.images[index];
+    const newImages = entry.images.filter((_, i) => i !== index);
+    if (target?.path) {
+      await supabase.storage.from("journal-images").remove([target.path]);
+    }
+    const { error } = await supabase.from("wheelchair_journal").update({ images: newImages as any }).eq("id", entryId);
+    if (error) { toast.error("Failed to remove image"); return; }
+    setJournalEntries((prev) => prev.map((e) => e.id === entryId ? { ...e, images: newImages } : e));
+    toast.success("Image removed");
   };
 
   const startEditJournal = (entry: JournalEntry) => {
