@@ -76,6 +76,7 @@ export type Database = {
           content: string
           created_at: string
           id: string
+          images: Json
           published_at: string
           title: string
         }
@@ -83,6 +84,7 @@ export type Database = {
           content: string
           created_at?: string
           id?: string
+          images?: Json
           published_at?: string
           title: string
         }
@@ -90,6 +92,7 @@ export type Database = {
           content?: string
           created_at?: string
           id?: string
+          images?: Json
           published_at?: string
           title?: string
         }
