@@ -181,6 +181,7 @@ const JournalSection = () => {
           onClick={closeLightbox}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
+        >
           <button
             type="button"
             onClick={closeLightbox}
