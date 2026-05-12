@@ -656,6 +656,44 @@ const Admin = () => {
                       </AlertDialog>
                     </div>
                   </div>
+
+                  <div className="mt-4 pt-4 border-t border-border/50">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2 text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider">
+                        <ImageIcon size={14} />
+                        Photos ({entry.images.length})
+                      </div>
+                      <label className="flex items-center gap-1 text-xs font-heading text-primary hover:text-primary/80 cursor-pointer transition-colors">
+                        <Upload size={14} />
+                        Add photos
+                        <input
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          className="hidden"
+                          onChange={(ev) => { handleImageUpload(entry.id, ev.target.files); ev.target.value = ""; }}
+                        />
+                      </label>
+                    </div>
+                    {entry.images.length > 0 && (
+                      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                        {entry.images.map((img, i) => (
+                          <div key={i} className="relative group aspect-square rounded-md overflow-hidden bg-background">
+                            <img src={img.url} alt={img.alt || ""} className="w-full h-full object-cover" />
+                            <button
+                              type="button"
+                              onClick={() => handleImageRemove(entry.id, i)}
+                              className="absolute top-1 right-1 w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                              aria-label="Remove image"
+                              title="Remove image"
+                            >
+                              <X size={12} />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
