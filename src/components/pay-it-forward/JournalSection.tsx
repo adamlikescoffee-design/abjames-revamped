@@ -154,12 +154,12 @@ const JournalSection = () => {
                               key={i}
                               type="button"
                               onClick={() => setLightbox({ images, index: i })}
-                              className="group w-full h-48 overflow-hidden rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                              className="group block w-full break-inside-avoid overflow-hidden rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
                             >
                               <img
                                 src={img.url}
                                 alt={img.alt || `${entry.title} photo ${i + 1}`}
-                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                                 loading="lazy"
                               />
                             </button>
