@@ -1,5 +1,5 @@
 import { BookOpen, CalendarDays, ChevronLeft, ChevronRight, Link as LinkIcon, X } from "lucide-react";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import ScrollReveal from "@/components/ScrollReveal";
 import { format } from "date-fns";
@@ -73,6 +73,24 @@ const JournalSection = () => {
       document.body.style.overflow = prevOverflow;
     };
   }, [lightbox, closeLightbox, nextImage, prevImage]);
+
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = e.changedTouches[0].clientY - touchStartY.current;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) nextImage();
+      else prevImage();
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
 
   if (loading) return null;
   if (entries.length === 0) return null;
@@ -159,8 +177,10 @@ const JournalSection = () => {
 
       {lightbox && (
         <div
-          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4 touch-pan-y"
           onClick={closeLightbox}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <button
             type="button"
