@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone, Download, BookOpen, Pencil } from "lucide-react";
+import { LogOut, Users, Loader2, Mail, MapPin, MessageSquare, StickyNote, Trash2, Plus, X, Phone, Download, BookOpen, Pencil, Upload, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import {
   AlertDialog,
@@ -28,13 +28,27 @@ interface Pledge {
   created_at: string;
 }
 
+interface JournalImage {
+  url: string;
+  alt?: string;
+  path?: string; // storage path inside the bucket, when uploaded via admin
+}
+
 interface JournalEntry {
   id: string;
   title: string;
   content: string;
   published_at: string;
   created_at: string;
+  images: JournalImage[];
 }
+
+const normalizeImages = (raw: unknown): JournalImage[] => {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map((i: any) => (typeof i === "string" ? { url: i } : i?.url ? { url: i.url, alt: i.alt, path: i.path } : null))
+    .filter(Boolean) as JournalImage[];
+};
 
 const emptyForm = { name: "", email: "", phone: "", amount: "", city_country: "", notes: "", message: "" };
 const emptyJournalForm = { title: "", content: "" };
@@ -82,7 +96,7 @@ const Admin = () => {
         .from("wheelchair_journal")
         .select("*")
         .order("published_at", { ascending: false });
-      setJournalEntries(data || []);
+      setJournalEntries((data || []).map((e: any) => ({ ...e, images: normalizeImages(e.images) })));
       setJournalLoading(false);
     };
     fetchJournal();
@@ -169,7 +183,7 @@ const Admin = () => {
         .single();
       setJournalSubmitting(false);
       if (error) { toast.error("Failed to add entry"); return; }
-      setJournalEntries((prev) => [data, ...prev]);
+      setJournalEntries((prev) => [{ ...(data as any), images: normalizeImages((data as any).images) }, ...prev]);
       toast.success("Journal entry added");
     }
     setJournalForm(emptyJournalForm);
@@ -178,10 +192,50 @@ const Admin = () => {
   };
 
   const handleJournalDelete = async (id: string) => {
+    const entry = journalEntries.find((e) => e.id === id);
+    if (entry?.images?.length) {
+      const paths = entry.images.map((i) => i.path).filter(Boolean) as string[];
+      if (paths.length) await supabase.storage.from("journal-images").remove(paths);
+    }
     const { error } = await supabase.from("wheelchair_journal").delete().eq("id", id);
     if (error) { toast.error("Failed to delete entry"); return; }
     setJournalEntries((prev) => prev.filter((e) => e.id !== id));
     toast.success("Journal entry deleted");
+  };
+
+  const handleImageUpload = async (entryId: string, files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    const entry = journalEntries.find((e) => e.id === entryId);
+    if (!entry) return;
+    const uploaded: JournalImage[] = [];
+    for (const file of Array.from(files)) {
+      const ext = file.name.split(".").pop() || "jpg";
+      const path = `${entryId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const { error } = await supabase.storage.from("journal-images").upload(path, file, { contentType: file.type });
+      if (error) { toast.error(`Failed to upload ${file.name}`); continue; }
+      const { data: pub } = supabase.storage.from("journal-images").getPublicUrl(path);
+      uploaded.push({ url: pub.publicUrl, path, alt: file.name.replace(/\.[^.]+$/, "") });
+    }
+    if (uploaded.length === 0) return;
+    const newImages = [...entry.images, ...uploaded];
+    const { error } = await supabase.from("wheelchair_journal").update({ images: newImages as any }).eq("id", entryId);
+    if (error) { toast.error("Saved files but failed to update entry"); return; }
+    setJournalEntries((prev) => prev.map((e) => e.id === entryId ? { ...e, images: newImages } : e));
+    toast.success(`Added ${uploaded.length} image${uploaded.length === 1 ? "" : "s"}`);
+  };
+
+  const handleImageRemove = async (entryId: string, index: number) => {
+    const entry = journalEntries.find((e) => e.id === entryId);
+    if (!entry) return;
+    const target = entry.images[index];
+    const newImages = entry.images.filter((_, i) => i !== index);
+    if (target?.path) {
+      await supabase.storage.from("journal-images").remove([target.path]);
+    }
+    const { error } = await supabase.from("wheelchair_journal").update({ images: newImages as any }).eq("id", entryId);
+    if (error) { toast.error("Failed to remove image"); return; }
+    setJournalEntries((prev) => prev.map((e) => e.id === entryId ? { ...e, images: newImages } : e));
+    toast.success("Image removed");
   };
 
   const startEditJournal = (entry: JournalEntry) => {
@@ -601,6 +655,44 @@ const Admin = () => {
                         </AlertDialogContent>
                       </AlertDialog>
                     </div>
+                  </div>
+
+                  <div className="mt-4 pt-4 border-t border-border/50">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2 text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider">
+                        <ImageIcon size={14} />
+                        Photos ({entry.images.length})
+                      </div>
+                      <label className="flex items-center gap-1 text-xs font-heading text-primary hover:text-primary/80 cursor-pointer transition-colors">
+                        <Upload size={14} />
+                        Add photos
+                        <input
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          className="hidden"
+                          onChange={(ev) => { handleImageUpload(entry.id, ev.target.files); ev.target.value = ""; }}
+                        />
+                      </label>
+                    </div>
+                    {entry.images.length > 0 && (
+                      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                        {entry.images.map((img, i) => (
+                          <div key={i} className="relative group aspect-square rounded-md overflow-hidden bg-background">
+                            <img src={img.url} alt={img.alt || ""} className="w-full h-full object-cover" />
+                            <button
+                              type="button"
+                              onClick={() => handleImageRemove(entry.id, i)}
+                              className="absolute top-1 right-1 w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                              aria-label="Remove image"
+                              title="Remove image"
+                            >
+                              <X size={12} />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

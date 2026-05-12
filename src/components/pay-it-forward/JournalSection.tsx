@@ -4,60 +4,23 @@ import { supabase } from "@/integrations/supabase/client";
 import ScrollReveal from "@/components/ScrollReveal";
 import { format } from "date-fns";
 import { toast } from "sonner";
-import wheelchairDonated from "@/assets/wheelchair-donated.png";
-import wheelchairQuitoDelivery from "@/assets/wheelchair-quito-delivery.png";
-import wheelchairBusTicket from "@/assets/wheelchair-bus-ticket.png";
-import wheelchairHenryDelivery from "@/assets/wheelchair-henry-delivery.png";
-import thankyou1 from "@/assets/wheelchair-thankyou-1.jpg";
-import thankyou2 from "@/assets/wheelchair-thankyou-2.jpg";
-import thankyou3 from "@/assets/wheelchair-thankyou-3.jpg";
-import thankyou4 from "@/assets/wheelchair-thankyou-4.jpg";
-import thankyou5 from "@/assets/wheelchair-thankyou-5.jpg";
-import thankyou6 from "@/assets/wheelchair-thankyou-6.jpg";
-import angelCatchup1 from "@/assets/angel-catchup-1.jpg";
-import angelCatchup2 from "@/assets/angel-catchup-2.jpg";
-import angelCatchup3 from "@/assets/angel-catchup-3.jpg";
-import angelCatchup4 from "@/assets/angel-catchup-4.jpg";
-import angelCatchup5 from "@/assets/angel-catchup-5.jpg";
-import angelCatchupChat2 from "@/assets/angel-catchup-chat-2.webp";
 
-type JournalImage = { src: string; alt: string };
-
-const thankYouImages: JournalImage[] = [thankyou1, thankyou2, thankyou3, thankyou4, thankyou5, thankyou6].map((src, i) => ({
-  src,
-  alt: `Wheelchair handover celebration photo ${i + 1}`,
-}));
-
-const angelCatchupImages: JournalImage[] = [
-  { src: angelCatchup1, alt: "Adam and Elias in the kitchen with supplies" },
-  { src: angelCatchup4, alt: "Carrying groceries up to the apartment" },
-  { src: angelCatchup2, alt: "Adam with Angel and his brother" },
-  { src: angelCatchup5, alt: "Adam talking with Angel, holding a book" },
-  { src: angelCatchup3, alt: "Loading the wheelchair into the car" },
-  { src: angelCatchupChat2, alt: "WhatsApp message from Elias about stove and refrigerator costs" },
-];
-
-const getEntryImages = (title: string): JournalImage[] => {
-  const t = title.toLowerCase();
-  if (t.includes("donated")) return [{ src: wheelchairDonated, alt: "The donated wheelchair" }];
-  if (t.includes("delivered to quito"))
-    return [
-      { src: wheelchairQuitoDelivery, alt: "Wheelchair packaged for delivery to Quito" },
-      { src: wheelchairBusTicket, alt: "Bus ticket for wheelchair delivery to Quito" },
-    ];
-  if (t.includes("thank you to everyone")) return thankYouImages;
-  if (t.includes("huge thanks to henry"))
-    return [{ src: wheelchairHenryDelivery, alt: "Henry Padilla delivering the wheelchair in Quito" }];
-  if (t.includes("catch-up with angel")) return angelCatchupImages;
-  return [];
-};
+type JournalImage = { url: string; alt?: string };
 
 interface JournalEntry {
   id: string;
   title: string;
   content: string;
   published_at: string;
+  images: JournalImage[];
 }
+
+const normalizeImages = (raw: unknown): JournalImage[] => {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map((i: any) => (typeof i === "string" ? { url: i } : i?.url ? { url: i.url, alt: i.alt } : null))
+    .filter(Boolean) as JournalImage[];
+};
 
 const JournalSection = () => {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
@@ -70,7 +33,9 @@ const JournalSection = () => {
         .from("wheelchair_journal")
         .select("*")
         .order("published_at", { ascending: false });
-      setEntries(data || []);
+      setEntries(
+        (data || []).map((e: any) => ({ ...e, images: normalizeImages(e.images) }))
+      );
       setLoading(false);
     };
     fetchEntries();
@@ -112,26 +77,6 @@ const JournalSection = () => {
   if (loading) return null;
   if (entries.length === 0) return null;
 
-  const renderImageGrid = (images: JournalImage[], gridClass: string, sizeClass: string) => (
-    <div className={`mt-4 ${gridClass}`}>
-      {images.map((img, i) => (
-        <button
-          key={i}
-          type="button"
-          onClick={() => setLightbox({ images, index: i })}
-          className={`group ${sizeClass} overflow-hidden rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-primary`}
-        >
-          <img
-            src={img.src}
-            alt={img.alt}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
-          />
-        </button>
-      ))}
-    </div>
-  );
-
   return (
     <section className="py-10">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -156,8 +101,13 @@ const JournalSection = () => {
                 navigator.clipboard.writeText(url);
                 toast.success("Link copied to clipboard!");
               };
-              const images = getEntryImages(entry.title);
-              const t = entry.title.toLowerCase();
+              const images = entry.images;
+              const gridClass =
+                images.length === 1
+                  ? "grid grid-cols-1 max-w-sm gap-3"
+                  : images.length === 2
+                    ? "grid grid-cols-2 max-w-2xl gap-3"
+                    : "grid grid-cols-2 sm:grid-cols-3 gap-3";
               return (
                 <ScrollReveal key={entry.id} delay={idx * 80}>
                   <div id={anchor} className="md:pl-12 relative scroll-mt-24">
@@ -180,11 +130,23 @@ const JournalSection = () => {
                         )}
                       </p>
                       {images.length > 0 && (
-                        t.includes("donated") || t.includes("huge thanks to henry")
-                          ? renderImageGrid(images, "max-w-xs", "w-full aspect-square")
-                          : t.includes("delivered to quito")
-                            ? renderImageGrid(images, "flex flex-wrap gap-4", "w-full max-w-xs aspect-[3/4]")
-                            : renderImageGrid(images, "grid grid-cols-2 sm:grid-cols-3 gap-3", "w-full h-48")
+                        <div className={`mt-4 ${gridClass}`}>
+                          {images.map((img, i) => (
+                            <button
+                              key={i}
+                              type="button"
+                              onClick={() => setLightbox({ images, index: i })}
+                              className="group w-full h-48 overflow-hidden rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                            >
+                              <img
+                                src={img.url}
+                                alt={img.alt || `${entry.title} photo ${i + 1}`}
+                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                loading="lazy"
+                              />
+                            </button>
+                          ))}
+                        </div>
                       )}
                     </div>
                   </div>
@@ -231,8 +193,8 @@ const JournalSection = () => {
           )}
 
           <img
-            src={lightbox.images[lightbox.index].src}
-            alt={lightbox.images[lightbox.index].alt}
+            src={lightbox.images[lightbox.index].url}
+            alt={lightbox.images[lightbox.index].alt || ""}
             onClick={(e) => e.stopPropagation()}
             className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
           />
