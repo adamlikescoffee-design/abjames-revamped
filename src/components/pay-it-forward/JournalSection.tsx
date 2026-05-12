@@ -177,9 +177,10 @@ const JournalSection = () => {
 
       {lightbox && (
         <div
-          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4 touch-pan-y"
           onClick={closeLightbox}
-        >
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           <button
             type="button"
             onClick={closeLightbox}
