@@ -96,7 +96,7 @@ const Admin = () => {
         .from("wheelchair_journal")
         .select("*")
         .order("published_at", { ascending: false });
-      setJournalEntries(data || []);
+      setJournalEntries((data || []).map((e: any) => ({ ...e, images: normalizeImages(e.images) })));
       setJournalLoading(false);
     };
     fetchJournal();
@@ -183,7 +183,7 @@ const Admin = () => {
         .single();
       setJournalSubmitting(false);
       if (error) { toast.error("Failed to add entry"); return; }
-      setJournalEntries((prev) => [data, ...prev]);
+      setJournalEntries((prev) => [{ ...(data as any), images: normalizeImages((data as any).images) }, ...prev]);
       toast.success("Journal entry added");
     }
     setJournalForm(emptyJournalForm);
