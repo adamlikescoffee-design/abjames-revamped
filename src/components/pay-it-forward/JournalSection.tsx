@@ -19,7 +19,7 @@ import angelCatchup2 from "@/assets/angel-catchup-2.jpg";
 import angelCatchup3 from "@/assets/angel-catchup-3.jpg";
 import angelCatchup4 from "@/assets/angel-catchup-4.jpg";
 import angelCatchup5 from "@/assets/angel-catchup-5.jpg";
-import angelCatchupChat1 from "@/assets/angel-catchup-chat-1.jpg";
+
 import angelCatchupChat2 from "@/assets/angel-catchup-chat-2.webp";
 
 const thankYouImages = [thankyou1, thankyou2, thankyou3, thankyou4, thankyou5, thankyou6];
