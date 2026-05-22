@@ -109,13 +109,16 @@ const Footer = () => {
               Admin
             </Link>
             <span className="text-foreground/20">|</span>
-            <p className="text-foreground/40 text-xs font-heading tracking-wider flex items-center gap-1">
+            <a
+              href="https://www.libertydigital.com.au/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/40 text-xs font-heading tracking-wider flex items-center gap-1 hover:text-primary transition-colors"
+            >
               {t.footer.madeWith}{" "}
               <Heart size={12} className="text-red-500 fill-red-500" /> {t.footer.by}{" "}
-              <a href="https://www.libertydigital.com.au/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                LIBERTY DIGITAL
-              </a>
-            </p>
+              <span>LIBERTY DIGITAL</span>
+            </a>
           </div>
         </div>
       </div>
