@@ -1908,5 +1908,10 @@ export const blogPosts: BlogPost[] = [
     "Like anything, the sauna can be overdone. You are sweating. You are losing fluid. You can become dehydrated. Cleveland Clinic lists dehydration as one of the biggest risks of sauna use, and recommends keeping sessions reasonably short, listening to your body and staying hydrated. UCLA Health also recommends drinking water before, during and after sauna use, limiting sessions to around 20 minutes, starting shorter if you are new to it, and avoiding alcohol before or during sauna bathing.",
     "That is the sensible approach. For me this morning, 10 minutes in the Turkish sauna and 10 minutes in the dry sauna felt like enough. Just a good recovery session after the gym. When you start stacking these habits together, they change how you feel. They change how you carry yourself. They change how you move through the day.",
     ],
+    references: [
+      { source: "UCLA Health", title: "Benefits of sauna bathing for heart health", url: "https://www.uclahealth.org/news/article/benefits-sauna-bathing-heart-health" },
+      { source: "Cleveland Clinic", title: "Get Your Sweat On: The Benefits of a Sauna", url: "https://health.clevelandclinic.org/sauna-benefits" },
+      { source: "Mayo Clinic Proceedings", title: "Cardiovascular and Other Health Benefits of Sauna Bathing", url: "https://www.mayoclinicproceedings.org/article/s0025-6196(18)30275-1/fulltext" },
+    ],
   },
 ];
