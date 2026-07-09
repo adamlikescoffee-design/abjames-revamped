@@ -84,7 +84,7 @@ import blogAccountabilityLeadership from "@/assets/blog-accountability-leadershi
 import blogChaplainFundraiser from "@/assets/blog-chaplain-fundraiser-speech.jpg";
 import blogComparingJarisCaseNo6 from "@/assets/blog-comparing-jaris-case-no6.jpg";
 import blogAspleyTuckerTokens from "@/assets/blog-aspley-tucker-tokens.jpg";
-import blogTurkishSaunaVsTraditionalDrySauna from "@/assets/blog-turkish-sauna-vs-traditional-dry-sauna.jpg";
+import blogTurkishSaunaVsTraditionalDrySauna from "@/assets/turco-sauna-photo.webp.asset.json";
 
 export interface BlogPost {
   slug: string;
@@ -1879,7 +1879,7 @@ export const blogPosts: BlogPost[] = [
     title: "Turkish Sauna vs the Traditional Dry Sauna",
     excerpt:
     "A few thoughts on the difference between the wet heat of a Turkish sauna and the sharp dry heat of a traditional sauna — and why both can be useful after a workout.",
-    image: blogTurkishSaunaVsTraditionalDrySauna,
+    image: blogTurkishSaunaVsTraditionalDrySauna.url,
     date: "July 2026",
     category: "Health",
     content: [
