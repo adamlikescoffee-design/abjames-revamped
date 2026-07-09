@@ -46,7 +46,7 @@ const BlogPost = () => {
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">{post.localizedTitle}</h1>
 
-          <div className="space-y-5 text-foreground/85 text-base md:text-lg leading-relaxed">
+          <div className="space-y-6 text-foreground/85 text-base md:text-lg leading-relaxed">
             {post.localizedContent.map((block, idx) => {
               if (typeof block === "string") {
                 return <p key={idx}>{block}</p>;
@@ -61,6 +61,35 @@ const BlogPost = () => {
                       allowFullScreen
                       className="w-full h-full"
                     />
+                  </div>
+                );
+              }
+              if (block.type === "heading") {
+                return (
+                  <div key={idx} className="flex items-center gap-4 pt-4">
+                    <h2 className="font-heading text-2xl md:text-3xl text-primary uppercase tracking-wide shrink-0">{block.text}</h2>
+                    <div className="h-px w-full bg-primary/20" />
+                  </div>
+                );
+              }
+              if (block.type === "quote") {
+                return (
+                  <blockquote key={idx} className="py-10 border-y border-border">
+                    <p className="font-heading text-2xl md:text-3xl text-center text-foreground italic leading-tight">"{block.text}"</p>
+                  </blockquote>
+                );
+              }
+              if (block.type === "list") {
+                return (
+                  <div key={idx} className="bg-card/50 p-6 md:p-8 border border-border">
+                    <ul className="space-y-4 text-foreground/85">
+                      {block.items.map((item, itemIdx) => (
+                        <li key={itemIdx} className="flex gap-3">
+                          <span className="text-primary mt-1.5">—</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 );
               }
