@@ -86,6 +86,8 @@ import blogComparingJarisCaseNo6 from "@/assets/blog-comparing-jaris-case-no6.jp
 import blogAspleyTuckerTokens from "@/assets/blog-aspley-tucker-tokens.jpg";
 import blogTurkishSaunaVsTraditionalDrySauna from "@/assets/turco-sauna-photo.webp.asset.json";
 
+export type ContentBlock = string | { type: "youtube"; id: string };
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -93,7 +95,7 @@ export interface BlogPost {
   image: string;
   date?: string;
   category?: string;
-  content: string[];
+  content: ContentBlock[];
   hidden?: boolean;
 }
 

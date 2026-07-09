@@ -1,12 +1,12 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { blogPosts, type BlogPost } from "@/data/blogPosts";
+import { blogPosts, type BlogPost, type ContentBlock } from "@/data/blogPosts";
 import { blogPostsEs } from "@/data/blogPostsEs";
 import { useMemo } from "react";
 
 export interface LocalizedBlogPost extends BlogPost {
   localizedTitle: string;
   localizedExcerpt: string;
-  localizedContent: string[];
+  localizedContent: ContentBlock[];
   localizedCategory: string;
 }
 
