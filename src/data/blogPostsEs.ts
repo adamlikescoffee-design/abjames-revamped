@@ -1,7 +1,7 @@
 // Spanish translations for blog posts, keyed by slug.
 // Posts without a content_es array will fall back to English content.
 
-import type { ContentBlock } from "@/data/blogPosts";
+import type { ContentBlock, Reference } from "@/data/blogPosts";
 
 interface BlogTranslation {
   title: string;
@@ -9,6 +9,7 @@ interface BlogTranslation {
   content?: ContentBlock[];
   category?: string;
   imageAlt?: string;
+  references?: Reference[];
 }
 
 export const blogPostsEs: Record<string, BlogTranslation> = {

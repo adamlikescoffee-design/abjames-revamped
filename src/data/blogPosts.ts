@@ -88,6 +88,12 @@ import blogTurkishSaunaVsTraditionalDrySauna from "@/assets/turco-sauna-photo.we
 
 export type ContentBlock = string | { type: "youtube"; id: string };
 
+export interface Reference {
+  source: string;
+  title: string;
+  url: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -97,6 +103,7 @@ export interface BlogPost {
   date?: string;
   category?: string;
   content: ContentBlock[];
+  references?: Reference[];
   hidden?: boolean;
 }
 
