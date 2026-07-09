@@ -1,10 +1,12 @@
 // Spanish translations for blog posts, keyed by slug.
 // Posts without a content_es array will fall back to English content.
 
+import type { ContentBlock } from "@/data/blogPosts";
+
 interface BlogTranslation {
   title: string;
   excerpt: string;
-  content?: string[];
+  content?: ContentBlock[];
   category?: string;
 }
 
