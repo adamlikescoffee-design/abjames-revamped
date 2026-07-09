@@ -84,6 +84,7 @@ import blogAccountabilityLeadership from "@/assets/blog-accountability-leadershi
 import blogChaplainFundraiser from "@/assets/blog-chaplain-fundraiser-speech.jpg";
 import blogComparingJarisCaseNo6 from "@/assets/blog-comparing-jaris-case-no6.jpg";
 import blogAspleyTuckerTokens from "@/assets/blog-aspley-tucker-tokens.jpg";
+import blogTurkishSaunaVsTraditionalDrySauna from "@/assets/blog-turkish-sauna-vs-traditional-dry-sauna.jpg";
 
 export interface BlogPost {
   slug: string;
@@ -1870,6 +1871,30 @@ export const blogPosts: BlogPost[] = [
  "Glen worked every day with the support of a small team, including a transcriber who helped bring each of his words to life. His Member for Petrie, Yvette D'Ath, praised his persistence and success, saying Glen's story was a powerful example of overcoming obstacles.",
  "He planned to celebrate his achievement quietly with friends and family — with cake and beer.",
  "PAGE TURNER: Author Glen Sheppard reads Solved in Silence with friend Adam Cocks.",
- "Picture: Mark Callejan",
- ],
- },];
+    "Picture: Mark Callejan",
+  ],
+  },
+  {
+    slug: "turkish-sauna-vs-traditional-dry-sauna",
+    title: "Turkish Sauna vs the Traditional Dry Sauna",
+    excerpt:
+    "A few thoughts on the difference between the wet heat of a Turkish sauna and the sharp dry heat of a traditional sauna — and why both can be useful after a workout.",
+    image: blogTurkishSaunaVsTraditionalDrySauna,
+    date: "July 2026",
+    category: "Health",
+    content: [
+    "This morning I hit the gym. Nothing too dramatic. Just the normal work. Lift the weights. Get the heart rate up. Put in the reps. Do the thing. I spent 10 minutes in the Turkish sauna, then another 10 minutes in the normal dry sauna. It was simple, but it felt like a really good finish to the session.",
+    "The Turkish sauna is the wet heat. More humidity. More steam. It feels heavy on the skin and in the lungs. The dry sauna is a different beast. Hotter, sharper, less humid. You sit there and feel your body switch into a completely different mode. Neither one is magic. But both have some very real health benefits when used properly.",
+    "The normal dry sauna is what most people think of when they hear the word sauna. It is usually a small heated room with low humidity. The heat causes your body temperature to rise, your heart rate to increase, your blood vessels to open up and your body to sweat. It is not the same as exercise, but it can create some similar cardiovascular stress in the body. UCLA Health describes this as being similar to the effects of low or moderate exercise because the heat increases circulation and can reduce stress levels.",
+    "That is probably the first benefit: circulation. After a workout, the sauna seems to help the body wind down while still keeping blood moving. For sore muscles and general stiffness, heat can be a very useful tool. Cleveland Clinic notes that sauna use may help reduce stress, support heart health, assist with pain relief and soothe sore muscles.",
+    "There is also some interesting research around regular sauna use and cardiovascular health. The strongest evidence appears to be around traditional dry sauna bathing, particularly in Finnish sauna studies. A review published in Mayo Clinic Proceedings found that sauna bathing may be linked with reduced risk of vascular conditions such as high blood pressure and cardiovascular disease, though it is still an area where more research is needed.",
+    "The key word there is 'may'. I think this is important. It is very easy for people to overstate these things online. A sauna is not a replacement for training, sleep, nutrition or getting your life in order. But as part of a broader routine, it seems to be a very useful recovery and health tool.",
+    "The Turkish sauna, or steam room, is different. The heat is moist rather than dry. The temperature is usually lower than a dry sauna, but because the humidity is so high it can feel just as intense, sometimes more intense. For me, the Turkish sauna feels more relaxing. It feels like it opens everything up. The steam can feel good on the airways, and it has a different effect on the skin. Cleveland Clinic notes that a steam room uses humidity, and that there is no clear evidence that dry heat or wet heat is automatically better than the other.",
+    "That makes sense to me. They are different tools. The dry sauna feels more like a cardiovascular stressor. The Turkish sauna feels more like a recovery and breathing reset. Both involve heat. Both make you sweat. Both force you to sit still for a few minutes, which is probably one of the most underrated benefits. No phone. No scrolling. No noise. Just heat, breath and time.",
+    "The physical benefits are one thing. But the bigger thing for me is the mental shift. After training, the sauna gives you a clean break between effort and the rest of the day. You have done the hard work. Then you sit there in the heat and let the body settle.",
+    "There is something useful about voluntarily putting yourself in an uncomfortable environment and staying calm. You are hot. You want to get out. Your mind starts negotiating with you. But you breathe, relax and stay there. And I think this is where a lot of health habits become powerful. It is not always the single session that changes your life. It is the repeated act of doing small things that make you feel more capable, more steady and more in control.",
+    "Like anything, the sauna can be overdone. You are sweating. You are losing fluid. You can become dehydrated. Cleveland Clinic lists dehydration as one of the biggest risks of sauna use, and recommends keeping sessions reasonably short, listening to your body and staying hydrated. UCLA Health also recommends drinking water before, during and after sauna use, limiting sessions to around 20 minutes, starting shorter if you are new to it, and avoiding alcohol before or during sauna bathing.",
+    "That is the sensible approach. For me this morning, 10 minutes in the Turkish sauna and 10 minutes in the dry sauna felt like enough. Just a good recovery session after the gym. When you start stacking these habits together, they change how you feel. They change how you carry yourself. They change how you move through the day.",
+    ],
+  },
+];
