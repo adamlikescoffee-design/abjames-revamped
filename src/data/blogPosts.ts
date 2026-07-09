@@ -93,6 +93,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   image: string;
+  imageAlt?: string;
   date?: string;
   category?: string;
   content: ContentBlock[];

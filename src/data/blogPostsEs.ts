@@ -8,6 +8,7 @@ interface BlogTranslation {
   excerpt: string;
   content?: ContentBlock[];
   category?: string;
+  imageAlt?: string;
 }
 
 export const blogPostsEs: Record<string, BlogTranslation> = {

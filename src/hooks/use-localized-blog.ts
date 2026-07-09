@@ -8,6 +8,7 @@ export interface LocalizedBlogPost extends BlogPost {
   localizedExcerpt: string;
   localizedContent: ContentBlock[];
   localizedCategory: string;
+  localizedImageAlt: string;
 }
 
 export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
