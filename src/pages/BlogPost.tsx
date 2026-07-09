@@ -35,7 +35,7 @@ const BlogPost = () => {
             {t.blogPage.backToBlog}
           </Link>
 
-          <img src={post.image} alt={post.localizedTitle} width={800} height={512} className="w-full h-64 md:h-96 object-cover rounded-lg mb-8" />
+          <img src={post.image} alt={post.localizedImageAlt} width={800} height={512} className="w-full h-64 md:h-96 object-cover rounded-lg mb-8" />
 
           {(post.localizedCategory || post.date) && (
             <div className="flex items-center gap-3 mb-4">
@@ -73,7 +73,7 @@ const BlogPost = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {allPosts.filter((p) => p.slug !== slug).slice(0, 4).map((related) => (
                 <Link key={related.slug} to={`/blog/${related.slug}`} className="group flex gap-4 items-start p-3 rounded-lg hover:bg-card transition-colors">
-                  <img src={related.image} alt={related.localizedTitle} loading="lazy" width={80} height={80} className="w-20 h-20 object-cover rounded shrink-0" />
+                  <img src={related.image} alt={related.localizedImageAlt} loading="lazy" width={80} height={80} className="w-20 h-20 object-cover rounded shrink-0" />
                   <h4 className="font-heading text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">{related.localizedTitle}</h4>
                 </Link>
               ))}

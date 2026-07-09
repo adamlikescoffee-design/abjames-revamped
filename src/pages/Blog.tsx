@@ -76,7 +76,7 @@ const Blog = () => {
               <ScrollReveal key={post.slug} animation="up" delay={idx % 3 * 100}>
                 <Link to={`/blog/${post.slug}`} className="group block">
                   <div className="overflow-hidden rounded-lg mb-4">
-                    <img src={post.image} alt={post.localizedTitle} loading="lazy" width={1200} height={800} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={post.image} alt={post.localizedImageAlt} loading="lazy" width={1200} height={800} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   {post.localizedCategory && <span className="text-xs font-heading font-semibold tracking-wider text-primary uppercase">{post.localizedCategory}</span>}
                   <h2 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors mt-1 mb-2">{post.localizedTitle}</h2>

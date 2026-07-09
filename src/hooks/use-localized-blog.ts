@@ -8,6 +8,7 @@ export interface LocalizedBlogPost extends BlogPost {
   localizedExcerpt: string;
   localizedContent: ContentBlock[];
   localizedCategory: string;
+  localizedImageAlt: string;
 }
 
 export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
@@ -23,6 +24,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
           localizedExcerpt: es?.excerpt ?? post.excerpt,
           localizedContent: es?.content ?? post.content,
           localizedCategory: es?.category ?? post.category ?? "",
+          localizedImageAlt: es?.imageAlt ?? post.imageAlt ?? post.title,
         };
       }
       return {
@@ -31,6 +33,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
         localizedExcerpt: post.excerpt,
         localizedContent: post.content,
         localizedCategory: post.category ?? "",
+        localizedImageAlt: post.imageAlt ?? post.title,
       };
     });
   }, [lang]);
