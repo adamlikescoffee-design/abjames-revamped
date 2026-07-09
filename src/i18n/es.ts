@@ -143,6 +143,7 @@ export const es: typeof en = {
     postNotFound: "Publicación No Encontrada",
     backHome: "← VOLVER AL INICIO",
     moreArticles: "Más Artículos",
+    postsNavigation: "Publicaciones",
   },
 
   // Gallery

@@ -141,6 +141,7 @@ export const en = {
     postNotFound: "Post Not Found",
     backHome: "← BACK HOME",
     moreArticles: "More Articles",
+    postsNavigation: "Posts",
   },
 
   // Gallery
