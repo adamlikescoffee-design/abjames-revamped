@@ -68,6 +68,22 @@ const BlogPost = () => {
             })}
           </div>
 
+          {post.localizedReferences.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-border">
+              <h3 className="font-heading text-xl font-semibold text-foreground mb-6">References</h3>
+              <ul className="space-y-3">
+                {post.localizedReferences.map((ref, idx) => (
+                  <li key={idx} className="text-foreground/85 text-base">
+                    <span className="font-semibold">{ref.source}:</span>{" "}
+                    <a href={ref.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                      {ref.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <div className="mt-12 pt-8 border-t border-border">
             <h3 className="font-heading text-xl font-semibold text-foreground mb-6">{t.blogPage.moreArticles}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

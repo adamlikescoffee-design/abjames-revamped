@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { blogPosts, type BlogPost, type ContentBlock } from "@/data/blogPosts";
+import { blogPosts, type BlogPost, type ContentBlock, type Reference } from "@/data/blogPosts";
 import { blogPostsEs } from "@/data/blogPostsEs";
 import { useMemo } from "react";
 
@@ -9,6 +9,7 @@ export interface LocalizedBlogPost extends BlogPost {
   localizedContent: ContentBlock[];
   localizedCategory: string;
   localizedImageAlt: string;
+  localizedReferences: Reference[];
 }
 
 export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
@@ -25,6 +26,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
           localizedContent: es?.content ?? post.content,
           localizedCategory: es?.category ?? post.category ?? "",
           localizedImageAlt: es?.imageAlt ?? post.imageAlt ?? post.title,
+          localizedReferences: es?.references ?? post.references ?? [],
         };
       }
       return {
@@ -34,6 +36,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
         localizedContent: post.content,
         localizedCategory: post.category ?? "",
         localizedImageAlt: post.imageAlt ?? post.title,
+        localizedReferences: post.references ?? [],
       };
     });
   }, [lang]);
