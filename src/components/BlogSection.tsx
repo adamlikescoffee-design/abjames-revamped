@@ -21,7 +21,7 @@ const BlogSection = () => {
             <ScrollReveal key={post.slug} animation="scale" delay={idx * 100}>
               <Link to={`/blog/${post.slug}`} className="group block bg-card rounded-lg overflow-hidden hover:ring-2 hover:ring-primary transition-all duration-300 h-full">
                 <div className="overflow-hidden">
-                  <img src={post.image} alt={post.localizedTitle} loading="lazy" width={800} height={512} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={post.image} alt={post.localizedImageAlt} loading="lazy" width={800} height={512} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-5 space-y-3">
                   <h3 className="font-heading text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">{post.localizedTitle}</h3>

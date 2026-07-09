@@ -1883,6 +1883,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
     "A few thoughts on the difference between the wet heat of a Turkish sauna and the sharp dry heat of a traditional sauna — and why both can be useful after a workout.",
     image: blogTurkishSaunaVsTraditionalDrySauna.url,
+    imageAlt: "Adam James taking a selfie in front of a Turkish sauna and a traditional dry sauna at the gym, with a city skyline visible through the glass behind him.",
     date: "July 2026",
     category: "Health",
     content: [

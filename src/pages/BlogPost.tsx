@@ -35,7 +35,7 @@ const BlogPost = () => {
             {t.blogPage.backToBlog}
           </Link>
 
-          <img src={post.image} alt={post.localizedTitle} width={800} height={512} className="w-full h-64 md:h-96 object-cover rounded-lg mb-8" />
+          <img src={post.image} alt={post.localizedImageAlt} width={800} height={512} className="w-full h-64 md:h-96 object-cover rounded-lg mb-8" />
 
           {(post.localizedCategory || post.date) && (
             <div className="flex items-center gap-3 mb-4">
