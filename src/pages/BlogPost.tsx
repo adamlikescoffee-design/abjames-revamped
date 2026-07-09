@@ -47,9 +47,25 @@ const BlogPost = () => {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">{post.localizedTitle}</h1>
 
           <div className="space-y-5 text-foreground/85 text-base md:text-lg leading-relaxed">
-            {post.localizedContent.map((paragraph, idx) => (
-              <p key={idx}>{paragraph}</p>
-            ))}
+            {post.localizedContent.map((block, idx) => {
+              if (typeof block === "string") {
+                return <p key={idx}>{block}</p>;
+              }
+              if (block.type === "youtube") {
+                return (
+                  <div key={idx} className="aspect-video w-full rounded-lg overflow-hidden my-8">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${block.id}`}
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                );
+              }
+              return null;
+            })}
           </div>
 
           <div className="mt-12 pt-8 border-t border-border">
