@@ -129,7 +129,7 @@ const BlogPost = () => {
             </div>
 
             <aside className="w-full lg:w-80 shrink-0">
-              <div className="lg:sticky lg:top-28 bg-card/50 border border-border p-6">
+              <div className="lg:sticky lg:top-28 bg-card/50 border border-border p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
                 <h3 className="font-heading text-lg font-semibold text-primary uppercase tracking-wider mb-4">{t.blogPage.postsNavigation}</h3>
                 <ul className="space-y-3">
                   {allPosts.map((related) => {
