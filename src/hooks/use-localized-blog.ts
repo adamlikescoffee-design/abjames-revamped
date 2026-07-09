@@ -26,6 +26,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
           localizedContent: es?.content ?? post.content,
           localizedCategory: es?.category ?? post.category ?? "",
           localizedImageAlt: es?.imageAlt ?? post.imageAlt ?? post.title,
+          localizedReferences: es?.references ?? post.references ?? [],
         };
       }
       return {
@@ -35,6 +36,7 @@ export function useLocalizedBlogPosts(): LocalizedBlogPost[] {
         localizedContent: post.content,
         localizedCategory: post.category ?? "",
         localizedImageAlt: post.imageAlt ?? post.title,
+        localizedReferences: post.references ?? [],
       };
     });
   }, [lang]);
