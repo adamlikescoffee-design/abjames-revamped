@@ -115,17 +115,25 @@ const BlogPost = () => {
                 </div>
               )}
 
-              <div className="mt-12 pt-8 border-t border-border">
-                <h3 className="font-heading text-xl font-semibold text-foreground mb-6">{t.blogPage.moreArticles}</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {allPosts.filter((p) => p.slug !== slug).slice(0, 4).map((related) => (
-                    <Link key={related.slug} to={`/blog/${related.slug}`} className="group flex gap-4 items-start p-3 rounded-lg hover:bg-card transition-colors">
-                      <img src={related.image} alt={related.localizedImageAlt} loading="lazy" width={80} height={80} className="w-20 h-20 object-cover rounded shrink-0" />
-                      <h4 className="font-heading text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">{related.localizedTitle}</h4>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+          <div className="mt-16 pt-8 border-t border-border">
+            <h3 className="font-heading text-xl font-semibold text-foreground mb-8">{t.blogPage.moreArticles}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {allPosts.filter((p) => p.slug !== slug).slice(0, 4).map((related) => (
+                <Link key={related.slug} to={`/blog/${related.slug}`} className="group flex flex-col bg-card/50 border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors">
+                  <div className="aspect-video w-full overflow-hidden">
+                    <img src={related.image} alt={related.localizedImageAlt} loading="lazy" width={400} height={225} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  </div>
+                  <div className="p-5 flex flex-col flex-1">
+                    {related.localizedCategory && (
+                      <span className="text-xs font-heading font-semibold tracking-wider text-primary uppercase mb-2">{related.localizedCategory}</span>
+                    )}
+                    <h4 className="font-heading text-base md:text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-snug mb-3">{related.localizedTitle}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{related.localizedExcerpt}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
             </div>
 
             <aside className="w-full lg:w-80 shrink-0">
