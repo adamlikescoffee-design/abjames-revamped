@@ -86,7 +86,12 @@ import blogComparingJarisCaseNo6 from "@/assets/blog-comparing-jaris-case-no6.jp
 import blogAspleyTuckerTokens from "@/assets/blog-aspley-tucker-tokens.jpg";
 import blogTurkishSaunaVsTraditionalDrySauna from "@/assets/turco-sauna-photo.webp.asset.json";
 
-export type ContentBlock = string | { type: "youtube"; id: string };
+export type ContentBlock =
+  | string
+  | { type: "youtube"; id: string }
+  | { type: "heading"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] };
 
 export interface Reference {
   source: string;
