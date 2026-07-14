@@ -211,7 +211,7 @@ const BlogPost = () => {
                 </div>
               )}
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">{post.localizedTitle}</h1>
+              <h1 className="text-[28px] sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-[1.15] md:leading-tight">{post.localizedTitle}</h1>
 
               <div className="mb-10">
                 <SocialShare url={canonicalUrl} title={post.localizedTitle} />
@@ -239,7 +239,7 @@ const BlogPost = () => {
                 );
               })()}
 
-              <div className="space-y-6 text-foreground/85 text-base md:text-lg leading-relaxed whitespace-pre-wrap">
+              <div className="space-y-5 md:space-y-6 text-foreground/85 text-[17px] leading-[1.7] md:text-lg md:leading-relaxed whitespace-pre-wrap">
                 {post.localizedContent.map((block, idx) => {
                   if (typeof block === "string") {
                     return <p key={idx}>{block}</p>;
@@ -261,7 +261,7 @@ const BlogPost = () => {
                     const id = block.text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
                     return (
                       <div key={idx} className="flex items-center gap-4 pt-4 scroll-mt-28" id={id}>
-                        <h2 className="font-heading text-2xl md:text-3xl text-primary uppercase tracking-wide shrink-0">{block.text}</h2>
+                        <h2 className="font-heading text-xl md:text-3xl text-primary uppercase tracking-wide shrink-0 leading-snug">{block.text}</h2>
                         <div className="h-px w-full bg-primary/20" />
                       </div>
                     );
@@ -269,7 +269,7 @@ const BlogPost = () => {
                   if (block.type === "quote") {
                     return (
                       <blockquote key={idx} className="py-10 border-y border-border">
-                        <p className="font-heading text-2xl md:text-3xl text-center text-foreground italic leading-tight">"{block.text}"</p>
+                        <p className="font-heading text-xl md:text-3xl text-center text-foreground italic leading-snug md:leading-tight">"{block.text}"</p>
                       </blockquote>
                     );
                   }
