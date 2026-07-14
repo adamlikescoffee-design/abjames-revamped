@@ -2,9 +2,65 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Link2, Facebook, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLocalizedBlogPost, useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
+
+const XIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+interface SocialShareProps {
+  url: string;
+  title: string;
+}
+
+const SocialShare = ({ url, title }: SocialShareProps) => {
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(title);
+
+  const shareLinks = [
+    { name: "X", href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`, icon: <XIcon size={18} />, label: "Share on X" },
+    { name: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, icon: <Facebook size={18} />, label: "Share on Facebook" },
+    { name: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`, icon: <Linkedin size={18} />, label: "Share on LinkedIn" },
+  ];
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      // fallback ignored
+    }
+  };
+
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <span className="text-sm text-muted-foreground font-heading tracking-wider">Share:</span>
+      {shareLinks.map((link) => (
+        <a
+          key={link.name}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.label}
+          className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-border bg-card/50 text-foreground/80 hover:text-primary hover:border-primary/40 transition-colors"
+        >
+          {link.icon}
+        </a>
+      ))}
+      <button
+        type="button"
+        onClick={copyLink}
+        aria-label="Copy link"
+        className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-border bg-card/50 text-foreground/80 hover:text-primary hover:border-primary/40 transition-colors"
+      >
+        <Link2 size={18} />
+      </button>
+    </div>
+  );
+};
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -87,7 +143,11 @@ const BlogPost = () => {
                 </div>
               )}
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">{post.localizedTitle}</h1>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">{post.localizedTitle}</h1>
+
+              <div className="mb-10">
+                <SocialShare url={canonicalUrl} title={post.localizedTitle} />
+              </div>
 
               {(() => {
                 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -176,6 +236,10 @@ const BlogPost = () => {
                   </ul>
                 </div>
               )}
+
+              <div className="mt-12 pt-8 border-t border-border">
+                <SocialShare url={canonicalUrl} title={post.localizedTitle} />
+              </div>
 
           <div className="mt-16 pt-8 border-t border-border">
             <h3 className="font-heading text-xl font-semibold text-foreground mb-8">{t.blogPage.moreArticles}</h3>
