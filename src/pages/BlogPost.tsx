@@ -107,7 +107,7 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = useLocalizedBlogPost(slug);
   const allPosts = useLocalizedBlogPosts();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   if (!post) {
     return (
