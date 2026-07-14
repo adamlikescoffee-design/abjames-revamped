@@ -211,7 +211,7 @@ const BlogPost = () => {
                 </div>
               )}
 
-              <h1 className="text-[28px] sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-[1.15] md:leading-tight">{post.localizedTitle}</h1>
+              <h1 className="text-[28px] sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-[1.15] md:leading-tight break-words">{post.localizedTitle}</h1>
 
               <div className="mb-10">
                 <SocialShare url={canonicalUrl} title={post.localizedTitle} />
@@ -260,9 +260,9 @@ const BlogPost = () => {
                   if (block.type === "heading") {
                     const id = block.text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
                     return (
-                      <div key={idx} className="flex items-center gap-4 pt-4 scroll-mt-28" id={id}>
-                        <h2 className="font-heading text-xl md:text-3xl text-primary uppercase tracking-wide shrink-0 leading-snug">{block.text}</h2>
-                        <div className="h-px w-full bg-primary/20" />
+                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 pt-4 scroll-mt-28" id={id}>
+                        <h2 className="font-heading text-xl md:text-3xl text-primary uppercase tracking-wide leading-snug break-words">{block.text}</h2>
+                        <div className="hidden sm:block h-px flex-1 bg-primary/20" />
                       </div>
                     );
                   }
