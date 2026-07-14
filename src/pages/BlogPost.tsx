@@ -224,11 +224,11 @@ const BlogPost = () => {
                   .filter((t): t is string => !!t);
                 if (headings.length < 2) return null;
                 return (
-                  <nav aria-label="Table of contents" className="mb-10 bg-card/50 border border-border rounded-lg p-6">
+                  <nav aria-label="Table of contents" className="mb-10 bg-card/50 border border-border rounded-lg p-5 md:p-6">
                     <h2 className="font-heading text-sm font-semibold text-primary uppercase tracking-wider mb-4">In this article</h2>
-                    <ol className="space-y-2 list-decimal list-inside">
+                    <ol className="space-y-2 list-decimal pl-5 marker:text-primary/70">
                       {headings.map((text) => (
-                        <li key={text} className="text-foreground/85">
+                        <li key={text} className="text-foreground/85 pl-1">
                           <a href={`#${slugify(text)}`} className="hover:text-primary transition-colors">{text}</a>
                         </li>
                       ))}

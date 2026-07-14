@@ -54,21 +54,23 @@ const Blog = () => {
             <p className="text-muted-foreground text-center mb-8 max-w-xl mx-auto">{t.blogPage.subtitle}</p>
           </ScrollReveal>
 
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {categories.map((cat) => (
-              <button key={cat} onClick={() => setActiveCategory(cat)} className={cn(
-                "px-4 py-2 rounded-full font-heading text-xs font-semibold tracking-wider transition-all",
-                activeCategory === cat ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-accent"
-              )}>
-                {getCategoryLabel(cat)}
-                <span className={cn(
-                  "ml-1.5 inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1 rounded-full text-[10px] font-bold",
-                  activeCategory === cat ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/10 text-muted-foreground"
+          <div className="-mx-4 px-4 mb-10 md:mb-12 overflow-x-auto md:overflow-visible scrollbar-hide">
+            <div className="flex md:flex-wrap md:justify-center gap-2 min-w-max md:min-w-0">
+              {categories.map((cat) => (
+                <button key={cat} onClick={() => setActiveCategory(cat)} className={cn(
+                  "shrink-0 px-4 py-2 rounded-full font-heading text-xs font-semibold tracking-wider transition-all whitespace-nowrap",
+                  activeCategory === cat ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-accent"
                 )}>
-                  {getCategoryCount(cat)}
-                </span>
-              </button>
-            ))}
+                  {getCategoryLabel(cat)}
+                  <span className={cn(
+                    "ml-1.5 inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1 rounded-full text-[10px] font-bold",
+                    activeCategory === cat ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/10 text-muted-foreground"
+                  )}>
+                    {getCategoryCount(cat)}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

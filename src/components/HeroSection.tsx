@@ -9,11 +9,11 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="min-h-screen flex items-center pt-20">
-      <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    <section className="lg:min-h-screen lg:flex lg:items-center pt-24 lg:pt-20 pb-12 lg:pb-0">
+      <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:items-center">
         <ScrollReveal animation="left">
           <div className="flex justify-center lg:justify-end">
-            <img src={heroImage} alt="Adam James" width={600} height={900} className="w-[80%] max-w-md lg:max-w-lg object-contain" />
+            <img src={heroImage} alt="Adam James" width={600} height={900} className="w-[70%] max-w-xs sm:max-w-sm lg:w-[80%] lg:max-w-lg object-contain" />
           </div>
         </ScrollReveal>
 
