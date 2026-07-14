@@ -2,8 +2,9 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Link2, Facebook, Linkedin, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, Link2, Facebook, Linkedin, ArrowUpRight, Pencil } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { useLocalizedBlogPost, useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
 import kavaProductAsset from "@/assets/kava-product.png.asset.json";
 
@@ -122,6 +123,7 @@ const BlogPost = () => {
   const post = useLocalizedBlogPost(slug);
   const allPosts = useLocalizedBlogPosts();
   const { t, lang } = useLanguage();
+  const { user } = useAuth();
 
   if (!post) {
     return (
@@ -178,6 +180,15 @@ const BlogPost = () => {
                 <ArrowLeft size={16} />
                 {t.blogPage.backToBlog}
               </Link>
+
+              {user && slug && (
+                <Link
+                  to={`/admin/blog/${slug}`}
+                  className="ml-4 inline-flex items-center gap-2 text-primary hover:underline font-heading text-sm tracking-wider mb-8"
+                >
+                  <Pencil size={14} /> Edit this post
+                </Link>
+              )}
 
               <img
                 src={post.image}

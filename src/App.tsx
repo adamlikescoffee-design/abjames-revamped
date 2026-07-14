@@ -15,6 +15,8 @@ import Gallery from "./pages/Gallery.tsx";
 import MediaPublications from "./pages/MediaPublications.tsx";
 import PayingItForward from "./pages/PayingItForward.tsx";
 import Admin from "./pages/Admin.tsx";
+import AdminBlog from "./pages/AdminBlog.tsx";
+import AdminBlogEdit from "./pages/AdminBlogEdit.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import ResetPassword from "./pages/ResetPassword.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -40,6 +42,8 @@ const App = () => (
               <Route path="/media-publications" element={<MediaPublications />} />
               <Route path="/paying-it-forward" element={<PayingItForward />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/blog" element={<AdminBlog />} />
+              <Route path="/admin/blog/:slug" element={<AdminBlogEdit />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
