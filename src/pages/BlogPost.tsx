@@ -143,7 +143,11 @@ const BlogPost = () => {
                 </div>
               )}
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">{post.localizedTitle}</h1>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">{post.localizedTitle}</h1>
+
+              <div className="mb-10">
+                <SocialShare url={canonicalUrl} title={post.localizedTitle} />
+              </div>
 
               {(() => {
                 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
