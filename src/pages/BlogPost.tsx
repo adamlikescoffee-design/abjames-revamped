@@ -237,6 +237,10 @@ const BlogPost = () => {
                 </div>
               )}
 
+              <div className="mt-12 pt-8 border-t border-border">
+                <SocialShare url={canonicalUrl} title={post.localizedTitle} />
+              </div>
+
           <div className="mt-16 pt-8 border-t border-border">
             <h3 className="font-heading text-xl font-semibold text-foreground mb-8">{t.blogPage.moreArticles}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
