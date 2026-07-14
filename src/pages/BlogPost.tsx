@@ -190,6 +190,8 @@ const BlogPost = () => {
                 <SocialShare url={canonicalUrl} title={post.localizedTitle} />
               </div>
 
+              {slug === "kava-ancient-tradition-switch-off" && <KavaProductCTA lang={lang} />}
+
               {(() => {
                 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
                 const headings = post.localizedContent
