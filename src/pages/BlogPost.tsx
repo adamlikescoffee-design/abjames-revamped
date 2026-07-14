@@ -211,7 +211,7 @@ const BlogPost = () => {
                 </div>
               )}
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">{post.localizedTitle}</h1>
+              <h1 className="text-[28px] sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-[1.15] md:leading-tight">{post.localizedTitle}</h1>
 
               <div className="mb-10">
                 <SocialShare url={canonicalUrl} title={post.localizedTitle} />
