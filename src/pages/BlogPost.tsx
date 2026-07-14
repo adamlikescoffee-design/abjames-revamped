@@ -96,10 +96,12 @@ const KavaProductCTA = ({ lang }: KavaCTAProps) => {
           <img
             src={kavaProductAsset.url}
             alt={copy.imageAlt}
-            width={400}
-            height={500}
+            width={240}
+            height={300}
             loading="lazy"
             decoding="async"
+            fetchPriority="low"
+            sizes="(min-width: 768px) 240px, 60vw"
             className="w-full max-w-[240px] h-auto object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-300"
           />
         </div>
