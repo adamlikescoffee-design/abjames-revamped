@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Link2, Facebook, Linkedin } from "lucide-react";
+import { ArrowLeft, Link2, Facebook, Linkedin, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLocalizedBlogPost, useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
 
