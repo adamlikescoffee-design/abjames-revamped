@@ -269,7 +269,7 @@ const BlogPost = () => {
                   if (block.type === "quote") {
                     return (
                       <blockquote key={idx} className="py-10 border-y border-border">
-                        <p className="font-heading text-2xl md:text-3xl text-center text-foreground italic leading-tight">"{block.text}"</p>
+                        <p className="font-heading text-xl md:text-3xl text-center text-foreground italic leading-snug md:leading-tight">"{block.text}"</p>
                       </blockquote>
                     );
                   }
