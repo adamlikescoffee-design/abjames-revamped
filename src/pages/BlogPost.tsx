@@ -91,8 +91,8 @@ const KavaProductCTA = ({ lang }: KavaCTAProps) => {
       rel="noopener noreferrer"
       className="group block my-10 rounded-xl bg-primary/5 border-2 border-primary/30 hover:border-primary/60 transition-colors overflow-hidden"
     >
-      <div className="flex flex-col md:flex-row">
-        <div className="w-full md:w-2/5 bg-white/5 p-6 md:p-8 flex items-center justify-center">
+      <div className="flex flex-row md:flex-row">
+        <div className="w-2/5 md:w-2/5 shrink-0 bg-white/5 p-3 md:p-8 flex items-center justify-center">
           <img
             src={kavaProductAsset.url}
             alt={copy.imageAlt}
@@ -101,18 +101,18 @@ const KavaProductCTA = ({ lang }: KavaCTAProps) => {
             loading="lazy"
             decoding="async"
             fetchPriority="low"
-            sizes="(min-width: 768px) 240px, 60vw"
+            sizes="(min-width: 768px) 240px, 40vw"
             className="w-full max-w-[240px] h-auto object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-300"
           />
         </div>
-        <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
-          <h2 className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-foreground group-hover:text-primary transition-colors mb-3">
+        <div className="flex-1 min-w-0 p-4 md:p-8 flex flex-col justify-center">
+          <h2 className="font-heading text-base sm:text-lg md:text-2xl lg:text-3xl font-bold text-foreground group-hover:text-primary transition-colors mb-2 md:mb-3 leading-tight">
             {copy.headline}
           </h2>
-          <p className="text-foreground/80 text-base md:text-lg leading-relaxed mb-6 max-w-2xl">{copy.body}</p>
-          <span className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm hover:bg-primary/90 transition-colors shrink-0 self-start">
+          <p className="text-foreground/80 text-xs sm:text-sm md:text-lg leading-relaxed mb-3 md:mb-6 max-w-2xl line-clamp-4 md:line-clamp-none">{copy.body}</p>
+          <span className="inline-flex items-center justify-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-lg bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-xs md:text-sm hover:bg-primary/90 transition-colors shrink-0 self-start">
             {copy.cta}
-            <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </span>
         </div>
       </div>
