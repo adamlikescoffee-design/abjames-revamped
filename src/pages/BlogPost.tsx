@@ -48,6 +48,26 @@ const BlogPost = () => {
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-8 leading-tight">{post.localizedTitle}</h1>
 
+              {(() => {
+                const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+                const headings = post.localizedContent
+                  .map((b) => (typeof b !== "string" && b.type === "heading" ? b.text : null))
+                  .filter((t): t is string => !!t);
+                if (headings.length < 2) return null;
+                return (
+                  <nav aria-label="Table of contents" className="mb-10 bg-card/50 border border-border rounded-lg p-6">
+                    <h2 className="font-heading text-sm font-semibold text-primary uppercase tracking-wider mb-4">In this article</h2>
+                    <ol className="space-y-2 list-decimal list-inside">
+                      {headings.map((text) => (
+                        <li key={text} className="text-foreground/85">
+                          <a href={`#${slugify(text)}`} className="hover:text-primary transition-colors">{text}</a>
+                        </li>
+                      ))}
+                    </ol>
+                  </nav>
+                );
+              })()}
+
               <div className="space-y-6 text-foreground/85 text-base md:text-lg leading-relaxed">
                 {post.localizedContent.map((block, idx) => {
                   if (typeof block === "string") {
@@ -67,8 +87,9 @@ const BlogPost = () => {
                     );
                   }
                   if (block.type === "heading") {
+                    const id = block.text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
                     return (
-                      <div key={idx} className="flex items-center gap-4 pt-4">
+                      <div key={idx} className="flex items-center gap-4 pt-4 scroll-mt-28" id={id}>
                         <h2 className="font-heading text-2xl md:text-3xl text-primary uppercase tracking-wide shrink-0">{block.text}</h2>
                         <div className="h-px w-full bg-primary/20" />
                       </div>
