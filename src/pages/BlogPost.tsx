@@ -25,9 +25,39 @@ const BlogPost = () => {
     );
   }
 
+  const canonicalUrl = `https://www.abjames.com/blog/${post.slug}`;
+  const absImage = post.image.startsWith("http") ? post.image : `https://www.abjames.com${post.image}`;
+  const seoTitle = `${post.localizedTitle} | Adam James`;
+  const seoDescription = post.localizedExcerpt;
+
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={post.localizedTitle} />
+        <meta property="og:description" content={seoDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={absImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.localizedTitle} />
+        <meta name="twitter:description" content={seoDescription} />
+        <meta name="twitter:image" content={absImage} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.localizedTitle,
+          description: seoDescription,
+          image: absImage,
+          datePublished: post.date,
+          author: { "@type": "Person", name: "Adam James" },
+          mainEntityOfPage: canonicalUrl,
+        })}</script>
+      </Helmet>
       <Header />
+
 
       <article className="pt-28 pb-20">
         <div className="container mx-auto px-4">
