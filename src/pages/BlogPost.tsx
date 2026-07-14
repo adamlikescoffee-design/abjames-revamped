@@ -123,6 +123,7 @@ const BlogPost = () => {
   const post = useLocalizedBlogPost(slug);
   const allPosts = useLocalizedBlogPosts();
   const { t, lang } = useLanguage();
+  const { user } = useAuth();
 
   if (!post) {
     return (
