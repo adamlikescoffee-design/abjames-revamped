@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Link2, Facebook, Linkedin } from "lucide-react";
+import { ArrowLeft, Link2, Facebook, Linkedin, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLocalizedBlogPost, useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
 
@@ -62,11 +62,52 @@ const SocialShare = ({ url, title }: SocialShareProps) => {
   );
 };
 
+interface KavaCTAProps {
+  lang: "en" | "es";
+}
+
+const KavaProductCTA = ({ lang }: KavaCTAProps) => {
+  const copy = {
+    en: {
+      headline: "Try authentic noble kava from Vanuatu",
+      body: "Pacific Kava supplies traditionally prepared noble kava root. If this article piqued your curiosity, their Vanuatu kava is a great place to start.",
+      cta: "Shop Pacific Kava",
+    },
+    es: {
+      headline: "Prueba kava noble auténtico de Vanuatu",
+      body: "Pacific Kava suministra raíz de kava noble preparada tradicionalmente. Si este artículo despertó tu curiosidad, su kava de Vanuatu es un excelente punto de partida.",
+      cta: "Comprar Pacific Kava",
+    },
+  }[lang];
+
+  return (
+    <a
+      href="https://pacifickava.com.au/products/kava"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block my-10 p-6 md:p-8 rounded-xl bg-primary/5 border-2 border-primary/30 hover:border-primary/60 transition-colors"
+    >
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div className="flex-1">
+          <h2 className="font-heading text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors mb-2">
+            {copy.headline}
+          </h2>
+          <p className="text-foreground/80 text-base leading-relaxed max-w-2xl">{copy.body}</p>
+        </div>
+        <span className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm hover:bg-primary/90 transition-colors shrink-0">
+          {copy.cta}
+          <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        </span>
+      </div>
+    </a>
+  );
+};
+
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = useLocalizedBlogPost(slug);
   const allPosts = useLocalizedBlogPosts();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   if (!post) {
     return (
@@ -148,6 +189,8 @@ const BlogPost = () => {
               <div className="mb-10">
                 <SocialShare url={canonicalUrl} title={post.localizedTitle} />
               </div>
+
+              {slug === "kava-ancient-tradition-switch-off" && <KavaProductCTA lang={lang} />}
 
               {(() => {
                 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
