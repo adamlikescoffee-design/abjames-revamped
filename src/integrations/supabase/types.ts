@@ -14,6 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_post_overrides: {
+        Row: {
+          category: string | null
+          category_es: string | null
+          content: Json | null
+          content_es: Json | null
+          excerpt: string | null
+          excerpt_es: string | null
+          image_alt: string | null
+          image_alt_es: string | null
+          image_url: string | null
+          slug: string
+          title: string | null
+          title_es: string | null
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          category?: string | null
+          category_es?: string | null
+          content?: Json | null
+          content_es?: Json | null
+          excerpt?: string | null
+          excerpt_es?: string | null
+          image_alt?: string | null
+          image_alt_es?: string | null
+          image_url?: string | null
+          slug: string
+          title?: string | null
+          title_es?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          category?: string | null
+          category_es?: string | null
+          content?: Json | null
+          content_es?: Json | null
+          excerpt?: string | null
+          excerpt_es?: string | null
+          image_alt?: string | null
+          image_alt_es?: string | null
+          image_url?: string | null
+          slug?: string
+          title?: string | null
+          title_es?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       pledges: {
         Row: {
           amount: number
