@@ -277,10 +277,16 @@ const Admin = () => {
             <h1 className="text-xl font-heading font-bold text-foreground">Pledge Admin</h1>
             <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors ml-2">← Home</Link>
           </div>
-          <button onClick={handleSignOut} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-heading">
-            <LogOut size={16} />
-            Sign Out
-          </button>
+          <div className="flex items-center gap-4">
+            <Link to="/admin/blog" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-heading">
+              <Pencil size={16} />
+              Edit Blog Posts
+            </Link>
+            <button onClick={handleSignOut} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-heading">
+              <LogOut size={16} />
+              Sign Out
+            </button>
+          </div>
         </div>
       </header>
 
