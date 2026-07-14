@@ -1938,7 +1938,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Discover the traditional Pacific drink kava, why people use it to unwind and how Australian company Pacific Kava is helping more people experience authentic noble kava from Vanuatu.",
     image: blogKavaPacificTradition.url,
-    imageAlt: "A wooden bowl of freshly prepared kava beside a coconut shell cup and dried kava root on a dark table with tropical leaves.",
+    imageAlt: "Adam James holding a small glass of freshly prepared cloudy brown kava, ready to drink after traditional Pacific preparation.",
     date: "July 2026",
     category: "Health",
     content: [

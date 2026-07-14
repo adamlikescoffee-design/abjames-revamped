@@ -68,7 +68,17 @@ const BlogPost = () => {
                 {t.blogPage.backToBlog}
               </Link>
 
-              <img src={post.image} alt={post.localizedImageAlt} width={800} height={512} className="w-full h-64 md:h-96 object-cover rounded-lg mb-8" />
+              <img
+                src={post.image}
+                alt={post.localizedImageAlt}
+                width={1200}
+                height={768}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                sizes="(min-width: 1024px) 768px, (min-width: 640px) 90vw, 100vw"
+                className="w-full h-64 md:h-96 object-cover rounded-lg mb-8"
+              />
 
               {(post.localizedCategory || post.date) && (
                 <div className="flex items-center gap-3 mb-4">
