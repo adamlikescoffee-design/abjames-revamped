@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { ArrowLeft, Link2, Facebook, Linkedin, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLocalizedBlogPost, useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
+import kavaProductAsset from "@/assets/kava-product.png.asset.json";
 
 const XIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
