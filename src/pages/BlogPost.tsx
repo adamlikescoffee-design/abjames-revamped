@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { ArrowLeft, Link2, Facebook, Linkedin, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLocalizedBlogPost, useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
+import kavaProductAsset from "@/assets/kava-product.png.asset.json";
 
 const XIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -72,11 +73,13 @@ const KavaProductCTA = ({ lang }: KavaCTAProps) => {
       headline: "Try authentic noble kava from Vanuatu",
       body: "Pacific Kava supplies traditionally prepared noble kava root. If this article piqued your curiosity, their Vanuatu kava is a great place to start.",
       cta: "Shop Pacific Kava",
+      imageAlt: "Pacific Kava Vanuatu noble kava root powder 50g pouch",
     },
     es: {
       headline: "Prueba kava noble auténtico de Vanuatu",
       body: "Pacific Kava suministra raíz de kava noble preparada tradicionalmente. Si este artículo despertó tu curiosidad, su kava de Vanuatu es un excelente punto de partida.",
       cta: "Comprar Pacific Kava",
+      imageAlt: "Bolsa de 50g de polvo de raíz de kava noble de Vanuatu de Pacific Kava",
     },
   }[lang];
 
@@ -85,19 +88,30 @@ const KavaProductCTA = ({ lang }: KavaCTAProps) => {
       href="https://pacifickava.com.au/products/kava"
       target="_blank"
       rel="noopener noreferrer"
-      className="group block my-10 p-6 md:p-8 rounded-xl bg-primary/5 border-2 border-primary/30 hover:border-primary/60 transition-colors"
+      className="group block my-10 rounded-xl bg-primary/5 border-2 border-primary/30 hover:border-primary/60 transition-colors overflow-hidden"
     >
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div className="flex-1">
-          <h2 className="font-heading text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors mb-2">
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:w-2/5 bg-white/5 p-6 md:p-8 flex items-center justify-center">
+          <img
+            src={kavaProductAsset.url}
+            alt={copy.imageAlt}
+            width={400}
+            height={500}
+            loading="lazy"
+            decoding="async"
+            className="w-full max-w-[240px] h-auto object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-300"
+          />
+        </div>
+        <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+          <h2 className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-foreground group-hover:text-primary transition-colors mb-3">
             {copy.headline}
           </h2>
-          <p className="text-foreground/80 text-base leading-relaxed max-w-2xl">{copy.body}</p>
+          <p className="text-foreground/80 text-base md:text-lg leading-relaxed mb-6 max-w-2xl">{copy.body}</p>
+          <span className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm hover:bg-primary/90 transition-colors shrink-0 self-start">
+            {copy.cta}
+            <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </span>
         </div>
-        <span className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-heading font-semibold tracking-wider text-sm hover:bg-primary/90 transition-colors shrink-0">
-          {copy.cta}
-          <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-        </span>
       </div>
     </a>
   );
