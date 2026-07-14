@@ -85,7 +85,7 @@ import blogChaplainFundraiser from "@/assets/blog-chaplain-fundraiser-speech.jpg
 import blogComparingJarisCaseNo6 from "@/assets/blog-comparing-jaris-case-no6.jpg";
 import blogAspleyTuckerTokens from "@/assets/blog-aspley-tucker-tokens.jpg";
 import blogTurkishSaunaVsTraditionalDrySauna from "@/assets/turco-sauna-photo.webp.asset.json";
-import blogKavaPacificTradition from "@/assets/blog-kava-pacific-tradition.jpg";
+import blogKavaPacificTradition from "@/assets/adam-james-kava.webp.asset.json";
 
 export type ContentBlock =
   | string
@@ -1937,7 +1937,7 @@ export const blogPosts: BlogPost[] = [
     title: "Kava Is An Ancient Tradition for a World That Struggles to Switch Off",
     excerpt:
       "Discover the traditional Pacific drink kava, why people use it to unwind and how Australian company Pacific Kava is helping more people experience authentic noble kava from Vanuatu.",
-    image: blogKavaPacificTradition,
+    image: blogKavaPacificTradition.url,
     imageAlt: "A wooden bowl of freshly prepared kava beside a coconut shell cup and dried kava root on a dark table with tropical leaves.",
     date: "July 2026",
     category: "Health",
