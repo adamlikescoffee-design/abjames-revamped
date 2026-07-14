@@ -261,7 +261,7 @@ const BlogPost = () => {
                     const id = block.text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
                     return (
                       <div key={idx} className="flex items-center gap-4 pt-4 scroll-mt-28" id={id}>
-                        <h2 className="font-heading text-2xl md:text-3xl text-primary uppercase tracking-wide shrink-0">{block.text}</h2>
+                        <h2 className="font-heading text-xl md:text-3xl text-primary uppercase tracking-wide shrink-0 leading-snug">{block.text}</h2>
                         <div className="h-px w-full bg-primary/20" />
                       </div>
                     );
