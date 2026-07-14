@@ -1937,7 +1937,7 @@ export const blogPosts: BlogPost[] = [
     title: "Kava Is An Ancient Tradition for a World That Struggles to Switch Off",
     excerpt:
       "Discover the traditional Pacific drink kava, why people use it to unwind and how Australian company Pacific Kava is helping more people experience authentic noble kava from Vanuatu.",
-    image: blogKavaPacificTradition,
+    image: blogKavaPacificTradition.url,
     imageAlt: "A wooden bowl of freshly prepared kava beside a coconut shell cup and dried kava root on a dark table with tropical leaves.",
     date: "July 2026",
     category: "Health",
