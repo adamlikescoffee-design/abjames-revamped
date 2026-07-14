@@ -42,6 +42,8 @@ const App = () => (
               <Route path="/media-publications" element={<MediaPublications />} />
               <Route path="/paying-it-forward" element={<PayingItForward />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/blog" element={<AdminBlog />} />
+              <Route path="/admin/blog/:slug" element={<AdminBlogEdit />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
