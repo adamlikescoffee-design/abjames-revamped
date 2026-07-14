@@ -181,6 +181,15 @@ const BlogPost = () => {
                 {t.blogPage.backToBlog}
               </Link>
 
+              {user && slug && (
+                <Link
+                  to={`/admin/blog/${slug}`}
+                  className="ml-4 inline-flex items-center gap-2 text-primary hover:underline font-heading text-sm tracking-wider mb-8"
+                >
+                  <Pencil size={14} /> Edit this post
+                </Link>
+              )}
+
               <img
                 src={post.image}
                 alt={post.localizedImageAlt}
