@@ -239,7 +239,7 @@ const BlogPost = () => {
                 );
               })()}
 
-              <div className="space-y-6 text-foreground/85 text-base md:text-lg leading-relaxed">
+              <div className="space-y-6 text-foreground/85 text-base md:text-lg leading-relaxed whitespace-pre-wrap">
                 {post.localizedContent.map((block, idx) => {
                   if (typeof block === "string") {
                     return <p key={idx}>{block}</p>;
