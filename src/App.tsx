@@ -15,6 +15,8 @@ import Gallery from "./pages/Gallery.tsx";
 import MediaPublications from "./pages/MediaPublications.tsx";
 import PayingItForward from "./pages/PayingItForward.tsx";
 import Admin from "./pages/Admin.tsx";
+import AdminBlog from "./pages/AdminBlog.tsx";
+import AdminBlogEdit from "./pages/AdminBlogEdit.tsx";
 import AdminLogin from "./pages/AdminLogin.tsx";
 import ResetPassword from "./pages/ResetPassword.tsx";
 import NotFound from "./pages/NotFound.tsx";
