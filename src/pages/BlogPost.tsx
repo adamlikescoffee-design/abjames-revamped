@@ -2,8 +2,9 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Link2, Facebook, Linkedin, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, Link2, Facebook, Linkedin, ArrowUpRight, Pencil } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { useLocalizedBlogPost, useLocalizedBlogPosts } from "@/hooks/use-localized-blog";
 import kavaProductAsset from "@/assets/kava-product.png.asset.json";
 
