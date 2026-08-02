@@ -15,7 +15,7 @@ export const en = {
   // Hero
   hero: {
     title: "About Adam",
-    p1: "I'm an average musician who still likes to play now and then.  I love jazz.  I also really like drinking great coffee, everyday.",
+    p1: "I like drinking great coffee, everyday.",
     p2Before: "I'm passionate about ",
     p2Link: "helping the less fortunate",
     p2After: " and doing what I can to reduce unnecessary suffering in this world.",
