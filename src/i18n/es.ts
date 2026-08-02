@@ -17,7 +17,7 @@ export const es: typeof en = {
   // Hero
   hero: {
     title: "Sobre Adam",
-    p1: "Soy un músico promedio al que todavía le gusta tocar de vez en cuando. Me encanta el jazz. También me gusta mucho tomar un buen café, todos los días.",
+    p1: "Me gusta mucho tomar un buen café, todos los días.",
     p2Before: "Me apasiona ",
     p2Link: "ayudar a los menos afortunados",
     p2After: " y hacer lo que puedo para reducir el sufrimiento innecesario en este mundo.",
