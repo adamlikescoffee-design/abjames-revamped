@@ -86,6 +86,7 @@ import blogComparingJarisCaseNo6 from "@/assets/blog-comparing-jaris-case-no6.jp
 import blogAspleyTuckerTokens from "@/assets/blog-aspley-tucker-tokens.jpg";
 import blogTurkishSaunaVsTraditionalDrySauna from "@/assets/turco-sauna-photo.webp.asset.json";
 import blogKavaPacificTradition from "@/assets/adam-james-kava.webp.asset.json";
+import blogSocialEnterpriseCafe from "@/assets/blog-social-enterprise-cafe.jpg";
 
 export type ContentBlock =
   | string
