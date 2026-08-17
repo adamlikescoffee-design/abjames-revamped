@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Seo from "@/components/Seo";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -100,6 +101,7 @@ const PayingItForward = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="Paying It Forward — Wheelchair Initiative" description="Follow the Pay It Forward wheelchair initiative: journal updates from Ecuador, the brothers it supports, and how you can pledge to help." path="/paying-it-forward" />
       <Header />
 
       <HeroBanner />

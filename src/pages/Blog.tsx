@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import Seo, { collectionJsonLd } from "@/components/Seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -45,6 +46,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="Blog — Adam James on Business, Coffee & Community" description="Articles by Adam James on business, health, coffee, faith, family and giving back — honest stories from a life of building things with people." path="/blog" jsonLd={collectionJsonLd("Blog", "/blog", "Articles by Adam James on business, health, coffee, faith and community.")} />
       <Header />
 
       <section className="pt-28 pb-20">

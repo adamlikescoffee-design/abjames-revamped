@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import Seo, { collectionJsonLd } from "@/components/Seo";
 import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -510,6 +511,7 @@ const MediaPublications = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="Media & Publications — Adam James in the Press" description="Press coverage, interviews, radio and newspaper features about Adam James and his community and charity work." path="/media-publications" jsonLd={collectionJsonLd("Media & Publications", "/media-publications", "Press coverage and interviews featuring Adam James.")} />
       <Header />
 
       {/* Lightbox */}
