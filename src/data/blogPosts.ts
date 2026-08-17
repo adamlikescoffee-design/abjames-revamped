@@ -115,6 +115,101 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "how-to-start-a-social-enterprise-cafe",
+    title: "How to Start a Social Enterprise Cafe: What I Learned Running Cup From Above",
+    excerpt:
+      "A practical guide to starting a social enterprise cafe in Australia — choosing a model, the numbers, the legal structure, building community support, and the mistakes I made running Cup From Above.",
+    image: blogSocialEnterpriseCafe,
+    imageAlt:
+      "Volunteers serving coffee behind the counter of a warm, community-run cafe with a chalkboard menu and mismatched chairs.",
+    date: "August 2026",
+    category: "Social Enterprise",
+    content: [
+      "I ran a social enterprise cafe. Cup From Above started as a suspended coffee idea in Aspley — you buy a coffee, you pay for a second one, and someone who can't afford one drinks it. It grew into a cafe, a community hub, a food relief point, and eventually a lesson in how hard this work actually is.",
+      "People ask me how to start one fairly often. This is the honest version: what to decide first, what it costs, and where good intentions quietly kill good businesses.",
+      { type: "heading", text: "First, Decide What the Social Part Actually Is" },
+      "\"Social enterprise cafe\" is a broad label. Before anything else, get specific about the mechanism, because it drives every other decision — your costs, your staffing, your marketing, even your fit-out.",
+      {
+        type: "list",
+        items: [
+          "Employment model — you hire and train people facing barriers to work (disability, long-term unemployment, refugees, people leaving prison or recovery). The social impact is the job itself.",
+          "Profit redistribution — you trade like a normal cafe and direct surplus to a cause or program.",
+          "Access model — suspended coffees, pay-it-forward meals, free or subsidised food for people doing it tough. This is where Cup From Above began.",
+          "Training model — a supported pathway where people gain hospitality skills and a reference, then move on to mainstream employment.",
+        ],
+      },
+      "Pick one as your primary model. You can layer others later, but a cafe trying to do all four in year one will do none of them well. I know because I tried.",
+      { type: "quote", text: "The social mission doesn't excuse a weak business. It raises the bar, because now two things have to work at once." },
+      { type: "heading", text: "Get the Legal Structure Right Early" },
+      "In Australia there's no single \"social enterprise\" legal form. You choose an ordinary structure and encode the mission into it.",
+      {
+        type: "list",
+        items: [
+          "Company limited by guarantee — common for not-for-profits, no shareholders, surplus locked to purpose. Best if you want DGR or charity registration.",
+          "Proprietary limited company — simplest to trade with, faster to set up, mission written into the constitution or a shareholders agreement.",
+          "Incorporated association — cheap and state-based, fine if you'll stay small and local.",
+          "Charity registration with the ACNC — only if your purpose genuinely qualifies. It brings tax concessions and credibility, plus real reporting obligations.",
+        ],
+      },
+      "Talk to an accountant who has done this before you register anything. Changing structure later is expensive and it stalls fundraising.",
+      { type: "heading", text: "Do the Cafe Numbers Before the Mission Numbers" },
+      "A cafe is a cafe. The margins don't get softer because your heart is in the right place. Model the basics honestly:",
+      {
+        type: "list",
+        items: [
+          "Fit-out and equipment — the single biggest sunk cost. Second-hand espresso machines and grinders, professionally serviced, will save you thousands.",
+          "Rent and outgoings — the number one killer. Community sites, church halls, council spaces and shopping-centre vacancies can often be negotiated well below market.",
+          "Cost of goods — aim to keep it around 25-30% of revenue.",
+          "Labour — the line where social enterprises break. Supported staff need more supervision, so budget a paid supervisor, not just goodwill.",
+          "The subsidy itself — every suspended coffee or free meal is real product going out the door. Fund it from a separate, tracked pool, never from working capital.",
+        ],
+      },
+      "That last point is the mistake I want to save you from. When donations and trading revenue sit in one account, generosity eats the rent. Keep them separate and only give away what the donation pool has actually funded.",
+      { type: "heading", text: "Build the Community Before You Open" },
+      "The advantage a social enterprise has over a normal cafe is that people want you to exist. Use it early.",
+      {
+        type: "list",
+        items: [
+          "Start the story publicly months before you open — the build, the setbacks, the reason.",
+          "Find your anchor customers: local police, tradies, schools, church groups, nearby offices. Regulars pay the bills; goodwill doesn't.",
+          "Partner with the referral agencies who'll send you the people you're trying to help, and agree who supports them.",
+          "Give local media a specific, human story rather than a press release. Ours ran because it was about people, not coffee.",
+          "Recruit volunteers for the edges — deliveries, gardens, events — and pay for the core roles.",
+        ],
+      },
+      "Our police coffee mornings did more for the cafe than any advertising. Two groups who normally only meet on a bad day, sitting down over a flat white. That's the actual product.",
+      { type: "heading", text: "Plan for Sustainability, Not Just Survival" },
+      "Most social enterprise cafes that close don't fail on mission. They fail on cash flow, founder burnout, or dependence on one grant.",
+      {
+        type: "list",
+        items: [
+          "Add revenue lines that aren't weather-dependent: catering, wholesale beans, corporate orders, venue hire, workshops.",
+          "Never let a single grant fund more than a third of operations.",
+          "Measure impact from day one — meals served, hours worked, people placed into jobs. Funders buy evidence, not sentiment.",
+          "Write down what happens if you step away for a month. If the answer is that it stops, you have a job, not an enterprise.",
+          "Set a review point — say 18 months — where you honestly test whether the model works. Closing well is better than collapsing slowly.",
+        ],
+      },
+      "Cup From Above eventually closed its doors as a cafe. I don't consider it a failure — thousands of coffees and meals went to people who needed them, and the community connections outlasted the lease. But I'd have run it differently knowing what I know now.",
+      { type: "quote", text: "Start with the smallest version that proves the idea. A cart, a stall, a suspended-coffee board at an existing cafe." },
+      { type: "heading", text: "If You Only Take Three Things" },
+      {
+        type: "list",
+        items: [
+          "Be excellent at coffee first. Nobody comes back for a mediocre flat white with a good cause attached.",
+          "Ring-fence the giving so it can never consume the trading business.",
+          "Test small before you sign a lease.",
+        ],
+      },
+      "If you're working on something like this in Australia and want to talk it through, get in touch. I'm happy to share what worked and what didn't.",
+    ],
+    references: [
+      { source: "Social Enterprise Australia", title: "What is a social enterprise?", url: "https://www.socialenterpriseaustralia.org.au/" },
+      { source: "ACNC", title: "Charity registration and obligations", url: "https://www.acnc.gov.au/for-charities/start-charity" },
+      { source: "business.gov.au", title: "Business structures", url: "https://business.gov.au/planning/business-structures-and-types/business-structures" },
+    ],
+  },
+  {
     slug: "tree-removal-noosa",
     title: "Tree Removal Noosa: What Homeowners on the Sunshine Coast Need to Know",
     excerpt:
