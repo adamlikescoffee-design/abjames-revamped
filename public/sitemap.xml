@@ -36,6 +36,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.abjames.com/blog/how-to-start-a-social-enterprise-cafe</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.abjames.com/blog/tree-removal-noosa</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
