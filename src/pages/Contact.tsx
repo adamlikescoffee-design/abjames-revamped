@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Seo from "@/components/Seo";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Facebook, Flame, Instagram, Linkedin, Send, ArrowRight } from "lucide-react";
 import TikTokIcon from "@/components/TikTokIcon";
@@ -54,6 +55,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="Contact Adam James — Speaking, Media & Enquiries" description="Get in touch with Adam James for speaking, media enquiries, collaborations or a simple hello. Messages go straight to his inbox." path="/contact" />
       <Header />
 
       <section className="pt-32 pb-24">

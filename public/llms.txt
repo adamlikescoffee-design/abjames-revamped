@@ -1,0 +1,13 @@
+# Adam James
+
+> Personal site of Adam James — Australian entrepreneur, community builder and writer. Stories on coffee, business, faith, family and the Pay It Forward wheelchair initiative.
+
+## Pages
+
+- [Home](/): Introduction to Adam James and his latest writing.
+- [About Adam](/aboutadam): Adam's story, values and work with Cup From Above.
+- [Blog](/blog): Articles on business, health, coffee, faith and community.
+- [Gallery](/gallery): Photo gallery of Adam's work and travels.
+- [Media & Publications](/media-publications): Press coverage, interviews and features.
+- [Paying It Forward](/paying-it-forward): The wheelchair initiative, journal updates and pledge form.
+- [Contact](/contact): Get in touch with Adam.

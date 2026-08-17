@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import Seo, { collectionJsonLd } from "@/components/Seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -143,6 +144,7 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="Photo Gallery — Adam James" description="A photo gallery from Adam James: community work, coffee, travel and the moments behind the stories he writes about." path="/gallery" jsonLd={collectionJsonLd("Gallery", "/gallery", "Photographs from Adam James' community work, coffee and travels.")} />
       <Header />
 
       {lightboxIndex !== null && (

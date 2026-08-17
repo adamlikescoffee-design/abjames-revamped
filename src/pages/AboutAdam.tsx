@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Seo, { personJsonLd } from "@/components/Seo";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/adam-james-hero.webp";
 import musicImage from "@/assets/about-music.jpg";
@@ -15,6 +16,7 @@ const AboutAdam = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="About Adam James — His Story, Values & Work" description="Meet Adam James: the story behind Cup From Above, his values, his work in community and the people who shaped the journey." path="/aboutadam" jsonLd={personJsonLd} />
       <Header />
 
       {/* Hero */}
