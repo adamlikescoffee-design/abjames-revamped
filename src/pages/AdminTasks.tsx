@@ -71,19 +71,29 @@ function useToday() {
 const AdminTasks = () => {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
-  const [authz, setAuthz] = useState<"checking" | "ok" | "denied">("checking");
+  // Role check result is keyed to the user it was checked for, so a changed
+  // session can never inherit an earlier "ok".
+  const [authz, setAuthz] = useState<{ userId: string; ok: boolean } | null>(null);
+  const userId = user?.id ?? null;
 
   useEffect(() => {
     if (authLoading) return;
-    if (!user) {
+    if (!userId) {
       navigate("/admin/login", { state: { from: "/admin/tasks" } });
       return;
     }
-    if (user.id !== OWNER_ID) { setAuthz("denied"); return; }
-    supabase.rpc("has_role", { _user_id: user.id, _role: "admin" }).then(({ data, error }) => {
-      setAuthz(!error && data === true ? "ok" : "denied");
+    if (userId !== OWNER_ID) return;
+    let cancelled = false;
+    supabase.rpc("has_role", { _user_id: userId, _role: "admin" }).then(({ data, error }) => {
+      if (!cancelled) setAuthz({ userId, ok: !error && data === true });
     });
-  }, [authLoading, user, navigate]);
+    return () => { cancelled = true; };
+  }, [authLoading, userId, navigate]);
+
+  const isOwner = !!userId && userId === OWNER_ID;
+  const checked = isOwner && authz?.userId === userId;
+  const state: "loading" | "denied" | "ok" =
+    authLoading || !userId ? "loading" : !isOwner ? "denied" : !checked ? "loading" : authz!.ok ? "ok" : "denied";
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -91,11 +101,11 @@ const AdminTasks = () => {
         <title>My Tasks | Admin</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      {authLoading || (user && authz === "checking") || !user ? (
+      {state === "loading" ? (
         <div className="min-h-screen flex items-center justify-center" role="status" aria-label="Loading">
           <Loader2 className="animate-spin text-primary" />
         </div>
-      ) : authz === "denied" ? (
+      ) : state === "denied" ? (
         <div className="min-h-screen flex flex-col items-center justify-center gap-4 px-4 text-center">
           <ShieldAlert size={40} className="text-primary" />
           <h1 className="font-heading text-3xl">Access denied</h1>
@@ -103,43 +113,85 @@ const AdminTasks = () => {
           <Link to="/" className="text-primary hover:underline text-sm">← Back to the site</Link>
         </div>
       ) : (
-        <TaskDashboard />
+        <TaskDashboard key={userId!} />
       )}
     </div>
   );
 };
 
+export const HISTORY_LIMIT = 500;
+const TASK_COLS = "id,title,notes,recurrence,weekly_day,monthly_day,start_date,archived_at";
+const COMP_COLS = "id,task_id,cycle_key,completed_at";
+
+/** A PostgREST error with a code is a definite rejection; anything else (network) is uncertain. */
+const isDefinite = (e: unknown) => !!(e && typeof e === "object" && "code" in e && (e as { code?: string }).code);
+
 const TaskDashboard = () => {
   const today = useToday();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [completions, setCompletions] = useState<Completion[]>([]);
+  const [doneKeys, setDoneKeys] = useState<Set<string>>(new Set());
+  const [history, setHistory] = useState<Completion[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>("all");
   const [pending, setPending] = useState<Set<string>>(new Set());
   const pendingRef = useRef<Set<string>>(new Set());
+  const seqRef = useRef(0);
+  const todayRef = useRef(today);
+  todayRef.current = today;
   const [editing, setEditing] = useState<Task | "new" | null>(null);
   const [removing, setRemoving] = useState<Task | null>(null);
+  const [removeBusy, setRemoveBusy] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
 
-  const load = useCallback(async () => {
-    setLoadError(null);
-    const [t, c] = await Promise.all([
-      supabase.from("recurring_tasks").select("id,title,notes,recurrence,weekly_day,monthly_day,start_date,archived_at").order("created_at"),
-      supabase.from("task_completions").select("id,task_id,cycle_key,completed_at").order("completed_at", { ascending: false }).limit(500),
-    ]);
-    if (t.error || c.error) {
+  /** Loads tasks, current-cycle completions (unlimited by history) and newest history. Stale responses are dropped. */
+  const load = useCallback(async (): Promise<boolean> => {
+    const seq = ++seqRef.current;
+    const day = todayRef.current;
+    try {
+      const t = await supabase.from("recurring_tasks").select(TASK_COLS).order("created_at");
+      if (t.error) throw t.error;
+      const list = (t.data ?? []) as Task[];
+      const active = list.filter((x) => !x.archived_at && isActive(x, day));
+      const wanted = new Set(active.map((x) => `${x.id}|${cycleStart(x, day)}`));
+      const keys = [...new Set(active.map((x) => cycleStart(x, day)))];
+      const [cur, hist] = await Promise.all([
+        keys.length
+          ? supabase.from("task_completions").select(COMP_COLS).in("cycle_key", keys).in("task_id", active.map((x) => x.id))
+          : Promise.resolve({ data: [] as Completion[], error: null }),
+        supabase.from("task_completions").select(COMP_COLS).order("completed_at", { ascending: false }).limit(HISTORY_LIMIT),
+      ]);
+      if (cur.error) throw cur.error;
+      if (hist.error) throw hist.error;
+      if (seq !== seqRef.current) return true; // superseded by a newer load
+      setTasks(list);
+      setDoneKeys(new Set(((cur.data ?? []) as Completion[]).map((c) => `${c.task_id}|${c.cycle_key}`).filter((k) => wanted.has(k))));
+      setHistory((hist.data ?? []) as Completion[]);
+      setLoadError(null);
+      setLoading(false);
+      return true;
+    } catch {
+      if (seq !== seqRef.current) return true;
       setLoadError("Couldn't load your tasks. Check your connection and try again.");
-    } else {
-      setTasks(t.data as Task[]);
-      setCompletions(c.data as Completion[]);
+      setLoading(false);
+      return false;
     }
-    setLoading(false);
   }, []);
 
-  useEffect(() => { load(); }, [load]);
+  // Initial load, on date rollover, and whenever the page regains focus (picks up other-device changes).
+  useEffect(() => { load(); }, [load, today]);
+  useEffect(() => {
+    const onFocus = () => { if (document.visibilityState !== "hidden") load(); };
+    window.addEventListener("focus", onFocus);
+    document.addEventListener("visibilitychange", onFocus);
+    return () => {
+      window.removeEventListener("focus", onFocus);
+      document.removeEventListener("visibilitychange", onFocus);
+    };
+  }, [load]);
 
-  const doneSet = useMemo(() => new Set(completions.map((c) => `${c.task_id}|${c.cycle_key}`)), [completions]);
+  const doneSet = doneKeys;
+  const completions = history;
 
   const current = useMemo(
     () => tasks
@@ -154,27 +206,46 @@ const TaskDashboard = () => {
   const shown = current.filter((r) => filter === "all" || r.task.recurrence === filter);
   const doneCount = shown.filter((r) => r.done).length;
 
+  const retry = () => { load().then((ok) => ok ? toast.success("Status refreshed") : toast.error("Still couldn't reach the server.")); };
+
   const toggle = async (task: Task, key: string, done: boolean) => {
     if (pendingRef.current.has(task.id)) return;
     pendingRef.current.add(task.id);
     setPending(new Set(pendingRef.current));
+    const k = `${task.id}|${key}`;
     try {
-      if (!done) {
-        const { error } = await supabase
-          .from("task_completions")
-          .upsert({ task_id: task.id, owner_id: OWNER_ID, cycle_key: key }, { onConflict: "task_id,cycle_key", ignoreDuplicates: true });
-        if (error) throw error;
-      } else {
-        const { error } = await supabase.from("task_completions").delete().eq("task_id", task.id).eq("cycle_key", key);
-        if (error) throw error;
+      // 1) Mutation — idempotent (unique task+cycle; delete by key).
+      let mutationError: unknown = null;
+      try {
+        const { error } = !done
+          ? await supabase.from("task_completions")
+              .upsert({ task_id: task.id, owner_id: OWNER_ID, cycle_key: key }, { onConflict: "task_id,cycle_key", ignoreDuplicates: true })
+          : await supabase.from("task_completions").delete().eq("task_id", task.id).eq("cycle_key", key);
+        mutationError = error;
+      } catch (e) {
+        mutationError = e;
       }
-      const { data, error } = await supabase
-        .from("task_completions").select("id,task_id,cycle_key,completed_at")
-        .order("completed_at", { ascending: false }).limit(500);
-      if (error) throw error;
-      setCompletions(data as Completion[]);
-    } catch {
-      toast.error(done ? "Couldn't undo — nothing was changed. Try again." : "Couldn't save — the task is still not done. Try again.");
+      if (mutationError) {
+        if (isDefinite(mutationError)) {
+          toast.error(done ? "Undo was rejected — the task is still marked done." : "Save was rejected — the task is still not done.");
+        } else {
+          toast.error("Couldn't confirm whether that change saved.", { action: { label: "Retry", onClick: retry } });
+        }
+        return;
+      }
+      // 2) Confirmed: reflect locally, invalidating any in-flight stale load.
+      seqRef.current++;
+      setDoneKeys((prev) => {
+        const next = new Set(prev);
+        if (done) next.delete(k); else next.add(k);
+        return next;
+      });
+      // 3) Reconcile separately; a failure here doesn't undo the confirmed change.
+      const ok = await load();
+      if (!ok) {
+        setLoadError(null);
+        toast.error(done ? "Undone, but the list couldn't refresh." : "Saved, but the list couldn't refresh.", { action: { label: "Retry", onClick: retry } });
+      }
     } finally {
       pendingRef.current.delete(task.id);
       setPending(new Set(pendingRef.current));
