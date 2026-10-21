@@ -111,6 +111,7 @@ export type Database = {
           owner_id: string
           recurrence: string
           start_date: string
+          target_count: number
           title: string
           updated_at: string
           weekly_day: number | null
@@ -124,6 +125,7 @@ export type Database = {
           owner_id?: string
           recurrence: string
           start_date: string
+          target_count?: number
           title: string
           updated_at?: string
           weekly_day?: number | null
@@ -137,6 +139,7 @@ export type Database = {
           owner_id?: string
           recurrence?: string
           start_date?: string
+          target_count?: number
           title?: string
           updated_at?: string
           weekly_day?: number | null
@@ -149,6 +152,7 @@ export type Database = {
           cycle_key: string
           id: string
           owner_id: string
+          slot: number
           task_id: string
         }
         Insert: {
@@ -156,6 +160,7 @@ export type Database = {
           cycle_key: string
           id?: string
           owner_id?: string
+          slot?: number
           task_id: string
         }
         Update: {
@@ -163,6 +168,7 @@ export type Database = {
           cycle_key?: string
           id?: string
           owner_id?: string
+          slot?: number
           task_id?: string
         }
         Relationships: [

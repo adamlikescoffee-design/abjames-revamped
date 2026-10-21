@@ -8,6 +8,13 @@
       "when": 1792611249354,
       "tag": "0000_recurring_tasks",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792612237197,
+      "tag": "0001_task_target_count",
+      "breakpoints": true
     }
   ]
 }
