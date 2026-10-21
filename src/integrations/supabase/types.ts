@@ -101,6 +101,80 @@ export type Database = {
         }
         Relationships: []
       }
+      recurring_tasks: {
+        Row: {
+          archived_at: string | null
+          created_at: string
+          id: string
+          monthly_day: number | null
+          notes: string | null
+          owner_id: string
+          recurrence: string
+          start_date: string
+          title: string
+          updated_at: string
+          weekly_day: number | null
+        }
+        Insert: {
+          archived_at?: string | null
+          created_at?: string
+          id?: string
+          monthly_day?: number | null
+          notes?: string | null
+          owner_id?: string
+          recurrence: string
+          start_date: string
+          title: string
+          updated_at?: string
+          weekly_day?: number | null
+        }
+        Update: {
+          archived_at?: string | null
+          created_at?: string
+          id?: string
+          monthly_day?: number | null
+          notes?: string | null
+          owner_id?: string
+          recurrence?: string
+          start_date?: string
+          title?: string
+          updated_at?: string
+          weekly_day?: number | null
+        }
+        Relationships: []
+      }
+      task_completions: {
+        Row: {
+          completed_at: string
+          cycle_key: string
+          id: string
+          owner_id: string
+          task_id: string
+        }
+        Insert: {
+          completed_at?: string
+          cycle_key: string
+          id?: string
+          owner_id?: string
+          task_id: string
+        }
+        Update: {
+          completed_at?: string
+          cycle_key?: string
+          id?: string
+          owner_id?: string
+          task_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_completions_task_owner_fkey"
+            columns: ["task_id", "owner_id"]
+            isOneToOne: false
+            referencedRelation: "recurring_tasks"
+            referencedColumns: ["id", "owner_id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
