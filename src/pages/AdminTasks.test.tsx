@@ -248,6 +248,26 @@ describe("owner dashboard", () => {
     expect(screen.getByRole("checkbox")).toHaveAttribute("data-state", "unchecked");
   });
 
+  it("5x per week task is only done after 5 logs, and undo removes one", async () => {
+    db.recurring_tasks.push(task({ title: "Resistance training", recurrence: "weekly", weekly_day: 1, target_count: 5 }));
+    renderPage();
+    await screen.findByText("Resistance training");
+    const plus = () => screen.getByRole("button", { name: "Log one Resistance training" });
+    for (let i = 1; i <= 4; i++) {
+      fireEvent.click(plus());
+      await waitFor(() => expect(screen.getByText(`${i} / 5`)).toBeInTheDocument());
+    }
+    expect(screen.getByRole("checkbox")).toHaveAttribute("data-state", "unchecked");
+    fireEvent.click(plus());
+    await waitFor(() => expect(screen.getByRole("checkbox")).toHaveAttribute("data-state", "checked"));
+    expect(db.task_completions.map((c) => c.slot).sort()).toEqual([1, 2, 3, 4, 5]);
+    expect(new Set(db.task_completions.map((c) => c.cycle_key))).toEqual(new Set(["2026-10-19"]));
+    expect(plus()).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "Undo one Resistance training" }));
+    await waitFor(() => expect(screen.getByText("4 / 5")).toBeInTheDocument());
+    expect(db.task_completions).toHaveLength(4);
+  });
+
   it("future start date is not a current task", async () => {
     db.recurring_tasks.push(task({ title: "Later task", start_date: "2026-11-01" }));
     renderPage();
