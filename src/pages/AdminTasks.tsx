@@ -253,11 +253,27 @@ const TaskDashboard = () => {
   };
 
   const confirmRemove = async () => {
-    if (!removing) return;
-    const { error } = await supabase.from("recurring_tasks").update({ archived_at: new Date().toISOString() }).eq("id", removing.id);
-    if (error) toast.error("Couldn't remove the task. Try again.");
-    else { toast.success("Task removed. Its history is kept."); await load(); }
+    if (!removing || removeBusy) return;
+    const target = removing;
+    setRemoveBusy(true);
+    let error: unknown = null;
+    try {
+      // Archiving is idempotent: only sets archived_at on a still-active row.
+      const res = await supabase.from("recurring_tasks").update({ archived_at: new Date().toISOString() }).eq("id", target.id).is("archived_at", null);
+      error = res.error;
+    } catch (e) {
+      error = e;
+    }
+    setRemoveBusy(false);
+    if (error) {
+      toast.error(isDefinite(error) ? "Removal was rejected — the task is unchanged." : "Couldn't confirm the removal.", { action: { label: "Retry", onClick: retry } });
+      return;
+    }
     setRemoving(null);
+    seqRef.current++;
+    setTasks((prev) => prev.map((t) => (t.id === target.id ? { ...t, archived_at: t.archived_at ?? new Date().toISOString() } : t)));
+    toast.success("Task removed. Its history is kept.");
+    if (!(await load())) { setLoadError(null); toast.error("Removed, but the list couldn't refresh.", { action: { label: "Retry", onClick: retry } }); }
   };
 
   const filters: { id: Filter; label: string }[] = [
@@ -381,6 +397,9 @@ const TaskDashboard = () => {
             <button onClick={() => setShowHistory((s) => !s)} className="flex items-center gap-2 font-heading text-xl hover:text-primary" aria-expanded={showHistory}>
               <History size={18} /> History
             </button>
+            {showHistory && completions.length >= HISTORY_LIMIT && (
+              <p className="text-xs text-muted-foreground mt-2">Showing the newest {HISTORY_LIMIT} completions.</p>
+            )}
             {showHistory && (
               completions.length === 0 ? (
                 <p className="text-muted-foreground text-sm mt-3">No completed tasks yet.</p>
@@ -409,19 +428,24 @@ const TaskDashboard = () => {
           task={editing === "new" ? null : editing}
           today={today}
           onClose={() => setEditing(null)}
-          onSaved={async () => { setEditing(null); await load(); }}
+          onSaved={async () => {
+            setEditing(null);
+            if (!(await load())) { setLoadError(null); toast.error("Saved, but the list couldn't refresh.", { action: { label: "Retry", onClick: retry } }); }
+          }}
         />
       )}
 
-      <AlertDialog open={!!removing} onOpenChange={(o) => !o && setRemoving(null)}>
+      <AlertDialog open={!!removing} onOpenChange={(o) => !o && !removeBusy && setRemoving(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Remove "{removing?.title}"?</AlertDialogTitle>
             <AlertDialogDescription>It will stop appearing from now on. Past completions stay in your history.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmRemove}>Remove</AlertDialogAction>
+            <AlertDialogCancel disabled={removeBusy}>Cancel</AlertDialogCancel>
+            <AlertDialogAction disabled={removeBusy} onClick={(e) => { e.preventDefault(); confirmRemove(); }}>
+              {removeBusy && <Loader2 size={16} className="animate-spin" />}Remove
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
@@ -460,11 +484,23 @@ const TaskForm = ({ task, today, onClose, onSaved }: { task: Task | null; today:
       start_date: v.start_date,
     };
     setSaving(true);
-    const { error } = task
-      ? await supabase.from("recurring_tasks").update(row).eq("id", task.id)
-      : await supabase.from("recurring_tasks").insert({ ...row, owner_id: OWNER_ID });
+    let error: unknown = null;
+    try {
+      // New tasks use a stable client id so retrying after an uncertain network failure can't create a duplicate.
+      const res = task
+        ? await supabase.from("recurring_tasks").update(row).eq("id", task.id)
+        : await supabase.from("recurring_tasks").upsert({ ...row, id: newId, owner_id: OWNER_ID }, { onConflict: "id", ignoreDuplicates: true });
+      error = res.error;
+    } catch (e) {
+      error = e;
+    }
     setSaving(false);
-    if (error) { toast.error("Couldn't save the task. Check your connection and try again."); return; }
+    if (error) {
+      toast.error(isDefinite(error)
+        ? "The task was rejected and not saved."
+        : "Couldn't confirm the task saved. Press Save again to retry — it won't be duplicated.");
+      return;
+    }
     toast.success(task ? "Task updated" : "Task added");
     onSaved();
   };
