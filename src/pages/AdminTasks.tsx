@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { z } from "zod";
-import { ArrowLeft, Loader2, Pencil, Plus, Trash2, ShieldAlert, History, RefreshCw } from "lucide-react";
+import { ArrowLeft, Minus, Loader2, Pencil, Plus, Trash2, ShieldAlert, History, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -33,8 +33,9 @@ interface Task {
   monthly_day: number | null;
   start_date: string;
   archived_at: string | null;
+  target_count: number;
 }
-interface Completion { id: string; task_id: string; cycle_key: string; completed_at: string }
+interface Completion { id: string; task_id: string; cycle_key: string; completed_at: string; slot: number }
 
 const taskSchema = z.object({
   title: z.string().trim().min(1, "Title is required").max(200, "Keep the title under 200 characters"),
@@ -42,6 +43,7 @@ const taskSchema = z.object({
   recurrence: z.enum(["daily", "weekly", "monthly"]),
   weekly_day: z.number().int().min(0).max(6),
   monthly_day: z.number().int().min(1).max(31),
+  target_count: z.number().int().min(1, "At least 1").max(100, "Max 100"),
   start_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Pick a start date"),
 });
 
@@ -120,8 +122,8 @@ const AdminTasks = () => {
 };
 
 export const HISTORY_LIMIT = 500;
-const TASK_COLS = "id,title,notes,recurrence,weekly_day,monthly_day,start_date,archived_at";
-const COMP_COLS = "id,task_id,cycle_key,completed_at";
+const TASK_COLS = "id,title,notes,recurrence,weekly_day,monthly_day,start_date,archived_at,target_count";
+const COMP_COLS = "id,task_id,cycle_key,completed_at,slot";
 
 /** A PostgREST error with a code is a definite rejection; anything else (network) is uncertain. */
 const isDefinite = (e: unknown) => !!(e && typeof e === "object" && "code" in e && (e as { code?: string }).code);
@@ -129,7 +131,7 @@ const isDefinite = (e: unknown) => !!(e && typeof e === "object" && "code" in e 
 const TaskDashboard = () => {
   const today = useToday();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [doneKeys, setDoneKeys] = useState<Set<string>>(new Set());
+  const [counts, setCounts] = useState<Map<string, number[]>>(new Map());
   const [history, setHistory] = useState<Completion[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -165,7 +167,13 @@ const TaskDashboard = () => {
       if (hist.error) throw hist.error;
       if (seq !== seqRef.current) return true; // superseded by a newer load
       setTasks(list);
-      setDoneKeys(new Set(((cur.data ?? []) as Completion[]).map((c) => `${c.task_id}|${c.cycle_key}`).filter((k) => wanted.has(k))));
+      const m = new Map<string, number[]>();
+      for (const c of (cur.data ?? []) as Completion[]) {
+        const k = `${c.task_id}|${c.cycle_key}`;
+        if (!wanted.has(k)) continue;
+        m.set(k, [...(m.get(k) ?? []), c.slot ?? 1]);
+      }
+      setCounts(m);
       setHistory((hist.data ?? []) as Completion[]);
       setLoadError(null);
       setLoading(false);
@@ -190,7 +198,6 @@ const TaskDashboard = () => {
     };
   }, [load]);
 
-  const doneSet = doneKeys;
   const completions = history;
 
   const current = useMemo(
@@ -198,17 +205,21 @@ const TaskDashboard = () => {
       .filter((t) => !t.archived_at && isActive(t, today))
       .map((t) => {
         const key = cycleStart(t, today);
-        return { task: t, key, reset: nextReset(t, today), done: doneSet.has(`${t.id}|${key}`) };
+        const slots = counts.get(`${t.id}|${key}`) ?? [];
+        const target = t.target_count ?? 1;
+        return { task: t, key, reset: nextReset(t, today), slots, target, done: slots.length >= target };
       }),
-    [tasks, today, doneSet],
+    [tasks, today, counts],
   );
   const upcoming = useMemo(() => tasks.filter((t) => !t.archived_at && !isActive(t, today)), [tasks, today]);
   const shown = current.filter((r) => filter === "all" || r.task.recurrence === filter);
   const doneCount = shown.filter((r) => r.done).length;
 
+
   const retry = () => { load().then((ok) => ok ? toast.success("Status refreshed") : toast.error("Still couldn't reach the server.")); };
 
-  const toggle = async (task: Task, key: string, done: boolean) => {
+  /** add=true records the next occurrence; add=false undoes the latest one. */
+  const step = async (task: Task, key: string, slots: number[], add: boolean) => {
     if (pendingRef.current.has(task.id)) return;
     pendingRef.current.add(task.id);
     setPending(new Set(pendingRef.current));
@@ -216,18 +227,24 @@ const TaskDashboard = () => {
     try {
       // 1) Mutation — idempotent (unique task+cycle; delete by key).
       let mutationError: unknown = null;
+      let changedSlot = 0;
       try {
-        const { error } = !done
+        const used = new Set(slots);
+        let free = 1; while (used.has(free)) free++;
+        const last = slots.length ? Math.max(...slots) : 0;
+        if (!add && !last) return;
+        const { error } = add
           ? await supabase.from("task_completions")
-              .upsert({ task_id: task.id, owner_id: OWNER_ID, cycle_key: key }, { onConflict: "task_id,cycle_key", ignoreDuplicates: true })
-          : await supabase.from("task_completions").delete().eq("task_id", task.id).eq("cycle_key", key);
+              .upsert({ task_id: task.id, owner_id: OWNER_ID, cycle_key: key, slot: free }, { onConflict: "task_id,cycle_key,slot", ignoreDuplicates: true })
+          : await supabase.from("task_completions").delete().eq("task_id", task.id).eq("cycle_key", key).eq("slot", last);
+        changedSlot = add ? free : last;
         mutationError = error;
       } catch (e) {
         mutationError = e;
       }
       if (mutationError) {
         if (isDefinite(mutationError)) {
-          toast.error(done ? "Undo was rejected — the task is still marked done." : "Save was rejected — the task is still not done.");
+          toast.error(!add ? "Undo was rejected — nothing changed." : "Save was rejected — nothing changed.");
         } else {
           toast.error("Couldn't confirm whether that change saved.", { action: { label: "Retry", onClick: retry } });
         }
@@ -235,16 +252,17 @@ const TaskDashboard = () => {
       }
       // 2) Confirmed: reflect locally, invalidating any in-flight stale load.
       seqRef.current++;
-      setDoneKeys((prev) => {
-        const next = new Set(prev);
-        if (done) next.delete(k); else next.add(k);
+      setCounts((prev) => {
+        const next = new Map(prev);
+        const cur = next.get(k) ?? [];
+        next.set(k, add ? [...cur, changedSlot] : cur.filter((x) => x !== changedSlot));
         return next;
       });
       // 3) Reconcile separately; a failure here doesn't undo the confirmed change.
       const ok = await load();
       if (!ok) {
         setLoadError(null);
-        toast.error(done ? "Undone, but the list couldn't refresh." : "Saved, but the list couldn't refresh.", { action: { label: "Retry", onClick: retry } });
+        toast.error(!add ? "Undone, but the list couldn't refresh." : "Saved, but the list couldn't refresh.", { action: { label: "Retry", onClick: retry } });
       }
     } finally {
       pendingRef.current.delete(task.id);
@@ -341,7 +359,7 @@ const TaskDashboard = () => {
             </div>
           ) : (
             <ul className="space-y-3">
-              {shown.map(({ task, key, reset, done }) => {
+              {shown.map(({ task, key, reset, done, slots, target }) => {
                 const id = `task-${task.id}`;
                 const busy = pending.has(task.id);
                 return (
@@ -352,7 +370,8 @@ const TaskDashboard = () => {
                           id={id}
                           checked={done}
                           disabled={busy}
-                          onCheckedChange={() => toggle(task, key, done)}
+                          aria-label={target > 1 ? `${task.title}: ${done ? "undo last" : "log one"} (${slots.length} of ${target})` : undefined}
+                          onCheckedChange={() => step(task, key, slots, !done)}
                           className="h-5 w-5"
                         />
                       )}
@@ -361,10 +380,18 @@ const TaskDashboard = () => {
                       <label htmlFor={id} className={`block font-semibold break-words cursor-pointer ${done ? "line-through text-muted-foreground" : ""}`}>
                         {task.title}
                       </label>
+                      {target > 1 && (
+                        <div className="flex items-center gap-2 mt-2">
+                          <Button variant="outline" size="icon" className="h-8 w-8" aria-label={`Undo one ${task.title}`} disabled={busy || slots.length === 0} onClick={() => step(task, key, slots, false)}><Minus size={14} /></Button>
+                          <span className="font-heading tracking-wider text-lg min-w-[3.5rem] text-center" aria-live="polite">{slots.length} / {target}</span>
+                          <Button variant="outline" size="icon" className="h-8 w-8" aria-label={`Log one ${task.title}`} disabled={busy || slots.length >= target} onClick={() => step(task, key, slots, true)}><Plus size={14} /></Button>
+                          <Progress value={Math.min(100, (slots.length / target) * 100)} className="flex-1 h-1.5" aria-hidden />
+                        </div>
+                      )}
                       {task.notes && <p className="text-sm text-muted-foreground mt-1 whitespace-pre-wrap break-words">{task.notes}</p>}
                       <p className="text-xs text-muted-foreground mt-2">
                         <span className="text-primary font-heading tracking-wider uppercase mr-2">{task.recurrence}</span>
-                        {describeRule(task)} · Resets {formatDate(reset)}, 12:00 AM
+                        {target > 1 && `${target}× · `}{describeRule(task)} · Resets {formatDate(reset)}, 12:00 AM
                       </p>
                     </div>
                     <div className="flex gap-1">
@@ -459,6 +486,7 @@ const TaskForm = ({ task, today, onClose, onSaved }: { task: Task | null; today:
   const [recurrence, setRecurrence] = useState<Recurrence>(task?.recurrence ?? "daily");
   const [weeklyDay, setWeeklyDay] = useState(task?.weekly_day ?? 1);
   const [monthlyDay, setMonthlyDay] = useState(task?.monthly_day ?? 1);
+  const [target, setTarget] = useState(String(task?.target_count ?? 1));
   const [startDate, setStartDate] = useState(task?.start_date ?? today);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
@@ -467,7 +495,7 @@ const TaskForm = ({ task, today, onClose, onSaved }: { task: Task | null; today:
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (saving) return;
-    const parsed = taskSchema.safeParse({ title, notes, recurrence, weekly_day: weeklyDay, monthly_day: monthlyDay, start_date: startDate });
+    const parsed = taskSchema.safeParse({ title, notes, recurrence, weekly_day: weeklyDay, monthly_day: monthlyDay, target_count: Number(target), start_date: startDate });
     if (!parsed.success) {
       const errs: Record<string, string> = {};
       parsed.error.issues.forEach((i) => { errs[String(i.path[0])] = i.message; });
@@ -483,6 +511,7 @@ const TaskForm = ({ task, today, onClose, onSaved }: { task: Task | null; today:
       weekly_day: v.recurrence === "weekly" ? v.weekly_day : null,
       monthly_day: v.recurrence === "monthly" ? v.monthly_day : null,
       start_date: v.start_date,
+      target_count: v.target_count,
     };
     setSaving(true);
     let error: unknown = null;
@@ -551,6 +580,11 @@ const TaskForm = ({ task, today, onClose, onSaved }: { task: Task | null; today:
               {monthlyDay > 28 && <p className="text-xs text-muted-foreground mt-1">In shorter months it resets on the last day.</p>}
             </div>
           )}
+          <div>
+            <Label htmlFor="t-target">Times per {recurrence === "daily" ? "day" : recurrence === "weekly" ? "week" : "month"}</Label>
+            <Input id="t-target" type="number" inputMode="numeric" min={1} max={100} value={target} onChange={(e) => setTarget(e.target.value)} aria-invalid={!!errors.target_count} />
+            {errors.target_count && <p className="text-destructive text-sm mt-1">{errors.target_count}</p>}
+          </div>
           <div>
             <Label htmlFor="t-start">Start date</Label>
             <Input id="t-start" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} aria-invalid={!!errors.start_date} />
