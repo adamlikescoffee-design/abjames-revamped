@@ -227,6 +227,7 @@ const TaskDashboard = () => {
     try {
       // 1) Mutation — idempotent (unique task+cycle; delete by key).
       let mutationError: unknown = null;
+      let changedSlot = 0;
       try {
         const used = new Set(slots);
         let free = 1; while (used.has(free)) free++;
@@ -236,7 +237,7 @@ const TaskDashboard = () => {
           ? await supabase.from("task_completions")
               .upsert({ task_id: task.id, owner_id: OWNER_ID, cycle_key: key, slot: free }, { onConflict: "task_id,cycle_key,slot", ignoreDuplicates: true })
           : await supabase.from("task_completions").delete().eq("task_id", task.id).eq("cycle_key", key).eq("slot", last);
-        var changedSlot = add ? free : last;
+        changedSlot = add ? free : last;
         mutationError = error;
       } catch (e) {
         mutationError = e;
