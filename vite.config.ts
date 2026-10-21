@@ -23,6 +23,9 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
+    dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core", "react-router-dom", "react-helmet-async"],
+  },
+  optimizeDeps: {
+    include: ["react-router-dom", "react-helmet-async", "zod", "@radix-ui/react-checkbox", "@radix-ui/react-progress", "@radix-ui/react-alert-dialog", "@radix-ui/react-dialog"],
   },
 }));
