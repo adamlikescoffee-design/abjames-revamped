@@ -462,6 +462,7 @@ const TaskForm = ({ task, today, onClose, onSaved }: { task: Task | null; today:
   const [startDate, setStartDate] = useState(task?.start_date ?? today);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
+  const [newId] = useState(() => crypto.randomUUID());
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
