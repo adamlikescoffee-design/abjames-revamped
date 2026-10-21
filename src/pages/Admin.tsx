@@ -278,6 +278,9 @@ const Admin = () => {
             <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors ml-2">← Home</Link>
           </div>
           <div className="flex items-center gap-4">
+            <Link to="/admin/tasks" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-heading">
+              My Tasks
+            </Link>
             <Link to="/admin/blog" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-heading">
               <Pencil size={16} />
               Edit Blog Posts
